@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TURNIO | Marketing & Automation Expert</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            },
+            colors: {
+              gold: {
+                400: '#FACC15',
+                500: '#EAB308', 
+                600: '#CA8A04',
+                glow: 'rgba(234, 179, 8, 0.4)',
+              },
+              dark: {
+                bg: '#030303',      
+                card: 'rgba(15, 15, 15, 0.95)', 
+                surface: '#080808', 
+                border: 'rgba(255, 255, 255, 0.08)',  
+              }
+            },
+            animation: {
+              'blink': 'blink 1s step-end infinite',
+              'float': 'float 8s ease-in-out infinite',
+              'spin-slow': 'spin 20s linear infinite',
+              'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
+              'pop-in': 'popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+              'shimmer': 'shimmer 2s infinite',
+            },
+            keyframes: {
+              blink: {
+                'from, to': { opacity: 1 },
+                '50%': { opacity: 0 },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                '50%': { transform: 'translateY(-20px) rotate(2deg)' },
+              },
+              'pulse-glow': {
+                '0%, 100%': { opacity: 0.3, transform: 'scale(1)' },
+                '50%': { opacity: 0.6, transform: 'scale(1.05)' },
+              },
+              popIn: {
+                '0%': { opacity: 0, transform: 'scale(0.9) translateY(20px)' },
+                '100%': { opacity: 1, transform: 'scale(1) translateY(0)' }
+              },
+              shimmer: {
+                '0%': { transform: 'translateX(-100%)' },
+                '100%': { transform: 'translateX(100%)' }
+              }
+            }
+          },
+        },
+      };
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+      
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #030303;
+        color: #FFFFFF;
+        overflow-x: hidden;
+        line-height: 1.7;
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        line-height: 1.3;
+        letter-spacing: -0.02em;
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .glass-pill {
+        background: rgba(10, 10, 10, 0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+      }
+
+      .text-gradient-gold {
+        background: linear-gradient(135deg, #FDE68A 0%, #EAB308 50%, #CA8A04 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .cursor-blink::after {
+        content: '|';
+        animation: blink 1s step-end infinite;
+        color: #EAB308;
+        margin-left: 4px;
+      }
+
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: #030303; }
+      ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; border: 2px solid #030303; }
+      ::-webkit-scrollbar-thumb:hover { background: #EAB308; }
+
+      .perspective-2000 { perspective: 2000px; }
+      .perspective-1000 { perspective: 1000px; }
+      
+      .modal-backdrop {
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(12px);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "framer-motion": "https://esm.sh/framer-motion@^12.23.26",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

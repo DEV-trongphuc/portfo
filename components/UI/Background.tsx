@@ -17,7 +17,7 @@ const Background: React.FC = () => {
           opacity: [0.15, 0.25, 0.15]
         }}
         transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute -top-[10%] -right-[10%] w-[1000px] h-[1000px] bg-gold-500/20 rounded-full blur-[180px]"
+        className="absolute -top-[10%] -right-[10%] w-[1000px] h-[1000px] bg-gold-500/20 rounded-full -[180px]"
       />
       
       {/* Dynamic Ambient Glows - Deep Blue/Purple */}
@@ -29,7 +29,7 @@ const Background: React.FC = () => {
           opacity: [0.1, 0.2, 0.1]
         }}
         transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        className="absolute -bottom-[20%] -left-[10%] w-[1200px] h-[1200px] bg-blue-900/20 rounded-full blur-[200px]"
+        className="absolute -bottom-[20%] -left-[10%] w-[1200px] h-[1200px] bg-blue-900/20 rounded-full -[200px]"
       />
 
       {/* Floating Sparkles - Mid Screen */}
@@ -39,7 +39,7 @@ const Background: React.FC = () => {
           opacity: [0, 0.3, 0]
         }}
         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-gold-600/10 rounded-full blur-[150px]"
+        className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-gold-600/10 rounded-full -[150px]"
       />
 
       {/* Global Grid Pattern - Integrated with masking for fading edges */}

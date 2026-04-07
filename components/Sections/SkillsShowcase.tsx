@@ -66,7 +66,7 @@ const SkillsShowcase: React.FC = () => {
                             className={`bg-[#0a0a0a] border border-white/5 rounded-[2rem] p-8 w-full relative overflow-hidden group hover:border-white/20 transition-all duration-300 shadow-2xl`}
                         >
                             {/* Ambient glow inside card */}
-                            <div className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-br ${group.color} rounded-full blur-[60px] opacity-20 group-hover:opacity-40 transition-opacity duration-300 -mr-20 -mt-20`}></div>
+                            <div className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-br ${group.color} rounded-full -[60px] opacity-20 group-hover:opacity-40 transition-opacity duration-300 -mr-20 -mt-20`}></div>
                             
                             <h3 className={`text-xl font-black ${group.iconColor} mb-8 uppercase tracking-widest text-[12px] relative z-10`}>
                                 {group.category}

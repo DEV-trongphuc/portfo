@@ -35,7 +35,7 @@ const OutsourceHighlights: React.FC = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
                         transition={{ duration: 0.6, delay: i * 0.1 }}
-                        className={`group relative flex flex-col rounded-[2.5rem] overflow-hidden border ${isFailure ? 'border-red-500/10' : 'border-white/5'} hover:border-white/20 transition-all duration-500 bg-[#080808]/50 backdrop-blur-md min-h-[580px]`}
+                        className={`group relative flex flex-col rounded-[2.5rem] overflow-hidden border ${isFailure ? 'border-red-500/10' : 'border-white/5'} hover:border-white/20 transition-all duration-500 bg-[#080808]/50  min-h-[580px]`}
                     >
                         {/* Status Icon Background */}
                         <div className="absolute top-10 right-10 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity">
@@ -64,7 +64,7 @@ const OutsourceHighlights: React.FC = () => {
                             </div>
 
                             {/* Performance Metrics Grid */}
-                            <div className="grid grid-cols-3 gap-6 bg-white/[0.03] backdrop-blur-xl border border-white/5 rounded-3xl p-8 mb-8 group-hover:bg-white/[0.05] transition-colors">
+                            <div className="grid grid-cols-3 gap-6 bg-white/[0.03]  border border-white/5 rounded-3xl p-8 mb-8 group-hover:bg-white/[0.05] transition-colors">
                                 <div className="space-y-1">
                                     <p className="text-[9px] text-gray-500 uppercase font-black tracking-widest">Impact</p>
                                     <p className="text-base font-black text-white leading-tight">{item.impact}</p>

@@ -42,8 +42,8 @@ const LmsShowcase: React.FC = () => {
         <section className="py-24 relative overflow-hidden bg-[#0a0502] z-10 border-t border-white/5">
             {/* Background Accents (Edu-Tech Vibe) */}
             <div className="absolute inset-0 bg-orange-900/5 pointer-events-none"></div>
-            <div className="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-orange-500/10 rounded-full blur-[120px] pointer-events-none"></div>
-            <div className="absolute bottom-[10%] right-[-10%] w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-orange-500/10 rounded-full -[120px] pointer-events-none"></div>
+            <div className="absolute bottom-[10%] right-[-10%] w-[500px] h-[500px] bg-amber-500/10 rounded-full -[120px] pointer-events-none"></div>
 
             <div className="container mx-auto px-6 max-w-7xl relative z-10">
                 <div className="flex flex-col lg:flex-row gap-10 items-center">

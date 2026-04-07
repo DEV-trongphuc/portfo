@@ -20,7 +20,7 @@ const Partners: React.FC = () => {
             </svg>
             
             {/* Ambient Glows */}
-            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px]"></div>
+            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full -[120px]"></div>
        </div>
        
       <div className="container mx-auto px-6 relative z-10">

@@ -44,7 +44,7 @@ const TheBridge: React.FC = () => {
                           }}
                           className="flex gap-8 group p-4 rounded-2xl hover:bg-white/[0.03] transition-colors duration-300"
                         >
-                            <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-white/10 flex items-center justify-center text-gray-400 group-hover:text-gold-500 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                            <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-white/[0.03]  border border-white/10 flex items-center justify-center text-gray-400 group-hover:text-gold-500 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                                 {card.icon}
                             </div>
                             <div>
@@ -64,7 +64,7 @@ const TheBridge: React.FC = () => {
                 transition={{ type: "spring", stiffness: 50, damping: 20 }}
                 className="relative perspective-2000"
             >
-                <div className="bg-black/40 backdrop-blur-2xl rounded-3xl overflow-hidden border border-white/10 shadow-2xl transition-transform duration-700 group">
+                <div className="bg-black/40  rounded-3xl overflow-hidden border border-white/10 shadow-2xl transition-transform duration-700 group">
                     <div className="bg-white/[0.02] px-6 py-4 border-b border-white/5 flex items-center justify-between">
                         <div className="flex gap-2">
                             <div className="w-3 h-3 rounded-full bg-red-500/50 group-hover:bg-red-500 transition-colors"></div>
@@ -100,7 +100,7 @@ const TheBridge: React.FC = () => {
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     transition={{ delay: 0.5, type: "spring" }}
-                    className="absolute -bottom-10 -right-10 bg-black/60 backdrop-blur-2xl p-6 rounded-3xl border border-gold-500/20 shadow-2xl"
+                    className="absolute -bottom-10 -right-10 bg-black/60  p-6 rounded-3xl border border-gold-500/20 shadow-2xl"
                 >
                     <div className="text-gold-500 font-black text-3xl mb-1">0.8s</div>
                     <div className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Sync Latency</div>

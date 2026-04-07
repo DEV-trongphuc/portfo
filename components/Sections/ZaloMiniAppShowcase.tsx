@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MonitorSmartphone, QrCode, ExternalLink, Code2, Shield, MousePointerClick, ArrowLeft } from 'lucide-react';
+import { MonitorSmartphone, QrCode, ExternalLink, Code2, Shield, MousePointerClick, ArrowLeft, RefreshCcw } from 'lucide-react';
 
 const ZaloMiniAppShowcase: React.FC = () => {
   return (
@@ -11,7 +11,7 @@ const ZaloMiniAppShowcase: React.FC = () => {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:64px_64px] opacity-10"></div>
 
       {/* Ambient Spotlight */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-blue-900/10 rounded-full blur-[150px] pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-blue-900/10 rounded-full -[150px] pointer-events-none"></div>
 
       {/* Floating Decor */}
       <div className="absolute top-20 left-10 opacity-20 pointer-events-none">
@@ -102,7 +102,7 @@ const ZaloMiniAppShowcase: React.FC = () => {
                 </motion.div>
 
                 {/* Reflection/Shadow under phone */}
-                <div className="w-[300px] h-10 bg-black/50 blur-xl rounded-[100%] mt-[-20px] z-10"></div>
+                <div className="w-[300px] h-10 bg-black/50  rounded-[100%] mt-[-20px] z-10"></div>
             </div>
 
             {/* Features List */}
@@ -137,17 +137,19 @@ const ZaloMiniAppShowcase: React.FC = () => {
                     </p>
                  </div>
                  
-                 <div className="pl-[84px] pt-4">
-                     <div className="grid grid-cols-2 gap-6">
-                        <div className="p-6 border border-white/10 rounded-3xl text-center bg-white/5 hover:bg-white/10 transition-colors">
-                            <p className="text-4xl font-black text-white mb-2">40%</p>
-                            <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Tỷ lệ quay lại</p>
+                 <div className="group">
+                    <div className="flex items-center gap-4 mb-4">
+                        <div className="p-4 bg-purple-600/10 rounded-2xl text-purple-500 group-hover:bg-purple-600 group-hover:text-white transition-colors border border-purple-500/20">
+                            <RefreshCcw size={28} />
                         </div>
-                        <div className="p-6 border border-white/10 rounded-3xl text-center bg-white/5 hover:bg-white/10 transition-colors">
-                            <p className="text-4xl font-black text-white mb-2">2.5x</p>
-                            <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Tần suất mua</p>
+                        <div>
+                            <h3 className="text-3xl font-black text-white">Data Synchronization</h3>
+                            <p className="text-sm text-gray-500 font-bold uppercase tracking-wider">Ecosystem</p>
                         </div>
-                     </div>
+                    </div>
+                    <p className="text-gray-400 pl-[84px] text-lg font-light leading-relaxed">
+                        Các chức năng tích điểm, lên hạng tự động đồng bộ với Zalo app của người dùng một cách liền mạch.
+                    </p>
                  </div>
 
                  <div className="pl-[84px] pt-4 flex flex-wrap gap-4">

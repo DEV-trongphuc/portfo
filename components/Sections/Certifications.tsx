@@ -58,7 +58,7 @@ const Certifications: React.FC = () => {
                 }}
                 className="group relative h-full"
                 >
-                    <div className="bg-white/[0.02] backdrop-blur-md border border-white/5 rounded-2xl p-4 h-full flex flex-col relative overflow-hidden transition-all duration-500 group-hover:border-gold-500/40 group-hover:bg-white/[0.04] group-hover:shadow-[0_10px_30px_-10px_rgba(234,179,8,0.15)]">
+                    <div className="bg-white/[0.02]  border border-white/5 rounded-2xl p-4 h-full flex flex-col relative overflow-hidden transition-all duration-500 group-hover:border-gold-500/40 group-hover:bg-white/[0.04] group-hover:shadow-[0_10px_30px_-10px_rgba(234,179,8,0.15)]">
                         
                         {/* Certificate Image Frame */}
                         <div className="aspect-[4/3] overflow-hidden rounded-lg mb-4 relative bg-black/40 border border-white/5">
@@ -71,7 +71,7 @@ const Certifications: React.FC = () => {
                             />
                             
                             {/* Overlay Badge */}
-                            <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md border border-gold-500/30 px-2 py-1 rounded flex items-center gap-1 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="absolute top-2 right-2 bg-black/80  border border-gold-500/30 px-2 py-1 rounded flex items-center gap-1 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <BadgeCheck size={10} className="text-gold-500" />
                                 <span className="text-[8px] font-black uppercase text-gold-500 tracking-wider">Verified</span>
                             </div>

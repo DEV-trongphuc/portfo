@@ -19,6 +19,7 @@ import ZaloMiniAppShowcase from './components/Sections/ZaloMiniAppShowcase';
 import TarotShowcase from './components/Sections/TarotShowcase';
 import LmsShowcase from './components/Sections/LmsShowcase';
 import AutoFlowPro from './components/Sections/AutoFlowPro';
+import MetaAdReportShowcase from './components/Sections/MetaAdReportShowcase';
 import ScrollProgress from './components/UI/ScrollProgress';
 
 const App: React.FC = () => {
@@ -47,6 +48,7 @@ const App: React.FC = () => {
         <TarotShowcase />
         <LmsShowcase />
         <AutoFlowPro />
+        <MetaAdReportShowcase />
         <Projects />
         <Certifications />
         <DomMarketing /> {/* DOM Marketing section */}

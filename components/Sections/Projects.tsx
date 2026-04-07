@@ -38,7 +38,7 @@ const Projects: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 whileHover={{ y: -10 }}
-                className="group relative bg-white/[0.02] backdrop-blur-md rounded-3xl overflow-hidden border border-white/5 hover:border-gold-500/30 transition-all duration-500 h-[420px] cursor-pointer"
+                className="group relative bg-white/[0.02]  rounded-3xl overflow-hidden border border-white/5 hover:border-gold-500/30 transition-all duration-500 h-[420px] cursor-pointer"
                 onClick={() => setSelectedProject(project)}
               >
                 {/* Image Background */}

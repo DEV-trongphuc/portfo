@@ -56,8 +56,8 @@ const Experience: React.FC = () => {
                     <div className="hidden md:block w-1/2"></div>
 
                     <div className={`w-[calc(100%-80px)] md:w-[45%] ml-auto md:ml-0 ${isEven ? 'md:pr-16' : 'md:pl-16'}`}>
-                        <div className="relative bg-white/[0.02] backdrop-blur-md border border-white/5 p-8 rounded-3xl hover:bg-white/[0.04] hover:border-gold-500/20 transition-all duration-300 group">
-                            <div className="absolute -top-4 right-8 bg-black/60 backdrop-blur-sm border border-white/10 px-4 py-1 rounded-full">
+                        <div className="relative bg-white/[0.02]  border border-white/5 p-8 rounded-3xl hover:bg-white/[0.04] hover:border-gold-500/20 transition-all duration-300 group">
+                            <div className="absolute -top-4 right-8 bg-black/60  border border-white/10 px-4 py-1 rounded-full">
                                 <span className="text-[10px] font-bold text-gold-500 font-mono">{item.period}</span>
                             </div>
 

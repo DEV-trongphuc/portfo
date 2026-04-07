@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
         className={`
             fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b
             ${scrolled 
-                ? 'bg-black/80 backdrop-blur-md border-white/10 py-4 shadow-lg' 
+                ? 'bg-black/80  border-white/10 py-4 shadow-lg' 
                 : 'bg-transparent border-transparent py-6'
             }
         `}
@@ -90,7 +90,7 @@ const Navbar: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: '100vh' }}
             exit={{ opacity: 0, height: 0 }}
-            className="absolute top-full left-0 right-0 bg-black/95 border-t border-white/10 overflow-hidden backdrop-blur-xl h-screen"
+            className="absolute top-full left-0 right-0 bg-black/95 border-t border-white/10 overflow-hidden  h-screen"
           >
             <div className="flex flex-col p-8 gap-8 items-center justify-center h-full pb-32">
               {navLinks.map((link, i) => (

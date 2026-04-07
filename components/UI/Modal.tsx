@@ -39,7 +39,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title, classNa
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             className={`relative bg-[#0A0A0A] border border-white/10 rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] w-full ${className} flex flex-col`}
           >
-            <div className="flex items-center justify-between p-6 border-b border-white/5 bg-black/40 backdrop-blur-md z-10">
+            <div className="flex items-center justify-between p-6 border-b border-white/5 bg-black/40  z-10">
                 <h3 className="text-xl font-bold text-white uppercase tracking-wider">{title}</h3>
                 <button 
                     onClick={onClose}

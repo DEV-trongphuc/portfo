@@ -55,7 +55,7 @@ const TechBento: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/10 rounded-full mb-6 backdrop-blur-md"
+              className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/10 rounded-full mb-6 "
             >
               <Cpu size={14} className="text-gold-500" />
               <span className="text-gray-300 font-bold tracking-[0.2em] uppercase text-[10px]">Fullstack Capabilities</span>
@@ -83,7 +83,7 @@ const TechBento: React.FC = () => {
                     <div className="absolute top-0 right-0 p-3 bg-blue-500/10 rounded-bl-2xl">
                         <LayoutTemplate size={20} className="text-blue-500" />
                     </div>
-                    <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-blue-600/20 rounded-full blur-3xl group-hover:bg-blue-600/30 transition-all"></div>
+                    <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-blue-600/20 rounded-full  group-hover:bg-blue-600/30 transition-all"></div>
                     
                     <h3 className="text-2xl font-black text-white mb-2">Interface <br/> Engineering</h3>
                     <p className="text-sm text-gray-400 mb-8">Pixel-perfect UI/UX với tốc độ phản hồi dưới 100ms.</p>
@@ -137,7 +137,7 @@ const TechBento: React.FC = () => {
                              <div className="absolute -inset-4 border border-gold-500/20 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
                              
                              {/* Central Icon */}
-                             <div className="w-20 h-20 bg-white/5 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+                             <div className="w-20 h-20 bg-white/5  border border-white/20 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.1)]">
                                 <GitBranch size={32} className="text-white" />
                              </div>
                         </div>
@@ -199,7 +199,7 @@ const TechBento: React.FC = () => {
                     <div className="absolute top-0 right-0 p-3 bg-gold-500/10 rounded-bl-2xl">
                         <Zap size={20} className="text-gold-500" />
                     </div>
-                    <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-gold-600/20 rounded-full blur-3xl group-hover:bg-gold-600/30 transition-all"></div>
+                    <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-gold-600/20 rounded-full  group-hover:bg-gold-600/30 transition-all"></div>
                     
                     <h3 className="text-2xl font-black text-white mb-2">Growth <br/> Hacking</h3>
                     <p className="text-sm text-gray-400 mb-6">Tối ưu hóa chỉ số ROAS dựa trên dữ liệu realtime.</p>

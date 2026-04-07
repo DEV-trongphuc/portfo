@@ -40,7 +40,7 @@ const DomMarketing: React.FC = () => {
                         viewport={{ once: true }}
                         className="lg:w-1/3 w-full"
                     >
-                        <div className="bg-white/[0.03] backdrop-blur-2xl border border-white/10 p-8 rounded-3xl group hover:border-gold-500/20 transition-all">
+                        <div className="bg-white/[0.03]  border border-white/10 p-8 rounded-3xl group hover:border-gold-500/20 transition-all">
                             <div className="flex items-center gap-6">
                                 <div className="relative w-20 h-20 md:w-24 md:h-24 flex-shrink-0">
                                     <img
@@ -68,7 +68,7 @@ const DomMarketing: React.FC = () => {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="group relative bg-white/[0.02] backdrop-blur-md rounded-3xl border border-white/5 overflow-hidden hover:border-gold-500/20 transition-all"
+                            className="group relative bg-white/[0.02]  rounded-3xl border border-white/5 overflow-hidden hover:border-gold-500/20 transition-all"
                         >
                             <div className="h-80 relative overflow-hidden">
                                 <img src={project.image} alt={project.title} className="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" />
@@ -96,7 +96,7 @@ const DomMarketing: React.FC = () => {
                     whileInView={{ opacity: 1, scale: 1 }}
                     className="mt-16 p-[1px] rounded-3xl bg-gradient-to-r from-gold-500/20 to-blue-500/20"
                 >
-                    <div className="bg-[#050505]/80 backdrop-blur-xl p-8 rounded-[23px] flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div className="bg-[#050505]/80  p-8 rounded-[23px] flex flex-col md:flex-row items-center justify-between gap-8">
                         <div className="flex items-center gap-6">
                             <div className="text-gold-500 p-3 bg-gold-500/10 rounded-full">
                                 <Zap size={32} />
@@ -121,7 +121,7 @@ const DomMarketing: React.FC = () => {
                     whileInView={{ opacity: 1, scale: 1 }}
                     className="mt-8 p-[1px] rounded-3xl bg-gradient-to-r from-blue-500/20 to-purple-500/20"
                 >
-                    <div className="bg-[#050505]/80 backdrop-blur-xl p-8 rounded-[23px] flex flex-col xl:flex-row items-start xl:items-center justify-between gap-8">
+                    <div className="bg-[#050505]/80  p-8 rounded-[23px] flex flex-col xl:flex-row items-start xl:items-center justify-between gap-8">
                         <div className="flex items-center gap-6">
                             <div className="text-blue-500 p-3 bg-blue-500/10 rounded-full">
                                 <Terminal size={32} />

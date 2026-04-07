@@ -29,8 +29,8 @@ const TarotShowcase: React.FC = () => {
         <section className="py-24 relative overflow-hidden bg-[#0A0A0A] z-10">
             {/* Mystic Background */}
             <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-[#0a0a0a] to-black opacity-100 pointer-events-none"></div>
-            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-purple-600/10 rounded-full blur-[150px] pointer-events-none"></div>
-            <div className="absolute bottom-0 left-[-20%] w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-purple-600/10 rounded-full -[150px] pointer-events-none"></div>
+            <div className="absolute bottom-0 left-[-20%] w-[600px] h-[600px] bg-indigo-600/10 rounded-full -[120px] pointer-events-none"></div>
 
             <div className="container mx-auto px-6 max-w-7xl relative z-10">
                 <div className="mb-20 text-center">
@@ -144,7 +144,7 @@ const TarotShowcase: React.FC = () => {
                     {/* Rating Dashboard */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto mb-12">
                         {/* Left Card: Average Rating */}
-                        <div className="bg-[#0a0216]/80 backdrop-blur-md border border-purple-500/20 rounded-3xl p-8 flex flex-col items-center justify-center shadow-[0_0_30px_rgba(147,51,234,0.1)]">
+                        <div className="bg-[#0a0216]/80  border border-purple-500/20 rounded-3xl p-8 flex flex-col items-center justify-center shadow-[0_0_30px_rgba(147,51,234,0.1)]">
                             <h4 className="text-gray-400 font-bold uppercase tracking-[0.2em] mb-4 text-[10px]">ĐIỂM TRUNG BÌNH</h4>
                             <div className="text-6xl font-black text-gold-500 mb-4">5.0</div>
                             <div className="flex gap-2 text-gold-500 mb-2">
@@ -158,7 +158,7 @@ const TarotShowcase: React.FC = () => {
                         </div>
 
                         {/* Right Card: Rating Distribution */}
-                        <div className="bg-[#0a0216]/80 backdrop-blur-md border border-purple-500/20 rounded-3xl p-8 shadow-[0_0_30px_rgba(147,51,234,0.1)]">
+                        <div className="bg-[#0a0216]/80  border border-purple-500/20 rounded-3xl p-8 shadow-[0_0_30px_rgba(147,51,234,0.1)]">
                             <h4 className="text-gray-400 font-bold uppercase tracking-[0.2em] mb-6 text-[10px]">PHÂN BỔ ĐÁNH GIÁ</h4>
                             <div className="space-y-4">
                                 {[

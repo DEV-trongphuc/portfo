@@ -83,9 +83,15 @@ const OutsourceHighlights: React.FC = () => {
                             {item.logos && item.logos.length > 0 && (
                                 <div className="mb-10 flex flex-wrap gap-4">
                                     {item.logos.map((logo, idx) => (
-                                        <div key={idx} className="w-14 h-14 rounded-full overflow-hidden border-[3px] border-white/10 opacity-60 hover:opacity-100 hover:scale-110 hover:border-gold-500/50 transition-all cursor-pointer shadow-xl bg-[#080808]">
-                                            <img src={logo} alt="Brand Logo" className="w-full h-full object-cover p-1 rounded-full" />
-                                        </div>
+                                        logo.link ? (
+                                            <a href={logo.link} target="_blank" rel="noopener noreferrer" key={idx} className="w-14 h-14 rounded-full overflow-hidden border-[3px] border-white/10 opacity-60 hover:opacity-100 hover:scale-110 hover:border-gold-500/50 transition-all cursor-pointer shadow-xl bg-[#080808]">
+                                                <img src={logo.src} alt="Brand Logo" className="w-full h-full object-cover p-1 rounded-full" />
+                                            </a>
+                                        ) : (
+                                            <div key={idx} className="w-14 h-14 rounded-full overflow-hidden border-[3px] border-white/10 opacity-60 hover:opacity-100 hover:scale-110 hover:border-gold-500/50 transition-all cursor-pointer shadow-xl bg-[#080808]">
+                                                <img src={logo.src} alt="Brand Logo" className="w-full h-full object-cover p-1 rounded-full" />
+                                            </div>
+                                        )
                                     ))}
                                 </div>
                             )}

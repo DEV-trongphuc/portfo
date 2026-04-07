@@ -111,12 +111,12 @@ export const OUTSOURCE_HIGHLIGHTS: OutsourceHighlight[] = [
     description: 'Quản lý ngân sách và chạy quảng cáo cho 6 thương hiệu F&B, tăng cường nhận diện thương hiệu và tương tác khách hàng.',
     status: 'success',
     logos: [
-        'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(3).jpg',
-        'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(4).jpg',
-        'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(6).jpg',
-        'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(14).jpg',
-        'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(7).jpg',
-        'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(8).jpg'
+        { src: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(3).jpg', link: 'https://www.facebook.com/Haagendazs.com.vn' },
+        { src: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(4).jpg' },
+        { src: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(6).jpg', link: 'https://www.facebook.com/therunningbeansg' },
+        { src: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(14).jpg', link: 'https://www.facebook.com/esta.saigon' },
+        { src: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(7).jpg' },
+        { src: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(8).jpg', link: 'https://www.facebook.com/snoweesg' }
     ]
   },
   {

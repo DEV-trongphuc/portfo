@@ -155,10 +155,18 @@ export const PARTNERS: Partner[] = [
 
 export const EXPERIENCES: Experience[] = [
   { 
+    id: '0', 
+    role: 'CEO Founder', 
+    company: 'DOMARKETING (DOMATION)', 
+    period: '2024 - NOW', 
+    description: 'Hệ thống Automation đa thông điệp đã sẵn sàng. Trải nghiệm sức mạnh tự động hóa vượt trội từ Email, Zalo, Meta & AI — Chạm đúng người, đúng thời điểm.', 
+    type: 'work' 
+  },
+  { 
     id: '1', 
     role: 'Digital Marketing & Fullstack Deverloper', 
     company: 'IDEAS Institute', 
-    period: '2023 - NOW', 
+    period: '2023 - 2024', 
     description: 'Lập trình Web, Zalo App, minigame theo chiến dịch, tối ưu Website & SEO. Vận hành Google/FB Ads kèm hệ thống Báo cáo tự động Real-time. Tăng trưởng số lượng tuyển sinh Thạc sĩ MBA x3 so với năm 2022, giảm chi phí trên mỗi học viên từ 18tr -> 12-14 triệu', 
     type: 'work' 
   },

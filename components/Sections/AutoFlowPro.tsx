@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Bot, Zap, LineChart, MailPlus, MessageSquareCode, Database, BrainCircuit } from 'lucide-react';
 import Modal from '../UI/Modal';
+import MobileSlider from '../UI/MobileSlider';
 
 // @ts-ignore
 import auto1 from '../../imgs/automation (1).jpg';
@@ -88,9 +89,10 @@ const AutoFlowPro: React.FC = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-5xl md:text-6xl font-black mb-4 text-white uppercase tracking-tight"
+                        className="text-5xl md:text-6xl font-black mb-4 text-white uppercase tracking-tight flex items-center justify-center gap-4"
                     >
-                        AutoFlow <span className="text-gradient-gold">Pro.</span>
+                        <img src="https://automation.ideas.edu.vn/imgs/ICON.png" alt="DOMATION Logo" className="w-12 h-12 md:w-16 md:h-16 object-contain rounded-2xl" />
+                        <span>DOMA<span className="text-gradient-gold">TION.</span></span>
                     </motion.h2>
 
                     {/* Subtitle */}
@@ -106,7 +108,7 @@ const AutoFlowPro: React.FC = () => {
                 </div>
 
                 {/* Compact Feature Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+                <MobileSlider desktopGridClasses="md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
                     {features.map((feature, idx) => (
                         <motion.div
                             key={idx}
@@ -127,23 +129,25 @@ const AutoFlowPro: React.FC = () => {
                             </div>
                         </motion.div>
                     ))}
-                </div>
+                </MobileSlider>
 
                 {/* Image Gallery */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {images.map((img, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.05 * idx }}
-                            className="rounded-2xl overflow-hidden border border-white/10 cursor-pointer hover:border-gold-500/50 hover:shadow-[0_0_20px_rgba(255,215,0,0.15)] transition-all duration-300 group"
-                            onClick={() => setPreviewImage(img)}
-                        >
-                            <img src={img} alt={`Automation Example ${idx + 1}`} className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
-                        </motion.div>
-                    ))}
+                <div className="mt-20">
+                    <MobileSlider desktopGridClasses="md:grid-cols-4 gap-4">
+                        {images.map((img, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.05 * idx }}
+                                className="rounded-2xl overflow-hidden border border-white/10 cursor-pointer hover:border-gold-500/50 hover:shadow-[0_0_20px_rgba(255,215,0,0.15)] transition-all duration-300 group"
+                                onClick={() => setPreviewImage(img)}
+                            >
+                                <img src={img} alt={`Automation Example ${idx + 1}`} className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                            </motion.div>
+                        ))}
+                    </MobileSlider>
                 </div>
             </div>
 

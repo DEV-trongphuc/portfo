@@ -37,43 +37,39 @@ const Partners: React.FC = () => {
              </p>
         </div>
       
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-5 md:grid-cols-5 lg:grid-cols-8 gap-2 md:gap-6">
           {PARTNERS.map((partner: Partner, index) => ( // Use Partner type
             <a 
               href={partner.website}
               target="_blank"
               rel="noopener noreferrer"
               key={index}
-              className="group relative aspect-[4/3] flex items-center justify-center bg-[#0C0C0C] border border-white/5 rounded-2xl hover:border-gold-500/30 transition-all duration-500 overflow-hidden"
+              className="group relative flex flex-col items-center justify-center bg-[#0C0C0C] border border-white/5 rounded-2xl hover:border-gold-500/30 transition-all duration-500 p-2 md:p-4 overflow-hidden"
             >
                {/* Hover Gradient */}
                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                
                {/* Content */}
-               <div className="relative z-10 flex flex-col items-center gap-4 p-6 text-center w-full"> {/* Reduced gap-6 to gap-4 */}
-                  {/* Removed p-2 from this div to make the image fully cover the circle */}
-                  <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden bg-white/5 border border-white/10 group-hover:scale-110 transition-transform duration-500 shadow-2xl flex items-center justify-center">
-                      <img 
-                        src={partner.image} 
-                        alt={partner.name} 
-                        className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0"
-                      />
-                  </div>
-                  
-                  <div>
-                    <span className="text-xs md:text-sm font-black uppercase tracking-widest text-gray-500 group-hover:text-white transition-colors block mb-1"> {/* Reduced mb-2 to mb-1 */}
-                        {partner.name}
-                    </span>
-                    {/* New: Display industry */}
-                    <p className="text-[10px] font-medium text-gray-600 group-hover:text-gray-400 transition-colors uppercase tracking-wider">
-                        {partner.industry}
-                    </p>
-                    <div className="h-[2px] w-0 bg-gold-500 mx-auto group-hover:w-1/2 transition-all duration-500 mt-2"></div> {/* Added mt-2 for spacing */}
-                  </div>
-                  
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
-                      <ExternalLink size={16} className="text-gold-500" />
-                  </div>
+               <div className="w-10 h-10 md:w-20 md:h-20 rounded-full overflow-hidden bg-white/5 border border-white/10 group-hover:scale-110 transition-transform duration-500 shadow-2xl flex items-center justify-center mb-1 md:mb-3">
+                   <img 
+                     src={partner.image} 
+                     alt={partner.name} 
+                     className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0"
+                   />
+               </div>
+               
+               <div className="text-center w-full px-1">
+                 <span className="text-[7px] md:text-sm font-black uppercase tracking-wider md:tracking-widest text-gray-500 group-hover:text-white transition-colors block truncate w-full">
+                     {partner.name}
+                 </span>
+                 <p className="hidden md:block text-[10px] font-medium text-gray-600 group-hover:text-gray-400 transition-colors uppercase tracking-wider truncate w-full mt-1">
+                     {partner.industry}
+                 </p>
+                 <div className="hidden md:block h-[2px] w-0 bg-gold-500 mx-auto group-hover:w-1/2 transition-all duration-500 mt-2"></div>
+               </div>
+               
+               <div className="hidden md:block absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+                   <ExternalLink size={14} className="text-gold-500" />
                </div>
             </a>
           ))}

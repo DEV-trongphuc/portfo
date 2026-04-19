@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { SOCIALS } from '../../constants';
-import { MoveRight, Zap, PlayCircle, MousePointer2 } from 'lucide-react';
+import { MoveRight, Zap, PlayCircle, MousePointer2, Linkedin } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const [text, setText] = useState('');
@@ -60,15 +60,22 @@ const Hero: React.FC = () => {
             </p>
 
             <div className="flex flex-wrap justify-center lg:justify-start gap-6">
-              <button className="group relative px-10 py-5 bg-gold-500 text-black font-black uppercase text-xs tracking-[0.2em] rounded-full hover:shadow-[0_0_30px_rgba(234,179,8,0.5)] transition-all duration-500 flex items-center gap-3 overflow-hidden">
-                <span className="relative z-10">Khám Phá Dự Án</span>
+              <a href="https://domation.vercel.app/" target="_blank" rel="noopener noreferrer" className="group relative px-8 lg:px-10 py-5 bg-gold-500 text-black font-black uppercase text-xs tracking-[0.2em] rounded-full hover:shadow-[0_0_30px_rgba(234,179,8,0.5)] transition-all duration-500 flex items-center justify-center gap-3 overflow-hidden">
+                <span className="relative z-10">Nhà Sáng Lập DOMATION</span>
                 <MoveRight className="relative z-10 group-hover:translate-x-2 transition-transform" />
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
-              </button>
+              </a>
 
-              <a href="https://www.tiktok.com/@turnio.dev" target="_blank" rel="noopener noreferrer" className="px-10 py-5 glass-card text-white font-black uppercase text-xs tracking-[0.2em] rounded-full hover:border-white/40 hover:bg-white/5 transition-all flex items-center gap-3">
-                <PlayCircle size={18} className="text-gold-500" />
+              <a href="https://www.tiktok.com/@turnio.dev" target="_blank" rel="noopener noreferrer" className="px-8 lg:px-10 py-5 glass-card text-white font-black uppercase text-xs tracking-[0.2em] rounded-full hover:border-white/40 hover:bg-white/5 transition-all flex items-center justify-center gap-3">
+                <svg viewBox="0 0 448 512" width="18" height="18" fill="currentColor" className="text-gold-500">
+                  <path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/>
+                </svg>
                 Tiktok 10k followers
+              </a>
+
+              <a href="https://www.linkedin.com/in/turnio-dev/" target="_blank" rel="noopener noreferrer" className="px-8 lg:px-10 py-5 glass-card text-white font-black uppercase text-xs tracking-[0.2em] rounded-full hover:border-white/40 hover:bg-white/5 transition-all flex items-center justify-center gap-3">
+                <Linkedin size={18} className="text-blue-500" />
+                LinkedIn
               </a>
             </div>
           </motion.div>

@@ -40,9 +40,9 @@ const ZaloMiniAppShowcase: React.FC = () => {
                     whileInView={{ scale: 1, rotate: 0 }}
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_of_Zalo.svg/1200px-Icon_of_Zalo.svg.png" 
                     alt="Zalo Logo" 
-                    className="w-12 h-12 md:w-16 md:h-16 rounded-2xl shadow-lg"
+                    className="w-10 h-10 md:w-16 md:h-16 rounded-xl md:rounded-2xl shadow-lg"
                 />
-                <h2 className="text-5xl md:text-7xl font-black text-white">MINI APPS.</h2>
+                <h2 className="text-4xl md:text-7xl font-black text-white">MINI APPS.</h2>
             </div>
 
             <p className="text-xl text-gray-400 max-w-3xl mx-auto font-light mb-8">
@@ -108,60 +108,60 @@ const ZaloMiniAppShowcase: React.FC = () => {
             {/* Features List */}
             <div className="space-y-12">
                  <div className="group">
-                    <div className="flex items-center gap-4 mb-4">
-                        <div className="p-4 bg-blue-600/10 rounded-2xl text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-colors border border-blue-500/20">
-                            <Code2 size={28} />
+                    <div className="flex items-center gap-4 mb-2 md:mb-4">
+                        <div className="p-3 md:p-4 bg-blue-600/10 rounded-2xl text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-colors border border-blue-500/20">
+                            <Code2 size={24} className="md:w-7 md:h-7" />
                         </div>
                         <div>
-                            <h3 className="text-3xl font-black text-white">React & TypeScript</h3>
+                            <h3 className="text-xl md:text-3xl font-black text-white">React & TypeScript</h3>
                             <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Tech Core</p>
                         </div>
                     </div>
-                    <p className="text-gray-400 pl-[84px] text-lg font-light leading-relaxed">
+                    <p className="text-gray-400 pl-0 md:pl-[84px] text-base md:text-lg font-light leading-relaxed">
                         Không dùng nền tảng kéo thả (No-code). Tôi code tay 100% để đảm bảo <span className="text-white font-bold">tốc độ tải dưới 1s</span> và khả năng tùy biến giao diện vô hạn theo Brand Guideline.
                     </p>
                  </div>
 
                  <div className="group">
-                    <div className="flex items-center gap-4 mb-4">
-                        <div className="p-4 bg-green-600/10 rounded-2xl text-green-500 group-hover:bg-green-600 group-hover:text-white transition-colors border border-green-500/20">
-                            <Shield size={28} />
+                    <div className="flex items-center gap-4 mb-2 md:mb-4">
+                        <div className="p-3 md:p-4 bg-green-600/10 rounded-2xl text-green-500 group-hover:bg-green-600 group-hover:text-white transition-colors border border-green-500/20">
+                            <Shield size={24} className="md:w-7 md:h-7" />
                         </div>
                         <div>
-                            <h3 className="text-3xl font-black text-white">Loyalty System</h3>
-                            <p className="text-sm text-gray-500 font-bold uppercase tracking-wider">Automation</p>
+                            <h3 className="text-xl md:text-3xl font-black text-white">Loyalty System</h3>
+                            <p className="text-[10px] md:text-sm text-gray-500 font-bold uppercase tracking-wider">Automation</p>
                         </div>
                     </div>
-                    <p className="text-gray-400 pl-[84px] text-lg font-light leading-relaxed">
+                    <p className="text-gray-400 pl-0 md:pl-[84px] text-base md:text-lg font-light leading-relaxed">
                         Hệ thống tự động thăng hạng thành viên (Silver, Gold, Diamond). Tích hợp <span className="text-white font-bold">QR Code định danh</span> để tích điểm tại quầy trong 3 giây.
                     </p>
                  </div>
                  
                  <div className="group">
-                    <div className="flex items-center gap-4 mb-4">
-                        <div className="p-4 bg-purple-600/10 rounded-2xl text-purple-500 group-hover:bg-purple-600 group-hover:text-white transition-colors border border-purple-500/20">
-                            <RefreshCcw size={28} />
+                    <div className="flex items-center gap-4 mb-2 md:mb-4">
+                        <div className="p-3 md:p-4 bg-purple-600/10 rounded-2xl text-purple-500 group-hover:bg-purple-600 group-hover:text-white transition-colors border border-purple-500/20">
+                            <RefreshCcw size={24} className="md:w-7 md:h-7" />
                         </div>
                         <div>
-                            <h3 className="text-3xl font-black text-white">Data Synchronization</h3>
-                            <p className="text-sm text-gray-500 font-bold uppercase tracking-wider">Ecosystem</p>
+                            <h3 className="text-xl md:text-3xl font-black text-white">Data Synchronization</h3>
+                            <p className="text-[10px] md:text-sm text-gray-500 font-bold uppercase tracking-wider">Ecosystem</p>
                         </div>
                     </div>
-                    <p className="text-gray-400 pl-[84px] text-lg font-light leading-relaxed">
+                    <p className="text-gray-400 pl-0 md:pl-[84px] text-base md:text-lg font-light leading-relaxed">
                         Các chức năng tích điểm, lên hạng tự động đồng bộ với Zalo app của người dùng một cách liền mạch.
                     </p>
                  </div>
 
-                 <div className="pl-[84px] pt-4 flex flex-wrap gap-4">
+                 <div className="pl-0 md:pl-[84px] pt-4 flex flex-col md:flex-row gap-4">
                      <a 
                         href="https://turniodev.github.io/zala_ideas" 
                         target="_blank"
                         rel="noreferrer"
-                        className="px-8 py-4 bg-white text-black font-black uppercase text-xs tracking-widest hover:bg-blue-600 hover:text-white transition-all rounded-full hover:scale-105 active:scale-95 duration-200 flex items-center gap-2 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+                        className="w-full md:w-auto justify-center px-8 py-4 bg-white text-black font-black uppercase text-xs tracking-widest hover:bg-blue-600 hover:text-white transition-all rounded-full hover:scale-105 active:scale-95 duration-200 flex items-center gap-2 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
                      >
                          <ExternalLink size={16} /> Open Fullscreen
                      </a>
-                     <button className="px-8 py-4 border border-white/10 text-white font-black uppercase text-xs tracking-widest hover:bg-white/10 transition-all rounded-full flex items-center gap-2">
+                     <button className="w-full md:w-auto justify-center px-8 py-4 border border-white/10 text-white font-black uppercase text-xs tracking-widest hover:bg-white/10 transition-all rounded-full flex items-center gap-2">
                          <QrCode size={16} /> Scan QR
                      </button>
                  </div>

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CERTIFICATIONS } from '../../constants';
 import { ShieldCheck, Award, ExternalLink, Plus, BadgeCheck } from 'lucide-react';
+import MobileSlider from '../UI/MobileSlider';
 
 const Certifications: React.FC = () => {
   const [showAll, setShowAll] = useState(false);
@@ -38,8 +39,7 @@ const Certifications: React.FC = () => {
             </motion.div>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <AnimatePresence mode="popLayout">
+        <MobileSlider desktopGridClasses="md:grid-cols-2 lg:grid-cols-4 gap-6">
             {displayedCerts.map((cert, index) => (
                 <motion.div
                 key={cert.id}
@@ -98,8 +98,7 @@ const Certifications: React.FC = () => {
                     </div>
                 </motion.div>
             ))}
-            </AnimatePresence>
-        </div>
+        </MobileSlider>
         
         {CERTIFICATIONS.length > 8 && (
              <motion.div 

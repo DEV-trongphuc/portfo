@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { PROJECTS } from '../../constants';
 import { ArrowUpRight, Plus, Minus, Grid, Code2, Briefcase, Target, Layers } from 'lucide-react';
 import Modal from '../UI/Modal';
+import MobileSlider from '../UI/MobileSlider';
 
 const Projects: React.FC = () => {
   const [showAll, setShowAll] = useState(false);
@@ -29,8 +30,7 @@ const Projects: React.FC = () => {
             </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <AnimatePresence mode="popLayout">
+        <MobileSlider desktopGridClasses="md:grid-cols-2 lg:grid-cols-4 gap-8">
             {displayedProjects.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -52,7 +52,7 @@ const Projects: React.FC = () => {
                 </div>
 
                 {/* Content */}
-                <div className="absolute inset-0 flex flex-col justify-end p-8">
+                <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
                     <div className="mb-auto mt-4 transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all">
                         <span className={`px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-widest border ${project.category === 'Marketing' ? 'bg-gold-500 text-black border-gold-500' : 'bg-blue-600 text-white border-blue-600'}`}>
                             {project.category}
@@ -79,8 +79,7 @@ const Projects: React.FC = () => {
                 </div>
               </motion.div>
             ))}
-            </AnimatePresence>
-        </div>
+        </MobileSlider>
 
         {PROJECTS.length > 8 && (
             <div className="mt-16 text-center">

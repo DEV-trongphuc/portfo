@@ -20,7 +20,7 @@ const MobileSlider: React.FC<Props> = ({ children, desktopGridClasses }) => {
   return (
     <>
       {/* Desktop view */}
-      <div className={`hidden md:grid ${desktopGridClasses.replace('grid', '').replace('md:', '')}`}>
+      <div className={`hidden md:grid ${desktopGridClasses}`}>
         {children}
       </div>
 

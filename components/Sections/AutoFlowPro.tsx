@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Bot, Zap, LineChart, MailPlus, MessageSquareCode, Database, BrainCircuit } from 'lucide-react';
+import { Sparkles, Bot, Zap, LineChart, MailPlus, MessageSquareCode, BrainCircuit, ExternalLink } from 'lucide-react';
 import Modal from '../UI/Modal';
 import MobileSlider from '../UI/MobileSlider';
 
@@ -105,26 +105,41 @@ const AutoFlowPro: React.FC = () => {
                     >
                         Nền tảng tự động hóa marketing thông minh, giúp doanh nghiệp tăng trưởng vượt bậc
                     </motion.p>
+
+                    {/* CTA Button */}
+                    <motion.a
+                        href="https://domation.net/"
+                        target="_blank"
+                        rel="noreferrer"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3 }}
+                        className="mt-6 inline-flex items-center gap-2 px-7 py-3 rounded-full border border-gold-500/50 text-gold-500 text-[11px] font-black uppercase tracking-widest hover:bg-gold-500 hover:text-black hover:border-gold-500 transition-all duration-300 group"
+                    >
+                        Khám phá DOMATION
+                        <ExternalLink size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                    </motion.a>
                 </div>
 
                 {/* Compact Feature Grid */}
-                <MobileSlider desktopGridClasses="md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+                <MobileSlider desktopGridClasses="md:grid-cols-3 lg:grid-cols-3 gap-3 mb-10">
                     {features.map((feature, idx) => (
                         <motion.div
                             key={idx}
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: 0.1 * idx }}
-                            className="bg-[#0a0a0a]/80  border border-white/5 rounded-3xl p-6 group hover:border-gold-500/30 hover:bg-white/[0.04] transition-all duration-300"
+                            transition={{ delay: 0.07 * idx }}
+                            className="bg-[#0a0a0a]/80 border border-white/5 rounded-2xl p-4 group hover:border-gold-500/30 hover:bg-white/[0.04] transition-all duration-300"
                         >
-                            <div className="flex items-start gap-4">
-                                <div className="bg-white/5 text-gold-500 p-3 rounded-2xl group-hover:bg-gold-500 group-hover:text-black transition-colors duration-300">
+                            <div className="flex items-center gap-3">
+                                <div className="bg-white/5 text-gold-500 p-2 rounded-xl group-hover:bg-gold-500 group-hover:text-black transition-colors duration-300 flex-shrink-0">
                                     {feature.icon}
                                 </div>
-                                <div className="flex-1 pt-1">
-                                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-gold-500 transition-colors">{feature.title}</h3>
-                                    <p className="text-sm text-gray-500 font-light leading-relaxed">{feature.desc}</p>
+                                <div className="flex-1 min-w-0">
+                                    <h3 className="text-sm font-bold text-white mb-0.5 group-hover:text-gold-500 transition-colors leading-tight">{feature.title}</h3>
+                                    <p className="text-xs text-gray-500 font-light leading-snug line-clamp-2">{feature.desc}</p>
                                 </div>
                             </div>
                         </motion.div>

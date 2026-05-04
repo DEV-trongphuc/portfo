@@ -18,6 +18,7 @@ import DataPhilosophy from './components/Sections/DataPhilosophy';
 import ZaloMiniAppShowcase from './components/Sections/ZaloMiniAppShowcase';
 import TarotShowcase from './components/Sections/TarotShowcase';
 import LmsShowcase from './components/Sections/LmsShowcase';
+import CrmShowcase from './components/Sections/CrmShowcase';
 import AutoFlowPro from './components/Sections/AutoFlowPro';
 import MetaAdReportShowcase from './components/Sections/MetaAdReportShowcase';
 import ScrollProgress from './components/UI/ScrollProgress';
@@ -47,6 +48,7 @@ const App: React.FC = () => {
         <ZaloMiniAppShowcase />
         <TarotShowcase />
         <LmsShowcase />
+        <CrmShowcase />
         <AutoFlowPro />
         <MetaAdReportShowcase />
         <Projects />

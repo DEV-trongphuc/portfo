@@ -50,7 +50,7 @@ const Hero: React.FC = () => {
               <span className="text-xs font-bold uppercase tracking-[0.3em] text-gold-500">Huynh Trong Phuc • Portfolio 2026</span>
             </div>
 
-            <h1 className="text-6xl md:text-9xl font-black leading-tight text-white mb-8">
+            <h1 className="text-5xl md:text-7xl lg:text-9xl font-black leading-tight text-white mb-8">
               HELLO! I'M <br />
               <span className="text-gradient-gold cursor-blink">{text}</span>
             </h1>
@@ -59,22 +59,26 @@ const Hero: React.FC = () => {
               Hợp nhất <span className="text-white font-bold">Marketing Performance</span> và <span className="text-white font-bold">Automation Logic</span> để kiến tạo những hệ thống kinh doanh vượt trội.
             </p>
 
-            <div className="flex flex-wrap justify-center lg:justify-start gap-6">
-              <a href="https://domation.vercel.app/" target="_blank" rel="noopener noreferrer" className="group relative px-8 lg:px-10 py-5 bg-gold-500 text-black font-black uppercase text-xs tracking-[0.2em] rounded-full hover:shadow-[0_0_30px_rgba(234,179,8,0.5)] transition-all duration-500 flex items-center justify-center gap-3 overflow-hidden">
-                <span className="relative z-10">Nhà Sáng Lập DOMATION</span>
-                <MoveRight className="relative z-10 group-hover:translate-x-2 transition-transform" />
-                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 sm:gap-6">
+              <a href="https://domation.vercel.app/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto group relative px-6 lg:px-8 py-3 bg-[#0a0a0a] border border-white/10 rounded-full hover:border-orange-500/50 hover:shadow-[0_0_30px_rgba(249,115,22,0.2)] transition-all duration-500 flex items-center justify-center gap-4 overflow-hidden backdrop-blur-md">
+                <div className="relative z-10 w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center shadow-[0_0_15px_rgba(249,115,22,0.5)] group-hover:shadow-[0_0_25px_rgba(249,115,22,0.8)] transition-shadow">
+                  <img src="https://domation.net/imgs/ICON.png" alt="DOMATION" className="w-7 h-7 object-contain relative z-10 group-hover:scale-110 transition-transform duration-500" />
+                </div>
+                <span className="relative z-10 font-black uppercase text-xl tracking-[0.1em] text-transparent bg-clip-text bg-gradient-to-r from-[#FF8A00] to-[#E52E71]">
+                  DOMATION
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </a>
 
-              <a href="https://www.tiktok.com/@turnio.dev" target="_blank" rel="noopener noreferrer" className="px-8 lg:px-10 py-5 glass-card text-white font-black uppercase text-xs tracking-[0.2em] rounded-full hover:border-white/40 hover:bg-white/5 transition-all flex items-center justify-center gap-3">
-                <svg viewBox="0 0 448 512" width="18" height="18" fill="currentColor" className="text-gold-500">
+              <a href="https://www.tiktok.com/@turnio.dev" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-8 lg:px-10 py-5 glass-card text-white font-black uppercase text-xs tracking-[0.2em] rounded-full hover:border-white/40 hover:bg-white/5 transition-all flex items-center justify-center gap-3">
+                <svg viewBox="0 0 448 512" width="18" height="18" fill="currentColor" className="text-gold-500 shrink-0">
                   <path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/>
                 </svg>
                 Tiktok 10k followers
               </a>
 
-              <a href="https://www.linkedin.com/in/turnio-dev/" target="_blank" rel="noopener noreferrer" className="px-8 lg:px-10 py-5 glass-card text-white font-black uppercase text-xs tracking-[0.2em] rounded-full hover:border-white/40 hover:bg-white/5 transition-all flex items-center justify-center gap-3">
-                <Linkedin size={18} className="text-blue-500" />
+              <a href="https://www.linkedin.com/in/turnio-dev/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-8 lg:px-10 py-5 glass-card text-white font-black uppercase text-xs tracking-[0.2em] rounded-full hover:border-white/40 hover:bg-white/5 transition-all flex items-center justify-center gap-3">
+                <Linkedin size={18} className="text-blue-500 shrink-0" />
                 LinkedIn
               </a>
             </div>

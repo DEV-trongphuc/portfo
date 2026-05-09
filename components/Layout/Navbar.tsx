@@ -1,9 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BRAND_LOGO } from '../../constants';
-
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -43,42 +40,33 @@ const Navbar: React.FC = () => {
             }
         `}
     >
-      <div className="container mx-auto px-6 flex items-center justify-between">
-        {/* Image Logo */}
-        <a href="#" onClick={(e) => scrollToSection(e, '#root')} className="block shrink-0">
-          <img 
-            src={BRAND_LOGO} 
-            alt="DOM Logo" 
-            className="h-8 md:h-10 w-auto object-contain brightness-0 invert hover:brightness-100 transition-all duration-300" 
-          />
-        </a>
-
+      <div className="container mx-auto px-6 h-12 flex items-center justify-center md:justify-center relative">
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-2 bg-black/40 backdrop-blur-md border border-white/10 rounded-full px-6 py-2 shadow-2xl">
           {navLinks.map((link) => (
             <a 
               key={link.name} 
               href={link.href}
               onClick={(e) => scrollToSection(e, link.href)}
-              className="relative text-xs font-bold text-gray-300 hover:text-white transition-colors uppercase tracking-wider group"
+              className="px-4 py-2 text-xs font-bold text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 uppercase tracking-wider group"
             >
               {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gold-500 transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
+          <div className="w-[1px] h-6 bg-white/20 mx-2"></div>
           <motion.a 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="#contact" 
             onClick={(e) => scrollToSection(e, '#contact')}
-            className="px-6 py-2.5 bg-white text-black font-black text-[10px] uppercase tracking-widest rounded-full hover:bg-gold-500 transition-colors ml-4"
+            className="px-6 py-2 bg-white text-black font-black text-[10px] uppercase tracking-widest rounded-full hover:bg-gold-500 transition-colors"
           >
             Liên Hệ
           </motion.a>
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
+        <button className="md:hidden absolute right-6 text-white" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
@@ -106,6 +94,16 @@ const Navbar: React.FC = () => {
                   {link.name}
                 </motion.a>
               ))}
+              <motion.a 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navLinks.length * 0.05 }}
+                href="#contact"
+                className="mt-4 px-8 py-4 bg-gold-500 text-black font-black text-xl uppercase tracking-widest rounded-full hover:bg-white transition-colors"
+                onClick={(e) => scrollToSection(e, '#contact')}
+              >
+                Liên Hệ
+              </motion.a>
             </div>
           </motion.div>
         )}

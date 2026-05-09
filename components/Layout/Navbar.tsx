@@ -57,8 +57,9 @@ const Navbar: React.FC = () => {
           <motion.a 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="#contact" 
-            onClick={(e) => scrollToSection(e, '#contact')}
+            href="https://www.linkedin.com/in/turnio-dev/"
+            target="_blank" 
+            rel="noopener noreferrer"
             className="px-6 py-2 bg-white text-black font-black text-[10px] uppercase tracking-widest rounded-full hover:bg-gold-500 transition-colors"
           >
             Liên Hệ
@@ -98,9 +99,10 @@ const Navbar: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navLinks.length * 0.05 }}
-                href="#contact"
+                href="https://www.linkedin.com/in/turnio-dev/"
+                target="_blank" 
+                rel="noopener noreferrer"
                 className="mt-4 px-8 py-4 bg-gold-500 text-black font-black text-xl uppercase tracking-widest rounded-full hover:bg-white transition-colors"
-                onClick={(e) => scrollToSection(e, '#contact')}
               >
                 Liên Hệ
               </motion.a>

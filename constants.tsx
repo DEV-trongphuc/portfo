@@ -150,7 +150,8 @@ export const PARTNERS: Partner[] = [
   { name: 'VTCI Edu', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(11).jpg', website: '#', industry: 'Education / Training' },
   { name: 'College de Paris', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(12).jpg', website: '#', industry: 'Education / University' },
   { name: 'Swiss UMEF', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(15).jpg', website: '#', industry: 'Education / University' },
-  { name: 'IDEAS Institute', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(10).jpg', website: '#', industry: 'Education / Research' }
+  { name: 'IDEAS Institute', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(10).jpg', website: '#', industry: 'Education / Research' },
+  { name: 'Navastore', image: 'https://bizweb.dktcdn.net/100/543/817/themes/1000289/assets/logo.png?1775454528082', website: 'https://navastore.vn/', industry: 'Retail / Ecommerce' }
 ];
 
 export const EXPERIENCES: Experience[] = [

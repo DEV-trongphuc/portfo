@@ -23,6 +23,7 @@ const TarotShowcase = lazy(() => import('./components/Sections/TarotShowcase'));
 const LmsShowcase = lazy(() => import('./components/Sections/LmsShowcase'));
 const CrmShowcase = lazy(() => import('./components/Sections/CrmShowcase'));
 const DomationCrmShowcase = lazy(() => import('./components/Sections/DomationCrmShowcase'));
+const DomationDataShowcase = lazy(() => import('./components/Sections/DomationDataShowcase'));
 const AutoFlowPro = lazy(() => import('./components/Sections/AutoFlowPro'));
 const MetaAdReportShowcase = lazy(() => import('./components/Sections/MetaAdReportShowcase'));
 
@@ -55,9 +56,10 @@ const App: React.FC = () => {
           <LmsShowcase />
           <CrmShowcase />
           <DomationCrmShowcase />
+          <DomationDataShowcase />
           <AutoFlowPro />
           <MetaAdReportShowcase />
-          <Projects />
+          {/* <Projects /> */}
           <Certifications />
           <DomMarketing /> {/* DOM Marketing section */}
           {/* <DataPhilosophy /> */} {/* Temporarily hidden: Moved DataPhilosophy here, below DomMarketing */}

@@ -24,7 +24,6 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'Kỹ Năng', href: '#skills' },
-    { name: 'Dự Án', href: '#projects' },
     { name: 'Outsource', href: '#outsource' },
     { name: 'DOM Agency', href: '#dom-agency' },
     { name: 'Kinh Nghiệm', href: '#experience' },

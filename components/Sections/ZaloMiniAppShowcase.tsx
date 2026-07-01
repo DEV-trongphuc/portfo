@@ -38,7 +38,7 @@ const ZaloMiniAppShowcase: React.FC = () => {
                 <motion.img 
                     initial={{ scale: 0, rotate: -180 }}
                     whileInView={{ scale: 1, rotate: 0 }}
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_of_Zalo.svg/1200px-Icon_of_Zalo.svg.png" 
+                    src="https://stc-zlogin.zdn.vn/images/favicon.png" 
                     alt="Zalo Logo" 
                     className="w-10 h-10 md:w-16 md:h-16 rounded-xl md:rounded-2xl shadow-lg"
                 />

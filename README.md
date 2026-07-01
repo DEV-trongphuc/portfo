@@ -427,8 +427,7 @@ Vận hành Web Order có lợi nhuận ổn định. Case study đúc kết bà
 
 <br/>
 
-> *"Hợp nhất Marketing Performance và Automation Logic*  
-> *để kiến tạo những hệ thống kinh doanh vượt trội."*
+> *"Chuyển đổi số toàn diện cho doanh nghiệp vừa và nhỏ."*
 >
 > — **Huynh Trong Phuc · TURNIO** ⚡
 

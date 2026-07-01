@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
             </h1>
 
             <p className="text-xl text-gray-400 mb-12 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
-              Hợp nhất <span className="text-white font-bold">Marketing Performance</span> và <span className="text-white font-bold">Automation Logic</span> để kiến tạo những hệ thống kinh doanh vượt trội.
+              <span className="text-white font-bold">Chuyển đổi số toàn diện</span> cho doanh nghiệp vừa và nhỏ.
             </p>
 
             <div className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 sm:gap-6">

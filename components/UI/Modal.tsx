@@ -31,25 +31,25 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title, classNa
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 modal-backdrop"
+            className="absolute inset-0 bg-slate-950/60 backdrop-blur-md"
           />
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className={`relative bg-[#0A0A0A] border border-white/10 rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] w-full ${className} flex flex-col`}
+            className={`relative bg-[#0f0b24] border border-purple-900/40 rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] w-full ${className} flex flex-col`}
           >
-            <div className="flex items-center justify-between p-6 border-b border-white/5 bg-black/40  z-10">
-                <h3 className="text-xl font-bold text-white uppercase tracking-wider">{title}</h3>
+            <div className="flex items-center justify-between p-5 border-b border-purple-900/30 bg-[#030014]/50 backdrop-blur-sm z-10">
+                <h3 className="text-lg font-black text-white uppercase tracking-tight">{title}</h3>
                 <button 
                     onClick={onClose}
-                    className="p-2 rounded-full hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
+                    className="p-1.5 rounded-full hover:bg-[#161033] text-slate-400 hover:text-slate-200 transition-colors"
                 >
-                    <X size={24} />
+                    <X size={20} />
                 </button>
             </div>
             
-            <div className="overflow-y-auto p-0 custom-scrollbar flex-grow">
+            <div className="overflow-y-auto p-0 custom-scrollbar flex-grow bg-[#030014]">
                 {children}
             </div>
           </motion.div>

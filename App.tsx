@@ -26,21 +26,36 @@ const DomationCrmShowcase = lazy(() => import('./components/Sections/DomationCrm
 const DomationDataShowcase = lazy(() => import('./components/Sections/DomationDataShowcase'));
 const AutoFlowPro = lazy(() => import('./components/Sections/AutoFlowPro'));
 const MetaAdReportShowcase = lazy(() => import('./components/Sections/MetaAdReportShowcase'));
+const CutePortfolio = lazy(() => import('./components/CutePortfolio/CutePortfolio'));
 
 const App: React.FC = () => {
+  const [portfolioMode, setPortfolioMode] = React.useState<'classic' | 'ai'>('ai');
+
   useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
-    document.documentElement.classList.add('dark');
+    if (portfolioMode === 'classic') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
     return () => {
       document.documentElement.style.scrollBehavior = 'auto';
     };
-  }, []);
+  }, [portfolioMode]);
+
+  if (portfolioMode === 'ai') {
+    return (
+      <Suspense fallback={<div className="h-screen w-screen flex items-center justify-center text-blue-600 bg-slate-50 font-black">Loading AI Control Center...</div>}>
+        <CutePortfolio onToggleClassic={() => setPortfolioMode('classic')} />
+      </Suspense>
+    );
+  }
 
   return (
     <div className="min-h-screen text-white bg-dark-bg selection:bg-gold-500 selection:text-black overflow-hidden font-sans">
       <ScrollProgress />
       <Background />
-      <Navbar />
+      <Navbar activeMode={portfolioMode} onToggleMode={(mode) => setPortfolioMode(mode)} />
       
       <main className="relative z-10">
         <Hero />

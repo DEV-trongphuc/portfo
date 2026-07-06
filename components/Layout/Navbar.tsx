@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-const Navbar: React.FC = () => {
+
+interface NavbarProps {
+  activeMode?: 'classic' | 'ai';
+  onToggleMode?: (mode: 'classic' | 'ai') => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ activeMode, onToggleMode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -52,6 +58,19 @@ const Navbar: React.FC = () => {
               {link.name}
             </a>
           ))}
+          {onToggleMode && activeMode === 'classic' && (
+            <>
+              <div className="w-[1px] h-6 bg-white/20 mx-2"></div>
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => onToggleMode('ai')}
+                className="px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-black text-[10px] uppercase tracking-widest rounded-full hover:shadow-[0_0_15px_rgba(147,51,234,0.5)] transition-all flex items-center gap-1.5"
+              >
+                <Sparkles size={10} className="animate-pulse" /> AI Workspace
+              </motion.button>
+            </>
+          )}
           <div className="w-[1px] h-6 bg-white/20 mx-2"></div>
           <motion.a 
             whileHover={{ scale: 1.05 }}
@@ -81,6 +100,19 @@ const Navbar: React.FC = () => {
             className="absolute top-full left-0 right-0 bg-black/95 border-t border-white/10 overflow-hidden  h-screen"
           >
             <div className="flex flex-col p-8 gap-8 items-center justify-center h-full pb-32">
+              {onToggleMode && activeMode === 'classic' && (
+                <motion.button 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  onClick={() => {
+                    onToggleMode('ai');
+                    setIsOpen(false);
+                  }}
+                  className="px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-black text-xs uppercase tracking-widest rounded-full flex items-center gap-2"
+                >
+                  <Sparkles size={14} className="animate-pulse" /> Try AI Workspace
+                </motion.button>
+              )}
               {navLinks.map((link, i) => (
                 <motion.a 
                   key={link.name} 

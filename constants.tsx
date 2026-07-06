@@ -37,16 +37,16 @@ export const STATS = [
 
 export const TECH_GRID = [
   // DEV & AUTOMATION
-  { title: 'ReactJS / NextJS', category: 'dev', desc: 'Frontend UI/UX', icon: <Code className="text-blue-400" />, color: 'from-blue-500/20' },
-  { title: 'NodeJS Backend', category: 'dev', desc: 'API Middleware', icon: <Cpu className="text-green-400" />, color: 'from-green-500/20' },
-  { title: 'Google Apps Script', category: 'dev', desc: 'Sheet Automation', icon: <Terminal className="text-yellow-400" />, color: 'from-yellow-500/20' },
-  { title: 'Zalo Mini App', category: 'dev', desc: 'Zalo Ecosystem', icon: <MonitorSmartphone className="text-sky-400" />, color: 'from-sky-500/20' },
+  { title: 'ReactJS / NextJS', category: 'dev', desc: 'Frontend UI/UX', icon: <Code className="text-slate-500" />, color: 'from-slate-500/20' },
+  { title: 'NodeJS Backend', category: 'dev', desc: 'API Middleware', icon: <Cpu className="text-slate-500" />, color: 'from-slate-500/20' },
+  { title: 'Google Apps Script', category: 'dev', desc: 'Sheet Automation', icon: <Terminal className="text-slate-500" />, color: 'from-slate-500/20' },
+  { title: 'Zalo Mini App', category: 'dev', desc: 'Zalo Ecosystem', icon: <MonitorSmartphone className="text-slate-500" />, color: 'from-slate-500/20' },
   
   // MARKETING & DATA
-  { title: 'Meta Ads API', category: 'martech', desc: 'Automated Ads', icon: <Database className="text-purple-400" />, color: 'from-purple-500/20' },
-  { title: 'Data Tracking', category: 'martech', desc: 'GTM / GA4 Server', icon: <BarChart3 className="text-orange-400" />, color: 'from-orange-500/20' },
-  { title: 'Automation Flow', category: 'martech', desc: 'Zapier / n8n', icon: <Zap className="text-red-400" />, color: 'from-red-500/20' },
-  { title: 'SEO Architecture', category: 'martech', desc: 'Technical SEO', icon: <SearchCode className="text-emerald-400" />, color: 'from-emerald-500/20' },
+  { title: 'Meta Ads API', category: 'martech', desc: 'Automated Ads', icon: <Database className="text-slate-500" />, color: 'from-slate-500/20' },
+  { title: 'Data Tracking', category: 'martech', desc: 'GTM / GA4 Server', icon: <BarChart3 className="text-slate-500" />, color: 'from-slate-500/20' },
+  { title: 'Automation Flow', category: 'martech', desc: 'Zapier / n8n', icon: <Zap className="text-slate-500" />, color: 'from-slate-500/20' },
+  { title: 'SEO Architecture', category: 'martech', desc: 'Technical SEO', icon: <SearchCode className="text-slate-500" />, color: 'from-slate-500/20' },
 ];
 
 export const BRIDGE_CARDS = [
@@ -54,19 +54,19 @@ export const BRIDGE_CARDS = [
     step: '01', 
     title: 'Ads Acquisition', 
     desc: 'Tối ưu Meta & Google Ads với tư duy Marketing bền vững, tập trung vào Lead chất lượng cao.',
-    icon: <Megaphone className="text-gold-500" />
+    icon: <Megaphone className="text-slate-500" />
   },
   { 
     step: '02', 
     title: 'Data Automation', 
     desc: 'Dùng Google Apps Script & API tự động đẩy Leads về CRM (MISA, Salesforce) trong < 5s.',
-    icon: <Zap className="text-blue-400" />
+    icon: <Zap className="text-slate-500" />
   },
   { 
     step: '03', 
     title: 'Real-time Report', 
     desc: 'Xây dựng Dashboard theo dõi ROAS, CAC, và tỷ lệ chốt của Sale ngay lập tức.',
-    icon: <Layers className="text-green-400" />
+    icon: <Layers className="text-slate-500" />
   }
 ];
 
@@ -197,7 +197,7 @@ export const CERTIFICATIONS: Certification[] = [
         name: 'Front End Developer',
         issuer: 'Free Code Camp',
         year: '2021',
-        image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/cert/cert%20(2).jpg', 
+        image: 'https://cdn.jsdelivr.net/gh/turniodev/TurnioSave@main/DEV_ASSET/cert/cert%20(2).jpg', 
         link: 'https://www.freecodecamp.org/certification/trongphuc3105/front-end-development-libraries'
     },
     {
@@ -205,7 +205,7 @@ export const CERTIFICATIONS: Certification[] = [
         name: 'Responsive Web Design',
         issuer: 'Free Code Camp',
         year: '2021',
-        image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/cert/cert%20(1).jpg',
+        image: 'https://cdn.jsdelivr.net/gh/turniodev/TurnioSave@main/DEV_ASSET/cert/cert%20(1).jpg',
         link: 'https://www.freecodecamp.org/certification/trongphuc3105/responsive-web-design'
     },
     
@@ -214,7 +214,7 @@ export const CERTIFICATIONS: Certification[] = [
         name: 'JavaScript Advanced',
         issuer: 'Fullstack',
         year: '2022',
-        image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/cert/cert%20(4).png',
+        image: 'https://cdn.jsdelivr.net/gh/turniodev/TurnioSave@main/DEV_ASSET/cert/cert%20(4).png',
         link: 'https://f8.edu.vn/certificates/t7s3s'
     },
     {
@@ -222,7 +222,7 @@ export const CERTIFICATIONS: Certification[] = [
         name: 'JavaScript Basic',
         issuer: 'Fullstack',
         year: '2021',
-        image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/cert/cert%20(5).png',
+        image: 'https://cdn.jsdelivr.net/gh/turniodev/TurnioSave@main/DEV_ASSET/cert/cert%20(5).png',
         link: 'https://f8.edu.vn/certificates/fzmz5'
     },
     {
@@ -230,7 +230,7 @@ export const CERTIFICATIONS: Certification[] = [
         name: 'ReactJS',
         issuer: 'Fullstack',
         year: '2022',
-        image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/cert/cert%20(2).png',
+        image: 'https://cdn.jsdelivr.net/gh/turniodev/TurnioSave@main/DEV_ASSET/cert/cert%20(2).png',
         link: 'https://f8.edu.vn/certificates/7jzkn'
     },
     {
@@ -238,7 +238,7 @@ export const CERTIFICATIONS: Certification[] = [
         name: 'HTML/CSS',
         issuer: 'Fullstack',
         year: '2021',
-        image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/cert/cert%20(3).png',
+        image: 'https://cdn.jsdelivr.net/gh/turniodev/TurnioSave@main/DEV_ASSET/cert/cert%20(3).png',
         link: 'https://f8.edu.vn/certificates/t7s3s'
     },
     {
@@ -246,7 +246,7 @@ export const CERTIFICATIONS: Certification[] = [
         name: 'SEO - TOP CV',
         issuer: 'TOP CV',
         year: '2023',
-        image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/cert/cert%20(7).png',
+        image: 'https://cdn.jsdelivr.net/gh/turniodev/TurnioSave@main/DEV_ASSET/cert/cert%20(7).png',
         link: 'https://certificate.testcenter.vn/dUR8UT0fMlcZNV9GVjE2bFN7SXU'
     },
     {

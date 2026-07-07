@@ -648,11 +648,11 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     <span className="text-[9px] font-black uppercase tracking-[0.3em] text-yellow-300 bg-purple-950/60 border border-purple-500/50 px-4 py-1.5 rounded-full inline-block shadow-[0_0_15px_rgba(168,85,247,0.25)] animate-pulse">
                        MARTECH & FULLSTACK COCKPIT
                     </span>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200 drop-shadow-[0_2px_10px_rgba(168,85,247,0.3)]">
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200 drop-shadow-[0_2px_10px_rgba(168,85,247,0.3)]" style={{ fontFamily: '"Be Vietnam Pro", sans-serif' }}>
                       HUỲNH TRỌNG PHÚC
                     </h2>
                     <p className="text-sm md:text-base text-slate-300 font-light leading-relaxed text-justify">
-                      Chuyên gia thiết kế hệ thống <span className="text-purple-400 font-bold">Automation</span>, tối ưu quy trình vận hành và xây dựng giải pháp <span className="text-amber-300 font-bold">Digital Marketing</span> toàn diện cho doanh nghiệp.
+                      Thiết kế hệ thống <span className="text-purple-400 font-bold">Flow - Automation</span>, tối ưu quy trình vận hành và xây dựng giải pháp <span className="text-amber-300 font-bold">chuyển đổi số toàn diện</span> cho doanh nghiệp vừa và nhỏ.
                     </p>
                     <div className="pt-2 flex flex-wrap gap-4">
                       <button 

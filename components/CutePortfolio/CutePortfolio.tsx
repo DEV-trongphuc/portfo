@@ -1744,7 +1744,67 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
 
             {/* AI CUSTOM (TRỢ LÝ ẢO AI) */}
             {activeTab === 'ai-agent' && (
-              <div className="space-y-10 w-full text-left">
+              <div className="space-y-12 w-full text-left">
+                
+                {/* PHÂN HỆ 1: TRỢ LÝ ẢO AI CHATBOT (AI CHATBOT SYSTEM) */}
+                <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-4 sm:p-6 md:p-12 shadow-sm space-y-8 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent pointer-events-none" />
+                  
+                  <div className="flex flex-col md:flex-row justify-between items-start gap-6 relative z-10">
+                    <div className="space-y-3 md:space-y-4 max-w-3xl">
+                      <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
+                        AI Chatbot System
+                      </span>
+                      <h3 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">
+                        Trợ Lý Ảo AI Thông Minh Như Chuyên Gia
+                      </h3>
+                      <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light text-justify">
+                        Train AI từ tài liệu nội bộ, website của bạn. Thiết lập nền tảng kiến thức (Knowledge Base) thông minh, trả lời trực tiếp thắc mắc Khách hàng 24/7.
+                      </p>
+                    </div>
+                    <div className="shrink-0 pt-1 md:pt-2">
+                      <a 
+                        href="https://ideas.edu.vn/" 
+                        target="_blank" 
+                        rel="noreferrer"
+                        className="px-5 py-2.5 bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:via-violet-500 hover:to-indigo-500 text-white font-bold text-[10px] sm:text-xs uppercase tracking-widest rounded-full shadow-[0_0_15px_rgba(168,85,247,0.35)] hover:shadow-[0_0_25px_rgba(168,85,247,0.55)] flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
+                      >
+                        Chat Thử AI <ExternalLink size={11} />
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Layout: Info grid on left, screenshot on right */}
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center pt-4">
+                    {/* Left Grid: Features list */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {[
+                        { title: "Giao Diện Branding", desc: "Custom màu sắc, UI Design & Logo riêng chuẩn thương hiệu.", icon: <Sparkles size={14} className="text-purple-400" /> },
+                        { title: "Thiết Lập Văn Hóa", desc: "Tuỳ chỉnh tone giọng phù hợp, chuẩn văn hoá định vị Brand.", icon: <Award size={14} className="text-purple-400" /> },
+                        { title: "Giao Tiếp Tự Nhiên", desc: "Tư vấn, hỏi đáp, hỗ trợ khách hàng và chốt sale giống như người thật.", icon: <Bot size={14} className="text-purple-400" /> },
+                        { title: "Train Kiến Thức", desc: "Máy học tự động hóa thần tốc qua File dữ liệu thô hoặc Web URL.", icon: <Database size={14} className="text-purple-400" /> },
+                      ].map((feat, idx) => (
+                        <div key={idx} className="bg-[#030014] border border-purple-900/30 rounded-2xl p-4 md:p-5 hover:border-purple-500/50 transition-colors">
+                          <div className="w-8 h-8 rounded-full bg-[#161033] border border-purple-900/40 text-white flex items-center justify-center mb-3">
+                            {feat.icon}
+                          </div>
+                          <h4 className="text-xs sm:text-sm font-black text-slate-200 mb-1">{feat.title}</h4>
+                          <p className="text-slate-400 text-[11px] sm:text-xs leading-relaxed font-light">{feat.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Right Grid: Prominent Mockup screenshot */}
+                    <div 
+                      onClick={() => { setPreviewImage(aiAgent2); setPreviewList([aiAgent2]); }}
+                      className="border border-white/10 rounded-3xl p-2 bg-[#161b22] shadow-[0_0_80px_-20px_rgba(168,85,247,0.3)] hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                    >
+                      <img loading="lazy" alt="AI Agent Custom Chat UI" className="w-full rounded-2xl" src={aiAgent2} />
+                    </div>
+                  </div>
+                </div>
+
+                {/* PHÂN HỆ 2: NỀN TẢNG AI WORKSPACE (KHÔNG GIAN AI ĐỘC LẬP) */}
                 <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-4 sm:p-6 md:p-12 shadow-sm relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent pointer-events-none" />
                   
@@ -1853,8 +1913,8 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       
                     </div>
                   </div>
-                  
                 </div>
+
               </div>
             )}
 

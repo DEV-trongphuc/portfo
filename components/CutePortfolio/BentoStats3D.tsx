@@ -101,7 +101,7 @@ const StatCard: React.FC<StatCardProps> = ({ label, value, suffix, index }) => {
         transformStyle: 'preserve-3d',
         transition: isHovered ? 'none' : 'transform 0.4s ease-out'
       }}
-      className={`group relative bg-gradient-to-br from-[#12082b] to-[#090315] border border-purple-900/30 rounded-2xl p-6 shadow-lg flex flex-col justify-between min-h-[140px] overflow-hidden select-none transition-all duration-300 cursor-pointer ${scheme.borderHover}`}
+      className={`group relative bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-6 shadow-sm flex flex-col justify-between min-h-[140px] overflow-hidden select-none transition-all duration-300 cursor-pointer ${scheme.borderHover}`}
     >
       {/* 3D Depth Card Spotlight Effect */}
       <div 

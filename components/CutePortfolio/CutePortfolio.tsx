@@ -334,6 +334,23 @@ const GlowCard: React.FC<{ children: React.ReactNode; className?: string; glowCo
 const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  // Typing effect for HUYNH TRONG PHUC
+  const [typedName, setTypedName] = useState('');
+  const fullName = 'HUYNH TRONG PHUC';
+  
+  useEffect(() => {
+    let index = 0;
+    setTypedName('');
+    const timer = setInterval(() => {
+      setTypedName(fullName.slice(0, index + 1));
+      index++;
+      if (index >= fullName.length) {
+        clearInterval(timer);
+      }
+    }, 120);
+    return () => clearInterval(timer);
+  }, []);
   const [chatOpen, setChatOpen] = useState(false);
   const [isGamePdfOpen, setIsGamePdfOpen] = useState(false);
   
@@ -950,8 +967,11 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     <span className="text-[9px] font-black uppercase tracking-[0.3em] text-yellow-300 bg-purple-950/60 border border-purple-500/50 px-4 py-1.5 rounded-full inline-block shadow-[0_0_15px_rgba(168,85,247,0.25)] animate-pulse">
                        MARTECH & FULLSTACK COCKPIT
                     </span>
-                    <h2 className="text-[25px] xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200 drop-shadow-[0_2px_10px_rgba(168,85,247,0.3)]">
-                      HUYNH TRONG PHUC
+                    <h2 className="text-[25px] xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight drop-shadow-[0_2px_10px_rgba(168,85,247,0.3)]">
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">
+                        {typedName}
+                      </span>
+                      <span className="animate-blink ml-1.5 text-purple-400 font-normal select-none">|</span>
                     </h2>
                     <p className="text-sm md:text-base text-slate-300 font-light leading-relaxed text-justify">
                       Thiết kế hệ thống <span className="text-purple-400 font-bold">Flow - Automation</span>, tối ưu quy trình vận hành và xây dựng giải pháp <span className="text-amber-300 font-bold">chuyển đổi số toàn diện</span> cho doanh nghiệp vừa và nhỏ.

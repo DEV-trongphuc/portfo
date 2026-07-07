@@ -934,7 +934,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                 <TechDecor />
                 
                 {/* HERO: 3D Dark Bento Glassmorphic Grid (Enhanced with vibrant neon colors and premium gradients) */}
-                <TiltCard className="relative bg-gradient-to-br from-[#0c051e] via-[#090514] to-[#1d0d3a] border border-purple-500/35 rounded-2xl p-8 md:p-12 text-white overflow-hidden shadow-[0_0_50px_rgba(168,85,247,0.15)] flex flex-col lg:flex-row items-center justify-between gap-10 min-h-[380px]">
+                <div className="relative bg-gradient-to-br from-[#0c051e] via-[#090514] to-[#1d0d3a] border border-purple-500/35 rounded-2xl p-8 md:p-12 text-white overflow-hidden shadow-[0_0_50px_rgba(168,85,247,0.15)] flex flex-col lg:flex-row items-center justify-between gap-10 min-h-[380px]">
                   {/* Cyber grid background */}
                   <div className="absolute inset-0 bg-[linear-gradient(rgba(168,85,247,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(168,85,247,0.025)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none z-0" />
                   
@@ -1036,7 +1036,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       <span className="text-[8px] font-black tracking-widest text-white leading-none">DOM ENGINE</span>
                     </motion.div>
                   </div>
-                </TiltCard>
+                </div>
 
                 {/* The Bridge Flow */}
                 <div className="space-y-4">

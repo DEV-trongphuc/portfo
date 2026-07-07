@@ -34,7 +34,9 @@ import {
   Heart,
   Terminal,
   FileCode,
-  SlidersHorizontal
+  SlidersHorizontal,
+  QrCode,
+  Ticket
 } from 'lucide-react';
 import { 
   STATS, 
@@ -1560,26 +1562,52 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                   </div>
 
                   <div className="lg:col-span-6 space-y-6">
-                    <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-8 shadow-sm space-y-4">
-                      <span className="text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-3 py-1 rounded-full border border-purple-900/40">Loyalty Platform</span>
-                      <h3 className="text-2xl font-black text-white">Tối Ưu Retention Rate</h3>
-                      <p className="text-slate-400 text-sm leading-relaxed font-light text-justify">
-                        Mini App trên Zalo giúp doanh nghiệp tận dụng cơ sở dữ liệu khổng lồ của Zalo mà không cần ép khách hàng tải app nặng nề. Hỗ trợ đầy đủ các tính năng:
-                      </p>
-                      <ul className="space-y-3 text-sm text-slate-300 font-light">
-                        <li className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#161033]0" /> Tích điểm thành viên qua QR Code định danh.
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#161033]0" /> Thăng hạng thông minh (Silver, Gold, VIP).
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#161033]0" /> Đổi voucher ưu đãi và gửi thông báo ZNS tự động.
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#161033]0" /> Đồng bộ dữ liệu real-time với CRM nội bộ.
-                        </li>
-                      </ul>
+                    <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-8 shadow-sm space-y-6">
+                      <div className="space-y-3">
+                        <span className="text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-3 py-1 rounded-full border border-purple-900/40">Loyalty Platform</span>
+                        <h3 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200 leading-tight">Tối Ưu Retention Rate</h3>
+                        <p className="text-slate-400 text-sm leading-relaxed font-light text-justify">
+                          Mini App trên Zalo giúp doanh nghiệp tận dụng cơ sở dữ liệu khổng lồ của Zalo mà không cần ép khách hàng tải app nặng nề. Hỗ trợ đầy đủ các tính năng:
+                        </p>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        {[
+                          {
+                            title: "Tích Điểm QR Code",
+                            desc: "Định danh khách hàng tức thời qua QR Code cá nhân hóa để tích và tiêu điểm nhanh chóng.",
+                            icon: <QrCode size={18} className="text-purple-400" />
+                          },
+                          {
+                            title: "Thăng Hạng Thành Viên",
+                            desc: "Tự động xếp hạng VIP, Gold, Silver và áp dụng chính sách ưu đãi riêng biệt theo chi tiêu.",
+                            icon: <Award size={18} className="text-purple-400" />
+                          },
+                          {
+                            title: "Voucher & Zalo ZNS",
+                            desc: "Đổi voucher ưu đãi trực tiếp trên app và tự động gửi tin nhắn nhắc nhở/chăm sóc ZNS.",
+                            icon: <Ticket size={18} className="text-purple-400" />
+                          },
+                          {
+                            title: "Đồng Bộ CRM Real-time",
+                            desc: "Dữ liệu giao dịch, thông tin khách hàng đồng bộ tức thời với cơ sở dữ liệu CRM nội bộ.",
+                            icon: <RefreshCw size={18} className="text-purple-400" />
+                          }
+                        ].map((feat, idx) => (
+                          <div 
+                            key={idx} 
+                            className="bg-[#030014] border border-purple-900/30 rounded-2xl p-5 hover:border-purple-500/50 transition-all flex flex-col gap-3 text-left group"
+                          >
+                            <div className="w-9 h-9 rounded-xl bg-[#161033] border border-purple-900/40 text-white flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+                              {feat.icon}
+                            </div>
+                            <div className="space-y-1">
+                              <h4 className="text-xs sm:text-sm font-black text-slate-200 group-hover:text-purple-400 transition-colors leading-tight">{feat.title}</h4>
+                              <p className="text-slate-400 text-[11px] sm:text-xs leading-relaxed font-light text-justify">{feat.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>

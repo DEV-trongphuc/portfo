@@ -967,7 +967,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     <span className="text-[9px] font-black uppercase tracking-[0.3em] text-yellow-300 bg-purple-950/60 border border-purple-500/50 px-4 py-1.5 rounded-full inline-block shadow-[0_0_15px_rgba(168,85,247,0.25)] animate-pulse">
                        MARTECH & FULLSTACK COCKPIT
                     </span>
-                    <h2 className="text-[25px] xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight drop-shadow-[0_2px_10px_rgba(168,85,247,0.3)]">
+                    <h2 className="text-[24px] xs:text-2xl sm:text-3xl md:text-4xl lg:text-[42px] xl:text-6xl font-black leading-tight tracking-tight drop-shadow-[0_2px_10px_rgba(168,85,247,0.3)] sm:whitespace-nowrap">
                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">
                         {typedName}
                       </span>

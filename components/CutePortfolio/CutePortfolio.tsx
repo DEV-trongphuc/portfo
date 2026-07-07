@@ -841,7 +841,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                 <TechDecor />
                 
                 {/* HERO: 3D Dark Bento Glassmorphic Grid (Enhanced with vibrant neon colors and premium gradients) */}
-                <div className="relative bg-gradient-to-br from-[#0c051e] via-[#090514] to-[#1d0d3a] border border-purple-500/35 rounded-2xl p-8 md:p-12 text-white overflow-hidden shadow-[0_0_50px_rgba(168,85,247,0.15)] flex flex-col lg:flex-row items-center justify-between gap-10 min-h-[380px]">
+                <TiltCard className="relative bg-gradient-to-br from-[#0c051e] via-[#090514] to-[#1d0d3a] border border-purple-500/35 rounded-2xl p-8 md:p-12 text-white overflow-hidden shadow-[0_0_50px_rgba(168,85,247,0.15)] flex flex-col lg:flex-row items-center justify-between gap-10 min-h-[380px]">
                   {/* Cyber grid background */}
                   <div className="absolute inset-0 bg-[linear-gradient(rgba(168,85,247,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(168,85,247,0.025)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none z-0" />
                   
@@ -853,7 +853,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                   <div className="absolute -right-20 -bottom-20 w-[450px] h-[450px] rounded-full border border-purple-500/10 [transform:rotateX(60deg)_rotateY(10deg)] pointer-events-none z-0 hidden lg:block" />
                   <div className="absolute -right-10 -bottom-10 w-[350px] h-[350px] rounded-full border border-purple-500/15 [transform:rotateX(60deg)_rotateY(10deg)] pointer-events-none z-0 hidden lg:block" />
 
-                  <div className="flex-1 space-y-6 relative z-10 max-w-2xl">
+                  <div className="flex-1 space-y-6 relative z-10 max-w-2xl text-left">
                     <span className="text-[9px] font-black uppercase tracking-[0.3em] text-yellow-300 bg-purple-950/60 border border-purple-500/50 px-4 py-1.5 rounded-full inline-block shadow-[0_0_15px_rgba(168,85,247,0.25)] animate-pulse">
                        MARTECH & FULLSTACK COCKPIT
                     </span>
@@ -943,7 +943,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       <span className="text-[8px] font-black tracking-widest text-white leading-none">DOM ENGINE</span>
                     </motion.div>
                   </div>
-                </div>
+                </TiltCard>
 
                 {/* The Bridge Flow */}
                 <div className="space-y-4">

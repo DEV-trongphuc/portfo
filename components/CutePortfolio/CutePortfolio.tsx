@@ -48,12 +48,13 @@ import {
   BRAND_LOGO
 } from '../../constants';
 import DomiBot from './DomiBot';
-import ProductGalaxy3D from './ProductGalaxy3D';
 import BentoStats3D from './BentoStats3D';
 import TechLab from './TechLab';
 
 // @ts-ignore
 import micrositePdf from '../../pdf/microsite game_compressed.pdf';
+// @ts-ignore
+import meAvatar from '../../me.jpg';
 
 // Import images
 // @ts-ignore
@@ -208,7 +209,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
   };
 
   const handleNavigateFromBot = (tab: string) => {
-    const validTabs = ['dashboard', 'galaxy', 'saas', 'martech', 'meta-report', 'automation', 'zalo', 'tarot', 'book', 'landings', 'outsource', 'partners', 'certifications'];
+    const validTabs = ['dashboard', 'saas', 'martech', 'meta-report', 'automation', 'zalo', 'tarot', 'book', 'landings', 'outsource', 'partners', 'certifications'];
     if (validTabs.includes(tab)) {
       setActiveTab(tab);
       setMobileMenuOpen(false);
@@ -216,20 +217,37 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
     }
   };
 
+  const menuGroups = {
+    general: [
+      { id: 'dashboard', name: 'Overview', icon: <Grid size={16} /> },
+      { id: 'partners', name: 'Partners', icon: <Users size={16} /> },
+    ],
+    digitalApp: [
+      { id: 'saas', name: 'SaaS Apps', icon: <Database size={16} /> },
+      { id: 'zalo', name: 'Zalo App', icon: <MonitorSmartphone size={16} /> },
+      { id: 'tarot', name: 'Tarot App', icon: <Sparkles size={16} /> },
+    ],
+    buildAutomation: [
+      { id: 'martech', name: 'Data Flow', icon: <Server size={16} /> },
+      { id: 'automation', name: 'Automation', icon: <Zap size={16} /> },
+    ],
+    digitalMarketingAds: [
+      { id: 'meta-report', name: 'Ads Report', icon: <BarChart3 size={16} /> },
+      { id: 'landings', name: 'Landings', icon: <Globe size={16} /> },
+      { id: 'book', name: 'Ads Book', icon: <BookOpen size={16} /> },
+      { id: 'outsource', name: 'Case Study', icon: <BarChart3 size={16} /> },
+    ],
+    info: [
+      { id: 'certifications', name: 'Credentials', icon: <Award size={16} /> },
+    ]
+  };
+
   const menuItems = [
-    { id: 'dashboard', name: 'Overview', icon: <Grid size={16} /> },
-    { id: 'galaxy', name: '3D Orbit', icon: <Compass size={16} /> },
-    { id: 'saas', name: 'SaaS Apps', icon: <Database size={16} /> },
-    { id: 'martech', name: 'Data Flow', icon: <Server size={16} /> },
-    { id: 'meta-report', name: 'Ads Report', icon: <BarChart3 size={16} /> },
-    { id: 'automation', name: 'Automation', icon: <Zap size={16} /> },
-    { id: 'landings', name: 'Landings', icon: <Globe size={16} /> },
-    { id: 'zalo', name: 'Zalo App', icon: <MonitorSmartphone size={16} /> },
-    { id: 'tarot', name: 'Tarot App', icon: <Sparkles size={16} /> },
-    { id: 'book', name: 'Ads Book', icon: <BookOpen size={16} /> },
-    { id: 'outsource', name: 'Case Study', icon: <BarChart3 size={16} /> },
-    { id: 'partners', name: 'Partners', icon: <Users size={16} /> },
-    { id: 'certifications', name: 'Credentials', icon: <Award size={16} /> },
+    ...menuGroups.general,
+    ...menuGroups.digitalApp,
+    ...menuGroups.buildAutomation,
+    ...menuGroups.digitalMarketingAds,
+    ...menuGroups.info,
   ];
 
   // Filter projects list
@@ -249,16 +267,15 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
       {/* MOBILE HEADER */}
       <div className="xl:hidden flex items-center justify-between px-6 py-4 bg-[#0f0b24]/90 border-b border-purple-900/40 backdrop-blur-md sticky top-0 z-40 w-full shadow-sm">
         <div className="flex items-center gap-3">
-          <img src={BRAND_LOGO} alt="DOM LOGO" className="w-8 h-8 object-contain" />
-          <span className="font-black text-sm tracking-wider text-white">DOMARKETING</span>
+          <div className="w-10 h-10 rounded-full overflow-hidden border border-purple-500/30 shrink-0">
+            <img src={meAvatar} alt="Huỳnh Trọng Phúc" className="w-full h-full object-cover" />
+          </div>
+          <div className="min-w-0">
+            <h2 className="text-xs font-black text-white leading-none">Huỳnh Trọng Phúc</h2>
+            <p className="text-[8.5px] text-purple-300 font-bold tracking-wide mt-0.5">Digital - AI Automation</p>
+          </div>
         </div>
         <div className="flex items-center gap-3">
-          <button 
-            onClick={onToggleClassic} 
-            className="px-4 py-2 border border-purple-900/40 hover:border-slate-400 hover:text-white rounded-full text-[10px] font-black uppercase tracking-wider transition-all"
-          >
-            Classic
-          </button>
           <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-slate-300">
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -274,24 +291,115 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             exit={{ opacity: 0, height: 0 }}
             className="xl:hidden bg-[#0f0b24] border-b border-purple-900/40 w-full z-30 absolute top-[69px] left-0 shadow-lg overflow-hidden"
           >
-            <div className="flex flex-col p-4 gap-2">
-              {menuItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => {
-                    setActiveTab(item.id);
-                    setMobileMenuOpen(false);
-                  }}
-                  className={`flex items-center gap-3 px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider transition-all ${
-                    activeTab === item.id 
-                      ? 'bg-[#0f0b24] text-white' 
-                      : 'text-slate-400 hover:bg-[#030014]'
-                  }`}
-                >
-                  {item.icon}
-                  <span>{item.name}</span>
-                </button>
-              ))}
+            <div className="flex flex-col p-4 gap-3 max-h-[75vh] overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
+              {/* General / Navigation */}
+              <div className="flex flex-col gap-1">
+                {menuGroups.general.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      setActiveTab(item.id);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`flex items-center gap-3 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
+                      activeTab === item.id 
+                        ? 'bg-[#161033] text-white border border-purple-900/40' 
+                        : 'text-slate-400 hover:bg-[#030014]'
+                    }`}
+                  >
+                    {item.icon}
+                    <span>{item.name}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Digital App Group */}
+              <div className="flex flex-col gap-1">
+                <span className="px-6 text-[8px] font-bold text-slate-500 uppercase tracking-widest mt-1">Digital app</span>
+                {menuGroups.digitalApp.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      setActiveTab(item.id);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`flex items-center gap-3 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
+                      activeTab === item.id 
+                        ? 'bg-[#161033] text-white border border-purple-900/40' 
+                        : 'text-slate-400 hover:bg-[#030014]'
+                    }`}
+                  >
+                    {item.icon}
+                    <span>{item.name}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Build Automation Group */}
+              <div className="flex flex-col gap-1">
+                <span className="px-6 text-[8px] font-bold text-slate-500 uppercase tracking-widest mt-1">Build Automation</span>
+                {menuGroups.buildAutomation.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      setActiveTab(item.id);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`flex items-center gap-3 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
+                      activeTab === item.id 
+                        ? 'bg-[#161033] text-white border border-purple-900/40' 
+                        : 'text-slate-400 hover:bg-[#030014]'
+                    }`}
+                  >
+                    {item.icon}
+                    <span>{item.name}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Digital Marketing Ads Group */}
+              <div className="flex flex-col gap-1">
+                <span className="px-6 text-[8px] font-bold text-slate-500 uppercase tracking-widest mt-1">Digital Marketing ads</span>
+                {menuGroups.digitalMarketingAds.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      setActiveTab(item.id);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`flex items-center gap-3 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
+                      activeTab === item.id 
+                        ? 'bg-[#161033] text-white border border-purple-900/40' 
+                        : 'text-slate-400 hover:bg-[#030014]'
+                    }`}
+                  >
+                    {item.icon}
+                    <span>{item.name}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Info Group */}
+              <div className="flex flex-col gap-1">
+                <span className="px-6 text-[8px] font-bold text-slate-500 uppercase tracking-widest mt-1">Info</span>
+                {menuGroups.info.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      setActiveTab(item.id);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`flex items-center gap-3 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
+                      activeTab === item.id 
+                        ? 'bg-[#161033] text-white border border-purple-900/40' 
+                        : 'text-slate-400 hover:bg-[#030014]'
+                    }`}
+                  >
+                    {item.icon}
+                    <span>{item.name}</span>
+                  </button>
+                ))}
+              </div>
             </div>
           </motion.div>
         )}
@@ -302,55 +410,163 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
         <div className="flex flex-col gap-6">
           {/* Logo & Branding */}
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-2xl bg-[#161033] flex items-center justify-center shadow-md border border-purple-900/30">
-              <img src={BRAND_LOGO} alt="DOM LOGO" className="w-5 h-5 object-contain filter invert brightness-200" />
+            <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-purple-500/40 shadow-[0_0_15px_rgba(168,85,247,0.3)] shrink-0">
+              <img src={meAvatar} alt="Huỳnh Trọng Phúc" className="w-full h-full object-cover" />
             </div>
-            <div>
-              <h1 className="text-xs font-black tracking-widest text-white uppercase leading-none">DOMARKETING</h1>
-              <span className="text-[9px] text-slate-400 font-bold tracking-widest uppercase">AI Cockpit v2</span>
+            <div className="min-w-0">
+              <h2 className="text-sm font-black text-white leading-tight">Huỳnh Trọng Phúc</h2>
+              <p className="text-[9.5px] text-purple-300 font-bold tracking-wide mt-0.5">Digital - AI Automation</p>
             </div>
           </div>
 
           {/* Navigation Menu (Sized up, spaced out, scrollbar hidden) */}
           <nav 
-            className="flex flex-col gap-1.5 overflow-y-auto max-h-[65vh]"
+            className="flex flex-col gap-4 overflow-y-auto max-h-[80vh]"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {menuItems.map((item) => {
-              const isActive = activeTab === item.id;
-              // Clone icon with size 18
-              const resizedIcon = React.cloneElement(item.icon as React.ReactElement, { size: 18 });
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => setActiveTab(item.id)}
-                  className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-[10.5px] font-black uppercase tracking-wider transition-all group ${
-                    isActive 
-                      ? 'bg-[#0f0b24] text-white shadow-sm' 
-                      : 'text-slate-400 hover:text-white hover:bg-[#161033]/50'
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className={isActive ? 'text-white' : 'text-slate-400 group-hover:text-slate-200 transition-colors'}>
-                      {resizedIcon}
-                    </span>
-                    <span>{item.name}</span>
-                  </div>
-                  <ChevronRight size={14} className={`opacity-0 group-hover:opacity-100 transition-opacity ${isActive ? 'text-white/80' : 'text-slate-400'}`} />
-                </button>
-              );
-            })}
+            {/* General */}
+            <div className="flex flex-col gap-1">
+              {menuGroups.general.map((item) => {
+                const isActive = activeTab === item.id;
+                const resizedIcon = React.cloneElement(item.icon as React.ReactElement, { size: 18 });
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveTab(item.id)}
+                    className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-[10.5px] font-black uppercase tracking-wider transition-all group ${
+                      isActive 
+                        ? 'bg-[#0f0b24] text-white shadow-sm border border-purple-900/40' 
+                        : 'text-slate-400 hover:text-white hover:bg-[#161033]/50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className={isActive ? 'text-white' : 'text-slate-400 group-hover:text-slate-200 transition-colors'}>
+                        {resizedIcon}
+                      </span>
+                      <span>{item.name}</span>
+                    </div>
+                    <ChevronRight size={14} className={`opacity-0 group-hover:opacity-100 transition-opacity ${isActive ? 'text-white/80' : 'text-slate-400'}`} />
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Digital App */}
+            <div className="flex flex-col gap-1">
+              <span className="px-4 text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-1 border-l-2 border-purple-500/40 pl-2">Digital app</span>
+              {menuGroups.digitalApp.map((item) => {
+                const isActive = activeTab === item.id;
+                const resizedIcon = React.cloneElement(item.icon as React.ReactElement, { size: 18 });
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveTab(item.id)}
+                    className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-[10.5px] font-black uppercase tracking-wider transition-all group ${
+                      isActive 
+                        ? 'bg-[#0f0b24] text-white shadow-sm border border-purple-900/40' 
+                        : 'text-slate-400 hover:text-white hover:bg-[#161033]/50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className={isActive ? 'text-white' : 'text-slate-400 group-hover:text-slate-200 transition-colors'}>
+                        {resizedIcon}
+                      </span>
+                      <span>{item.name}</span>
+                    </div>
+                    <ChevronRight size={14} className={`opacity-0 group-hover:opacity-100 transition-opacity ${isActive ? 'text-white/80' : 'text-slate-400'}`} />
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Build Automation */}
+            <div className="flex flex-col gap-1">
+              <span className="px-4 text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-1 border-l-2 border-purple-500/40 pl-2">Build Automation</span>
+              {menuGroups.buildAutomation.map((item) => {
+                const isActive = activeTab === item.id;
+                const resizedIcon = React.cloneElement(item.icon as React.ReactElement, { size: 18 });
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveTab(item.id)}
+                    className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-[10.5px] font-black uppercase tracking-wider transition-all group ${
+                      isActive 
+                        ? 'bg-[#0f0b24] text-white shadow-sm border border-purple-900/40' 
+                        : 'text-slate-400 hover:text-white hover:bg-[#161033]/50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className={isActive ? 'text-white' : 'text-slate-400 group-hover:text-slate-200 transition-colors'}>
+                        {resizedIcon}
+                      </span>
+                      <span>{item.name}</span>
+                    </div>
+                    <ChevronRight size={14} className={`opacity-0 group-hover:opacity-100 transition-opacity ${isActive ? 'text-white/80' : 'text-slate-400'}`} />
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Digital Marketing Ads */}
+            <div className="flex flex-col gap-1">
+              <span className="px-4 text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-1 border-l-2 border-purple-500/40 pl-2">Digital Marketing ads</span>
+              {menuGroups.digitalMarketingAds.map((item) => {
+                const isActive = activeTab === item.id;
+                const resizedIcon = React.cloneElement(item.icon as React.ReactElement, { size: 18 });
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveTab(item.id)}
+                    className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-[10.5px] font-black uppercase tracking-wider transition-all group ${
+                      isActive 
+                        ? 'bg-[#0f0b24] text-white shadow-sm border border-purple-900/40' 
+                        : 'text-slate-400 hover:text-white hover:bg-[#161033]/50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className={isActive ? 'text-white' : 'text-slate-400 group-hover:text-slate-200 transition-colors'}>
+                        {resizedIcon}
+                      </span>
+                      <span>{item.name}</span>
+                    </div>
+                    <ChevronRight size={14} className={`opacity-0 group-hover:opacity-100 transition-opacity ${isActive ? 'text-white/80' : 'text-slate-400'}`} />
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Info */}
+            <div className="flex flex-col gap-1">
+              <span className="px-4 text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-1 border-l-2 border-purple-500/40 pl-2">Info</span>
+              {menuGroups.info.map((item) => {
+                const isActive = activeTab === item.id;
+                const resizedIcon = React.cloneElement(item.icon as React.ReactElement, { size: 18 });
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveTab(item.id)}
+                    className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-[10.5px] font-black uppercase tracking-wider transition-all group ${
+                      isActive 
+                        ? 'bg-[#0f0b24] text-white shadow-sm border border-purple-900/40' 
+                        : 'text-slate-400 hover:text-white hover:bg-[#161033]/50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className={isActive ? 'text-white' : 'text-slate-400 group-hover:text-slate-200 transition-colors'}>
+                        {resizedIcon}
+                      </span>
+                      <span>{item.name}</span>
+                    </div>
+                    <ChevronRight size={14} className={`opacity-0 group-hover:opacity-100 transition-opacity ${isActive ? 'text-white/80' : 'text-slate-400'}`} />
+                  </button>
+                );
+              })}
+            </div>
           </nav>
         </div>
 
         {/* Sidebar Footer */}
         <div className="flex flex-col gap-4">
-          <button 
-            onClick={onToggleClassic}
-            className="w-full py-2.5 border border-purple-900/40 hover:border-purple-900/40 hover:bg-[#030014] rounded-full text-slate-300 hover:text-white font-black text-[9px] uppercase tracking-wider transition-all flex items-center justify-center gap-1.5"
-          >
-            <RefreshCw size={10} className="animate-spin-slow" /> Classic View
-          </button>
           
           <div className="flex items-center justify-between bg-[#030014] border border-purple-900/40 p-3 rounded-2xl">
             <a 
@@ -415,36 +631,41 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             {activeTab === 'dashboard' && (
               <div className="space-y-10 w-full">
                 
-                {/* HERO: 3D Dark Bento Glassmorphic Grid (Redesigned with Slate/Charcoal to moderate purple usage) */}
-                <div className="relative bg-[#0f172a] border border-purple-900/40 rounded-2xl p-8 md:p-12 text-white overflow-hidden shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-10 min-h-[380px]">
-                  <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.02)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none z-0" />
-                  <div className="absolute -right-20 -bottom-20 w-[450px] h-[450px] rounded-full border border-purple-900/40/40 [transform:rotateX(60deg)_rotateY(10deg)] pointer-events-none z-0 hidden lg:block" />
-                  <div className="absolute -right-10 -bottom-10 w-[350px] h-[350px] rounded-full border border-purple-900/40/30 [transform:rotateX(60deg)_rotateY(10deg)] pointer-events-none z-0 hidden lg:block" />
-                  <div className="absolute top-0 right-1/4 w-[300px] h-[300px] bg-slate-300/10 rounded-full blur-[80px] pointer-events-none z-0" />
-                  <div className="absolute bottom-0 right-0 w-[200px] h-[200px] bg-slate-400/10 rounded-full blur-[60px] pointer-events-none z-0" />
+                {/* HERO: 3D Dark Bento Glassmorphic Grid (Enhanced with vibrant neon colors and premium gradients) */}
+                <div className="relative bg-gradient-to-br from-[#0c051e] via-[#090514] to-[#1d0d3a] border border-purple-500/35 rounded-2xl p-8 md:p-12 text-white overflow-hidden shadow-[0_0_50px_rgba(168,85,247,0.15)] flex flex-col lg:flex-row items-center justify-between gap-10 min-h-[380px]">
+                  {/* Cyber grid background */}
+                  <div className="absolute inset-0 bg-[linear-gradient(rgba(168,85,247,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(168,85,247,0.025)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none z-0" />
+                  
+                  {/* Ambient neon light glows */}
+                  <div className="absolute -top-12 -right-12 w-[350px] h-[350px] bg-yellow-500/15 rounded-full blur-[100px] pointer-events-none z-0 animate-pulse" />
+                  <div className="absolute -bottom-12 -left-12 w-[350px] h-[350px] bg-purple-500/15 rounded-full blur-[100px] pointer-events-none z-0 animate-pulse" style={{ animationDelay: '2s' }} />
+                  
+                  {/* Rotating geometric visual helper rings */}
+                  <div className="absolute -right-20 -bottom-20 w-[450px] h-[450px] rounded-full border border-purple-500/10 [transform:rotateX(60deg)_rotateY(10deg)] pointer-events-none z-0 hidden lg:block" />
+                  <div className="absolute -right-10 -bottom-10 w-[350px] h-[350px] rounded-full border border-purple-500/15 [transform:rotateX(60deg)_rotateY(10deg)] pointer-events-none z-0 hidden lg:block" />
 
                   <div className="flex-1 space-y-6 relative z-10 max-w-2xl">
-                    <span className="text-[9px] font-black uppercase tracking-[0.3em] text-slate-300 bg-[#161033] border border-purple-900/40 px-4 py-1.5 rounded-full inline-block">
+                    <span className="text-[9px] font-black uppercase tracking-[0.3em] text-yellow-300 bg-purple-950/60 border border-purple-500/50 px-4 py-1.5 rounded-full inline-block shadow-[0_0_15px_rgba(168,85,247,0.25)] animate-pulse">
                        MARTECH & FULLSTACK COCKPIT
                     </span>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-white">
-                      HUỲNH TRỌNG PHỤC
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200 drop-shadow-[0_2px_10px_rgba(168,85,247,0.3)]">
+                      HUỲNH TRỌNG PHÚC
                     </h2>
                     <p className="text-sm md:text-base text-slate-300 font-light leading-relaxed text-justify">
-                      Chuyển đổi số toàn diện cho doanh nghiệp vừa và nhỏ.
+                      Chuyên gia thiết kế hệ thống <span className="text-purple-400 font-bold">Automation</span>, tối ưu quy trình vận hành và xây dựng giải pháp <span className="text-amber-300 font-bold">Digital Marketing</span> toàn diện cho doanh nghiệp.
                     </p>
                     <div className="pt-2 flex flex-wrap gap-4">
                       <button 
-                        onClick={() => setActiveTab('galaxy')} 
-                        className="px-6 py-3.5 bg-[#0f0b24] text-white hover:bg-[#161033] font-black text-xs tracking-widest uppercase rounded-full shadow-lg flex items-center gap-2 transition-all hover:-translate-y-0.5"
+                        onClick={() => setActiveTab('partners')} 
+                        className="px-6 py-3.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-black text-xs tracking-widest uppercase rounded-full shadow-[0_0_25px_rgba(168,85,247,0.4)] hover:shadow-[0_0_35px_rgba(168,85,247,0.6)] flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
                       >
-                        Explore 3D Galaxy <ArrowRight size={14} />
+                        View Partners <ArrowRight size={14} />
                       </button>
                       <a 
                         href="https://domation.net/" 
                         target="_blank" 
                         rel="noreferrer"
-                        className="px-6 py-3.5 bg-[#0f0b24]/10 border border-white/20 hover:bg-[#0f0b24]/20 text-white font-black text-xs tracking-widest uppercase rounded-full flex items-center gap-2 transition-all"
+                        className="px-6 py-3.5 bg-[#0f0b24]/40 border border-purple-500/30 hover:border-yellow-400/50 hover:bg-[#0f0b24]/80 text-white hover:text-yellow-400 font-black text-xs tracking-widest uppercase rounded-full flex items-center gap-2 transition-all duration-300"
                       >
                         Visit domation.net <ExternalLink size={14} />
                       </a>
@@ -455,14 +676,14 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     <motion.div 
                       animate={{ rotate: 360 }}
                       transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-                      className="absolute w-72 h-72 rounded-full border border-dashed border-purple-900/30/20"
+                      className="absolute w-72 h-72 rounded-full border border-dashed border-purple-500/25"
                     />
                     {[
-                      { icon: <Database size={16} />, label: 'CRM Sync', angle: 0 },
-                      { icon: <MonitorSmartphone size={16} />, label: 'Zalo SDK', angle: 72 },
-                      { icon: <Zap size={16} />, label: 'n8n Flow', angle: 144 },
-                      { icon: <Cpu size={16} />, label: 'Apps Script', angle: 216 },
-                      { icon: <Bot size={16} />, label: 'AI Agent', angle: 288 },
+                      { icon: <Database size={18} className="text-blue-400 group-hover:text-white transition-colors" />, label: 'CRM Sync', angle: 0, glow: 'hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] hover:border-blue-400' },
+                      { icon: <MonitorSmartphone size={18} className="text-cyan-400 group-hover:text-white transition-colors" />, label: 'Zalo SDK', angle: 72, glow: 'hover:shadow-[0_0_20px_rgba(6,182,212,0.6)] hover:border-cyan-400' },
+                      { icon: <Zap size={18} className="text-orange-400 group-hover:text-white transition-colors" />, label: 'n8n Flow', angle: 144, glow: 'hover:shadow-[0_0_20px_rgba(249,115,22,0.6)] hover:border-orange-400' },
+                      { icon: <Cpu size={18} className="text-yellow-400 group-hover:text-white transition-colors" />, label: 'Apps Script', angle: 216, glow: 'hover:shadow-[0_0_20px_rgba(234,179,8,0.6)] hover:border-yellow-400' },
+                      { icon: <Bot size={18} className="text-fuchsia-400 group-hover:text-white transition-colors" />, label: 'AI Agent', angle: 288, glow: 'hover:shadow-[0_0_20px_rgba(217,70,239,0.6)] hover:border-fuchsia-400' },
                     ].map((node, idx) => {
                       const radius = 144;
                       const angleRad = (node.angle * Math.PI) / 180;
@@ -475,19 +696,19 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                           style={{ x, y }}
                           animate={{ rotate: -360 }}
                           transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-                          className="absolute w-12 h-12 bg-[#0f0b24]/10 border border-white/20 rounded-full flex flex-col items-center justify-center text-slate-300 shadow-lg cursor-pointer hover:bg-[#0f0b24] hover:text-white hover:border-white transition-colors group"
+                          className={`absolute w-12 h-12 bg-[#090514]/80 backdrop-blur-md border border-purple-900/40 rounded-full flex flex-col items-center justify-center text-slate-300 shadow-md cursor-pointer transition-all duration-300 group ${node.glow}`}
                         >
                           {node.icon}
-                          <span className="absolute top-14 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-purple-900/40 text-[8px] font-black uppercase text-white scale-0 group-hover:scale-100 transition-transform whitespace-nowrap">
+                          <span className="absolute top-14 bg-black/85 backdrop-blur-md px-2 py-0.5 rounded border border-purple-500/30 text-[8px] font-black uppercase text-white scale-0 group-hover:scale-100 transition-transform whitespace-nowrap z-20">
                             {node.label}
                           </span>
                         </motion.div>
                       );
                     })}
 
-                    <div className="w-24 h-24 rounded-full bg-slate-800 border border-purple-900/30 flex flex-col items-center justify-center p-3 text-center shadow-2xl backdrop-blur-xl animate-pulse">
-                      <Sparkles size={28} className="text-slate-300 mb-1" />
-                      <span className="text-[8px] font-black tracking-widest text-white">DOM ENGINE</span>
+                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#1b0a3a] to-[#0c041e] border border-purple-500/50 flex flex-col items-center justify-center p-3 text-center shadow-[0_0_35px_rgba(168,85,247,0.5)] backdrop-blur-xl animate-pulse">
+                      <Sparkles size={28} className="text-yellow-400 mb-1" />
+                      <span className="text-[8px] font-black tracking-widest text-white leading-none">DOM ENGINE</span>
                     </div>
                   </div>
                 </div>
@@ -537,16 +758,6 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
               </div>
             )}
 
-            {/* 3D ORBIT GALAXY */}
-            {activeTab === 'galaxy' && (
-              <div className="space-y-6 w-full">
-                <div>
-                  <h2 className="text-3xl font-black text-white uppercase tracking-tight">PRODUCT GALAXY 3D</h2>
-                  <p className="text-sm text-slate-400 font-light mt-1">Xoay để khám phá hệ sinh thái sản phẩm công nghệ và marketing.</p>
-                </div>
-                <ProductGalaxy3D />
-              </div>
-            )}
 
             {activeTab === 'saas' && (
               <div className="space-y-10 w-full">
@@ -567,7 +778,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                         href="https://domation.net/crm" 
                         target="_blank" 
                         rel="noreferrer"
-                        className="px-6 py-3 bg-[#0f0b24] hover:bg-purple-900/20 text-white font-bold text-xs uppercase tracking-widest rounded-full shadow-md flex items-center gap-2"
+                        className="px-6 py-3 bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:via-violet-500 hover:to-indigo-500 text-white font-bold text-xs uppercase tracking-widest rounded-full shadow-[0_0_15px_rgba(168,85,247,0.35)] hover:shadow-[0_0_25px_rgba(168,85,247,0.55)] flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
                       >
                         Dùng Thử Ngay <ExternalLink size={12} />
                       </a>
@@ -629,7 +840,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       Image {[crms1, crms2, crms3, crms4].indexOf(activeCrmImg) + 1} of 4
                     </span>
                     {/* CRM Thumbnail Gallery Selector */}
-                    <div className="w-full max-w-4xl flex gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
+                    <div className="w-full max-w-4xl flex justify-start md:justify-center gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
                       {[crms1, crms2, crms3, crms4].map((img, index) => (
                         <button 
                           key={index}
@@ -737,7 +948,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       Image {[crm1, crm2, crm3, crm4, crm5, crm6, crm7, crm8].indexOf(activeMinthImg) + 1} of 8
                     </span>
                     {/* CRM Thumbnail Gallery Selector */}
-                    <div className="w-full max-w-4xl flex gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
+                    <div className="w-full max-w-4xl flex justify-start md:justify-center gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
                       {[crm1, crm2, crm3, crm4, crm5, crm6, crm7, crm8].map((img, index) => (
                         <button 
                           key={index}
@@ -837,7 +1048,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       Image {[lms1, lms2, lms3, lms4].indexOf(activeLmsImg) + 1} of 4
                     </span>
                     {/* LMS Thumbnail Gallery Selector */}
-                    <div className="w-full max-w-4xl flex gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
+                    <div className="w-full max-w-4xl flex justify-start md:justify-center gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
                       {[lms1, lms2, lms3, lms4].map((img, index) => (
                         <button 
                           key={index}
@@ -890,7 +1101,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                         href="https://domation.net/data" 
                         target="_blank" 
                         rel="noreferrer"
-                        className="px-6 py-3 bg-[#0f0b24] hover:bg-purple-900/20 text-white font-bold text-xs uppercase tracking-widest rounded-full shadow-md flex items-center gap-2"
+                        className="px-6 py-3 bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:via-violet-500 hover:to-indigo-500 text-white font-bold text-xs uppercase tracking-widest rounded-full shadow-[0_0_15px_rgba(168,85,247,0.35)] hover:shadow-[0_0_25px_rgba(168,85,247,0.55)] flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
                       >
                         Dùng Thử Ngay <ExternalLink size={12} />
                       </a>
@@ -950,7 +1161,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       Image {CHIA_DATA_IMAGES.indexOf(activeDataImg) + 1} of {CHIA_DATA_IMAGES.length}
                     </span>
                     {/* 12 Data Flow Thumbnails */}
-                    <div className="w-full max-w-4xl flex gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
+                    <div className="w-full max-w-4xl flex justify-start md:justify-center gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
                       {CHIA_DATA_IMAGES.map((img, index) => (
                         <button 
                           key={index}
@@ -1019,15 +1230,8 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       </a>
                     </div>
                     <div className="p-6 relative z-10 space-y-4">
-                      <a href="https://domation.net/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#161033] border border-purple-900/40 rounded-full text-[9px] font-black text-white hover:bg-purple-900/20 transition-colors uppercase tracking-wider">
-                        <Zap size={10} className="animate-pulse" /> Lead Sync: domation.net
-                      </a>
-                      
                       <h3 className="text-lg font-bold text-white group-hover:text-white transition-colors">Nava Store</h3>
                       <p className="text-slate-400 text-xs leading-relaxed min-h-[50px] font-light">Website thương mại điện tử (E-commerce) chuyên nghiệp, tối ưu hóa trải nghiệm mua sắm và quy trình thanh toán.</p>
-                      <a href="https://domation.net/" target="_blank" rel="noreferrer" className="text-[10px] text-slate-300 hover:text-white font-bold flex items-center gap-1">
-                         Link lead sync: https://domation.net/
-                      </a>
                       <div className="pt-4 flex items-center justify-between border-t border-purple-900/30 mt-2">
                         <div className="flex flex-wrap gap-1.5">
                           <span className="px-2 py-0.5 text-[8.5px] font-bold text-slate-400 bg-[#161033] border border-purple-900/40 rounded-md">E-commerce</span>
@@ -1037,7 +1241,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                           href="https://navastore.vn/" 
                           target="_blank" 
                           rel="noreferrer"
-                          className="px-3.5 py-2 bg-[#0f0b24] hover:bg-purple-900/20 text-white font-bold text-[9px] uppercase tracking-wider rounded-lg shadow-sm flex items-center gap-1 shrink-0 transition-colors"
+                          className="px-3.5 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-black text-[9px] uppercase tracking-wider rounded-lg shadow-[0_0_12px_rgba(168,85,247,0.25)] hover:shadow-[0_0_18px_rgba(168,85,247,0.45)] flex items-center gap-1 shrink-0 transition-all duration-300 hover:-translate-y-0.5"
                         >
                           Xem Website <ExternalLink size={10} />
                         </a>
@@ -1058,15 +1262,8 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       </a>
                     </div>
                     <div className="p-6 relative z-10 space-y-4">
-                      <a href="https://domation.net/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#161033] border border-purple-900/40 rounded-full text-[9px] font-black text-white hover:bg-purple-900/20 transition-colors uppercase tracking-wider">
-                        <Zap size={10} className="animate-pulse" /> Lead Sync: domation.net
-                      </a>
-
                       <h3 className="text-lg font-bold text-white group-hover:text-white transition-colors">Viện IDEAS MBA</h3>
                       <p className="text-slate-400 text-xs leading-relaxed min-h-[50px] font-light">Landing Page tuyển sinh chương trình Thạc sĩ Quản trị Kinh doanh (MBA), tập trung tối đa tỷ lệ chuyển đổi điền form.</p>
-                      <a href="https://domation.net/" target="_blank" rel="noreferrer" className="text-[10px] text-slate-300 hover:text-white font-bold flex items-center gap-1">
-                         Link lead sync: https://domation.net/
-                      </a>
                       <div className="pt-4 flex items-center justify-between border-t border-purple-900/30 mt-2">
                         <div className="flex flex-wrap gap-1.5">
                           <span className="px-2 py-0.5 text-[8.5px] font-bold text-slate-400 bg-[#161033] border border-purple-900/40 rounded-md">Education</span>
@@ -1076,7 +1273,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                           href="https://ideas.edu.vn/mba" 
                           target="_blank" 
                           rel="noreferrer"
-                          className="px-3.5 py-2 bg-[#0f0b24] hover:bg-purple-900/20 text-white font-bold text-[9px] uppercase tracking-wider rounded-lg shadow-sm flex items-center gap-1 shrink-0 transition-colors"
+                          className="px-3.5 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-black text-[9px] uppercase tracking-wider rounded-lg shadow-[0_0_12px_rgba(168,85,247,0.25)] hover:shadow-[0_0_18px_rgba(168,85,247,0.45)] flex items-center gap-1 shrink-0 transition-all duration-300 hover:-translate-y-0.5"
                         >
                           Xem Website <ExternalLink size={10} />
                         </a>
@@ -1097,15 +1294,8 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       </a>
                     </div>
                     <div className="p-6 relative z-10 space-y-4">
-                      <a href="https://domation.net/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#161033] border border-purple-900/40 rounded-full text-[9px] font-black text-white hover:bg-purple-900/20 transition-colors uppercase tracking-wider">
-                        <Zap size={10} className="animate-pulse" /> Lead Sync: domation.net
-                      </a>
-
                       <h3 className="text-lg font-bold text-white group-hover:text-white transition-colors">Turnio Portfolio</h3>
                       <p className="text-slate-400 text-xs leading-relaxed min-h-[50px] font-light">Trang thông tin năng lực (Portfolio) cao cấp của Creative Agency, hiển thị dự án với hiệu ứng tương tác 3D mượt mà.</p>
-                      <a href="https://domation.net/" target="_blank" rel="noreferrer" className="text-[10px] text-slate-300 hover:text-white font-bold flex items-center gap-1">
-                         Link lead sync: https://domation.net/
-                      </a>
                       <div className="pt-4 flex items-center justify-between border-t border-purple-900/30 mt-2">
                         <div className="flex flex-wrap gap-1.5">
                           <span className="px-2 py-0.5 text-[8.5px] font-bold text-slate-400 bg-[#161033] border border-purple-900/40 rounded-md">Creative</span>
@@ -1115,7 +1305,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                           href="https://portfo-turnio.vercel.app/" 
                           target="_blank" 
                           rel="noreferrer"
-                          className="px-3.5 py-2 bg-[#0f0b24] hover:bg-purple-900/20 text-white font-bold text-[9px] uppercase tracking-wider rounded-lg shadow-sm flex items-center gap-1 shrink-0 transition-colors"
+                          className="px-3.5 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-black text-[9px] uppercase tracking-wider rounded-lg shadow-[0_0_12px_rgba(168,85,247,0.25)] hover:shadow-[0_0_18px_rgba(168,85,247,0.45)] flex items-center gap-1 shrink-0 transition-all duration-300 hover:-translate-y-0.5"
                         >
                           Xem Website <ExternalLink size={10} />
                         </a>
@@ -1136,15 +1326,8 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       </a>
                     </div>
                     <div className="p-6 relative z-10 space-y-4">
-                      <a href="https://domation.net/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#161033] border border-purple-900/40 rounded-full text-[9px] font-black text-white hover:bg-purple-900/20 transition-colors uppercase tracking-wider">
-                        <Zap size={10} className="animate-pulse" /> Lead Sync: domation.net
-                      </a>
-
                       <h3 className="text-lg font-bold text-white group-hover:text-white transition-colors">Cấy Ghép Nha Khoa</h3>
                       <p className="text-slate-400 text-xs leading-relaxed min-h-[50px] font-light">Landing Page giới thiệu và tuyển sinh khóa đào tạo Cấy ghép Nha khoa Cơ bản của Brandson Academy cấp chứng chỉ CME.</p>
-                      <a href="https://domation.net/" target="_blank" rel="noreferrer" className="text-[10px] text-slate-300 hover:text-white font-bold flex items-center gap-1">
-                         Link lead sync: https://domation.net/
-                      </a>
                       <div className="pt-4 flex items-center justify-between border-t border-purple-900/30 mt-2">
                         <div className="flex flex-wrap gap-1.5">
                           <span className="px-2 py-0.5 text-[8.5px] font-bold text-slate-400 bg-[#161033] border border-purple-900/40 rounded-md">CME Course</span>
@@ -1154,7 +1337,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                           href="https://brandson.vn/cay-ghep-nha-khoa-co-ban" 
                           target="_blank" 
                           rel="noreferrer"
-                          className="px-3.5 py-2 bg-[#0f0b24] hover:bg-purple-900/20 text-white font-bold text-[9px] uppercase tracking-wider rounded-lg shadow-sm flex items-center gap-1 shrink-0 transition-colors"
+                          className="px-3.5 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-black text-[9px] uppercase tracking-wider rounded-lg shadow-[0_0_12px_rgba(168,85,247,0.25)] hover:shadow-[0_0_18px_rgba(168,85,247,0.45)] flex items-center gap-1 shrink-0 transition-all duration-300 hover:-translate-y-0.5"
                         >
                           Xem Website <ExternalLink size={10} />
                         </a>
@@ -1175,15 +1358,8 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       </a>
                     </div>
                     <div className="p-6 relative z-10 space-y-4">
-                      <a href="https://domation.net/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#161033] border border-purple-900/40 rounded-full text-[9px] font-black text-white hover:bg-purple-900/20 transition-colors uppercase tracking-wider">
-                        <Zap size={10} className="animate-pulse" /> Lead Sync: domation.net
-                      </a>
-
                       <h3 className="text-lg font-bold text-white group-hover:text-white transition-colors">Ngày Hội Implant</h3>
                       <p className="text-slate-400 text-xs leading-relaxed min-h-[50px] font-light">Landing Page sự kiện thường niên "Ngày Hội Implant" của Nha khoa Flora, thiết kế nhằm thúc đẩy đặt hẹn khám trực tiếp.</p>
-                      <a href="https://domation.net/" target="_blank" rel="noreferrer" className="text-[10px] text-slate-300 hover:text-white font-bold flex items-center gap-1">
-                         Link lead sync: https://domation.net/
-                      </a>
                       <div className="pt-4 flex items-center justify-between border-t border-purple-900/30 mt-2">
                         <div className="flex flex-wrap gap-1.5">
                           <span className="px-2 py-0.5 text-[8.5px] font-bold text-slate-400 bg-[#161033] border border-purple-900/40 rounded-md">Dental Clinic</span>
@@ -1193,7 +1369,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                           href="https://nhakhoaflora.com/ngay-hoi-implant/" 
                           target="_blank" 
                           rel="noreferrer"
-                          className="px-3.5 py-2 bg-[#0f0b24] hover:bg-purple-900/20 text-white font-bold text-[9px] uppercase tracking-wider rounded-lg shadow-sm flex items-center gap-1 shrink-0 transition-colors"
+                          className="px-3.5 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-black text-[9px] uppercase tracking-wider rounded-lg shadow-[0_0_12px_rgba(168,85,247,0.25)] hover:shadow-[0_0_18px_rgba(168,85,247,0.45)] flex items-center gap-1 shrink-0 transition-all duration-300 hover:-translate-y-0.5"
                         >
                           Xem Website <ExternalLink size={10} />
                         </a>
@@ -1214,15 +1390,8 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       </a>
                     </div>
                     <div className="p-6 relative z-10 space-y-4">
-                      <a href="https://domation.net/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#161033] border border-purple-900/40 rounded-full text-[9px] font-black text-white hover:bg-purple-900/20 transition-colors uppercase tracking-wider">
-                        <Zap size={10} className="animate-pulse" /> Lead Sync: domation.net
-                      </a>
-
                       <h3 className="text-lg font-bold text-white group-hover:text-white transition-colors">Viện Đào Tạo IDEAS</h3>
                       <p className="text-slate-400 text-xs leading-relaxed min-h-[50px] font-light">Trang thông tin điện tử tích hợp của Viện Đào Tạo & Nghiên Cứu Quản Trị IDEAS, giới thiệu hoạt động và cổng thông tin sinh viên.</p>
-                      <a href="https://domation.net/" target="_blank" rel="noreferrer" className="text-[10px] text-slate-300 hover:text-white font-bold flex items-center gap-1">
-                         Link lead sync: https://domation.net/
-                      </a>
                       <div className="pt-4 flex items-center justify-between border-t border-purple-900/30 mt-2">
                         <div className="flex flex-wrap gap-1.5">
                           <span className="px-2 py-0.5 text-[8.5px] font-bold text-slate-400 bg-[#161033] border border-purple-900/40 rounded-md">Institutional</span>
@@ -1232,7 +1401,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                           href="https://ideas.edu.vn/" 
                           target="_blank" 
                           rel="noreferrer"
-                          className="px-3.5 py-2 bg-[#0f0b24] hover:bg-purple-900/20 text-white font-bold text-[9px] uppercase tracking-wider rounded-lg shadow-sm flex items-center gap-1 shrink-0 transition-colors"
+                          className="px-3.5 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-black text-[9px] uppercase tracking-wider rounded-lg shadow-[0_0_12px_rgba(168,85,247,0.25)] hover:shadow-[0_0_18px_rgba(168,85,247,0.45)] flex items-center gap-1 shrink-0 transition-all duration-300 hover:-translate-y-0.5"
                         >
                           Xem Website <ExternalLink size={10} />
                         </a>
@@ -1252,23 +1421,35 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                 </div>
                 <div className="grid lg:grid-cols-12 gap-12 items-center">
                   <div className="lg:col-span-6 flex flex-col items-center justify-center">
-                    <div className="relative z-10 w-[320px] md:w-[380px] h-[550px] md:h-[650px] bg-black border-[8px] border-[#1e293b] rounded-2xl shadow-2xl ring-4 ring-slate-200/50 overflow-hidden">
-                      <div className="absolute top-0 left-1/2 -translate-x-1/2 h-6 w-24 bg-black rounded-b-xl z-30 flex items-center justify-center">
-                        <div className="w-12 h-1.5 bg-[#0f172a] rounded-full"></div>
+                    {/* SLEEK PHONE MOCKUP (iPhone 15 Pro style - Thinner bezel & wider) */}
+                    <div className="relative z-10 w-[340px] md:w-[410px] h-[640px] md:h-[750px] bg-[#030014] rounded-[40px] p-2 shadow-[0_0_50px_rgba(168,85,247,0.25)] border-[3px] border-[#2e264f]">
+                      {/* Inner screen frame */}
+                      <div className="relative w-full h-full rounded-[32px] overflow-hidden border border-black/40 ring-1 ring-white/10 bg-[#0c051e] flex flex-col">
+                        {/* Dynamic Island Notch */}
+                        <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-24 h-5.5 bg-black rounded-full z-30 flex items-center justify-center border border-white/10">
+                          {/* Camera lens glint */}
+                          <div className="absolute left-3 w-1.5 h-1.5 bg-[#0d0d21] rounded-full border border-blue-900/30 flex items-center justify-center">
+                            <div className="w-0.5 h-0.5 bg-blue-400 rounded-full animate-pulse" />
+                          </div>
+                          {/* Sensor indicator */}
+                          <div className="absolute right-5 w-1 h-1 bg-green-500 rounded-full opacity-60" />
+                        </div>
+                        
+                        {/* Simulator screen content */}
+                        <iframe 
+                          src="https://turniodev.github.io/zala_ideas" 
+                          title="Zalo Mini App Simulator"
+                          className="w-full h-full bg-[#0f0b24] border-0 pt-5"
+                          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                        />
                       </div>
-                      <iframe 
-                        src="https://turniodev.github.io/zala_ideas" 
-                        title="Zalo Mini App Simulator"
-                        className="w-full h-full bg-[#0f0b24] border-0"
-                        sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-                      />
                     </div>
-                    <div className="mt-4 flex gap-4">
+                    <div className="mt-6 flex gap-4">
                       <a 
                         href="https://turniodev.github.io/zala_ideas" 
                         target="_blank" 
                         rel="noreferrer"
-                        className="px-6 py-2.5 bg-[#0f0b24] text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-md flex items-center gap-2 hover:bg-[#1a143d] transition-colors"
+                        className="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-md flex items-center gap-2 transition-all duration-300"
                       >
                         Open Fullscreen <ExternalLink size={12} />
                       </a>
@@ -1527,75 +1708,73 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                   <h2 className="text-3xl font-black text-white uppercase tracking-tight">CASE STUDIES</h2>
                   <p className="text-sm text-slate-400 font-light mt-1">Các dự án thực tế đạt hiệu quả cao và được kiểm định.</p>
                 </div>
-                <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
-                  {/* Left Column: List of Cases (5 cols) */}
-                  <div className="xl:col-span-5 space-y-6 flex flex-col justify-between">
-                    <div className="space-y-6">
-                      {OUTSOURCE_HIGHLIGHTS.map((item, i) => (
-                        <div key={i} className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow min-h-[360px]">
-                          <div>
-                            <div className="flex flex-wrap gap-1.5 mb-3">
-                              {item.tags.map((tag) => (
-                                <span key={tag} className="text-[9px] font-black uppercase tracking-widest text-slate-400 bg-[#161033] px-2.5 py-1 rounded-full">
-                                  {tag}
-                                </span>
-                              ))}
-                            </div>
-                            <h3 className="text-2xl font-black text-white mb-1">{item.company}</h3>
-                            <span className="text-[9px] text-white font-black uppercase tracking-wider block mb-4">Success Story</span>
-                            
-                            <div className="grid grid-cols-3 gap-2 bg-[#030014] border border-purple-900/30 rounded-2xl p-4 mb-4">
-                              <div>
-                                <span className="text-[8px] text-slate-400 uppercase font-black block tracking-widest mb-1">Impact</span>
-                                <span className="text-[10px] font-black text-slate-200 leading-tight">{item.impact}</span>
-                              </div>
-                              <div className="border-l border-purple-900/40 pl-3">
-                                <span className="text-[8px] text-slate-400 uppercase font-black block tracking-widest mb-1">Efficiency</span>
-                                <span className="text-[10px] font-black text-slate-400 leading-tight">{item.cost}</span>
-                              </div>
-                              <div className="border-l border-purple-900/40 pl-3">
-                                <span className="text-[8px] text-slate-300 uppercase font-black block tracking-widest mb-1">Result</span>
-                                <span className="text-xs font-black text-white leading-tight">{item.result}</span>
-                              </div>
-                            </div>
-                          </div>
-
-                          {item.logos && item.logos.length > 0 && (
-                            <div className="flex flex-wrap gap-2 mb-4">
-                              {item.logos.map((logo, idx) => (
-                                <div key={idx} className="w-8 h-8 rounded-full overflow-hidden border-2 border-purple-900/30 shadow-sm shrink-0 bg-[#0f0b24]">
-                                  <img src={logo.src} alt="brand logo" className="w-full h-full object-cover" />
-                                </div>
-                              ))}
-                            </div>
-                          )}
-
-                          <div className="border-t border-purple-900/30 pt-4">
-                            <p 
-                              className="text-slate-400 text-xs leading-relaxed font-light text-justify"
-                              dangerouslySetInnerHTML={{ __html: item.description }}
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Minigame selector button panel */}
-                    <div className="bg-[#0f0b24] p-6 rounded-2xl border border-purple-900/40 shadow-sm flex items-center justify-between gap-4 mt-4">
-                      <div className="flex items-center gap-4">
-                        <div className="text-white p-3 bg-[#161033] rounded-full shrink-0">
-                          <Zap size={24} />
-                        </div>
+                <div className="flex flex-col gap-8">
+                  {/* Case Study Cards Grid (Full width cards) */}
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {OUTSOURCE_HIGHLIGHTS.map((item, i) => (
+                      <div key={i} className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow min-h-[360px]">
                         <div>
-                          <h4 className="text-base font-bold text-white leading-none">Minigame Micro-sites</h4>
-                          <p className="text-xs text-slate-400 mt-1.5 leading-none">Waterbomb 2025 Campaign Report</p>
+                          <div className="flex flex-wrap gap-1.5 mb-3">
+                            {item.tags.map((tag) => (
+                              <span key={tag} className="text-[9px] font-black uppercase tracking-widest text-slate-400 bg-[#161033] px-2.5 py-1 rounded-full">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                          <h3 className="text-2xl font-black text-white mb-1">{item.company}</h3>
+                          <span className="text-[9px] text-white font-black uppercase tracking-wider block mb-4">Success Story</span>
+                          
+                          <div className="grid grid-cols-3 gap-2 bg-[#030014] border border-purple-900/30 rounded-2xl p-4 mb-4">
+                            <div>
+                              <span className="text-[8px] text-slate-400 uppercase font-black block tracking-widest mb-1">Impact</span>
+                              <span className="text-[10px] font-black text-slate-200 leading-tight">{item.impact}</span>
+                            </div>
+                            <div className="border-l border-purple-900/40 pl-3">
+                              <span className="text-[8px] text-slate-400 uppercase font-black block tracking-widest mb-1">Efficiency</span>
+                              <span className="text-[10px] font-black text-slate-400 leading-tight">{item.cost}</span>
+                            </div>
+                            <div className="border-l border-purple-900/40 pl-3">
+                              <span className="text-[8px] text-slate-300 uppercase font-black block tracking-widest mb-1">Result</span>
+                              <span className="text-xs font-black text-white leading-tight">{item.result}</span>
+                            </div>
+                          </div>
                         </div>
+
+                        {item.logos && item.logos.length > 0 && (
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {item.logos.map((logo, idx) => (
+                              <div key={idx} className="w-8 h-8 rounded-full overflow-hidden border-2 border-purple-900/30 shadow-sm shrink-0 bg-[#0f0b24]">
+                                <img src={logo.src} alt="brand logo" className="w-full h-full object-cover" />
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        <div className="border-t border-purple-900/30 pt-4">
+                          <p 
+                            className="text-slate-400 text-xs leading-relaxed font-light text-justify"
+                            dangerouslySetInnerHTML={{ __html: item.description }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Minigame status banner */}
+                  <div className="bg-[#0f0b24] p-6 rounded-2xl border border-purple-900/40 shadow-sm flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-4">
+                      <div className="text-white p-3 bg-[#161033] rounded-full shrink-0">
+                        <Zap size={24} />
+                      </div>
+                      <div>
+                        <h4 className="text-base font-bold text-white leading-none">Minigame Micro-sites</h4>
+                        <p className="text-xs text-slate-400 mt-1.5 leading-none">Waterbomb 2025 Campaign Report</p>
                       </div>
                     </div>
                   </div>
 
-                  {/* Right Column: PDF Viewer Board (7 cols) */}
-                  <div className="xl:col-span-7 flex flex-col bg-[#0f0b24] border border-purple-900/40 rounded-2xl overflow-hidden shadow-md min-h-[600px] xl:min-h-0 xl:h-[820px]">
+                  {/* PDF Viewer Board (Full Width Below) */}
+                  <div className="flex flex-col bg-[#0f0b24] border border-purple-900/40 rounded-2xl overflow-hidden shadow-md h-[800px] w-full">
                     {/* Header Toolbar */}
                     <div className="p-4 bg-[#0f0b24] border-b border-purple-900/40 flex justify-between items-center text-xs text-slate-400 shrink-0">
                       <div className="flex items-center gap-2">

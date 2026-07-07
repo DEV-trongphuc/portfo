@@ -18,11 +18,11 @@ const API_KEY = (process.env.GEMINI_API_KEY || (process.env as any).API_KEY) as 
 
 // System Prompt with complete details about Huynh Trong Phuc
 const SYSTEM_INSTRUCTION = `
-Bạn là DomiBot, trợ lý ảo AI đại diện cho Huỳnh Trọng Phục (biệt danh TURNIO) - Chuyên gia Digital Marketing, MarTech & Fullstack Developer, và là Founder của DOMARKETING (DOMATION).
+Bạn là DomiBot, trợ lý ảo AI đại diện cho Huỳnh Trọng Phúc (biệt danh TURNIO) - Chuyên gia Digital Marketing, MarTech & Fullstack Developer, và là Founder của DOMARKETING (DOMATION).
 Nhiệm vụ của bạn là trò chuyện với nhà tuyển dụng, đối tác hoặc khách hàng ghé thăm portfolio này. Hãy trả lời một cách tự tin, chuyên nghiệp, thông minh, thỉnh thoảng sử dụng emoji thích hợp để tạo cảm giác thân thiện nhưng vẫn ngầu và am hiểu công nghệ.
 
-Dưới đây là thông tin chi tiết về Huỳnh Trọng Phục:
-- **Họ tên**: Huỳnh Trọng Phục (TURNIO)
+Dưới đây là thông tin chi tiết về Huỳnh Trọng Phúc:
+- **Họ tên**: Huỳnh Trọng Phúc (TURNIO)
 - **Vai trò**: CEO Founder DOMARKETING / DOMATION, Digital Marketing & Fullstack Developer.
 - **Thống kê nổi bật (Stats)**:
   - 11K+ người theo dõi lập trình trên TikTok (@turnio.dev).
@@ -50,7 +50,7 @@ Dưới đây là thông tin chi tiết về Huỳnh Trọng Phục:
 Bạn có khả năng chuyển tab hiển thị trên màn hình của người dùng để dẫn họ đến đúng sản phẩm/thông tin họ quan tâm. Hãy thêm mã điều hướng đặc biệt ở CUỐI CÙNG của câu trả lời của bạn theo cú pháp: [NAVIGATE: <tên_tab>].
 Các tên tab hợp lệ gồm:
 - \`dashboard\` : Xem tổng quan chỉ số và các thẻ MarTech.
-- \`galaxy\` : Xem hệ mặt trời 3D trực quan các sản phẩm.
+- \`partners\` : Xem danh sách các đối tác & khách hàng đồng hành.
 - \`outsource\` : Xem kết quả thực chiến (IDEAS, Phúc Lộc Thọ, v.v.).
 - \`zalo\` : Xem Zalo Mini App và giả lập điện thoại.
 - \`tarot\` : Xem dự án Mystery Tarot và đánh giá cộng đồng.
@@ -58,14 +58,14 @@ Các tên tab hợp lệ gồm:
 - \`certifications\` : Xem chứng chỉ và kinh nghiệm làm việc.
 
 Ví dụ: "Bạn có thể xem bản xem trước sách 3D của tôi ngay tại đây nhé! [NAVIGATE: book]" hoặc "Dưới đây là chứng chỉ của tôi. [NAVIGATE: certifications]"
-Lưu ý: Không bao giờ được bịa đặt thông tin khác ngoài dữ liệu được cung cấp. Nếu người dùng hỏi điều gì không có ở đây, hãy trả lời khéo léo và hướng họ hỏi về năng lực của Phục.
+Lưu ý: Không bao giờ được bịa đặt thông tin khác ngoài dữ liệu được cung cấp. Nếu người dùng hỏi điều gì không có ở đây, hãy trả lời khéo léo và hướng họ hỏi về năng lực của Phúc.
 `;
 
 const SUGGESTIONS = [
   { text: "Zalo Mini App hoạt động thế nào?", tag: "zalo" },
   { text: "Kể về dự án IDEAS Institute", tag: "outsource" },
   { text: "Sách Facebook Ads có gì hay?", tag: "book" },
-  { text: "Xem hệ thống sản phẩm 3D", tag: "galaxy" },
+  { text: "Xem danh sách các đối tác", tag: "partners" },
 ];
 
 // Fallback response engine for local execution
@@ -107,10 +107,10 @@ const getLocalResponse = (input: string): { text: string; tab?: string } => {
     };
   }
 
-  if (query.includes('3d') || query.includes('galaxy') || query.includes('sản phẩm') || query.includes('vũ trụ')) {
+  if (query.includes('đối tác') || query.includes('partner') || query.includes('khách hàng') || query.includes('hợp tác')) {
     return {
-      text: "Chào mừng bạn đến với Vũ Trụ Sản Phẩm 3D! Đây là nơi bạn có thể xoay và khám phá tất cả các mảnh ghép công nghệ và marketing của tôi. Hãy click vào các hành tinh để xem thông tin chi tiết. ",
-      tab: 'galaxy'
+      text: "Chào mừng bạn đến với danh sách Đối Tác & Khách Hàng đồng hành cùng tôi! Tại đây bạn có thể xem các doanh nghiệp, thương hiệu đã tin tưởng hợp tác trong các dự án công nghệ và marketing. ",
+      tab: 'partners'
     };
   }
 
@@ -128,8 +128,8 @@ const getLocalResponse = (input: string): { text: string; tab?: string } => {
   }
 
   return {
-    text: "DomiBot xin chào! Tôi là trợ lý AI của Phục. Bạn có muốn tìm hiểu về lập trình Zalo Mini App, cuốn sách Facebook Ads, các chiến dịch marketing thực chiến (IDEAS Institute, Phúc Lộc Thọ) hay khám phá hệ sinh thái sản phẩm qua Galaxy 3D không? Hãy chọn gợi ý hoặc gõ câu hỏi nhé! ",
-    tab: 'galaxy'
+    text: "DomiBot xin chào! Tôi là trợ lý AI của Phúc. Bạn có muốn tìm hiểu về lập trình Zalo Mini App, cuốn sách Facebook Ads, các chiến dịch marketing thực chiến (IDEAS Institute, Phúc Lộc Thọ) hay xem danh sách các đối tác đồng hành không? Hãy chọn gợi ý hoặc gõ câu hỏi nhé! ",
+    tab: 'partners'
   };
 };
 
@@ -138,7 +138,7 @@ const DomiBot: React.FC<DomiBotProps> = ({ onNavigate, activeTab }) => {
     {
       id: 'welcome',
       sender: 'bot',
-      text: "Xin chào! Tôi là DomiBot  - trợ lý AI của Huỳnh Trọng Phục. Tôi có thể giải đáp mọi thắc mắc của bạn về kinh nghiệm lập trình, các dự án marketing tự động hóa và các sản phẩm của Phục. Hãy thử hỏi tôi xem sao nhé!",
+      text: "Xin chào! Tôi là DomiBot  - trợ lý AI của Huỳnh Trọng Phúc. Tôi có thể giải đáp mọi thắc mắc của bạn về kinh nghiệm lập trình, các dự án marketing tự động hóa và các sản phẩm của Phúc. Hãy thử hỏi tôi xem sao nhé!",
       timestamp: new Date()
     }
   ]);
@@ -265,7 +265,7 @@ const DomiBot: React.FC<DomiBotProps> = ({ onNavigate, activeTab }) => {
           </div>
           <div>
             <h4 className="font-bold text-sm tracking-wide">DomiBot v2.5</h4>
-            <p className="text-[10px] text-white/70 font-medium">Trợ lý AI của Trọng Phục</p>
+            <p className="text-[10px] text-white/70 font-medium">Trợ lý AI của Trọng Phúc</p>
           </div>
         </div>
         <div className="flex items-center gap-2 px-3 py-1.5 bg-[#0f0b24]/10 rounded-full border border-purple-900/40 text-[9px] font-black uppercase tracking-wider">
@@ -349,7 +349,7 @@ const DomiBot: React.FC<DomiBotProps> = ({ onNavigate, activeTab }) => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleSendMessage(input)}
-          placeholder="Hỏi DomiBot về dự án, kỹ năng của Phục..."
+          placeholder="Hỏi DomiBot về dự án, kỹ năng của Phúc..."
           className="flex-1 px-5 py-3 border border-purple-900/40 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm bg-[#030014] text-white font-light"
         />
         <motion.button

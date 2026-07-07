@@ -77,7 +77,7 @@ const AutoFlowPro: React.FC = () => {
                             href="https://domation.net/automation" 
                             target="_blank" 
                             rel="noreferrer"
-                            className="px-6 py-3 bg-[#0f0b24] hover:bg-purple-900/20 text-white font-bold text-xs uppercase tracking-widest rounded-full shadow-md flex items-center gap-2"
+                            className="px-6 py-3 bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:via-violet-500 hover:to-indigo-500 text-white font-bold text-xs uppercase tracking-widest rounded-full shadow-[0_0_15px_rgba(168,85,247,0.35)] hover:shadow-[0_0_25px_rgba(168,85,247,0.55)] flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
                         >
                             Dùng Thử Ngay <ExternalLink size={12} />
                         </a>
@@ -130,7 +130,7 @@ const AutoFlowPro: React.FC = () => {
                         Image {activeIdx + 1} of {images.length}
                     </span>
                     {/* Thumbnails list */}
-                    <div className="w-full max-w-4xl flex gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
+                    <div className="w-full max-w-4xl flex justify-start md:justify-center gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
                         {images.map((img, idx) => (
                             <button 
                                 key={idx}

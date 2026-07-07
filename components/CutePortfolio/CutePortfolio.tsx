@@ -2521,50 +2521,69 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                   <div className="lg:col-span-5 space-y-6 sticky top-8 self-start">
                     <h3 className="text-sm font-black text-white uppercase tracking-widest">Kinh Nghiệm & Học Vấn</h3>
                     <div className="relative border-l-2 border-purple-900/40 pl-6 space-y-8 py-2">
-                      {EXPERIENCES.map((exp) => (
-                        <div key={exp.id} className="relative">
-                          <div className="absolute -left-[33px] top-1.5 w-4 h-4 rounded-full border-2 border-purple-900/40 bg-[#0f0b24] shadow-sm" />
+                      {EXPERIENCES.map((exp, idx) => (
+                        <motion.div 
+                          key={exp.id} 
+                          initial={{ opacity: 0, x: -30 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: idx * 0.1 }}
+                          className="relative group/time text-left"
+                        >
+                          <div className="absolute -left-[33px] top-1.5 w-4 h-4 rounded-full border border-purple-500 bg-[#0f0b24] shadow-[0_0_10px_rgba(168,85,247,0.4)] flex items-center justify-center">
+                            <span className="w-1.5 h-1.5 bg-purple-400 rounded-full group-hover/time:scale-150 transition-transform duration-300" />
+                            <span className="absolute inset-0 rounded-full bg-purple-500/30 animate-ping" style={{ animationDuration: '3s' }} />
+                          </div>
                           <div className="space-y-1.5">
-                            <span className="text-[9px] font-black uppercase tracking-wider text-white bg-[#161033] border border-purple-900/40 px-3 py-1 rounded-full">
+                            <span className="text-[9px] font-black uppercase tracking-wider text-white bg-[#161033] border border-purple-900/40 px-3 py-1 rounded-full group-hover/time:border-purple-500/60 transition-colors">
                               {exp.period}
                             </span>
-                            <h4 className="text-lg font-black text-white leading-tight pt-1">
+                            <h4 className="text-lg font-black text-white leading-tight pt-1 group-hover/time:text-purple-300 transition-colors">
                               {exp.role}
                             </h4>
                             <p className="text-xs font-bold text-white">{exp.company}</p>
                             <p className="text-slate-400 text-xs leading-relaxed font-light pt-2 text-justify">{exp.description}</p>
                           </div>
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
                   </div>
 
                   {/* Certifications with Images (AUDIT ADDITION: display cert images) */}
                   <div className="lg:col-span-7 space-y-6">
-                    <h3 className="text-sm font-black text-white uppercase tracking-widest">Chứng Chỉ Chuyên Ngành</h3>
+                    <h3 className="text-sm font-black text-white uppercase tracking-widest text-left">Chứng Chỉ Chuyên Ngành</h3>
                     <div className="grid sm:grid-cols-2 gap-6">
-                      {CERTIFICATIONS.map((cert) => (
-                        <div 
+                      {CERTIFICATIONS.map((cert, idx) => (
+                        <motion.div 
                           key={cert.id} 
-                          className="bg-[#0f0b24] border border-purple-900/30 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:border-purple-500/50 transition-all flex flex-col justify-between group"
+                          initial={{ opacity: 0, y: 30 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: idx * 0.1 }}
+                          whileHover={{ 
+                            y: -8, 
+                            scale: 1.02,
+                            boxShadow: "0 10px 30px rgba(168,85,247,0.2)"
+                          }}
+                          className="bg-[#0f0b24] border border-purple-900/30 rounded-2xl overflow-hidden shadow-sm hover:border-purple-500/50 transition-all flex flex-col justify-between group"
                         >
                           {/* Certificate image header */}
                           <div 
                             className="aspect-[4/3] bg-[#161033] border-b border-purple-900/40 relative overflow-hidden cursor-pointer"
                             onClick={() => setPreviewImage(cert.image)}
                           >
-                            <img src={cert.image} alt={cert.name} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" />
-                            <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                              <span className="px-3 py-1.5 bg-[#0f0b24]/95 rounded-full text-[9px] font-black text-slate-200 shadow-md uppercase tracking-wider">Xem Ảnh Bằng</span>
+                            <img src={cert.image} alt={cert.name} className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-500" />
+                            <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+                              <span className="px-4 py-2 bg-purple-600 hover:bg-purple-500 rounded-full text-[10px] font-black text-white shadow-md uppercase tracking-wider transition-all scale-95 group-hover:scale-100 duration-300">Zoom Credentials</span>
                             </div>
                           </div>
 
-                          <div className="p-5 flex-1 flex flex-col justify-between">
+                          <div className="p-5 flex-1 flex flex-col justify-between relative z-10 bg-[#0f0b24] text-left">
                             <div>
-                              <span className="text-[8px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-1 rounded-full border border-purple-900/40 inline-block mb-2">
+                              <span className="text-[8px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-1 rounded-full border border-purple-900/40 inline-block mb-2 group-hover:border-purple-500/50 transition-colors">
                                 {cert.year}
                               </span>
-                              <h4 className="text-sm font-black text-slate-200 leading-snug group-hover:text-white transition-colors">
+                              <h4 className="text-sm font-black text-slate-200 leading-snug group-hover:text-purple-300 transition-colors">
                                 {cert.name}
                               </h4>
                               <p className="text-[10px] text-slate-400 mt-1 font-bold">{cert.issuer}</p>
@@ -2574,12 +2593,12 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                               href={cert.link}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="flex items-center gap-1 text-[9px] font-black text-white uppercase tracking-wider mt-4 hover:underline"
+                              className="flex items-center gap-1 text-[9px] font-black text-white uppercase tracking-wider mt-4 hover:text-purple-300 transition-colors"
                             >
                               Verify Credential <ExternalLink size={10} />
                             </a>
                           </div>
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
                   </div>

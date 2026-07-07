@@ -484,5 +484,25 @@ export const SHORT_CAMPAIGNS: OutsourceHighlight[] = [
     tags: ['Nha Khoa', 'Lead Ads'],
     description: 'Triển khai phễu quảng cáo và thiết kế Landing Page giáo dục chuyên sâu về dịch vụ đào tạo Cấy Ghép Nha Khoa của Brandson. Thu hút lượng lớn bác sĩ đăng ký học CME.',
     link: 'https://brandson.vn/cay-ghep-nha-khoa-co-ban/'
+  },
+  {
+    company: 'Duyên Mai',
+    logo: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed.jpg',
+    result: 'Duy trì Reach',
+    cost: 'Social Mng.',
+    impact: 'Fashion Awareness',
+    tags: ['Fashion', 'Retail'],
+    description: 'Quản trị Fanpage, sản xuất hình ảnh lookbook sáng tạo hàng tháng và chạy quảng cáo nhận diện thương hiệu cho nhãn hàng thời trang Duyên Mai, nâng cao tỷ lệ khách hàng trung thành.',
+    link: 'https://duyenmai.vn'
+  },
+  {
+    company: 'Cowboy Steak',
+    logo: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed.png',
+    result: 'Duy trì Reach',
+    cost: 'Social Mng.',
+    impact: 'Steakhouse Awareness',
+    tags: ['F&B', 'Restaurant'],
+    description: 'Xây dựng kế hoạch nội dung truyền thông xã hội và thực thi chiến dịch quảng cáo phủ sóng khu vực lân cận cho nhà hàng Cowboy Steakhouse, lôi kéo lượng thực khách đều đặn hàng tuần.',
+    link: 'https://www.facebook.com/CowboySteakhouseVietnam/'
   }
 ];

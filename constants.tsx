@@ -465,21 +465,21 @@ export const SHORT_CAMPAIGNS: OutsourceHighlight[] = [
   {
     company: 'Nha khoa Flora',
     logo: partnerFlora,
-    result: 'Ngày Hội Implant',
+    result: '100k / Lead',
     cost: 'Budget: 20 triệu',
-    impact: 'Đăng Ký Khám',
+    impact: 'Trồng Implant',
     tags: ['Nha Khoa', 'Facebook Ads'],
-    description: 'Vận hành chiến dịch quảng cáo tối ưu và thiết kế Landing Page chuyển đổi cho sự kiện Ngày Hội Implant tại Nha khoa Flora. Thu hút hơn 300+ lượt đăng ký đặt hẹn trực tiếp, nâng cao tỷ lệ chốt dịch vụ cao cấp.',
+    description: 'Vận hành chiến dịch quảng cáo tối ưu và thiết kế Landing Page chuyển đổi cho sự kiện Ngày Hội Implant tại Nha khoa Flora. Thu hút lượt đăng ký quan tâm trồng răng Implant chất lượng cao.',
     link: 'https://nhakhoaflora.com/ngay-hoi-implant/'
   },
   {
     company: 'Brandson',
     logo: partnerBrandson,
-    result: 'Cấy Ghép Implant',
+    result: '400k / Lead',
     cost: 'Budget: 30 triệu',
-    impact: 'Lead Funnel',
+    impact: 'Bác sĩ học CME',
     tags: ['Nha Khoa', 'Lead Ads'],
-    description: 'Triển khai phễu quảng cáo thế hệ mới và trang Landing Page giáo dục chuyên sâu về dịch vụ Cấy Ghép Nha Khoa Cơ Bản của Brandson. Tăng trưởng lượng khách hàng quan tâm chất lượng cao.',
+    description: 'Triển khai phễu quảng cáo và thiết kế Landing Page giáo dục chuyên sâu về dịch vụ đào tạo Cấy Ghép Nha Khoa của Brandson. Thu hút lượng lớn bác sĩ đăng ký học CME.',
     link: 'https://brandson.vn/cay-ghep-nha-khoa-co-ban/'
   }
 ];

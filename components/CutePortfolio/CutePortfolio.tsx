@@ -207,6 +207,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
     if (mainScrollRef.current) {
       mainScrollRef.current.scrollTop = 0;
     }
+    window.scrollTo({ top: 0 });
   }, [activeTab]);
   
   // Book simulator states
@@ -769,7 +770,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
       </aside>
 
       {/* CENTRAL MAIN WORKSPACE PANEL - SPANS WIDESCREEN WIDTH WITH PB-32 FOR BOTTOM SPACING */}
-      <main ref={mainScrollRef} className="flex-1 px-4 md:px-10 pt-8 pb-32 relative z-10 overflow-y-auto max-h-screen">
+      <main ref={mainScrollRef} className="flex-1 px-4 md:px-10 pt-8 pb-32 relative z-10 lg:overflow-y-auto lg:max-h-screen overflow-x-hidden w-full">
         
         <AnimatePresence mode="wait">
           <motion.div

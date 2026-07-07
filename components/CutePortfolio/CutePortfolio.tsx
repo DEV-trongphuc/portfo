@@ -125,6 +125,7 @@ import crm16 from '../../imgs/CRM (16).jpg';
 // @ts-ignore
 import crm17 from '../../imgs/CRM (17).jpg';
 // @ts-ignore
+import crm18 from '../../imgs/CRM (18).jpg';
 // @ts-ignore
 import gameBlindbag from '../../imgs/game_blindbag.webp';
 // @ts-ignore

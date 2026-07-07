@@ -1112,7 +1112,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
                         Enterprise CRM
                       </span>
-                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">DOMATION CRM</h3>
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200 drop-shadow-[0_2px_10px_rgba(168,85,247,0.3)]">DOMATION CRM</h3>
                       <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light text-justify">
                         Hệ thống quản lý quan hệ khách hàng (CRM) chuyên sâu dành cho doanh nghiệp SME. Hỗ trợ quản lý dữ liệu phễu khách hàng khép kín, phân bổ số tự động, quản lý kho sản phẩm, tài chính hóa đơn và Ticket CSKH.
                       </p>
@@ -1220,7 +1220,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
                         SME Retail ERP
                       </span>
-                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">MINTH CRM & POS</h3>
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200 drop-shadow-[0_2px_10px_rgba(168,85,247,0.3)]">MINTH CRM & POS</h3>
                       <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light text-justify">
                         Giải pháp quản lý bán hàng "Tinh gọn - Hiện đại - Dễ dùng" dành riêng cho các shop vừa và nhỏ. Chỉ với 1 màn hình duy nhất, bạn nắm trọn toàn bộ bức tranh tài chính và vận hành của cửa hàng.
                       </p>
@@ -1321,7 +1321,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
                       Edu-Tech Solution
                     </span>
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">LMS E-LEARNING Platform</h3>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200 drop-shadow-[0_2px_10px_rgba(168,85,247,0.3)]">LMS E-LEARNING Platform</h3>
                     <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light">
                       Nền tảng quản lý học tập (LMS) hoàn chỉnh. Sở hữu toàn bộ các tính năng cốt lõi của một hệ thống giáo dục trực tuyến chuyên nghiệp nhất, đáp ứng quy mô học viên lớn.
                     </p>
@@ -1421,7 +1421,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
                         Data Routing Solution
                       </span>
-                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">DOMATION Data Routing (Chia Data)</h3>
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200 drop-shadow-[0_2px_10px_rgba(168,85,247,0.3)]">DOMATION Data Routing (Chia Data)</h3>
                       <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light text-justify">
                         Hệ thống chuyển dữ liệu tự động thời gian thực từ Landing Page, Facebook Ads, Zalo Form về CRM nội bộ. Phân chia Data xoay vòng Round-Robin cho các Sale, nhận diện nghỉ phép, tự động báo lỗi và đền bù số qua Zalo Bot.
                       </p>
@@ -1954,7 +1954,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
                         AI Chatbot System
                       </span>
-                      <h3 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">
+                      <h3 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200 drop-shadow-[0_2px_10px_rgba(168,85,247,0.3)]">
                         Trợ Lý Ảo AI Thông Minh Như Chuyên Gia
                       </h3>
                       <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light text-justify">
@@ -2015,11 +2015,8 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                           <Sparkles size={12} className="text-rose-400" /> Nền tảng AI Workspace
                         </div>
                         
-                        <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
-                          Không Gian AI <br />
-                          <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-orange-400">
-                            Độc Lập Cho Phòng Ban
-                          </span>
+                        <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200 drop-shadow-[0_2px_10px_rgba(168,85,247,0.3)] leading-tight">
+                          Không Gian AI Độc Lập Cho Phòng Ban
                         </h3>
                       </div>
                       

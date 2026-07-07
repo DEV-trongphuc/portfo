@@ -125,7 +125,12 @@ import crm16 from '../../imgs/CRM (16).jpg';
 // @ts-ignore
 import crm17 from '../../imgs/CRM (17).jpg';
 // @ts-ignore
-import crm18 from '../../imgs/CRM (18).jpg';
+// @ts-ignore
+import gameBlindbag from '../../imgs/game_blindbag.webp';
+// @ts-ignore
+import gameWheelKnowledge from '../../imgs/game_wheel_knowledge.webp';
+// @ts-ignore
+import gameSpaWheel from '../../imgs/game_spa_wheel.webp';
 
 import MetaAdReportShowcase from './MetaAdReportShowcase';
 import AutoFlowPro from './AutoFlowPro';
@@ -1995,6 +2000,128 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                           title="Water Bomb 2025 Case Study PDF"
                         />
                       </object>
+                    </div>
+
+                    {/* Minigame Showcase & Shared Projects Header */}
+                    <div className="pt-8 space-y-6">
+                      <div className="text-left">
+                        <span className="text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-3 py-1 rounded-full border border-purple-900/40">
+                          Minigames & Landing Sites
+                        </span>
+                        <h3 className="text-2xl font-black mt-4 text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200 leading-tight">
+                          Minigame Campaigns & Web Sharing
+                        </h3>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+                        {/* Card 1: Unboxing the blind bag */}
+                        <div 
+                          onClick={() => { setPreviewImage(gameBlindbag); setPreviewList([gameBlindbag, gameWheelKnowledge, gameSpaWheel]); }}
+                          className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl overflow-hidden shadow-sm relative group hover:border-purple-500/50 transition-all hover:-translate-y-0.5 cursor-pointer flex flex-col justify-between"
+                        >
+                          <div>
+                            <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#161033] border-b border-purple-900/40">
+                              <img src={gameBlindbag} alt="Unboxing the blind bag" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                              <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span className="px-3 py-1.5 bg-[#0f0b24]/90 rounded-full text-[10px] font-bold text-slate-200 shadow-md">Zoom Image</span>
+                              </div>
+                            </div>
+                            <div className="p-5 space-y-2 text-left">
+                              <span className="text-[8px] font-black uppercase tracking-wider text-purple-400 bg-[#161033] px-2 py-0.5 rounded border border-purple-900/40 w-fit inline-block">
+                                Zalo Minigame
+                              </span>
+                              <h4 className="text-sm font-black text-white group-hover:text-purple-400 transition-colors leading-tight">Unboxing the blind bag - Tet 2024</h4>
+                              <p className="text-[11px] text-slate-400 font-light leading-relaxed">
+                                Minigame tương tác khui túi mù Tết 2024 giúp giữ chân và tăng lượng tương tác của người dùng.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Card 2: Wheel of Knowledge */}
+                        <div 
+                          onClick={() => { setPreviewImage(gameWheelKnowledge); setPreviewList([gameBlindbag, gameWheelKnowledge, gameSpaWheel]); }}
+                          className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl overflow-hidden shadow-sm relative group hover:border-purple-500/50 transition-all hover:-translate-y-0.5 cursor-pointer flex flex-col justify-between"
+                        >
+                          <div>
+                            <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#161033] border-b border-purple-900/40">
+                              <img src={gameWheelKnowledge} alt="Wheel of Knowledge" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                              <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span className="px-3 py-1.5 bg-[#0f0b24]/90 rounded-full text-[10px] font-bold text-slate-200 shadow-md">Zoom Image</span>
+                              </div>
+                            </div>
+                            <div className="p-5 space-y-2 text-left">
+                              <span className="text-[8px] font-black uppercase tracking-wider text-purple-400 bg-[#161033] px-2 py-0.5 rounded border border-purple-900/40 w-fit inline-block">
+                                Lucky Wheel
+                              </span>
+                              <h4 className="text-sm font-black text-white group-hover:text-purple-400 transition-colors leading-tight">Wheel of Knowledge - Tet 2023</h4>
+                              <p className="text-[11px] text-slate-400 font-light leading-relaxed">
+                                Vòng quay kiến thức may mắn kết hợp trả lời câu hỏi trúng quà chiến dịch Tết 2023.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Card 3: Trangpap Spa Wheel */}
+                        <div 
+                          onClick={() => { setPreviewImage(gameSpaWheel); setPreviewList([gameBlindbag, gameWheelKnowledge, gameSpaWheel]); }}
+                          className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl overflow-hidden shadow-sm relative group hover:border-purple-500/50 transition-all hover:-translate-y-0.5 cursor-pointer flex flex-col justify-between"
+                        >
+                          <div>
+                            <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#161033] border-b border-purple-900/40">
+                              <img src={gameSpaWheel} alt="Trangpap Spa Wheel" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                              <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span className="px-3 py-1.5 bg-[#0f0b24]/90 rounded-full text-[10px] font-bold text-slate-200 shadow-md">Zoom Image</span>
+                              </div>
+                            </div>
+                            <div className="p-5 space-y-2 text-left">
+                              <span className="text-[8px] font-black uppercase tracking-wider text-purple-400 bg-[#161033] px-2 py-0.5 rounded border border-purple-900/40 w-fit inline-block">
+                                Spa Mini-Web
+                              </span>
+                              <h4 className="text-sm font-black text-white group-hover:text-purple-400 transition-colors leading-tight">Trangpap Spa Wheel</h4>
+                              <p className="text-[11px] text-slate-400 font-light leading-relaxed">
+                                Vòng quay trúng quà thương hiệu tùy biến riêng cho chiến dịch tăng Retention của Trangpap Spa.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Card 4: Google Sites Sharing Project */}
+                        <div 
+                          className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl overflow-hidden shadow-sm relative group hover:border-purple-500/50 transition-all hover:-translate-y-0.5 flex flex-col justify-between"
+                        >
+                          <div>
+                            <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#161033] border-b border-purple-900/40 flex items-center justify-center p-6 text-center">
+                              <div className="absolute inset-0 bg-gradient-to-br from-purple-950/20 to-slate-950/30" />
+                              <div className="relative z-10 space-y-2">
+                                <div className="w-12 h-12 rounded-2xl bg-[#0f0b24] border border-purple-900/40 text-yellow-300 flex items-center justify-center mx-auto shadow-md">
+                                  <ExternalLink size={20} />
+                                </div>
+                                <span className="text-[10px] font-black text-white tracking-widest uppercase">GOOGLE SITES</span>
+                              </div>
+                            </div>
+                            <div className="p-5 space-y-2 text-left">
+                              <span className="text-[8px] font-black uppercase tracking-wider text-yellow-400 bg-[#161033] px-2 py-0.5 rounded border border-purple-900/40 w-fit inline-block">
+                                Free Template
+                              </span>
+                              <h4 className="text-sm font-black text-white group-hover:text-yellow-400 transition-colors leading-tight">Google Sites Theme Sharing</h4>
+                              <p className="text-[11px] text-slate-400 font-light leading-relaxed text-justify">
+                                Google Sites giúp tạo web trực quan không code, chỉ hỗ trợ nhúng HTML cơ bản. Mọi người đều có thể tự làm cho mình trang web thông tin Chuyên nghiệp & Miễn phí.
+                              </p>
+                            </div>
+                          </div>
+                          <div className="p-5 pt-0">
+                            <a 
+                              href="https://sites.google.com/view/turnio-theme/home" 
+                              target="_blank" 
+                              rel="noreferrer"
+                              className="w-full py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-black font-black text-[10px] uppercase tracking-wider rounded-lg flex items-center justify-center gap-1 transition-all duration-300 shadow-sm"
+                            >
+                              Mở Template <ExternalLink size={10} />
+                            </a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

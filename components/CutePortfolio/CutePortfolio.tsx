@@ -427,18 +427,18 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             <p className="text-[8.5px] text-purple-300 font-bold tracking-wide mt-0.5">Digital - AI Automation</p>
           </div>
         </div>
-        <div className="flex items-center gap-3 relative">
+        <div className="flex items-center gap-2 relative">
           {!mobileMenuOpen && activeTab === 'dashboard' && (
             <motion.div
               animate={{ x: [0, -6, 0] }}
               transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
-              className="absolute right-10 top-1/2 -translate-y-1/2 flex items-center gap-1 pointer-events-none text-yellow-400 z-50 bg-[#161033] px-2 py-0.5 rounded-full border border-purple-500/40 shadow-[0_0_12px_rgba(234,179,8,0.35)]"
+              className="flex items-center gap-1.5 pointer-events-none text-slate-300 bg-[#161033] px-2.5 py-1 rounded-full border border-purple-900/40 shadow-sm"
             >
-              <span className="text-[8px] font-black uppercase tracking-wider text-slate-300">Menu</span>
-              <span className="text-xs select-none animate-pulse">👉</span>
+              <span className="text-[9px] font-black uppercase tracking-wider text-slate-300">MORE</span>
+              <span className="text-[10px] select-none leading-none">👉</span>
             </motion.div>
           )}
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-slate-300 relative z-10 p-1">
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-slate-300 relative z-10 p-1 flex items-center justify-center">
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>

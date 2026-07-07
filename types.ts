@@ -48,4 +48,5 @@ export interface OutsourceHighlight {
   description: string; // New description field
   status?: 'success' | 'failure'; // New: Added status to distinguish campaign types
   logos?: { src: string; link?: string }[]; // Optional array of brand logos with links
+  logo?: string; // Brand logo
 }

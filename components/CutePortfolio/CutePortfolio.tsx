@@ -131,6 +131,10 @@ import gameBlindbag from '../../imgs/game_blindbag.webp';
 import gameWheelKnowledge from '../../imgs/game_wheel_knowledge.webp';
 // @ts-ignore
 import gameSpaWheel from '../../imgs/game_spa_wheel.webp';
+// @ts-ignore
+import logoIdeas from '../../imgs/logo_ideas.webp';
+// @ts-ignore
+import logoPhucloctho from '../../imgs/logo_phucloctho.webp';
 
 import MetaAdReportShowcase from './MetaAdReportShowcase';
 import AutoFlowPro from './AutoFlowPro';
@@ -1908,8 +1912,17 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                               </span>
                             ))}
                           </div>
-                          <h3 className="text-2xl font-black text-white mb-1">{item.company}</h3>
-                          <span className="text-[9px] text-white font-black uppercase tracking-wider block mb-4">Success Story</span>
+                          <div className="flex items-center gap-3.5 mb-4 text-left">
+                            {item.logo && (
+                              <div className="w-10 h-10 rounded-xl overflow-hidden border border-purple-900/40 bg-[#0f0b24] shrink-0">
+                                <img src={item.logo} alt={item.company} className="w-full h-full object-cover" />
+                              </div>
+                            )}
+                            <div>
+                              <h3 className="text-2xl font-black text-white leading-tight">{item.company}</h3>
+                              <span className="text-[9px] text-purple-300 font-black uppercase tracking-wider block mt-0.5">Success Story</span>
+                            </div>
+                          </div>
                           
                           <div className="grid grid-cols-3 gap-2 bg-[#030014] border border-purple-900/30 rounded-2xl p-4 mb-4">
                             <div>

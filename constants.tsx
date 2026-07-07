@@ -83,9 +83,15 @@ export const DOM_PROJECTS = [
   },
 ];
 
+// @ts-ignore
+import logoIdeas from './imgs/logo_ideas.webp';
+// @ts-ignore
+import logoPhucloctho from './imgs/logo_phucloctho.webp';
+
 export const OUTSOURCE_HIGHLIGHTS: OutsourceHighlight[] = [
   {
     company: 'IDEAS Institute',
+    logo: logoIdeas,
     result: '12600+ Leads',
     cost: '+300% doanh số',
     impact: '-30% Chi phí',
@@ -95,6 +101,7 @@ export const OUTSOURCE_HIGHLIGHTS: OutsourceHighlight[] = [
   },
   {
     company: 'Phúc Lộc Thọ',
+    logo: logoPhucloctho,
     result: '1600+ Leads',
     cost: '200M Budget',
     impact: '20+ New Stores',

@@ -819,12 +819,6 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                   </div>
                 </div>
 
-                {/* 3D Bento stats */}
-                <div className="space-y-4">
-                  <h3 className="text-sm font-black text-white uppercase tracking-widest">Key Performance Metrics</h3>
-                  <BentoStats3D />
-                </div>
-
                 {/* The Bridge Flow */}
                 <div className="space-y-4">
                   <h3 className="text-sm font-black text-white uppercase tracking-widest">The Core Pipeline</h3>
@@ -842,6 +836,12 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       </div>
                     ))}
                   </div>
+                </div>
+
+                {/* 3D Bento stats */}
+                <div className="space-y-4">
+                  <h3 className="text-sm font-black text-white uppercase tracking-widest">Key Performance Metrics</h3>
+                  <BentoStats3D />
                 </div>
 
                 {/* Bento Tech Grid */}

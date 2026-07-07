@@ -30,9 +30,9 @@ export const SOCIALS = [
 
 export const STATS = [
   { label: 'Active CRM Brands', value: '20+', suffix: 'Clients' },
-  { label: 'Zalo Mini App Users', value: '10K+', suffix: 'Installs' },
-  { label: 'AI Tarot Articles', value: '600+', suffix: 'Posts' },
-  { label: 'Active AI Chatbots', value: '50+', suffix: 'Agents' },
+  { label: 'Ads Budget Tracked', value: '500', suffix: 'M+' },
+  { label: 'LMS Active Learners', value: '15', suffix: 'K+' },
+  { label: 'MINTH POS Outlets', value: '50+', suffix: 'Stores' },
 ];
 
 export const TECH_GRID = [

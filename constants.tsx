@@ -29,10 +29,10 @@ export const SOCIALS = [
 ];
 
 export const STATS = [
-  { label: 'Active CRM Brands', value: '20+', suffix: 'Clients' },
-  { label: 'Ads Budget Tracked', value: '500', suffix: 'M+' },
-  { label: 'Users in App', value: '20', suffix: 'K' },
-  { label: 'MINTH POS Outlets', value: '50+', suffix: 'Stores' },
+  { label: 'Projects Website', value: '20+', suffix: '' },
+  { label: 'Highest Monthly', value: '500', suffix: 'M' },
+  { label: 'Web & Ads Clients', value: '25+', suffix: '' },
+  { label: 'Followers - Tiktok', value: '10.5', suffix: 'K' },
 ];
 
 export const TECH_GRID = [

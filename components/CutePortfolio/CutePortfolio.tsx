@@ -1530,7 +1530,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             {activeTab === 'zalo' && (
               <div className="space-y-10 w-full">
                 <div>
-                  <h2 className="text-3xl font-black uppercase tracking-tight text-gradient-gold">ZALO MINI APP DEMO</h2>
+                  <h2 className="text-3xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">ZALO MINI APP DEMO</h2>
                   <p className="text-sm text-slate-400 font-light mt-1">Giao diện Mini App chăm sóc khách hàng được lập trình native bằng React & TypeScript.</p>
                 </div>
                 <div className="grid lg:grid-cols-12 gap-12 items-center">
@@ -1602,7 +1602,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
               <div className="space-y-10 w-full">
                 <div className="flex justify-between items-center flex-wrap gap-4">
                   <div>
-                    <h2 className="text-3xl font-black uppercase tracking-tight text-gradient-gold">MYSTERY TAROT</h2>
+                    <h2 className="text-3xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">MYSTERY TAROT</h2>
                     <p className="text-sm text-slate-400 font-light mt-1">Nền tảng xem Tarot số kết hợp 600+ bài viết chuẩn SEO tạo lập tự động bằng Gemini AI.</p>
                   </div>
                   <a 
@@ -1698,7 +1698,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
                         AI Knowledge Base
                       </span>
-                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-gradient-gold">Trợ Lý Ảo AI Custom (AI Agent)</h3>
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">Trợ Lý Ảo AI Custom (AI Agent)</h3>
                       <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light text-justify">
                         Train AI từ tài liệu nội bộ, website của bạn. Thiết lập nền tảng kiến thức (Knowledge Base) thông minh, trả lời trực tiếp thắc mắc Khách hàng 24/7.
                       </p>
@@ -1789,7 +1789,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             {activeTab === 'book' && (
               <div className="space-y-10 w-full">
                 <div>
-                  <h2 className="text-3xl font-black uppercase tracking-tight text-gradient-gold">FACEBOOK ADS BOOK</h2>
+                  <h2 className="text-3xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">FACEBOOK ADS BOOK</h2>
                   <p className="text-sm text-slate-400 font-light mt-1">Cuốn sách "Facebook Ads - AI Chạy Không Được" đúc kết bài học thực chiến và tư duy scale ngân sách.</p>
                 </div>
                 <div className="flex flex-col items-center gap-12 w-full">
@@ -1915,7 +1915,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             {activeTab === 'outsource' && (
               <div className="space-y-12 w-full">
                 <div>
-                  <h2 className="text-3xl font-black uppercase tracking-tight text-gradient-gold">CASE STUDIES</h2>
+                  <h2 className="text-3xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">CASE STUDIES</h2>
                   <p className="text-sm text-slate-400 font-light mt-1">Các dự án thực tế đạt hiệu quả cao và được kiểm định.</p>
                 </div>
                 <div className="flex flex-col gap-8">
@@ -2037,7 +2037,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     <span className="text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-3 py-1 rounded-full border border-purple-900/40">
                       Co-operative Network
                     </span>
-                    <h3 className="text-3xl font-black mt-4 text-gradient-gold leading-tight">Đồng hành cùng các thương hiệu hàng đầu</h3>
+                    <h3 className="text-3xl font-black mt-4 text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200 leading-tight">Đồng hành cùng các thương hiệu hàng đầu</h3>
                     <p className="text-slate-400 text-sm leading-relaxed font-light mt-2 text-justify">
                       Đồng hành cùng các thương hiệu hàng đầu để tạo ra giá trị bền vững và tăng trưởng vượt bậc. Các đối tác tiêu biểu trải dài từ ngành F&B, Giáo dục, Y tế đến Thương mại điện tử.
                     </p>

@@ -31,7 +31,7 @@ export const SOCIALS = [
 export const STATS = [
   { label: 'Active CRM Brands', value: '20+', suffix: 'Clients' },
   { label: 'Ads Budget Tracked', value: '500', suffix: 'M+' },
-  { label: 'LMS Active Learners', value: '15', suffix: 'K+' },
+  { label: 'Users in App', value: '20', suffix: 'K' },
   { label: 'MINTH POS Outlets', value: '50+', suffix: 'Stores' },
 ];
 

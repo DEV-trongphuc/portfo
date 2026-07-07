@@ -229,9 +229,38 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
   };
 
   const handleNavigateFromBot = (tab: string) => {
+    let resolvedTab = tab.toLowerCase().trim();
+    
+    // Robust alias routing mappings for AI bot outputs
+    if (['partner', 'partners', 'doi_tac', 'doitac'].includes(resolvedTab)) {
+      resolvedTab = 'partners';
+    } else if (['certification', 'certifications', 'chung_chi', 'chungchi', 'cv'].includes(resolvedTab)) {
+      resolvedTab = 'certifications';
+    } else if (['saas', 'saas-apps', 'saas_apps', 'crm', 'pos', 'lms'].includes(resolvedTab)) {
+      resolvedTab = 'saas';
+    } else if (['martech', 'data', 'chia-data', 'chia_data', 'data-flow', 'data_flow'].includes(resolvedTab)) {
+      resolvedTab = 'martech';
+    } else if (['meta-report', 'meta_report', 'ads-report', 'ads_report', 'ads', 'insight'].includes(resolvedTab)) {
+      resolvedTab = 'meta-report';
+    } else if (['automation', 'autoflow', 'auto-flow'].includes(resolvedTab)) {
+      resolvedTab = 'automation';
+    } else if (['landing', 'landings'].includes(resolvedTab)) {
+      resolvedTab = 'landings';
+    } else if (['outsource', 'highlight', 'highlights', 'case-study', 'case_study'].includes(resolvedTab)) {
+      resolvedTab = 'outsource';
+    } else if (['book', 'facebook-book', 'sach'].includes(resolvedTab)) {
+      resolvedTab = 'book';
+    } else if (['zalo', 'zalo-app', 'zalo_app'].includes(resolvedTab)) {
+      resolvedTab = 'zalo';
+    } else if (['tarot', 'mystery-tarot'].includes(resolvedTab)) {
+      resolvedTab = 'tarot';
+    } else if (['dashboard', 'overview'].includes(resolvedTab)) {
+      resolvedTab = 'dashboard';
+    }
+
     const validTabs = ['dashboard', 'saas', 'martech', 'meta-report', 'automation', 'zalo', 'tarot', 'book', 'landings', 'outsource', 'partners', 'certifications'];
-    if (validTabs.includes(tab)) {
-      setActiveTab(tab);
+    if (validTabs.includes(resolvedTab)) {
+      setActiveTab(resolvedTab);
       setMobileMenuOpen(false);
       setChatOpen(false);
     }
@@ -1763,7 +1792,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                             href="https://drive.google.com/file/d/14BSjTQ699Z4tcMoCbqHYgjcdJjS5-Noh/view?usp=sharing" 
                             target="_blank" 
                             rel="noreferrer"
-                            className="px-6 py-3 bg-[#0f0b24] hover:bg-purple-900/20 text-white font-black text-xs uppercase tracking-widest rounded-full shadow-md flex items-center justify-center gap-2 w-full lg:w-auto"
+                            className="px-6 py-3 bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 hover:from-amber-400 hover:via-yellow-400 hover:to-amber-500 text-black font-black text-xs uppercase tracking-widest rounded-full shadow-[0_0_15px_rgba(245,158,11,0.35)] hover:shadow-[0_0_25px_rgba(245,158,11,0.55)] flex items-center justify-center gap-2 w-full lg:w-auto transition-all duration-300 hover:-translate-y-0.5"
                           >
                             Tải Full PDF <ExternalLink size={12} />
                           </a>

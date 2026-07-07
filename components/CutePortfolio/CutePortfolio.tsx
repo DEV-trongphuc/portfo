@@ -829,43 +829,66 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                   </div>
 
                   <div className="hidden lg:flex w-96 h-80 relative items-center justify-center z-10 shrink-0">
-                    <motion.div 
+                    {/* Orbiting Nodes Container (Actually revolves around the center) */}
+                    <motion.div
                       animate={{ rotate: 360 }}
-                      transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-                      className="absolute w-72 h-72 rounded-full border border-dashed border-purple-500/25"
-                    />
-                    {[
-                      { icon: <Database size={18} className="text-blue-400 group-hover:text-white transition-colors" />, label: 'CRM Sync', angle: 0, glow: 'hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] hover:border-blue-400' },
-                      { icon: <MonitorSmartphone size={18} className="text-cyan-400 group-hover:text-white transition-colors" />, label: 'Zalo SDK', angle: 72, glow: 'hover:shadow-[0_0_20px_rgba(6,182,212,0.6)] hover:border-cyan-400' },
-                      { icon: <Zap size={18} className="text-orange-400 group-hover:text-white transition-colors" />, label: 'n8n Flow', angle: 144, glow: 'hover:shadow-[0_0_20px_rgba(249,115,22,0.6)] hover:border-orange-400' },
-                      { icon: <Cpu size={18} className="text-yellow-400 group-hover:text-white transition-colors" />, label: 'Apps Script', angle: 216, glow: 'hover:shadow-[0_0_20px_rgba(234,179,8,0.6)] hover:border-yellow-400' },
-                      { icon: <Bot size={18} className="text-fuchsia-400 group-hover:text-white transition-colors" />, label: 'AI Agent', angle: 288, glow: 'hover:shadow-[0_0_20px_rgba(217,70,239,0.6)] hover:border-fuchsia-400' },
-                    ].map((node, idx) => {
-                      const radius = 144;
-                      const angleRad = (node.angle * Math.PI) / 180;
-                      const x = radius * Math.cos(angleRad);
-                      const y = radius * Math.sin(angleRad);
+                      transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+                      className="absolute w-72 h-72 rounded-full flex items-center justify-center pointer-events-none"
+                    >
+                      {/* Dashed Orbit Circle */}
+                      <div className="absolute inset-0 rounded-full border border-dashed border-purple-500/20" />
 
-                      return (
-                        <motion.div
-                          key={idx}
-                          style={{ x, y }}
-                          animate={{ rotate: -360 }}
-                          transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-                          className={`absolute w-12 h-12 bg-[#090514]/80 backdrop-blur-md border border-purple-900/40 rounded-full flex flex-col items-center justify-center text-slate-300 shadow-md cursor-pointer transition-all duration-300 group ${node.glow}`}
-                        >
-                          {node.icon}
-                          <span className="absolute top-14 bg-black/85 backdrop-blur-md px-2 py-0.5 rounded border border-purple-500/30 text-[8px] font-black uppercase text-white scale-0 group-hover:scale-100 transition-transform whitespace-nowrap z-20">
-                            {node.label}
-                          </span>
-                        </motion.div>
-                      );
-                    })}
+                      {[
+                        { icon: <Database size={18} className="text-blue-400 group-hover:text-white transition-colors" />, label: 'CRM Sync', angle: 0, glow: 'hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] hover:border-blue-400' },
+                        { icon: <MonitorSmartphone size={18} className="text-cyan-400 group-hover:text-white transition-colors" />, label: 'Zalo SDK', angle: 72, glow: 'hover:shadow-[0_0_20px_rgba(6,182,212,0.6)] hover:border-cyan-400' },
+                        { icon: <Zap size={18} className="text-orange-400 group-hover:text-white transition-colors" />, label: 'n8n Flow', angle: 144, glow: 'hover:shadow-[0_0_20px_rgba(249,115,22,0.6)] hover:border-orange-400' },
+                        { icon: <Cpu size={18} className="text-yellow-400 group-hover:text-white transition-colors" />, label: 'Apps Script', angle: 216, glow: 'hover:shadow-[0_0_20px_rgba(234,179,8,0.6)] hover:border-yellow-400' },
+                        { icon: <Bot size={18} className="text-fuchsia-400 group-hover:text-white transition-colors" />, label: 'AI Agent', angle: 288, glow: 'hover:shadow-[0_0_20px_rgba(217,70,239,0.6)] hover:border-fuchsia-400' },
+                      ].map((node, idx) => {
+                        const radius = 144;
+                        const angleRad = (node.angle * Math.PI) / 180;
+                        const x = radius * Math.cos(angleRad);
+                        const y = radius * Math.sin(angleRad);
 
-                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#1b0a3a] to-[#0c041e] border border-purple-500/50 flex flex-col items-center justify-center p-3 text-center shadow-[0_0_35px_rgba(168,85,247,0.5)] backdrop-blur-xl animate-pulse">
-                      <Sparkles size={28} className="text-yellow-400 mb-1" />
+                        return (
+                          <motion.div
+                            key={idx}
+                            style={{ x, y }}
+                            // Counter-rotate the node container by -360deg at the same speed so icons stay upright!
+                            animate={{ rotate: -360 }}
+                            transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+                            className={`absolute w-12 h-12 bg-[#090514]/95 backdrop-blur-md border border-purple-900/40 rounded-full flex flex-col items-center justify-center text-slate-300 shadow-md cursor-pointer transition-all duration-300 group pointer-events-auto ${node.glow}`}
+                          >
+                            {node.icon}
+                            <span className="absolute top-14 bg-black/85 backdrop-blur-md px-2 py-0.5 rounded border border-purple-500/30 text-[8px] font-black uppercase text-white scale-0 group-hover:scale-100 transition-transform whitespace-nowrap z-20">
+                              {node.label}
+                            </span>
+                          </motion.div>
+                        );
+                      })}
+                    </motion.div>
+
+                    {/* Central DOM ENGINE Breathing Core */}
+                    <motion.div 
+                      animate={{ 
+                        scale: [1, 1.05, 1],
+                        rotate: [0, 3, -3, 0],
+                        boxShadow: [
+                          '0 0 35px rgba(168,85,247,0.4)',
+                          '0 0 55px rgba(168,85,247,0.7)',
+                          '0 0 35px rgba(168,85,247,0.4)'
+                        ]
+                      }}
+                      transition={{ 
+                        duration: 6, 
+                        repeat: Infinity, 
+                        ease: 'easeInOut' 
+                      }}
+                      className="w-24 h-24 rounded-full bg-gradient-to-br from-[#1b0a3a] to-[#0c041e] border border-purple-500/60 flex flex-col items-center justify-center p-3 text-center backdrop-blur-xl z-20"
+                    >
+                      <Sparkles size={28} className="text-yellow-400 mb-1 animate-bounce" style={{ animationDuration: '3s' }} />
                       <span className="text-[8px] font-black tracking-widest text-white leading-none">DOM ENGINE</span>
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
 

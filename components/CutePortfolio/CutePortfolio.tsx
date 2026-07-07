@@ -54,6 +54,7 @@ import {
 import DomiBot from './DomiBot';
 import BentoStats3D from './BentoStats3D';
 import TechLab from './TechLab';
+import { InteractiveTerminal } from './InteractiveTerminal';
 
 // @ts-ignore
 import micrositePdf from '../../pdf/microsite game_compressed.pdf';
@@ -866,6 +867,15 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       <span className="text-[8px] font-black tracking-widest text-white leading-none">DOM ENGINE</span>
                     </div>
                   </div>
+                </div>
+
+                {/* Live Core Automation Console / Command Center (WOW Terminal) */}
+                <div className="space-y-4">
+                  <h3 className="text-sm font-black text-white uppercase tracking-widest flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping shrink-0" />
+                    Live System Automation Console
+                  </h3>
+                  <InteractiveTerminal />
                 </div>
 
                 {/* The Bridge Flow */}

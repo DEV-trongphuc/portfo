@@ -98,9 +98,24 @@ const MetaAdReportShowcase: React.FC = () => {
                         </a>
                     </div>
                 </div>
+                {/* YouTube Video Demo - Front and Center */}
+                <div className="w-full flex flex-col items-center">
+                    <div className="w-full max-w-4xl aspect-video rounded-2xl overflow-hidden border border-purple-900/40 shadow-xl bg-[#161033] mb-8">
+                        <iframe 
+                            src="https://www.youtube.com/embed/fvIHSrpsAlI" 
+                            title="Meta Ad Realtime Report Demo Video" 
+                            className="w-full h-full border-0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowFullScreen
+                        />
+                    </div>
+                </div>
 
                 {/* Slideshow Gallery with Overlay Navigation */}
-                <div className="flex flex-col items-center w-full">
+                <div className="flex flex-col items-center w-full pt-4 border-t border-purple-900/20">
+                    <div className="text-left w-full max-w-4xl mb-4">
+                        <h4 className="text-sm font-black text-slate-200 uppercase tracking-wider">Chi tiết giao diện Report Looker Studio</h4>
+                    </div>
                     {/* Image Container with Overlay Controls */}
                     <div className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden border border-purple-900/40 shadow-xl bg-[#161033]">
                         <div className="absolute inset-0">

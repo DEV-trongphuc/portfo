@@ -36,7 +36,8 @@ import {
   FileCode,
   SlidersHorizontal,
   QrCode,
-  Ticket
+  Ticket,
+  ScanLine
 } from 'lucide-react';
 import { 
   STATS, 
@@ -160,6 +161,12 @@ import aiKienthuc from '../../imgs/ai_kienthuc.webp';
 import aiChatbot from '../../imgs/ai_chatbot.webp';
 // @ts-ignore
 import aiAgent2 from '../../imgs/ai_agent2.webp';
+// @ts-ignore
+import aiTuTrain1 from '../../imgs/ai_tu_train (1).webp';
+// @ts-ignore
+import aiTuTrain2 from '../../imgs/ai_tu_train (2).webp';
+// @ts-ignore
+import aiTuTrain3 from '../../imgs/ai_tu_train (3).webp';
 
 
 // @ts-ignore
@@ -207,13 +214,6 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [previewList, setPreviewList] = useState<string[]>([]);
 
-  // AI Agent slideshow states
-  const [activeAiIdx, setActiveAiIdx] = useState(0);
-  const aiAgentImages = [
-    aiKienthuc,
-    aiChatbot,
-    aiAgent2
-  ];
 
   const handleModalPrev = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -1745,88 +1745,115 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             {/* AI CUSTOM (TRỢ LÝ ẢO AI) */}
             {activeTab === 'ai-agent' && (
               <div className="space-y-10 w-full text-left">
-                <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-4 sm:p-6 md:p-12 shadow-sm space-y-6 md:space-y-8">
-                  <div className="flex flex-col md:flex-row justify-between items-start gap-6">
-                    <div className="space-y-3 md:space-y-4 max-w-3xl">
-                      <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
-                        AI Knowledge Base
-                      </span>
-                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">Trợ Lý Ảo AI Custom (AI Agent)</h3>
-                      <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light text-justify">
-                        Train AI từ tài liệu nội bộ, website của bạn. Thiết lập nền tảng kiến thức (Knowledge Base) thông minh, trả lời trực tiếp thắc mắc Khách hàng 24/7.
-                      </p>
-                    </div>
-                    <div className="shrink-0 pt-1 md:pt-2">
-                      <a 
-                        href="https://ideas.edu.vn/" 
-                        target="_blank" 
-                        rel="noreferrer"
-                        className="px-5 py-2.5 bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:via-violet-500 hover:to-indigo-500 text-white font-bold text-[10px] sm:text-xs uppercase tracking-widest rounded-full shadow-[0_0_15px_rgba(168,85,247,0.35)] hover:shadow-[0_0_25px_rgba(168,85,247,0.55)] flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
-                      >
-                        Chat Thử AI <ExternalLink size={11} />
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Slideshow Gallery with Overlay Navigation */}
-                  <div className="flex flex-col items-center w-full">
-                    {/* Image Container with Overlay Controls */}
-                    <div className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden border border-purple-900/40 shadow-xl bg-[#161033] group">
-                      <div className="absolute inset-0">
-                        <img 
-                          src={aiAgentImages[activeAiIdx]} 
-                          alt={`AI Custom Screenshot ${activeAiIdx + 1}`} 
-                          className="w-full h-full object-cover" 
-                        />
-                      </div>
-                      {/* Zoom overlay */}
-                      <div 
-                        className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" 
-                        onClick={() => { setPreviewImage(aiAgentImages[activeAiIdx]); setPreviewList(aiAgentImages); }}
-                      >
-                        <span className="px-4 py-2 bg-[#0f0b24]/90 rounded-full text-xs font-bold text-slate-200 shadow-md">Zoom Screen</span>
-                      </div>
-
-                      {/* Glassmorphic Overlay Navigation Buttons */}
-                      <button 
-                        onClick={() => setActiveAiIdx(prev => (prev - 1 + aiAgentImages.length) % aiAgentImages.length)}
-                        className="absolute left-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#0f0b24]/60 hover:bg-[#0f0b24]/90 border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all z-20 backdrop-blur-md"
-                        aria-label="Previous image"
-                      >
-                        <ChevronLeft size={18} className="sm:w-[22px] sm:h-[22px]" />
-                      </button>
-
-                      <button 
-                        onClick={() => setActiveAiIdx(prev => (prev + 1) % aiAgentImages.length)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#0f0b24]/60 hover:bg-[#0f0b24]/90 border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all z-20 backdrop-blur-md"
-                        aria-label="Next image"
-                      >
-                        <ChevronRight size={18} className="sm:w-[22px] sm:h-[22px]" />
-                      </button>
-                    </div>
-
-                    {/* Index Indicator */}
-                    <span className="text-[10px] sm:text-xs text-slate-400 font-bold mt-2.5">
-                      Image {activeAiIdx + 1} of {aiAgentImages.length}
-                    </span>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2 md:pt-4">
-                    {[
-                      { title: "Giao Diện Branding", desc: "Custom màu sắc, UI Design & Logo riêng chuẩn thương hiệu.", icon: <Sparkles size={18} /> },
-                      { title: "Thiết Lập Văn Hóa", desc: "Tuỳ chỉnh tone giọng phù hợp, chuẩn văn hoá định vị Brand.", icon: <Award size={18} /> },
-                      { title: "Giao Tiếp Tự Nhiên", desc: "Tư vấn, hỏi đáp, hỗ trợ khách hàng và chốt sale giống như người thật.", icon: <Bot size={18} /> },
-                      { title: "Train Kiến Thức", desc: "Máy học tự động hóa thần tốc qua File dữ liệu thô hoặc Web URL.", icon: <Database size={18} /> },
-                    ].map((feat, i) => (
-                      <div key={i} className="bg-[#030014] border border-purple-900/30 rounded-2xl p-4 md:p-5 hover:border-purple-500/50 transition-colors">
-                        <div className="w-8 h-8 rounded-full bg-[#161033] border border-purple-900/40 text-white flex items-center justify-center mb-3">
-                          {feat.icon}
+                <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-4 sm:p-6 md:p-12 shadow-sm relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent pointer-events-none" />
+                  
+                  <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                    {/* Left Column: Info & Stats Grid */}
+                    <div className="w-full lg:w-[45%] z-20 space-y-6">
+                      <div>
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-400 text-[10px] font-bold uppercase tracking-widest mb-4">
+                          <Sparkles size={12} className="text-rose-400" /> Nền tảng AI Workspace
                         </div>
-                        <h4 className="text-xs sm:text-sm font-black text-slate-200 mb-1">{feat.title}</h4>
-                        <p className="text-slate-400 text-[11px] sm:text-xs leading-relaxed font-light">{feat.desc}</p>
+                        
+                        <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
+                          Không Gian AI <br />
+                          <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-orange-400">
+                            Độc Lập Cho Phòng Ban
+                          </span>
+                        </h3>
                       </div>
-                    ))}
+                      
+                      <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light text-justify">
+                        <strong className="text-amber-400/90 font-bold block mb-2 italic">
+                          Nhân sự cạn kiệt ý tưởng, tư vấn nhầm lẫn? Khách hàng bức xúc vì chờ đợi trả lời quá lâu?
+                        </strong>
+                        Đã đến lúc "thuê" một nhân sự AI xuất sắc. Phân chia rõ ràng AI chuyên gia Sale - Marketing - CSKH. Được huấn luyện khắt khe dưới tiêu chuẩn Knowledge Base đóng, triệt tiêu tình trạng AI bịa chuyện, làm việc xuyên đêm 24/7.
+                      </p>
+                      
+                      {/* Features stats card grid */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {[
+                          {
+                            title: "Training Chuyên Biệt",
+                            desc: "Data độc lập, kiến thức phân quyền theo phòng ban",
+                            icon: <Layers size={14} className="text-rose-400" />
+                          },
+                          {
+                            title: "Chế Độ Đa Năng",
+                            desc: "Tích hợp IMAGE, CodeMode, và Expert mode",
+                            icon: <ScanLine size={14} className="text-rose-400" />
+                          },
+                          {
+                            title: "Knowledge Khắt khe",
+                            desc: "Kiểm soát truy xuất tài liệu, cấm AI bịa chuyện",
+                            icon: <ShieldCheck size={14} className="text-rose-400" />
+                          },
+                          {
+                            title: "Phong Cách AI",
+                            desc: "Giọng điệu Mentoring chân thật, hướng dẫn chi tiết",
+                            icon: <Users size={14} className="text-rose-400" />
+                          }
+                        ].map((feat, idx) => (
+                          <div key={idx} className="flex gap-3.5 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-rose-500/30 transition-colors">
+                            <div className="w-8 h-8 rounded border border-rose-500/40 bg-rose-500/20 flex shrink-0 items-center justify-center">
+                              {feat.icon}
+                            </div>
+                            <div>
+                              <h4 className="font-bold text-white text-xs sm:text-sm mb-1">{feat.title}</h4>
+                              <p className="text-[10px] sm:text-xs text-slate-400 leading-relaxed font-light">{feat.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    {/* Right Column: Stacked Images (Bố trí 3D tuyệt đẹp) */}
+                    <div className="w-full lg:w-[55%] relative pt-6 pb-12 sm:py-12 flex flex-col items-center perspective-1000">
+                      
+                      {/* Main Image 1 */}
+                      <div 
+                        onClick={() => { setPreviewImage(aiTuTrain1); setPreviewList([aiTuTrain1, aiTuTrain2, aiTuTrain3, aiChatbot, aiKienthuc]); }}
+                        className="border border-white/10 rounded-3xl p-2 bg-[#161b22] shadow-[0_0_80px_-20px_rgba(244,63,94,0.3)] w-full sm:w-[90%] z-10 hover:-translate-y-2 hover:z-40 transition-all duration-500 cursor-pointer"
+                      >
+                        <img loading="lazy" alt="AI Space Workspace" className="w-full rounded-2xl" src={aiTuTrain1} />
+                      </div>
+                      
+                      {/* Main Image 2 */}
+                      <div 
+                        onClick={() => { setPreviewImage(aiTuTrain2); setPreviewList([aiTuTrain1, aiTuTrain2, aiTuTrain3, aiChatbot, aiKienthuc]); }}
+                        className="border border-white/10 rounded-3xl p-2 bg-[#161b22] shadow-[0_20px_80px_-20px_rgba(0,0,0,0.8)] w-[85%] -mt-16 sm:-mt-24 self-end z-20 hover:-translate-y-2 hover:z-40 transition-all duration-500 cursor-pointer"
+                      >
+                        <img loading="lazy" alt="Department Training" className="w-full rounded-2xl" src={aiTuTrain2} />
+                      </div>
+                      
+                      {/* Main Image 3 */}
+                      <div 
+                        onClick={() => { setPreviewImage(aiTuTrain3); setPreviewList([aiTuTrain1, aiTuTrain2, aiTuTrain3, aiChatbot, aiKienthuc]); }}
+                        className="border border-white/10 rounded-3xl p-2 bg-[#161b22] shadow-[0_30px_100px_-20px_rgba(0,0,0,0.9)] w-[95%] sm:w-[85%] -mt-10 sm:-mt-16 z-30 self-center hover:-translate-y-2 hover:z-50 transition-all duration-500 cursor-pointer"
+                      >
+                        <img loading="lazy" alt="AI Expert Mode" className="w-full rounded-2xl" src={aiTuTrain3} />
+                      </div>
+                      
+                      {/* Floating Absolute Popups 1: Image Mode */}
+                      <div 
+                        onClick={() => { setPreviewImage(aiChatbot); setPreviewList([aiTuTrain1, aiTuTrain2, aiTuTrain3, aiChatbot, aiKienthuc]); }}
+                        className="absolute top-[8%] -right-2 md:-right-8 border border-white/10 rounded-2xl p-1.5 bg-[#161b22] shadow-[0_20px_50px_rgba(244,63,94,0.4)] w-[40%] sm:w-[35%] z-40 hover:-translate-y-3 hover:scale-105 transition-all duration-500 cursor-pointer"
+                      >
+                        <img loading="lazy" alt="Image Mode" className="w-full rounded-xl" src={aiChatbot} />
+                      </div>
+                      
+                      {/* Floating Absolute Popups 2: Code Mode */}
+                      <div 
+                        onClick={() => { setPreviewImage(aiKienthuc); setPreviewList([aiTuTrain1, aiTuTrain2, aiTuTrain3, aiChatbot, aiKienthuc]); }}
+                        className="absolute bottom-[-5%] -left-2 md:-left-6 border border-white/10 rounded-2xl p-1.5 bg-[#161b22] shadow-[0_20px_60px_-10px_rgba(0,0,0,0.9)] w-[45%] sm:w-[40%] z-40 hover:-translate-y-3 hover:scale-105 transition-all duration-500 cursor-pointer"
+                      >
+                        <img loading="lazy" alt="Code Mode" className="w-full rounded-xl" src={aiKienthuc} />
+                      </div>
+                      
+                    </div>
                   </div>
+                  
                 </div>
               </div>
             )}

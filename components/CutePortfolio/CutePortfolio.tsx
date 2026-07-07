@@ -1567,9 +1567,21 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             {/* ZALO MINI APP SHOWCASE */}
             {activeTab === 'zalo' && (
               <div className="space-y-10 w-full">
-                <div>
-                  <h2 className="text-3xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">ZALO MINI APP DEMO</h2>
-                  <p className="text-sm text-slate-400 font-light mt-1">Giao diện Mini App chăm sóc khách hàng được lập trình native bằng React & TypeScript.</p>
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                  <div>
+                    <h2 className="text-3xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">ZALO MINI APP DEMO</h2>
+                    <p className="text-sm text-slate-400 font-light mt-1">Giao diện Mini App chăm sóc khách hàng được lập trình native bằng React & TypeScript.</p>
+                  </div>
+                  <div className="shrink-0">
+                    <a 
+                      href="https://turniodev.github.io/zala_ideas" 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="px-5 py-2.5 bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:via-violet-500 hover:to-indigo-500 text-white font-bold text-[10px] sm:text-xs uppercase tracking-widest rounded-full shadow-[0_0_15px_rgba(168,85,247,0.35)] hover:shadow-[0_0_25px_rgba(168,85,247,0.55)] flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
+                    >
+                      Open Fullscreen <ExternalLink size={11} />
+                    </a>
+                  </div>
                 </div>
                 <div className="grid lg:grid-cols-12 gap-12 items-center">
                   <div className="lg:col-span-6 flex flex-col items-center justify-center">
@@ -1595,16 +1607,6 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                           sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
                         />
                       </div>
-                    </div>
-                    <div className="mt-6 flex gap-4">
-                      <a 
-                        href="https://turniodev.github.io/zala_ideas" 
-                        target="_blank" 
-                        rel="noreferrer"
-                        className="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-md flex items-center gap-2 transition-all duration-300"
-                      >
-                        Open Fullscreen <ExternalLink size={12} />
-                      </a>
                     </div>
                   </div>
 

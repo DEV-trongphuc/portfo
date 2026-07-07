@@ -869,15 +869,6 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                   </div>
                 </div>
 
-                {/* Live Core Automation Console / Command Center (WOW Terminal) */}
-                <div className="space-y-4">
-                  <h3 className="text-sm font-black text-white uppercase tracking-widest flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping shrink-0" />
-                    Live System Automation Console
-                  </h3>
-                  <InteractiveTerminal />
-                </div>
-
                 {/* The Bridge Flow */}
                 <div className="space-y-4">
                   <h3 className="text-sm font-black text-white uppercase tracking-widest">The Core Pipeline</h3>
@@ -919,6 +910,15 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       </div>
                     ))}
                   </div>
+                </div>
+
+                {/* Live Core Automation Console / Command Center (WOW Terminal) */}
+                <div className="space-y-4">
+                  <h3 className="text-sm font-black text-white uppercase tracking-widest flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping shrink-0" />
+                    Live System Automation Console
+                  </h3>
+                  <InteractiveTerminal />
                 </div>
               </div>
             )}

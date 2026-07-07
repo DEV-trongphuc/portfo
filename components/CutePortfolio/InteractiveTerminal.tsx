@@ -12,7 +12,7 @@ export const InteractiveTerminal: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [history, setHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
-  const terminalEndRef = useRef<HTMLDivElement>(null);
+  const logsContainerRef = useRef<HTMLDivElement>(null);
 
   const getTimestamp = () => {
     const now = new Date();
@@ -48,15 +48,15 @@ export const InteractiveTerminal: React.FC = () => {
         ...prev,
         { text: randomEvent.text, type: randomEvent.type as any, time: getTimestamp() }
       ]);
-    }, 7000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
 
-  // Auto-scroll to bottom of console
+  // Auto-scroll to bottom of console container (prevents global viewport page jump)
   useEffect(() => {
-    if (terminalEndRef.current) {
-      terminalEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (logsContainerRef.current) {
+      logsContainerRef.current.scrollTop = logsContainerRef.current.scrollHeight;
     }
   }, [logs]);
 
@@ -195,7 +195,7 @@ export const InteractiveTerminal: React.FC = () => {
       </div>
 
       {/* Terminal Display Logs */}
-      <div className="p-4 sm:p-5 h-64 overflow-y-auto font-mono text-[10px] sm:text-xs leading-relaxed text-justify space-y-1.5 select-text selection:bg-purple-500/30 selection:text-white">
+      <div ref={logsContainerRef} className="p-4 sm:p-5 h-64 overflow-y-auto font-mono text-[10px] sm:text-xs leading-relaxed text-justify space-y-1.5 select-text selection:bg-purple-500/30 selection:text-white">
         {logs.map((log, idx) => {
           let textClass = 'text-slate-300';
           let prefix = '';
@@ -219,7 +219,6 @@ export const InteractiveTerminal: React.FC = () => {
             </div>
           );
         })}
-        <div ref={terminalEndRef} />
       </div>
 
       {/* Terminal Input Form */}

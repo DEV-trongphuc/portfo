@@ -4,13 +4,13 @@ import { Store, LayoutDashboard, Users, Package, Clock } from 'lucide-react';
 import Modal from '../UI/Modal';
 
 // @ts-ignore
-import crm1 from '../../imgs/CRM (1).jpg';
+import crm1 from '../../imgs/CRM (1).webp';
 // @ts-ignore
-import crm2 from '../../imgs/CRM (2).jpg';
+import crm2 from '../../imgs/CRM (2).webp';
 // @ts-ignore
-import crm3 from '../../imgs/CRM (3).jpg';
+import crm3 from '../../imgs/CRM (3).webp';
 // @ts-ignore
-import crm4 from '../../imgs/CRM (4).jpg';
+import crm4 from '../../imgs/CRM (4).webp';
 
 const CrmShowcase: React.FC = () => {
     const [previewImage, setPreviewImage] = useState<string | null>(null);

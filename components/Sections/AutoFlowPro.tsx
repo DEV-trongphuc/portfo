@@ -5,27 +5,27 @@ import Modal from '../UI/Modal';
 import MobileSlider from '../UI/MobileSlider';
 
 // @ts-ignore
-import auto1 from '../../imgs/automation (1).jpg';
+import auto1 from '../../imgs/automation (1).webp';
 // @ts-ignore
-import auto2 from '../../imgs/automation (2).jpg';
+import auto2 from '../../imgs/automation (2).webp';
 // @ts-ignore
-import auto3 from '../../imgs/automation (3).jpg';
+import auto3 from '../../imgs/automation (3).webp';
 // @ts-ignore
-import auto4 from '../../imgs/automation (4).jpg';
+import auto4 from '../../imgs/automation (4).webp';
 // @ts-ignore
-import auto5 from '../../imgs/automation (5).jpg';
+import auto5 from '../../imgs/automation (5).webp';
 // @ts-ignore
-import auto6 from '../../imgs/automation (6).jpg';
+import auto6 from '../../imgs/automation (6).webp';
 // @ts-ignore
-import auto7 from '../../imgs/automation (7).jpg';
+import auto7 from '../../imgs/automation (7).webp';
 // @ts-ignore
-import auto8 from '../../imgs/automation (8).jpg';
+import auto8 from '../../imgs/automation (8).webp';
 // @ts-ignore
-import aiTrain1 from '../../imgs/ai_tu_train (1).jpg';
+import aiTrain1 from '../../imgs/ai_tu_train (1).webp';
 // @ts-ignore
-import aiTrain2 from '../../imgs/ai_tu_train (2).jpg';
+import aiTrain2 from '../../imgs/ai_tu_train (2).webp';
 // @ts-ignore
-import aiTrain3 from '../../imgs/ai_tu_train (3).jpg';
+import aiTrain3 from '../../imgs/ai_tu_train (3).webp';
 
 const AutoFlowPro: React.FC = () => {
     const [previewImage, setPreviewImage] = useState<string | null>(null);
@@ -91,7 +91,7 @@ const AutoFlowPro: React.FC = () => {
                         transition={{ delay: 0.1 }}
                         className="text-5xl md:text-6xl font-black mb-4 text-white uppercase tracking-tight flex items-center justify-center gap-4"
                     >
-                        <img src="https://automation.ideas.edu.vn/imgs/ICON.png" alt="DOMATION Logo" className="w-12 h-12 md:w-16 md:h-16 object-contain rounded-2xl" />
+                        <img src="https://automation.ideas.edu.vn/imgs/ICON.webp" alt="DOMATION Logo" className="w-12 h-12 md:w-16 md:h-16 object-contain rounded-2xl" />
                         <span>DOMA<span className="text-gradient-gold">TION.</span></span>
                     </motion.h2>
 

@@ -18,8 +18,99 @@ import {
 } from 'lucide-react';
 import React from 'react';
 
+// Brand logo
+// @ts-ignore
+import domLogo from './imgs/dom_logo.webp';
+
+// Projects images
+// @ts-ignore
+import project1 from './imgs/project_1.webp';
+// @ts-ignore
+import project2 from './imgs/project_2.webp';
+// @ts-ignore
+import project3 from './imgs/project_3.webp';
+// @ts-ignore
+import project4 from './imgs/project_4.webp';
+// @ts-ignore
+import project5 from './imgs/project_5.webp';
+// @ts-ignore
+import project6 from './imgs/project_6.webp';
+// @ts-ignore
+import project7 from './imgs/project_7.webp';
+// @ts-ignore
+import project8 from './imgs/project_8.webp';
+
+// Certifications images
+// @ts-ignore
+import cert1 from './imgs/cert_1.webp';
+// @ts-ignore
+import cert2 from './imgs/cert_2.webp';
+// @ts-ignore
+import cert3 from './imgs/cert_3.webp';
+// @ts-ignore
+import cert4 from './imgs/cert_4.webp';
+// @ts-ignore
+import cert5 from './imgs/cert_5.webp';
+// @ts-ignore
+import cert6 from './imgs/cert_6.webp';
+// @ts-ignore
+import cert7 from './imgs/cert_7.webp';
+// @ts-ignore
+import cert8 from './imgs/cert_8.webp';
+
+// Partners logos
+// @ts-ignore
+import partnerPhucloctho from './imgs/partner_phucloctho.webp';
+// @ts-ignore
+import partnerDuyenmai from './imgs/partner_duyenmai.webp';
+// @ts-ignore
+import partnerCowboysteak from './imgs/partner_cowboysteak.webp';
+// @ts-ignore
+import partnerEngroup from './imgs/partner_engroup.webp';
+// @ts-ignore
+import partnerAbiruen from './imgs/partner_abiruen.webp';
+// @ts-ignore
+import partnerKaen from './imgs/partner_kaen.webp';
+// @ts-ignore
+import partnerHaagendazs from './imgs/partner_haagendazs.webp';
+// @ts-ignore
+import partnerBean from './imgs/partner_bean.webp';
+// @ts-ignore
+import partnerTherunningbean from './imgs/partner_therunningbean.webp';
+// @ts-ignore
+import partnerEstasaigon from './imgs/partner_estasaigon.webp';
+// @ts-ignore
+import partnerLepetit from './imgs/partner_lepetit.webp';
+// @ts-ignore
+import partnerSnowee from './imgs/partner_snowee.webp';
+// @ts-ignore
+import partnerAnninhtienhoang from './imgs/partner_anninhtienhoang.webp';
+// @ts-ignore
+import partnerAscencia from './imgs/partner_ascencia.webp';
+// @ts-ignore
+import partnerVtciedu from './imgs/partner_vtciedu.webp';
+// @ts-ignore
+import partnerCollegedeparis from './imgs/partner_collegedeparis.webp';
+// @ts-ignore
+import partnerSwissumef from './imgs/partner_swissumef.webp';
+// @ts-ignore
+import partnerIdeasinstitute from './imgs/partner_ideasinstitute.webp';
+// @ts-ignore
+import partnerNavastore from './imgs/partner_navastore.webp';
+// @ts-ignore
+import partnerFlora from './imgs/partner_flora.webp';
+// @ts-ignore
+import partnerBrandson from './imgs/partner_brandson.webp';
+
+// Domation projects
+// @ts-ignore
+import domProject1 from './imgs/dom_project_1.webp';
+// @ts-ignore
+import domProject2 from './imgs/dom_project_2.webp';
+
+
 // LOGO URL CONSTANT
-export const BRAND_LOGO = "https://ampersand-reports-dom.netlify.app/DOM-img/DOM_LOGO.png";
+export const BRAND_LOGO = domLogo;
 
 export const SOCIALS = [
   { name: 'Facebook', icon: <Facebook size={18} />, url: 'https://facebook.com' },
@@ -376,5 +467,29 @@ export const SKILL_CATEGORIES = [
     desc: 'Loại bỏ các công việc lặp lại bằng các script tự động hóa và tích hợp API.', 
     icon: <Zap />, 
     color: 'bg-purple-500/10 text-purple-500' 
+  }
+];
+
+
+export const SHORT_CAMPAIGNS: OutsourceHighlight[] = [
+  {
+    company: 'Nha khoa Flora',
+    logo: partnerFlora,
+    result: 'Ngày Hội Implant',
+    cost: 'Budget: 20 triệu',
+    impact: 'Đăng Ký Khám',
+    tags: ['Nha Khoa', 'Facebook Ads'],
+    description: 'Vận hành chiến dịch quảng cáo tối ưu và thiết kế Landing Page chuyển đổi cho sự kiện Ngày Hội Implant tại Nha khoa Flora. Thu hút hơn 300+ lượt đăng ký đặt hẹn trực tiếp, nâng cao tỷ lệ chốt dịch vụ cao cấp.',
+    link: 'https://nhakhoaflora.com/ngay-hoi-implant/'
+  },
+  {
+    company: 'Brandson',
+    logo: partnerBrandson,
+    result: 'Cấy Ghép Implant',
+    cost: 'Budget: 30 triệu',
+    impact: 'Lead Funnel',
+    tags: ['Nha Khoa', 'Lead Ads'],
+    description: 'Triển khai phễu quảng cáo thế hệ mới và trang Landing Page giáo dục chuyên sâu về dịch vụ Cấy Ghép Nha Khoa Cơ Bản của Brandson. Tăng trưởng lượng khách hàng quan tâm chất lượng cao.',
+    link: 'https://brandson.vn/cay-ghep-nha-khoa-co-ban/'
   }
 ];

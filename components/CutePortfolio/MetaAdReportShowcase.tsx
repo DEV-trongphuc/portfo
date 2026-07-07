@@ -15,17 +15,17 @@ import {
 import Modal from '../UI/Modal';
 
 // @ts-ignore
-import dom_rp1 from '../../imgs/dom_rp (1).jpg';
+import dom_rp1 from '../../imgs/dom_rp (1).webp';
 // @ts-ignore
-import dom_rp2 from '../../imgs/dom_rp (2).jpg';
+import dom_rp2 from '../../imgs/dom_rp (2).webp';
 // @ts-ignore
-import dom_rp3 from '../../imgs/dom_rp (3).jpg';
+import dom_rp3 from '../../imgs/dom_rp (3).webp';
 // @ts-ignore
-import dom_rp4 from '../../imgs/dom_rp (4).jpg';
+import dom_rp4 from '../../imgs/dom_rp (4).webp';
 // @ts-ignore
-import dom_rp5 from '../../imgs/dom_rp (5).jpg';
+import dom_rp5 from '../../imgs/dom_rp (5).webp';
 // @ts-ignore
-import dom_rp6 from '../../imgs/dom_rp (6).jpg';
+import dom_rp6 from '../../imgs/dom_rp (6).webp';
 
 const MetaAdReportShowcase: React.FC = () => {
     const [previewImage, setPreviewImage] = useState<string | null>(null);

@@ -4,13 +4,13 @@ import { GraduationCap, BookOpen, Video, Award, BarChartHorizontal, CheckCircle2
 import Modal from '../UI/Modal';
 
 // @ts-ignore
-import lms1 from '../../imgs/lms (1).jpg';
+import lms1 from '../../imgs/lms (1).webp';
 // @ts-ignore
-import lms2 from '../../imgs/lms (2).jpg';
+import lms2 from '../../imgs/lms (2).webp';
 // @ts-ignore
-import lms3 from '../../imgs/lms (3).jpg';
+import lms3 from '../../imgs/lms (3).webp';
 // @ts-ignore
-import lms4 from '../../imgs/lms (4).jpg';
+import lms4 from '../../imgs/lms (4).webp';
 
 const LmsShowcase: React.FC = () => {
     const [previewImage, setPreviewImage] = useState<string | null>(null);

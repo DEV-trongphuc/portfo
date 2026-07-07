@@ -14,27 +14,27 @@ import {
 import Modal from '../UI/Modal';
 
 // @ts-ignore
-import auto1 from '../../imgs/automation (1).jpg';
+import auto1 from '../../imgs/automation (1).webp';
 // @ts-ignore
-import auto2 from '../../imgs/automation (2).jpg';
+import auto2 from '../../imgs/automation (2).webp';
 // @ts-ignore
-import auto3 from '../../imgs/automation (3).jpg';
+import auto3 from '../../imgs/automation (3).webp';
 // @ts-ignore
-import auto4 from '../../imgs/automation (4).jpg';
+import auto4 from '../../imgs/automation (4).webp';
 // @ts-ignore
-import auto5 from '../../imgs/automation (5).jpg';
+import auto5 from '../../imgs/automation (5).webp';
 // @ts-ignore
-import auto6 from '../../imgs/automation (6).jpg';
+import auto6 from '../../imgs/automation (6).webp';
 // @ts-ignore
-import auto7 from '../../imgs/automation (7).jpg';
+import auto7 from '../../imgs/automation (7).webp';
 // @ts-ignore
-import auto8 from '../../imgs/automation (8).jpg';
+import auto8 from '../../imgs/automation (8).webp';
 // @ts-ignore
-import aiTrain1 from '../../imgs/ai_tu_train (1).jpg';
+import aiTrain1 from '../../imgs/ai_tu_train (1).webp';
 // @ts-ignore
-import aiTrain2 from '../../imgs/ai_tu_train (2).jpg';
+import aiTrain2 from '../../imgs/ai_tu_train (2).webp';
 // @ts-ignore
-import aiTrain3 from '../../imgs/ai_tu_train (3).jpg';
+import aiTrain3 from '../../imgs/ai_tu_train (3).webp';
 
 const AutoFlowPro: React.FC = () => {
     const [activeIdx, setActiveIdx] = useState(0);

@@ -20,41 +20,41 @@ import Modal from '../UI/Modal';
 
 // Import CRMS images 1-4 and CRM images 5-18
 // @ts-ignore
-import crms1 from '../../imgs/CRMS (1).jpg';
+import crms1 from '../../imgs/CRMS (1).webp';
 // @ts-ignore
-import crms2 from '../../imgs/CRMS (2).jpg';
+import crms2 from '../../imgs/CRMS (2).webp';
 // @ts-ignore
-import crms3 from '../../imgs/CRMS (3).jpg';
+import crms3 from '../../imgs/CRMS (3).webp';
 // @ts-ignore
-import crms4 from '../../imgs/CRMS (4).jpg';
+import crms4 from '../../imgs/CRMS (4).webp';
 // @ts-ignore
-import crm5 from '../../imgs/CRM (5).jpg';
+import crm5 from '../../imgs/CRM (5).webp';
 // @ts-ignore
-import crm6 from '../../imgs/CRM (6).jpg';
+import crm6 from '../../imgs/CRM (6).webp';
 // @ts-ignore
-import crm7 from '../../imgs/CRM (7).jpg';
+import crm7 from '../../imgs/CRM (7).webp';
 // @ts-ignore
-import crm8 from '../../imgs/CRM (8).jpg';
+import crm8 from '../../imgs/CRM (8).webp';
 // @ts-ignore
-import crm9 from '../../imgs/CRM (9).jpg';
+import crm9 from '../../imgs/CRM (9).webp';
 // @ts-ignore
-import crm10 from '../../imgs/CRM (10).jpg';
+import crm10 from '../../imgs/CRM (10).webp';
 // @ts-ignore
-import crm11 from '../../imgs/CRM (11).jpg';
+import crm11 from '../../imgs/CRM (11).webp';
 // @ts-ignore
-import crm12 from '../../imgs/CRM (12).jpg';
+import crm12 from '../../imgs/CRM (12).webp';
 // @ts-ignore
-import crm13 from '../../imgs/CRM (13).jpg';
+import crm13 from '../../imgs/CRM (13).webp';
 // @ts-ignore
-import crm14 from '../../imgs/CRM (14).jpg';
+import crm14 from '../../imgs/CRM (14).webp';
 // @ts-ignore
-import crm15 from '../../imgs/CRM (15).jpg';
+import crm15 from '../../imgs/CRM (15).webp';
 // @ts-ignore
-import crm16 from '../../imgs/CRM (16).jpg';
+import crm16 from '../../imgs/CRM (16).webp';
 // @ts-ignore
-import crm17 from '../../imgs/CRM (17).jpg';
+import crm17 from '../../imgs/CRM (17).webp';
 // @ts-ignore
-import crm18 from '../../imgs/CRM (18).jpg';
+import crm18 from '../../imgs/CRM (18).webp';
 
 const ALL_IMAGES = [
   crms1, crms2, crms3, crms4, crm5, crm6, crm7, crm8, crm9,

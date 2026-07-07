@@ -62,7 +62,7 @@ const Hero: React.FC = () => {
             <div className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 sm:gap-6">
               <a href="https://domation.vercel.app/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto group relative px-6 lg:px-8 py-3 bg-[#0a0a0a] border border-white/10 rounded-full hover:border-orange-500/50 hover:shadow-[0_0_30px_rgba(249,115,22,0.2)] transition-all duration-500 flex items-center justify-center gap-4 overflow-hidden backdrop-blur-md">
                 <div className="relative z-10 w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center shadow-[0_0_15px_rgba(249,115,22,0.5)] group-hover:shadow-[0_0_25px_rgba(249,115,22,0.8)] transition-shadow">
-                  <img src="https://domation.net/imgs/ICON.png" alt="DOMATION" className="w-7 h-7 object-contain relative z-10 group-hover:scale-110 transition-transform duration-500" />
+                  <img src="https://domation.net/imgs/ICON.webp" alt="DOMATION" className="w-7 h-7 object-contain relative z-10 group-hover:scale-110 transition-transform duration-500" />
                 </div>
                 <span className="relative z-10 font-black uppercase text-xl tracking-[0.1em] text-transparent bg-clip-text bg-gradient-to-r from-[#FF8A00] to-[#E52E71]">
                   DOMATION

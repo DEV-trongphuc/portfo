@@ -43,6 +43,7 @@ import {
   TECH_GRID, 
   BRIDGE_CARDS, 
   OUTSOURCE_HIGHLIGHTS, 
+  SHORT_CAMPAIGNS,
   EXPERIENCES, 
   CERTIFICATIONS,
   PROJECTS, // Original 8 developer projects
@@ -56,78 +57,79 @@ import TechLab from './TechLab';
 // @ts-ignore
 import micrositePdf from '../../pdf/microsite game_compressed.pdf';
 // @ts-ignore
-import meAvatar from '../../me.jpg';
+// @ts-ignore
+import meAvatar from '../../me.webp';
 
 // Import images
 // @ts-ignore
-import tr1 from '../../imgs/tr1.jpg';
+import tr1 from '../../imgs/tr1.webp';
 // @ts-ignore
-import tr2 from '../../imgs/tr2.jpg';
+import tr2 from '../../imgs/tr2.webp';
 // @ts-ignore
-import cmt1 from '../../imgs/CMT1.jpg';
+import cmt1 from '../../imgs/CMT1.webp';
 // @ts-ignore
-import cmt2 from '../../imgs/CMT2.jpg';
+import cmt2 from '../../imgs/CMT2.webp';
 // @ts-ignore
-import cmt3 from '../../imgs/CMT3.jpg';
+import cmt3 from '../../imgs/CMT3.webp';
 // @ts-ignore
-import cmt4 from '../../imgs/CMT4.jpg';
+import cmt4 from '../../imgs/CMT4.webp';
 // @ts-ignore
-import crms1 from '../../imgs/CRMS (1).jpg';
+import crms1 from '../../imgs/CRMS (1).webp';
 // @ts-ignore
-import crms2 from '../../imgs/CRMS (2).jpg';
+import crms2 from '../../imgs/CRMS (2).webp';
 // @ts-ignore
-import crms3 from '../../imgs/CRMS (3).jpg';
+import crms3 from '../../imgs/CRMS (3).webp';
 // @ts-ignore
-import crms4 from '../../imgs/CRMS (4).jpg';
+import crms4 from '../../imgs/CRMS (4).webp';
 // @ts-ignore
-import lms1 from '../../imgs/lms (1).jpg';
+import lms1 from '../../imgs/lms (1).webp';
 // @ts-ignore
-import lms2 from '../../imgs/lms (2).jpg';
+import lms2 from '../../imgs/lms (2).webp';
 // @ts-ignore
-import lms3 from '../../imgs/lms (3).jpg';
+import lms3 from '../../imgs/lms (3).webp';
 // @ts-ignore
-import lms4 from '../../imgs/lms (4).jpg';
+import lms4 from '../../imgs/lms (4).webp';
 // @ts-ignore
-import auto1 from '../../imgs/automation (1).jpg';
+import auto1 from '../../imgs/automation (1).webp';
 // @ts-ignore
-import auto2 from '../../imgs/automation (2).jpg';
+import auto2 from '../../imgs/automation (2).webp';
 // Import extra CRM screenshots for full showcase
 // @ts-ignore
-import crm1 from '../../imgs/CRM (1).jpg';
+import crm1 from '../../imgs/CRM (1).webp';
 // @ts-ignore
-import crm2 from '../../imgs/CRM (2).jpg';
+import crm2 from '../../imgs/CRM (2).webp';
 // @ts-ignore
-import crm3 from '../../imgs/CRM (3).jpg';
+import crm3 from '../../imgs/CRM (3).webp';
 // @ts-ignore
-import crm4 from '../../imgs/CRM (4).jpg';
+import crm4 from '../../imgs/CRM (4).webp';
 // @ts-ignore
-import crm5 from '../../imgs/CRM (5).jpg';
+import crm5 from '../../imgs/CRM (5).webp';
 // @ts-ignore
-import crm6 from '../../imgs/CRM (6).jpg';
+import crm6 from '../../imgs/CRM (6).webp';
 // @ts-ignore
-import crm7 from '../../imgs/CRM (7).jpg';
+import crm7 from '../../imgs/CRM (7).webp';
 // @ts-ignore
-import crm8 from '../../imgs/CRM (8).jpg';
+import crm8 from '../../imgs/CRM (8).webp';
 // @ts-ignore
-import crm9 from '../../imgs/CRM (9).jpg';
+import crm9 from '../../imgs/CRM (9).webp';
 // @ts-ignore
-import crm10 from '../../imgs/CRM (10).jpg';
+import crm10 from '../../imgs/CRM (10).webp';
 // @ts-ignore
-import crm11 from '../../imgs/CRM (11).jpg';
+import crm11 from '../../imgs/CRM (11).webp';
 // @ts-ignore
-import crm12 from '../../imgs/CRM (12).jpg';
+import crm12 from '../../imgs/CRM (12).webp';
 // @ts-ignore
-import crm13 from '../../imgs/CRM (13).jpg';
+import crm13 from '../../imgs/CRM (13).webp';
 // @ts-ignore
-import crm14 from '../../imgs/CRM (14).jpg';
+import crm14 from '../../imgs/CRM (14).webp';
 // @ts-ignore
-import crm15 from '../../imgs/CRM (15).jpg';
+import crm15 from '../../imgs/CRM (15).webp';
 // @ts-ignore
-import crm16 from '../../imgs/CRM (16).jpg';
+import crm16 from '../../imgs/CRM (16).webp';
 // @ts-ignore
-import crm17 from '../../imgs/CRM (17).jpg';
+import crm17 from '../../imgs/CRM (17).webp';
 // @ts-ignore
-import crm18 from '../../imgs/CRM (18).jpg';
+import crm18 from '../../imgs/CRM (18).webp';
 // @ts-ignore
 import gameBlindbag from '../../imgs/game_blindbag.webp';
 // @ts-ignore
@@ -139,6 +141,26 @@ import logoIdeas from '../../imgs/logo_ideas.webp';
 // @ts-ignore
 import logoPhucloctho from '../../imgs/logo_phucloctho.webp';
 
+// Book pages
+// @ts-ignore
+import bookCover from '../../imgs/book_cover.webp';
+// @ts-ignore
+import bookPage71 from '../../imgs/book_page_71.webp';
+// @ts-ignore
+import bookPage60 from '../../imgs/book_page_60.webp';
+// @ts-ignore
+import bookPage109 from '../../imgs/book_page_109.webp';
+// @ts-ignore
+import bookPage107 from '../../imgs/book_page_107.webp';
+
+// AI Agent
+// @ts-ignore
+import aiKienthuc from '../../imgs/ai_kienthuc.webp';
+// @ts-ignore
+import aiChatbot from '../../imgs/ai_chatbot.webp';
+// @ts-ignore
+import aiAgent2 from '../../imgs/ai_agent2.webp';
+
 import MetaAdReportShowcase from './MetaAdReportShowcase';
 import AutoFlowPro from './AutoFlowPro';
 
@@ -147,11 +169,11 @@ interface CutePortfolioProps {
 }
 
 const RAW_PAGES = [
-  'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/B%E1%BA%A3n%20%20(14.5%20x%2020.5%20cm).png', // Cover
-  'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/71.png',
-  'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/60.png',
-  'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/109.png',
-  'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/107.png'
+  bookCover,
+  bookPage71,
+  bookPage60,
+  bookPage109,
+  bookPage107
 ];
 
 const SHEETS = [
@@ -174,9 +196,9 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
   // AI Agent slideshow states
   const [activeAiIdx, setActiveAiIdx] = useState(0);
   const aiAgentImages = [
-    'https://domation.net/imgs/kien%20thuc%20ai.jpg',
-    'https://domation.net/imgs/AIchatbot.png',
-    'https://domation.net/imgs/ai_2.jpg'
+    aiKienthuc,
+    aiChatbot,
+    aiAgent2
   ];
 
   const handleModalPrev = (e: React.MouseEvent) => {
@@ -1987,6 +2009,74 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                         </div>
                       </div>
                     ))}
+                  </div>
+
+                  {/* Short Campaigns Section */}
+                  <div className="pt-8 space-y-6">
+                    <div className="text-left">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-3 py-1 rounded-full border border-purple-900/40">
+                        Chiến Dịch Ngắn
+                      </span>
+                      <h3 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200 mt-3">Chiến Dịch Ngắn</h3>
+                      <p className="text-sm text-slate-400 font-light mt-1">Các chiến dịch ngắn hạn tối ưu ngân sách với tỷ lệ chuyển đổi cao.</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                      {SHORT_CAMPAIGNS.map((item, i) => (
+                        <div key={i} className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow min-h-[320px]">
+                          <div>
+                            <div className="flex flex-wrap gap-1.5 mb-3">
+                              {item.tags.map((tag) => (
+                                <span key={tag} className="text-[9px] font-black uppercase tracking-widest text-slate-400 bg-[#161033] px-2.5 py-1 rounded-full">
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                            <div className="flex items-center gap-3.5 mb-4 text-left">
+                              {item.logo && (
+                                <div className="w-10 h-10 rounded-xl overflow-hidden border border-purple-900/40 bg-[#0f0b24] shrink-0">
+                                  <img src={item.logo} alt={item.company} className="w-full h-full object-cover" />
+                                </div>
+                              )}
+                              <div>
+                                <h3 className="text-2xl font-black text-white leading-tight">{item.company}</h3>
+                                <span className="text-[9px] text-purple-300 font-black uppercase tracking-wider block mt-0.5">{item.result}</span>
+                              </div>
+                            </div>
+                            
+                            <div className="grid grid-cols-2 gap-2 bg-[#030014] border border-purple-900/30 rounded-2xl p-4 mb-4">
+                              <div>
+                                <span className="text-[8px] text-slate-400 uppercase font-black block tracking-widest mb-1">Impact</span>
+                                <span className="text-[10px] font-black text-slate-200 leading-tight">{item.impact}</span>
+                              </div>
+                              <div className="border-l border-purple-900/40 pl-3">
+                                <span className="text-[8px] text-slate-400 uppercase font-black block tracking-widest mb-1">Efficiency</span>
+                                <span className="text-[10px] font-black text-slate-400 leading-tight">{item.cost}</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="border-t border-purple-900/30 pt-4 flex flex-col gap-4">
+                            <p 
+                              className="text-slate-400 text-xs leading-relaxed font-light text-justify"
+                              dangerouslySetInnerHTML={{ __html: item.description }}
+                            />
+                            {item.link && (
+                              <div className="flex justify-start">
+                                <a 
+                                  href={item.link} 
+                                  target="_blank" 
+                                  rel="noreferrer"
+                                  className="px-4 py-2 bg-[#161033] hover:bg-purple-900/20 text-slate-200 font-bold text-xs uppercase tracking-wider rounded-lg transition-colors flex items-center gap-1.5"
+                                >
+                                  Xem Chiến Dịch <ExternalLink size={12} />
+                                </a>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
 
                   {/* Minigame status banner */}

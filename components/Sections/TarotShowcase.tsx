@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Star, Users, LayoutDashboard, Cpu, Image as ImageIcon, ExternalLink } from 'lucide-react';
 // @ts-ignore
-import tr1 from '../../imgs/tr1.jpg';
+import tr1 from '../../imgs/tr1.webp';
 // @ts-ignore
-import tr2 from '../../imgs/tr2.jpg';
+import tr2 from '../../imgs/tr2.webp';
 // @ts-ignore
-import cmt1 from '../../imgs/CMT1.jpg';
+import cmt1 from '../../imgs/CMT1.webp';
 // @ts-ignore
-import cmt2 from '../../imgs/CMT2.jpg';
+import cmt2 from '../../imgs/CMT2.webp';
 // @ts-ignore
-import cmt3 from '../../imgs/CMT3.jpg';
+import cmt3 from '../../imgs/CMT3.webp';
 // @ts-ignore
-import cmt4 from '../../imgs/CMT4.jpg';
+import cmt4 from '../../imgs/CMT4.webp';
 import Modal from '../UI/Modal';
 
 const TarotShowcase: React.FC = () => {

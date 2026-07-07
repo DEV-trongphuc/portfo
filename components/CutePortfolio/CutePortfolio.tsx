@@ -2596,8 +2596,8 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
 
       </main>
 
-      {/* FLOATING CHATBOT WINDOW */}
-      <AnimatePresence>
+      {/* FLOATING CHATBOT WINDOW (Temporarily Hidden) */}
+      {/* <AnimatePresence>
         {chatOpen && (
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.95 }}
@@ -2609,10 +2609,10 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             <DomiBot onNavigate={handleNavigateFromBot} activeTab={activeTab} onClose={() => setChatOpen(false)} />
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
 
-      {/* FLOATING CHATBOT WIDGET */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+      {/* FLOATING CHATBOT WIDGET (Temporarily Hidden) */}
+      {/* <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -2624,7 +2624,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             <div className="absolute -top-1 -right-1 w-4 h-4 bg-rose-500 rounded-full border-2 border-[#030014] animate-bounce" />
           )}
         </motion.button>
-      </div>
+      </div> */}
 
       {/* Global Image Preview Modal */}
       <AnimatePresence>

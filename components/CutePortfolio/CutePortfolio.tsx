@@ -174,6 +174,8 @@ import aiTuTrain3 from '../../imgs/ai_tu_train (3).webp';
 import logoFlora from '../../imgs/partner_flora.webp';
 // @ts-ignore
 import logoBrandson from '../../imgs/partner_brandson.webp';
+// @ts-ignore
+import imgKaen from '../../imgs/ke-eb.jpg';
 
 import MetaAdReportShowcase from './MetaAdReportShowcase';
 import AutoFlowPro from './AutoFlowPro';
@@ -1456,28 +1458,28 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     </div>
                   </div>
 
-                  {/* Card 3: Turnio Portfolio */}
+                  {/* Card 3: KA-EN Event */}
                   <div className="group relative block rounded-2xl bg-[#0f0b24] border border-purple-900/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl overflow-hidden">
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" style={{ background: "radial-gradient(300px at left top, rgba(16, 185, 129, 0.15), transparent 70%)" }}></div>
                     <div className="relative overflow-hidden aspect-video bg-[#161033] border-b border-purple-900/40">
-                      <img alt="Turnio Portfolio" className="w-full h-full object-cover object-top group-hover:scale-[1.04] transition-transform duration-700" loading="lazy" src="https://domation.net/landingpage_avatar/portfolio.webp" />
+                      <img alt="KA-EN Event" className="w-full h-full object-cover object-top group-hover:scale-[1.04] transition-transform duration-700" loading="lazy" src={imgKaen} />
                       <div className="absolute top-3 left-3 p-2 bg-[#0f0b24]/80 backdrop-blur-md border border-purple-900/30 rounded-xl text-emerald-500">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                       </div>
-                      <a href="https://portfo-turnio.vercel.app/" target="_blank" rel="noreferrer" className="absolute top-3 right-3 text-slate-400 group-hover:text-white p-1.5 bg-[#0f0b24]/80 backdrop-blur-md border border-purple-900/30 rounded-full transition-all">
+                      <a href="https://ka-en.com.vn/event.html" target="_blank" rel="noreferrer" className="absolute top-3 right-3 text-slate-400 group-hover:text-white p-1.5 bg-[#0f0b24]/80 backdrop-blur-md border border-purple-900/30 rounded-full transition-all">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                       </a>
                     </div>
                     <div className="p-6 relative z-10 space-y-4">
-                      <h3 className="text-lg font-bold text-white group-hover:text-white transition-colors">Turnio Portfolio</h3>
-                      <p className="text-slate-400 text-xs leading-relaxed min-h-[50px] font-light">Trang thông tin năng lực (Portfolio) cao cấp của Creative Agency, hiển thị dự án với hiệu ứng tương tác 3D mượt mà.</p>
+                      <h3 className="text-lg font-bold text-white group-hover:text-white transition-colors">KA-EN Event</h3>
+                      <p className="text-slate-400 text-xs leading-relaxed min-h-[50px] font-light">Landing Page giới thiệu và thúc đẩy lượt đăng ký tham gia sự kiện ẩm thực Nhật Bản đặc sắc tại nhà hàng KA-EN.</p>
                       <div className="pt-4 flex items-center justify-between border-t border-purple-900/30 mt-2">
                         <div className="flex flex-wrap gap-1.5">
-                          <span className="px-2 py-0.5 text-[8.5px] font-bold text-slate-400 bg-[#161033] border border-purple-900/40 rounded-md">Creative</span>
-                          <span className="px-2 py-0.5 text-[8.5px] font-bold text-slate-400 bg-[#161033] border border-purple-900/40 rounded-md">Next.js</span>
+                          <span className="px-2 py-0.5 text-[8.5px] font-bold text-slate-400 bg-[#161033] border border-purple-900/40 rounded-md">F&B</span>
+                          <span className="px-2 py-0.5 text-[8.5px] font-bold text-slate-400 bg-[#161033] border border-purple-900/40 rounded-md">Event</span>
                         </div>
                         <a 
-                          href="https://portfo-turnio.vercel.app/" 
+                          href="https://ka-en.com.vn/event.html" 
                           target="_blank" 
                           rel="noreferrer"
                           className="px-3.5 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-black text-[9px] uppercase tracking-wider rounded-lg shadow-[0_0_12px_rgba(168,85,247,0.25)] hover:shadow-[0_0_18px_rgba(168,85,247,0.45)] flex items-center gap-1 shrink-0 transition-all duration-300 hover:-translate-y-0.5"

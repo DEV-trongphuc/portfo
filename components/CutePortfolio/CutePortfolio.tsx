@@ -106,6 +106,26 @@ import crm6 from '../../imgs/CRM (6).jpg';
 import crm7 from '../../imgs/CRM (7).jpg';
 // @ts-ignore
 import crm8 from '../../imgs/CRM (8).jpg';
+// @ts-ignore
+import crm9 from '../../imgs/CRM (9).jpg';
+// @ts-ignore
+import crm10 from '../../imgs/CRM (10).jpg';
+// @ts-ignore
+import crm11 from '../../imgs/CRM (11).jpg';
+// @ts-ignore
+import crm12 from '../../imgs/CRM (12).jpg';
+// @ts-ignore
+import crm13 from '../../imgs/CRM (13).jpg';
+// @ts-ignore
+import crm14 from '../../imgs/CRM (14).jpg';
+// @ts-ignore
+import crm15 from '../../imgs/CRM (15).jpg';
+// @ts-ignore
+import crm16 from '../../imgs/CRM (16).jpg';
+// @ts-ignore
+import crm17 from '../../imgs/CRM (17).jpg';
+// @ts-ignore
+import crm18 from '../../imgs/CRM (18).jpg';
 
 import MetaAdReportShowcase from './MetaAdReportShowcase';
 import AutoFlowPro from './AutoFlowPro';
@@ -837,7 +857,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       {/* Prev Button */}
                       <button 
                         onClick={() => {
-                          const crmList = [crms1, crms2, crms3, crms4];
+                          const crmList = [crms1, crms2, crms3, crms4, crm5, crm6, crm7, crm8, crm9, crm10, crm11, crm12, crm13, crm14, crm15, crm16, crm17, crm18];
                           const curIdx = crmList.indexOf(activeCrmImg);
                           const prevIdx = (curIdx - 1 + crmList.length) % crmList.length;
                           setActiveCrmImg(crmList[prevIdx]);
@@ -863,7 +883,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                             />
                           </AnimatePresence>
                         </div>
-                        <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" onClick={() => { setPreviewImage(activeCrmImg); setPreviewList([crms1, crms2, crms3, crms4]); }}>
+                        <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" onClick={() => { setPreviewImage(activeCrmImg); setPreviewList([crms1, crms2, crms3, crms4, crm5, crm6, crm7, crm8, crm9, crm10, crm11, crm12, crm13, crm14, crm15, crm16, crm17, crm18]); }}>
                           <span className="px-4 py-2 bg-[#0f0b24]/90 rounded-full text-xs font-bold text-slate-200 shadow-md">Zoom Screen</span>
                         </div>
                       </div>
@@ -871,7 +891,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       {/* Next Button */}
                       <button 
                         onClick={() => {
-                          const crmList = [crms1, crms2, crms3, crms4];
+                          const crmList = [crms1, crms2, crms3, crms4, crm5, crm6, crm7, crm8, crm9, crm10, crm11, crm12, crm13, crm14, crm15, crm16, crm17, crm18];
                           const curIdx = crmList.indexOf(activeCrmImg);
                           const nextIdx = (curIdx + 1) % crmList.length;
                           setActiveCrmImg(crmList[nextIdx]);
@@ -883,11 +903,11 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     </div>
                     {/* Index Indicator */}
                     <span className="text-xs text-slate-400 font-bold mt-3">
-                      Image {[crms1, crms2, crms3, crms4].indexOf(activeCrmImg) + 1} of 4
+                      Image {[crms1, crms2, crms3, crms4, crm5, crm6, crm7, crm8, crm9, crm10, crm11, crm12, crm13, crm14, crm15, crm16, crm17, crm18].indexOf(activeCrmImg) + 1} of 18
                     </span>
                     {/* CRM Thumbnail Gallery Selector */}
                     <div className="w-full max-w-4xl flex justify-start md:justify-center gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
-                      {[crms1, crms2, crms3, crms4].map((img, index) => (
+                      {[crms1, crms2, crms3, crms4, crm5, crm6, crm7, crm8, crm9, crm10, crm11, crm12, crm13, crm14, crm15, crm16, crm17, crm18].map((img, index) => (
                         <button 
                           key={index}
                           onClick={() => setActiveCrmImg(img)}
@@ -945,7 +965,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       {/* Prev Button */}
                       <button 
                         onClick={() => {
-                          const minthList = [crm1, crm2, crm3, crm4, crm5, crm6, crm7, crm8];
+                          const minthList = [crm1, crm2, crm3, crm4];
                           const curIdx = minthList.indexOf(activeMinthImg);
                           const prevIdx = (curIdx - 1 + minthList.length) % minthList.length;
                           setActiveMinthImg(minthList[prevIdx]);
@@ -971,7 +991,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                             />
                           </AnimatePresence>
                         </div>
-                        <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" onClick={() => { setPreviewImage(activeMinthImg); setPreviewList([crm1, crm2, crm3, crm4, crm5, crm6, crm7, crm8]); }}>
+                        <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" onClick={() => { setPreviewImage(activeMinthImg); setPreviewList([crm1, crm2, crm3, crm4]); }}>
                           <span className="px-4 py-2 bg-[#0f0b24]/90 rounded-full text-xs font-bold text-slate-200 shadow-md">Zoom Screen</span>
                         </div>
                       </div>
@@ -979,7 +999,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       {/* Next Button */}
                       <button 
                         onClick={() => {
-                          const minthList = [crm1, crm2, crm3, crm4, crm5, crm6, crm7, crm8];
+                          const minthList = [crm1, crm2, crm3, crm4];
                           const curIdx = minthList.indexOf(activeMinthImg);
                           const nextIdx = (curIdx + 1) % minthList.length;
                           setActiveMinthImg(minthList[nextIdx]);
@@ -991,11 +1011,11 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     </div>
                     {/* Index Indicator */}
                     <span className="text-xs text-slate-400 font-bold mt-3">
-                      Image {[crm1, crm2, crm3, crm4, crm5, crm6, crm7, crm8].indexOf(activeMinthImg) + 1} of 8
+                      Image {[crm1, crm2, crm3, crm4].indexOf(activeMinthImg) + 1} of 4
                     </span>
                     {/* CRM Thumbnail Gallery Selector */}
                     <div className="w-full max-w-4xl flex justify-start md:justify-center gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
-                      {[crm1, crm2, crm3, crm4, crm5, crm6, crm7, crm8].map((img, index) => (
+                      {[crm1, crm2, crm3, crm4].map((img, index) => (
                         <button 
                           key={index}
                           onClick={() => setActiveMinthImg(img)}

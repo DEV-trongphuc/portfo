@@ -1,10 +1,11 @@
 
 import React, { useEffect, lazy, Suspense } from 'react';
-import Navbar from './components/Layout/Navbar';
-import Hero from './components/Sections/Hero';
-import Background from './components/UI/Background';
-import Footer from './components/Layout/Footer';
-import ScrollProgress from './components/UI/ScrollProgress';
+// Lazy load layout components to prevent code execution/downloads in AI mode
+const Navbar = lazy(() => import('./components/Layout/Navbar'));
+const Hero = lazy(() => import('./components/Sections/Hero'));
+const Background = lazy(() => import('./components/UI/Background'));
+const Footer = lazy(() => import('./components/Layout/Footer'));
+const ScrollProgress = lazy(() => import('./components/UI/ScrollProgress'));
 
 // Lazy load below-the-fold components
 const TechBento = lazy(() => import('./components/Sections/TechBento'));
@@ -77,27 +78,27 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen text-white bg-dark-bg selection:bg-gold-500 selection:text-black overflow-hidden font-sans">
-      <ScrollProgress />
-      <Background />
-      <Navbar activeMode={portfolioMode} onToggleMode={(mode) => setPortfolioMode(mode)} />
-      
-      <main className="relative z-10">
-        <Hero />
-        
-        <Suspense fallback={
-          <div className="h-screen w-screen flex flex-col items-center justify-center bg-[#030014] text-white font-sans relative overflow-hidden">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-purple-600/10 rounded-full blur-[100px] pointer-events-none" />
-            <div className="flex flex-col items-center gap-6 relative z-10">
-              <div className="relative w-16 h-16 flex items-center justify-center">
-                <div className="absolute inset-0 rounded-full border-4 border-purple-500/10 border-t-purple-500 animate-spin" />
-              </div>
-              <span className="text-xs font-black uppercase tracking-[0.25em] text-purple-400 animate-pulse">
-                Loading...
-              </span>
-            </div>
+    <Suspense fallback={
+      <div className="h-screen w-screen flex flex-col items-center justify-center bg-[#030014] text-white font-sans relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-purple-600/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="flex flex-col items-center gap-6 relative z-10">
+          <div className="relative w-16 h-16 flex items-center justify-center">
+            <div className="absolute inset-0 rounded-full border-4 border-purple-500/10 border-t-purple-500 animate-spin" />
           </div>
-        }>
+          <span className="text-xs font-black uppercase tracking-[0.25em] text-purple-400 animate-pulse">
+            Loading Classic View...
+          </span>
+        </div>
+      </div>
+    }>
+      <div className="min-h-screen text-white bg-dark-bg selection:bg-gold-500 selection:text-black overflow-hidden font-sans">
+        <ScrollProgress />
+        <Background />
+        <Navbar activeMode={portfolioMode} onToggleMode={(mode) => setPortfolioMode(mode)} />
+        
+        <main className="relative z-10">
+          <Hero />
+          
           <Experience />
           <TheBridge />
           <SkillsShowcase />
@@ -114,14 +115,14 @@ const App: React.FC = () => {
           {/* <Projects /> */}
           <Certifications />
           <DomMarketing /> {/* DOM Marketing section */}
-          {/* <DataPhilosophy /> */} {/* Temporarily hidden: Moved DataPhilosophy here, below DomMarketing */}
-          <TechBento /> {/* Moved TechBento here, below DataPhilosophy */}
+          {/* <DataPhilosophy /> */}
+          <TechBento />
           <Partners />
-        </Suspense>
-      </main>
+        </main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </Suspense>
   );
 };
 

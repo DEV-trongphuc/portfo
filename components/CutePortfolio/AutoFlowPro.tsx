@@ -67,7 +67,7 @@ const AutoFlowPro: React.FC = () => {
                         <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
                             MarTech Automation
                         </span>
-                        <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white">DOMATION Automation (AutoFlow Pro)</h3>
+                        <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">DOMATION Automation (AutoFlow Pro)</h3>
                         <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light text-justify">
                             Hệ thống tự động hóa marketing, kết nối API và kịch bản chăm sóc đa kênh. Hỗ trợ thiết kế Email Marketing kéo thả chuẩn Responsive, phân tích hành trình khách hàng 360 độ và huấn luyện AI Chatbot riêng biệt.
                         </p>

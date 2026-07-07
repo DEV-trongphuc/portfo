@@ -82,7 +82,7 @@ const MetaAdReportShowcase: React.FC = () => {
                         <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
                             Ads Performance Solution
                         </span>
-                        <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white">DOMATION Meta Ad Realtime Report</h3>
+                        <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">DOMATION Meta Ad Realtime Report</h3>
                         <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light text-justify">
                             Hệ thống báo cáo hiệu suất Meta Ads tích hợp AI phân tích dữ liệu chuyên sâu, hỗ trợ ra quyết định Scale hay Vít ngân sách.
                         </p>

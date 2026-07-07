@@ -922,7 +922,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
                         Enterprise CRM
                       </span>
-                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white">DOMATION CRM</h3>
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">DOMATION CRM</h3>
                       <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light text-justify">
                         Hệ thống quản lý quan hệ khách hàng (CRM) chuyên sâu dành cho doanh nghiệp SME. Hỗ trợ quản lý dữ liệu phễu khách hàng khép kín, phân bổ số tự động, quản lý kho sản phẩm, tài chính hóa đơn và Ticket CSKH.
                       </p>
@@ -1030,7 +1030,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
                         SME Retail ERP
                       </span>
-                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white">MINTH CRM & POS</h3>
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">MINTH CRM & POS</h3>
                       <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light text-justify">
                         Giải pháp quản lý bán hàng "Tinh gọn - Hiện đại - Dễ dùng" dành riêng cho các shop vừa và nhỏ. Chỉ với 1 màn hình duy nhất, bạn nắm trọn toàn bộ bức tranh tài chính và vận hành của cửa hàng.
                       </p>
@@ -1131,7 +1131,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
                       Edu-Tech Solution
                     </span>
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white">LMS E-LEARNING Platform</h3>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">LMS E-LEARNING Platform</h3>
                     <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light">
                       Nền tảng quản lý học tập (LMS) hoàn chỉnh. Sở hữu toàn bộ các tính năng cốt lõi của một hệ thống giáo dục trực tuyến chuyên nghiệp nhất, đáp ứng quy mô học viên lớn.
                     </p>
@@ -1230,7 +1230,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                       <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
                         Data Routing Solution
                       </span>
-                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white">DOMATION Data Routing (Chia Data)</h3>
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">DOMATION Data Routing (Chia Data)</h3>
                       <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light text-justify">
                         Hệ thống chuyển dữ liệu tự động thời gian thực từ Landing Page, Facebook Ads, Zalo Form về CRM nội bộ. Phân chia Data xoay vòng Round-Robin cho các Sale, nhận diện nghỉ phép, tự động báo lỗi và đền bù số qua Zalo Bot.
                       </p>
@@ -1662,7 +1662,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     href="https://www.mystery-tarot.net/" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-fit px-6 py-3 bg-[#0f0b24] text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-lg flex items-center gap-2"
+                    className="px-5 py-2.5 bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:via-violet-500 hover:to-indigo-500 text-white font-bold text-[10px] sm:text-xs uppercase tracking-widest rounded-full shadow-[0_0_15px_rgba(168,85,247,0.35)] hover:shadow-[0_0_25px_rgba(168,85,247,0.55)] flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
                   >
                     Xem Live Tarot <ExternalLink size={12} />
                   </a>

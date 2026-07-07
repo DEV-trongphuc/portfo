@@ -1,5 +1,3 @@
-
-
 import { Experience, Project, Certification, Partner, OutsourceHighlight } from './types';
 import { 
   Megaphone, 
@@ -17,6 +15,11 @@ import {
   SearchCode,
 } from 'lucide-react';
 import React from 'react';
+
+// @ts-ignore
+import logoIdeas from './imgs/logo_ideas.webp';
+// @ts-ignore
+import logoPhucloctho from './imgs/logo_phucloctho.webp';
 
 // Brand logo
 // @ts-ignore
@@ -101,13 +104,6 @@ import partnerNavastore from './imgs/partner_navastore.webp';
 import partnerFlora from './imgs/partner_flora.webp';
 // @ts-ignore
 import partnerBrandson from './imgs/partner_brandson.webp';
-
-// Domation projects
-// @ts-ignore
-import domProject1 from './imgs/dom_project_1.webp';
-// @ts-ignore
-import domProject2 from './imgs/dom_project_2.webp';
-
 
 // LOGO URL CONSTANT
 export const BRAND_LOGO = domLogo;
@@ -295,7 +291,7 @@ export const CERTIFICATIONS: Certification[] = [
         name: 'Front End Developer',
         issuer: 'Free Code Camp',
         year: '2021',
-        image: 'https://cdn.jsdelivr.net/gh/turniodev/TurnioSave@main/DEV_ASSET/cert/cert%20(2).jpg', 
+        image: cert1, 
         link: 'https://www.freecodecamp.org/certification/trongphuc3105/front-end-development-libraries'
     },
     {
@@ -303,7 +299,7 @@ export const CERTIFICATIONS: Certification[] = [
         name: 'Responsive Web Design',
         issuer: 'Free Code Camp',
         year: '2021',
-        image: 'https://cdn.jsdelivr.net/gh/turniodev/TurnioSave@main/DEV_ASSET/cert/cert%20(1).jpg',
+        image: cert2,
         link: 'https://www.freecodecamp.org/certification/trongphuc3105/responsive-web-design'
     },
     
@@ -312,7 +308,7 @@ export const CERTIFICATIONS: Certification[] = [
         name: 'JavaScript Advanced',
         issuer: 'Fullstack',
         year: '2022',
-        image: 'https://cdn.jsdelivr.net/gh/turniodev/TurnioSave@main/DEV_ASSET/cert/cert%20(4).png',
+        image: cert4,
         link: 'https://f8.edu.vn/certificates/t7s3s'
     },
     {
@@ -320,7 +316,7 @@ export const CERTIFICATIONS: Certification[] = [
         name: 'JavaScript Basic',
         issuer: 'Fullstack',
         year: '2021',
-        image: 'https://cdn.jsdelivr.net/gh/turniodev/TurnioSave@main/DEV_ASSET/cert/cert%20(5).png',
+        image: cert5,
         link: 'https://f8.edu.vn/certificates/fzmz5'
     },
     {
@@ -328,7 +324,7 @@ export const CERTIFICATIONS: Certification[] = [
         name: 'ReactJS',
         issuer: 'Fullstack',
         year: '2022',
-        image: 'https://cdn.jsdelivr.net/gh/turniodev/TurnioSave@main/DEV_ASSET/cert/cert%20(2).png',
+        image: cert6,
         link: 'https://f8.edu.vn/certificates/7jzkn'
     },
     {
@@ -336,7 +332,7 @@ export const CERTIFICATIONS: Certification[] = [
         name: 'HTML/CSS',
         issuer: 'Fullstack',
         year: '2021',
-        image: 'https://cdn.jsdelivr.net/gh/turniodev/TurnioSave@main/DEV_ASSET/cert/cert%20(3).png',
+        image: cert7,
         link: 'https://f8.edu.vn/certificates/t7s3s'
     },
     {
@@ -344,7 +340,7 @@ export const CERTIFICATIONS: Certification[] = [
         name: 'SEO - TOP CV',
         issuer: 'TOP CV',
         year: '2023',
-        image: 'https://cdn.jsdelivr.net/gh/turniodev/TurnioSave@main/DEV_ASSET/cert/cert%20(7).png',
+        image: cert8,
         link: 'https://certificate.testcenter.vn/dUR8UT0fMlcZNV9GVjE2bFN7SXU'
     },
     {
@@ -352,7 +348,7 @@ export const CERTIFICATIONS: Certification[] = [
         name: 'Javascript top 20%',
         issuer: 'TOP CV',
         year: '2023',
-        image: 'https://i.ibb.co/MRs3sf3/JS.png',
+        image: cert3,
         link: 'https://certificate.testcenter.vn/dUR8Uz0fMlcZNV9GVjE2bFN7SXU'
     },
 ];
@@ -367,7 +363,7 @@ export const PROJECTS: Project[] = [
     purpose: 'Website giáo dục',
     description: 'SEO 5/10 từ khóa chính đạt vị trí cao nhất top 1 - duy trì 4-5 từ khóa ở trang nhất theo tháng',
     longDescription: '/',
-    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80',
+    image: project1,
     tech: ['Meta Ads', 'ManyChat', 'Zapier', 'Google Sheets API'],
   },
   {
@@ -378,7 +374,7 @@ export const PROJECTS: Project[] = [
     purpose: 'Đồng bộ dữ liệu khách hàng offline lên online để Remarketing.',
     description: 'Kết nối POS với nền tảng marketing online, tự động gửi Voucher qua Zalo ZNS.',
     longDescription: 'Xây dựng Middleware bằng NodeJS để lắng nghe Webhook từ máy POS tại cửa hàng. Khi khách thanh toán, dữ liệu được đẩy về Database. Hệ thống tự động phân loại khách hàng (Mới, Thân thiết, VIP) và gửi tin nhắn Zalo ZNS tặng Voucher quay lại.',
-    image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=800&q=80',
+    image: project2,
     tech: ['NodeJS', 'React', 'Zalo ZNS', 'MongoDB'],
   },
   {
@@ -389,7 +385,7 @@ export const PROJECTS: Project[] = [
     purpose: 'Giữ chân khách hàng và tăng tỷ lệ quay lại (Retention Rate).',
     description: 'Mini App trên Zalo giúp khách hàng tích điểm, đổi quà và đặt lịch dịch vụ.',
     longDescription: 'Phát triển Zalo Mini App native. Khách hàng không cần tải app mới. Tính năng bao gồm: Tích điểm QR Code, Đổi quà voucher, Đặt lịch hẹn tự động đồng bộ Google Calendar của bác sĩ.',
-    image: 'https://images.unsplash.com/photo-1512428559087-560fa5ce7d02?auto=format&fit=crop&w=800&q=80',
+    image: project3,
     tech: ['Zalo Mini App', 'Tailwind', 'Redux', 'Golang'],
   },
   {
@@ -400,7 +396,7 @@ export const PROJECTS: Project[] = [
     purpose: 'Tiết kiệm 20 giờ làm báo cáo mỗi tuần cho Account Manager.',
     description: 'Dashboard tổng hợp dữ liệu từ 5 nguồn quảng cáo, hỗ trợ ra quyết định realtime.',
     longDescription: 'Sử dụng Python Scripts để kéo dữ liệu từ Facebook Ads API, Google Ads API, TikTok Ads API vào BigQuery. Kết nối Google Looker Studio để vẽ biểu đồ so sánh hiệu quả đa kênh theo thời gian thực.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1280&q=80',
+    image: project4,
     tech: ['Looker', 'BigQuery', 'Python', 'Ads API'],
   },
   {
@@ -411,7 +407,7 @@ export const PROJECTS: Project[] = [
     purpose: 'Khắc phục vấn đề iOS 14+ chặn tracking pixel.',
     description: 'Server-side tracking khắc phục iOS 14+, tăng độ chính xác dữ liệu lên 30%.',
     longDescription: 'Triển khai Google Tag Manager Server-side trên Cloudflare Workers. Thiết lập Meta Conversion API (CAPI) để gửi sự kiện Purchase trực tiếp từ Server, bypass các trình chặn quảng cáo và cookie policy của browser.',
-    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
+    image: project5,
     tech: ['GTM Server', 'Cloudflare', 'NodeJS'],
   },
   {
@@ -422,7 +418,7 @@ export const PROJECTS: Project[] = [
     purpose: 'Giảm tỷ lệ khách bùng lịch (No-show).',
     description: 'Hệ thống đặt lịch spa thông minh, nhắc lịch tự động qua SMS Brandname.',
     longDescription: 'Ứng dụng React Native cho khách đặt lịch. Backend tự động gửi SMS nhắc hẹn trước 24h và 2h. Nếu khách hủy, slot trống tự động được đẩy lên Flash Sale.',
-    image: 'https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=800&q=80',
+    image: project6,
     tech: ['React Native', 'Firebase', 'Twilio'],
   },
   {
@@ -433,7 +429,7 @@ export const PROJECTS: Project[] = [
     purpose: 'Tăng số lượng khách đăng ký tập thử.',
     description: 'Phễu thu hút khách hàng phòng tập Gym với chuỗi chăm sóc tự động 30 ngày.',
     longDescription: 'Thiết kế Landing Page chuyển đổi cao tặng gói tập thử 7 ngày. Sau khi đăng ký, chuỗi Email Automation sẽ gửi tips dinh dưỡng và bài tập để nurture khách hàng trước khi Sale gọi chốt gói năm.',
-    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80',
+    image: project7,
     tech: ['Landing Page', 'Email Marketing', 'Ads'],
   },
   {
@@ -444,7 +440,7 @@ export const PROJECTS: Project[] = [
     purpose: 'Giúp học viên học từ vựng không nhàm chán.',
     description: 'Web app học từ vựng tiếng Anh qua game, tăng tỷ lệ hoàn thành bài học lên 40%.',
     longDescription: 'Ứng dụng phương pháp Spaced Repetition (Lặp lại ngắt quãng). Học viên chơi game nối từ, đuổi hình bắt chữ để tích coin đổi quà tại trung tâm.',
-    image: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=800&q=80',
+    image: project8,
     tech: ['VueJS', 'Socket.io', 'MongoDB'],
   },
 ];
@@ -469,7 +465,6 @@ export const SKILL_CATEGORIES = [
     color: 'bg-purple-500/10 text-purple-500' 
   }
 ];
-
 
 export const SHORT_CAMPAIGNS: OutsourceHighlight[] = [
   {

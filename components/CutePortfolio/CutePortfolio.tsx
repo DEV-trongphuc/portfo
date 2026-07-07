@@ -198,6 +198,46 @@ const SHEETS = [
   { front: RAW_PAGES[4], back: 'END_SCREEN' },
 ];
 
+const TechDecor: React.FC = () => {
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+      {/* Top Left crosshair */}
+      <div className="absolute top-4 left-4 text-purple-500/20 font-mono text-[9px] select-none animate-pulse">[ + ]</div>
+      {/* Top Right corner bracket */}
+      <div className="absolute top-4 right-4 text-purple-500/20 font-mono text-[9px] select-none animate-pulse" style={{ animationDelay: '1s' }}>[ // ]</div>
+      {/* Bottom Left crosshair */}
+      <div className="absolute bottom-4 left-4 text-purple-500/20 font-mono text-[9px] select-none animate-pulse" style={{ animationDelay: '1.5s' }}>[ SYS_ACTIVE ]</div>
+      {/* Bottom Right coordinates */}
+      <div className="absolute bottom-4 right-4 text-purple-500/20 font-mono text-[9px] select-none animate-pulse" style={{ animationDelay: '2s' }}>[ 094_712 ]</div>
+      
+      {/* Gentle Laser scan line */}
+      <motion.div
+        animate={{ y: ['0%', '100%'], opacity: [0, 1, 1, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-purple-500/15 to-transparent top-0"
+      />
+      
+      {/* Floating blur glow orbs */}
+      <motion.div
+        animate={{
+          x: [0, 40, -30, 0],
+          y: [0, -30, 30, 0],
+        }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-[20%] left-[10%] w-96 h-96 bg-purple-600/5 rounded-full blur-[130px]"
+      />
+      <motion.div
+        animate={{
+          x: [0, -30, 40, 0],
+          y: [0, 40, -30, 0],
+        }}
+        transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute bottom-[20%] right-[10%] w-96 h-96 bg-pink-600/5 rounded-full blur-[140px]"
+      />
+    </div>
+  );
+};
+
 const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -787,7 +827,8 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             
             {/* OVERVIEW DASHBOARD */}
             {activeTab === 'dashboard' && (
-              <div className="space-y-10 w-full">
+              <div className="space-y-10 w-full relative overflow-hidden p-1">
+                <TechDecor />
                 
                 {/* HERO: 3D Dark Bento Glassmorphic Grid (Enhanced with vibrant neon colors and premium gradients) */}
                 <div className="relative bg-gradient-to-br from-[#0c051e] via-[#090514] to-[#1d0d3a] border border-purple-500/35 rounded-2xl p-8 md:p-12 text-white overflow-hidden shadow-[0_0_50px_rgba(168,85,247,0.15)] flex flex-col lg:flex-row items-center justify-between gap-10 min-h-[380px]">
@@ -950,7 +991,8 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
 
 
             {activeTab === 'saas' && (
-              <div className="space-y-10 w-full">
+              <div className="space-y-10 w-full relative overflow-hidden p-1">
+                <TechDecor />
                 {/* DOMATION CRM CARD */}
                 <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-4 sm:p-6 md:p-12 shadow-sm space-y-6 md:space-y-8">
                   <div className="flex flex-col md:flex-row justify-between items-start gap-6">
@@ -1259,7 +1301,8 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             )}
 
             {activeTab === 'martech' && (
-              <div className="space-y-10 w-full">
+              <div className="space-y-10 w-full relative overflow-hidden p-1">
+                <TechDecor />
                 <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-4 sm:p-6 md:p-12 shadow-sm space-y-6 md:space-y-8">
                   <div className="flex flex-col md:flex-row justify-between items-start gap-6">
                     <div className="space-y-3 md:space-y-4 max-w-3xl text-left">
@@ -1379,21 +1422,24 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
 
             {/* META AD REPORT TAB */}
             {activeTab === 'meta-report' && (
-              <div className="space-y-6 w-full">
+              <div className="space-y-6 w-full relative overflow-hidden p-1">
+                <TechDecor />
                 <MetaAdReportShowcase />
               </div>
             )}
 
             {/* MARTECH AUTOMATION TAB */}
             {activeTab === 'automation' && (
-              <div className="space-y-6 w-full">
+              <div className="space-y-6 w-full relative overflow-hidden p-1">
+                <TechDecor />
                 <AutoFlowPro />
               </div>
             )}
 
             {/* LANDING PAGES TAB */}
             {activeTab === 'landings' && (
-              <div className="space-y-10 w-full">
+              <div className="space-y-10 w-full relative overflow-hidden p-1">
+                <TechDecor />
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   <div className="group relative block rounded-2xl bg-[#0f0b24] border border-purple-900/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl overflow-hidden">
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" style={{ background: "radial-gradient(300px at left top, rgba(147, 51, 234, 0.15), transparent 70%)" }}></div>
@@ -1591,7 +1637,8 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
 
             {/* ZALO MINI APP SHOWCASE */}
             {activeTab === 'zalo' && (
-              <div className="space-y-10 w-full">
+              <div className="space-y-10 w-full relative overflow-hidden p-1">
+                <TechDecor />
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <div>
                     <h2 className="text-3xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">ZALO MINI APP DEMO</h2>
@@ -1690,7 +1737,8 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
 
             {/* MYSTERY TAROT SHOWCASE */}
             {activeTab === 'tarot' && (
-              <div className="space-y-10 w-full">
+              <div className="space-y-10 w-full relative overflow-hidden p-1">
+                <TechDecor />
                 <div className="flex justify-between items-center flex-wrap gap-4">
                   <div>
                     <h2 className="text-3xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200">MYSTERY TAROT</h2>
@@ -1782,7 +1830,8 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
 
             {/* AI CUSTOM (TRỢ LÝ ẢO AI) */}
             {activeTab === 'ai-agent' && (
-              <div className="space-y-12 w-full text-left">
+              <div className="space-y-12 w-full text-left relative overflow-hidden p-1">
+                <TechDecor />
                 
                 {/* PHÂN HỆ 1: TRỢ LÝ ẢO AI CHATBOT (AI CHATBOT SYSTEM) */}
                 <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-4 sm:p-6 md:p-12 shadow-sm space-y-8 relative overflow-hidden">

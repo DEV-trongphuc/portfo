@@ -238,6 +238,100 @@ const TechDecor: React.FC = () => {
   );
 };
 
+const TiltCard: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [rotateX, setRotateX] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const card = cardRef.current;
+    const rect = card.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left - width / 2;
+    const mouseY = e.clientY - rect.top - height / 2;
+    
+    const rX = -(mouseY / height) * 8;
+    const rY = (mouseX / width) * 8;
+    
+    setRotateX(rX);
+    setRotateY(rY);
+  };
+  
+  const handleMouseLeave = () => {
+    setRotateX(0);
+    setRotateY(0);
+    setIsHovered(false);
+  };
+  
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) ${isHovered ? 'scale(1.015)' : 'scale(1)'}`,
+        transition: 'transform 0.15s ease-out, box-shadow 0.3s ease',
+        transformStyle: 'preserve-3d',
+      }}
+      className={className}
+    >
+      <div style={{ transform: 'translateZ(10px)', transformStyle: 'preserve-3d' }} className="w-full h-full">
+        {children}
+      </div>
+    </div>
+  );
+};
+
+const GlowCard: React.FC<{ children: React.ReactNode; className?: string; glowColor?: string }> = ({ 
+  children, 
+  className = '', 
+  glowColor = 'rgba(168, 85, 247, 0.18)' 
+}) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+  
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setCoords({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+  
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={`relative overflow-hidden ${className}`}
+    >
+      {isHovered && (
+        <div
+          className="absolute pointer-events-none rounded-full blur-[80px] z-0"
+          style={{
+            width: '320px',
+            height: '320px',
+            left: `${coords.x - 160}px`,
+            top: `${coords.y - 160}px`,
+            background: `radial-gradient(circle, ${glowColor} 0%, transparent 70%)`,
+            transition: 'left 0.1s ease-out, top 0.1s ease-out',
+          }}
+        />
+      )}
+      <div className="relative z-10 w-full h-full">
+        {children}
+      </div>
+    </div>
+  );
+};
+
 const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

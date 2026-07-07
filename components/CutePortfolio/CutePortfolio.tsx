@@ -2001,8 +2001,9 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                         />
                       </object>
                     </div>
+                  </div>
 
-                    {/* Minigame Showcase & Shared Projects Header */}
+                  {/* Minigame Showcase & Shared Projects Header */}
                     <div className="pt-8 space-y-6">
                       <div className="text-left">
                         <span className="text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-3 py-1 rounded-full border border-purple-900/40">
@@ -2097,7 +2098,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                                 <div className="w-12 h-12 rounded-2xl bg-[#0f0b24] border border-purple-900/40 text-yellow-300 flex items-center justify-center mx-auto shadow-md">
                                   <ExternalLink size={20} />
                                 </div>
-                                <span className="text-[10px] font-black text-white tracking-widest uppercase">GOOGLE SITES</span>
+                                <span className="text-[10px] font-black text-white tracking-widest uppercase">MÓN QUÀ NHỎ</span>
                               </div>
                             </div>
                             <div className="p-5 space-y-2 text-left">
@@ -2121,7 +2122,6 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                             </a>
                           </div>
                         </div>
-                      </div>
                     </div>
                   </div>
                 </div>

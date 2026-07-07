@@ -896,18 +896,11 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     {/* Image Container with Overlay Controls */}
                     <div className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden border border-purple-900/40 shadow-xl bg-[#161033]">
                       <div className="absolute inset-0">
-                        <AnimatePresence mode="wait">
-                          <motion.img 
-                            key={activeCrmImg}
-                            src={activeCrmImg} 
-                            alt="DOMATION CRM" 
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.25, ease: "easeInOut" }}
-                            className="w-full h-full object-cover" 
-                          />
-                        </AnimatePresence>
+                        <img 
+                          src={activeCrmImg} 
+                          alt="DOMATION CRM" 
+                          className="w-full h-full object-cover" 
+                        />
                       </div>
                       
                       <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" onClick={() => { setPreviewImage(activeCrmImg); setPreviewList([crms1, crms2, crms3, crms4, crm5, crm6, crm7, crm8, crm9, crm10, crm11, crm12, crm13, crm14, crm15, crm16, crm17, crm18]); }}>
@@ -1006,18 +999,11 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     {/* Image Container with Overlay Controls */}
                     <div className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden border border-purple-900/40 shadow-xl bg-[#161033]">
                       <div className="absolute inset-0">
-                        <AnimatePresence mode="wait">
-                          <motion.img 
-                            key={activeMinthImg}
-                            src={activeMinthImg} 
-                            alt="MINTH CRM & POS" 
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.25, ease: "easeInOut" }}
-                            className="w-full h-full object-cover" 
-                          />
-                        </AnimatePresence>
+                        <img 
+                          src={activeMinthImg} 
+                          alt="MINTH CRM & POS" 
+                          className="w-full h-full object-cover" 
+                        />
                       </div>
                       
                       <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" onClick={() => { setPreviewImage(activeMinthImg); setPreviewList([crm1, crm2, crm3, crm4]); }}>
@@ -1108,18 +1094,11 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     {/* Image Container with Overlay Controls */}
                     <div className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden border border-purple-900/40 shadow-xl bg-[#161033]">
                       <div className="absolute inset-0">
-                        <AnimatePresence mode="wait">
-                          <motion.img 
-                            key={activeLmsImg}
-                            src={activeLmsImg} 
-                            alt="LMS Platform" 
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.25, ease: "easeInOut" }}
-                            className="w-full h-full object-cover" 
-                          />
-                        </AnimatePresence>
+                        <img 
+                          src={activeLmsImg} 
+                          alt="LMS Platform" 
+                          className="w-full h-full object-cover" 
+                        />
                       </div>
 
                       <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" onClick={() => { setPreviewImage(activeLmsImg); setPreviewList([lms1, lms2, lms3, lms4]); }}>
@@ -1720,18 +1699,11 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     {/* Image Container with Overlay Controls */}
                     <div className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden border border-purple-900/40 shadow-xl bg-[#161033] group">
                       <div className="absolute inset-0">
-                        <AnimatePresence mode="wait">
-                          <motion.img 
-                            key={activeAiIdx}
-                            src={aiAgentImages[activeAiIdx]} 
-                            alt={`AI Custom Screenshot ${activeAiIdx + 1}`} 
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.25, ease: "easeInOut" }}
-                            className="w-full h-full object-cover" 
-                          />
-                        </AnimatePresence>
+                        <img 
+                          src={aiAgentImages[activeAiIdx]} 
+                          alt={`AI Custom Screenshot ${activeAiIdx + 1}`} 
+                          className="w-full h-full object-cover" 
+                        />
                       </div>
                       {/* Zoom overlay */}
                       <div 

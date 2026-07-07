@@ -16,11 +16,6 @@ import {
 } from 'lucide-react';
 import React from 'react';
 
-// @ts-ignore
-import logoIdeas from './imgs/logo_ideas.webp';
-// @ts-ignore
-import logoPhucloctho from './imgs/logo_phucloctho.webp';
-
 // Brand logo
 // @ts-ignore
 import domLogo from './imgs/dom_logo.webp';

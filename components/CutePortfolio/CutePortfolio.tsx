@@ -1983,16 +1983,16 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                           
                           <div className="grid grid-cols-3 gap-2 bg-[#030014] border border-purple-900/30 rounded-2xl p-4 mb-4">
                             <div>
-                              <span className="text-[8px] text-slate-400 uppercase font-black block tracking-widest mb-1">Impact</span>
-                              <span className="text-[10px] font-black text-slate-200 leading-tight">{item.impact}</span>
+                              <span className="text-[9px] md:text-xs text-slate-400 uppercase font-black block tracking-widest mb-1">Impact</span>
+                              <span className="text-xs md:text-sm font-black text-slate-200 leading-tight">{item.impact}</span>
                             </div>
                             <div className="border-l border-purple-900/40 pl-3">
-                              <span className="text-[8px] text-slate-400 uppercase font-black block tracking-widest mb-1">Efficiency</span>
-                              <span className="text-[10px] font-black text-slate-400 leading-tight">{item.cost}</span>
+                              <span className="text-[9px] md:text-xs text-slate-400 uppercase font-black block tracking-widest mb-1">Efficiency</span>
+                              <span className="text-xs md:text-sm font-black text-slate-300 leading-tight">{item.cost}</span>
                             </div>
                             <div className="border-l border-purple-900/40 pl-3">
-                              <span className="text-[8px] text-slate-300 uppercase font-black block tracking-widest mb-1">Result</span>
-                              <span className="text-xs font-black text-white leading-tight">{item.result}</span>
+                              <span className="text-[9px] md:text-xs text-slate-400 uppercase font-black block tracking-widest mb-1">Result</span>
+                              <span className="text-xs md:text-sm font-black text-white leading-tight">{item.result}</span>
                             </div>
                           </div>
                         </div>
@@ -2052,16 +2052,16 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                             
                             <div className="grid grid-cols-3 gap-2 bg-[#030014] border border-purple-900/30 rounded-2xl p-4 mb-4 text-left">
                               <div>
-                                <span className="text-[8px] text-slate-400 uppercase font-black block tracking-widest mb-1">Impact</span>
-                                <span className="text-[10px] font-black text-slate-200 leading-tight">{item.impact}</span>
+                                <span className="text-[9px] md:text-xs text-slate-400 uppercase font-black block tracking-widest mb-1">Impact</span>
+                                <span className="text-xs md:text-sm font-black text-slate-200 leading-tight">{item.impact}</span>
                               </div>
                               <div className="border-l border-purple-900/40 pl-3">
-                                <span className="text-[8px] text-slate-400 uppercase font-black block tracking-widest mb-1">Efficiency</span>
-                                <span className="text-[10px] font-black text-slate-400 leading-tight">{item.cost}</span>
+                                <span className="text-[9px] md:text-xs text-slate-400 uppercase font-black block tracking-widest mb-1">Efficiency</span>
+                                <span className="text-xs md:text-sm font-black text-slate-300 leading-tight">{item.cost}</span>
                               </div>
                               <div className="border-l border-purple-900/40 pl-3">
-                                <span className="text-[8px] text-slate-300 uppercase font-black block tracking-widest mb-1">Result</span>
-                                <span className="text-xs font-black text-white leading-tight">{item.result}</span>
+                                <span className="text-[9px] md:text-xs text-slate-400 uppercase font-black block tracking-widest mb-1">Result</span>
+                                <span className="text-xs md:text-sm font-black text-white leading-tight">{item.result}</span>
                               </div>
                             </div>
                           </div>

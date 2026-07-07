@@ -268,10 +268,10 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
       <div className="xl:hidden flex items-center justify-between px-6 py-4 bg-[#0f0b24]/90 border-b border-purple-900/40 backdrop-blur-md sticky top-0 z-40 w-full shadow-sm">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full overflow-hidden border border-purple-500/30 shrink-0">
-            <img src={meAvatar} alt="Huỳnh Trọng Phúc" className="w-full h-full object-cover" />
+            <img src={meAvatar} alt="Huynh Trong Phuc" className="w-full h-full object-cover" />
           </div>
           <div className="min-w-0">
-            <h2 className="text-xs font-black text-white leading-none">Huỳnh Trọng Phúc</h2>
+            <h2 className="text-xs font-black text-white leading-none">Huynh Trong Phuc</h2>
             <p className="text-[8.5px] text-purple-300 font-bold tracking-wide mt-0.5">Digital - AI Automation</p>
           </div>
         </div>
@@ -411,10 +411,10 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
           {/* Logo & Branding */}
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-purple-500/40 shadow-[0_0_15px_rgba(168,85,247,0.3)] shrink-0">
-              <img src={meAvatar} alt="Huỳnh Trọng Phúc" className="w-full h-full object-cover" />
+              <img src={meAvatar} alt="Huynh Trong Phuc" className="w-full h-full object-cover" />
             </div>
             <div className="min-w-0">
-              <h2 className="text-sm font-black text-white leading-tight">Huỳnh Trọng Phúc</h2>
+              <h2 className="text-sm font-black text-white leading-tight">Huynh Trong Phuc</h2>
               <p className="text-[9.5px] text-purple-300 font-bold tracking-wide mt-0.5">Digital - AI Automation</p>
             </div>
           </div>
@@ -648,8 +648,8 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     <span className="text-[9px] font-black uppercase tracking-[0.3em] text-yellow-300 bg-purple-950/60 border border-purple-500/50 px-4 py-1.5 rounded-full inline-block shadow-[0_0_15px_rgba(168,85,247,0.25)] animate-pulse">
                        MARTECH & FULLSTACK COCKPIT
                     </span>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200 drop-shadow-[0_2px_10px_rgba(168,85,247,0.3)]" style={{ fontFamily: '"Be Vietnam Pro", sans-serif' }}>
-                      HUỲNH TRỌNG PHÚC
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200 drop-shadow-[0_2px_10px_rgba(168,85,247,0.3)]">
+                      HUYNH TRONG PHUC
                     </h2>
                     <p className="text-sm md:text-base text-slate-300 font-light leading-relaxed text-justify">
                       Thiết kế hệ thống <span className="text-purple-400 font-bold">Flow - Automation</span>, tối ưu quy trình vận hành và xây dựng giải pháp <span className="text-amber-300 font-bold">chuyển đổi số toàn diện</span> cho doanh nghiệp vừa và nhỏ.

@@ -18,11 +18,11 @@ const API_KEY = (process.env.GEMINI_API_KEY || (process.env as any).API_KEY) as 
 
 // System Prompt with complete details about Huynh Trong Phuc
 const SYSTEM_INSTRUCTION = `
-Bạn là DomiBot, trợ lý ảo AI đại diện cho Huỳnh Trọng Phúc (biệt danh TURNIO) - Chuyên gia Digital Marketing, MarTech & Fullstack Developer, và là Founder của DOMARKETING (DOMATION).
+Bạn là DomiBot, trợ lý ảo AI đại diện cho Huynh Trong Phuc (biệt danh TURNIO) - Chuyên gia Digital Marketing, MarTech & Fullstack Developer, và là Founder của DOMARKETING (DOMATION).
 Nhiệm vụ của bạn là trò chuyện với nhà tuyển dụng, đối tác hoặc khách hàng ghé thăm portfolio này. Hãy trả lời một cách tự tin, chuyên nghiệp, thông minh, thỉnh thoảng sử dụng emoji thích hợp để tạo cảm giác thân thiện nhưng vẫn ngầu và am hiểu công nghệ.
 
-Dưới đây là thông tin chi tiết về Huỳnh Trọng Phúc:
-- **Họ tên**: Huỳnh Trọng Phúc (TURNIO)
+Dưới đây là thông tin chi tiết về Huynh Trong Phuc:
+- **Họ tên**: Huynh Trong Phuc (TURNIO)
 - **Vai trò**: CEO Founder DOMARKETING / DOMATION, Digital Marketing & Fullstack Developer.
 - **Thống kê nổi bật (Stats)**:
   - 11K+ người theo dõi lập trình trên TikTok (@turnio.dev).
@@ -138,7 +138,7 @@ const DomiBot: React.FC<DomiBotProps> = ({ onNavigate, activeTab }) => {
     {
       id: 'welcome',
       sender: 'bot',
-      text: "Xin chào! Tôi là DomiBot  - trợ lý AI của Huỳnh Trọng Phúc. Tôi có thể giải đáp mọi thắc mắc của bạn về kinh nghiệm lập trình, các dự án marketing tự động hóa và các sản phẩm của Phúc. Hãy thử hỏi tôi xem sao nhé!",
+      text: "Xin chào! Tôi là DomiBot  - trợ lý AI của Huynh Trong Phuc. Tôi có thể giải đáp mọi thắc mắc của bạn về kinh nghiệm lập trình, các dự án marketing tự động hóa và các sản phẩm của Phúc. Hãy thử hỏi tôi xem sao nhé!",
       timestamp: new Date()
     }
   ]);
@@ -265,7 +265,7 @@ const DomiBot: React.FC<DomiBotProps> = ({ onNavigate, activeTab }) => {
           </div>
           <div>
             <h4 className="font-bold text-sm tracking-wide">DomiBot v2.5</h4>
-            <p className="text-[10px] text-white/70 font-medium">Trợ lý AI của Trọng Phúc</p>
+            <p className="text-[10px] text-white/70 font-medium">Trợ lý AI của Trong Phuc</p>
           </div>
         </div>
         <div className="flex items-center gap-2 px-3 py-1.5 bg-[#0f0b24]/10 rounded-full border border-purple-900/40 text-[9px] font-black uppercase tracking-wider">

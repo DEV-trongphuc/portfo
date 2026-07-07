@@ -14,18 +14,24 @@ import {
 } from 'lucide-react';
 import Modal from '../UI/Modal';
 
+// @ts-ignore
+import domRp1 from '../../imgs/dom_rp (1).webp';
+// @ts-ignore
+import domRp2 from '../../imgs/dom_rp (2).webp';
+// @ts-ignore
+import domRp3 from '../../imgs/dom_rp (3).webp';
+// @ts-ignore
+import domRp4 from '../../imgs/dom_rp (4).webp';
+// @ts-ignore
+import domRp5 from '../../imgs/dom_rp (5).webp';
+// @ts-ignore
+import domRp6 from '../../imgs/dom_rp (6).webp';
+
 const MetaAdReportShowcase: React.FC = () => {
     const [previewImage, setPreviewImage] = useState<string | null>(null);
     const [activeIdx, setActiveIdx] = useState(0);
 
-    const images = [
-        "https://portfo-turnio.vercel.app/imgs/dom_rp%20(1).webp",
-        "https://portfo-turnio.vercel.app/imgs/dom_rp%20(2).webp",
-        "https://portfo-turnio.vercel.app/imgs/dom_rp%20(3).webp",
-        "https://portfo-turnio.vercel.app/imgs/dom_rp%20(4).webp",
-        "https://portfo-turnio.vercel.app/imgs/dom_rp%20(5).webp",
-        "https://portfo-turnio.vercel.app/imgs/dom_rp%20(6).webp"
-    ];
+    const images = [domRp1, domRp2, domRp3, domRp4, domRp5, domRp6];
 
     const features = [
         {

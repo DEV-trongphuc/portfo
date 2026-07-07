@@ -202,19 +202,19 @@ const TechDecor: React.FC = () => {
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
       {/* Top Left crosshair */}
-      <div className="absolute top-4 left-4 text-purple-500/20 font-mono text-[9px] select-none animate-pulse">[ + ]</div>
+      <div className="absolute top-4 left-4 text-purple-400/70 font-mono text-[10px] select-none animate-pulse">[ + ]</div>
       {/* Top Right corner bracket */}
-      <div className="absolute top-4 right-4 text-purple-500/20 font-mono text-[9px] select-none animate-pulse" style={{ animationDelay: '1s' }}>[ // ]</div>
+      <div className="absolute top-4 right-4 text-purple-400/70 font-mono text-[10px] select-none animate-pulse" style={{ animationDelay: '1s' }}>[ // ]</div>
       {/* Bottom Left crosshair */}
-      <div className="absolute bottom-4 left-4 text-purple-500/20 font-mono text-[9px] select-none animate-pulse" style={{ animationDelay: '1.5s' }}>[ SYS_ACTIVE ]</div>
+      <div className="absolute bottom-4 left-4 text-purple-400/70 font-mono text-[10px] select-none animate-pulse" style={{ animationDelay: '1.5s' }}>[ SYS_ACTIVE ]</div>
       {/* Bottom Right coordinates */}
-      <div className="absolute bottom-4 right-4 text-purple-500/20 font-mono text-[9px] select-none animate-pulse" style={{ animationDelay: '2s' }}>[ 094_712 ]</div>
+      <div className="absolute bottom-4 right-4 text-purple-400/70 font-mono text-[10px] select-none animate-pulse" style={{ animationDelay: '2s' }}>[ 094_712 ]</div>
       
       {/* Gentle Laser scan line */}
       <motion.div
         animate={{ y: ['0%', '100%'], opacity: [0, 1, 1, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-purple-500/15 to-transparent top-0"
+        className="absolute left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-purple-400/40 to-transparent top-0"
       />
       
       {/* Floating blur glow orbs */}
@@ -224,7 +224,7 @@ const TechDecor: React.FC = () => {
           y: [0, -30, 30, 0],
         }}
         transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-[20%] left-[10%] w-96 h-96 bg-purple-600/5 rounded-full blur-[130px]"
+        className="absolute top-[20%] left-[10%] w-96 h-96 bg-purple-600/20 rounded-full blur-[130px]"
       />
       <motion.div
         animate={{
@@ -232,7 +232,7 @@ const TechDecor: React.FC = () => {
           y: [0, 40, -30, 0],
         }}
         transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute bottom-[20%] right-[10%] w-96 h-96 bg-pink-600/5 rounded-full blur-[140px]"
+        className="absolute bottom-[20%] right-[10%] w-96 h-96 bg-pink-600/15 rounded-full blur-[140px]"
       />
     </div>
   );

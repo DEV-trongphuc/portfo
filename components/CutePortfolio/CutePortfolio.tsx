@@ -285,123 +285,169 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
       {/* MOBILE MENU DRAWER */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="xl:hidden bg-[#0f0b24] border-b border-purple-900/40 w-full z-30 absolute top-[69px] left-0 shadow-lg overflow-hidden"
-          >
-            <div className="flex flex-col p-4 gap-3 max-h-[75vh] overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
-              {/* General / Navigation */}
-              <div className="flex flex-col gap-1">
-                {menuGroups.general.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      setActiveTab(item.id);
-                      setMobileMenuOpen(false);
-                    }}
-                    className={`flex items-center gap-3 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-                      activeTab === item.id 
-                        ? 'bg-[#161033] text-white border border-purple-900/40' 
-                        : 'text-slate-400 hover:bg-[#030014]'
-                    }`}
-                  >
-                    {item.icon}
-                    <span>{item.name}</span>
-                  </button>
-                ))}
+          <>
+            {/* Backdrop Blur Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="xl:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+            />
+
+            {/* Slide-in Glassmorphic Drawer */}
+            <motion.div 
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="xl:hidden fixed top-0 left-0 h-screen w-[280px] bg-[#0f0b24]/95 border-r border-purple-900/40 z-50 shadow-2xl flex flex-col p-6 overflow-y-auto"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {/* Drawer Header */}
+              <div className="flex items-center justify-between pb-6 border-b border-purple-900/30 mb-6 shrink-0">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full overflow-hidden border border-purple-500/30 shrink-0">
+                    <img src={meAvatar} alt="Huynh Trong Phuc" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="min-w-0">
+                    <h2 className="text-xs font-black text-white leading-none">Huynh Trong Phuc</h2>
+                    <p className="text-[8.5px] text-purple-300 font-bold tracking-wide mt-0.5">Digital - AI Automation</p>
+                  </div>
+                </div>
+                <button onClick={() => setMobileMenuOpen(false)} className="p-1.5 bg-[#161033] border border-purple-900/40 rounded-full text-slate-300">
+                  <X size={16} />
+                </button>
               </div>
 
-              {/* Digital App Group */}
-              <div className="flex flex-col gap-1">
-                <span className="px-6 text-[8px] font-bold text-slate-500 uppercase tracking-widest mt-1">Digital app</span>
-                {menuGroups.digitalApp.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      setActiveTab(item.id);
-                      setMobileMenuOpen(false);
-                    }}
-                    className={`flex items-center gap-3 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-                      activeTab === item.id 
-                        ? 'bg-[#161033] text-white border border-purple-900/40' 
-                        : 'text-slate-400 hover:bg-[#030014]'
-                    }`}
-                  >
-                    {item.icon}
-                    <span>{item.name}</span>
-                  </button>
-                ))}
-              </div>
+              {/* Menu Items Container */}
+              <div className="flex flex-col gap-5 flex-1">
+                {/* General / Navigation */}
+                <div className="flex flex-col gap-1.5">
+                  {menuGroups.general.map((item) => {
+                    const isActive = activeTab === item.id;
+                    return (
+                      <button
+                        key={item.id}
+                        onClick={() => {
+                          setActiveTab(item.id);
+                          setMobileMenuOpen(false);
+                        }}
+                        className={`flex items-center gap-3.5 px-5 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all border ${
+                          isActive 
+                            ? 'bg-[#161033] text-white border-purple-900/50 shadow-inner' 
+                            : 'text-slate-400 hover:bg-[#030014]/50 border-transparent'
+                        }`}
+                      >
+                        {item.icon}
+                        <span>{item.name}</span>
+                      </button>
+                    );
+                  })}
+                </div>
 
-              {/* Build Automation Group */}
-              <div className="flex flex-col gap-1">
-                <span className="px-6 text-[8px] font-bold text-slate-500 uppercase tracking-widest mt-1">Build Automation</span>
-                {menuGroups.buildAutomation.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      setActiveTab(item.id);
-                      setMobileMenuOpen(false);
-                    }}
-                    className={`flex items-center gap-3 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-                      activeTab === item.id 
-                        ? 'bg-[#161033] text-white border border-purple-900/40' 
-                        : 'text-slate-400 hover:bg-[#030014]'
-                    }`}
-                  >
-                    {item.icon}
-                    <span>{item.name}</span>
-                  </button>
-                ))}
-              </div>
+                {/* Digital App Group */}
+                <div className="flex flex-col gap-1.5">
+                  <span className="px-5 text-[8.5px] font-black text-slate-500 uppercase tracking-widest mt-2 block">Digital app</span>
+                  {menuGroups.digitalApp.map((item) => {
+                    const isActive = activeTab === item.id;
+                    return (
+                      <button
+                        key={item.id}
+                        onClick={() => {
+                          setActiveTab(item.id);
+                          setMobileMenuOpen(false);
+                        }}
+                        className={`flex items-center gap-3.5 px-5 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all border ${
+                          isActive 
+                            ? 'bg-[#161033] text-white border-purple-900/50 shadow-inner' 
+                            : 'text-slate-400 hover:bg-[#030014]/50 border-transparent'
+                        }`}
+                      >
+                        {item.icon}
+                        <span>{item.name}</span>
+                      </button>
+                    );
+                  })}
+                </div>
 
-              {/* Digital Marketing Ads Group */}
-              <div className="flex flex-col gap-1">
-                <span className="px-6 text-[8px] font-bold text-slate-500 uppercase tracking-widest mt-1">Digital Marketing ads</span>
-                {menuGroups.digitalMarketingAds.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      setActiveTab(item.id);
-                      setMobileMenuOpen(false);
-                    }}
-                    className={`flex items-center gap-3 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-                      activeTab === item.id 
-                        ? 'bg-[#161033] text-white border border-purple-900/40' 
-                        : 'text-slate-400 hover:bg-[#030014]'
-                    }`}
-                  >
-                    {item.icon}
-                    <span>{item.name}</span>
-                  </button>
-                ))}
-              </div>
+                {/* Build Automation Group */}
+                <div className="flex flex-col gap-1.5">
+                  <span className="px-5 text-[8.5px] font-black text-slate-500 uppercase tracking-widest mt-2 block">Build Automation</span>
+                  {menuGroups.buildAutomation.map((item) => {
+                    const isActive = activeTab === item.id;
+                    return (
+                      <button
+                        key={item.id}
+                        onClick={() => {
+                          setActiveTab(item.id);
+                          setMobileMenuOpen(false);
+                        }}
+                        className={`flex items-center gap-3.5 px-5 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all border ${
+                          isActive 
+                            ? 'bg-[#161033] text-white border-purple-900/50 shadow-inner' 
+                            : 'text-slate-400 hover:bg-[#030014]/50 border-transparent'
+                        }`}
+                      >
+                        {item.icon}
+                        <span>{item.name}</span>
+                      </button>
+                    );
+                  })}
+                </div>
 
-              {/* Info Group */}
-              <div className="flex flex-col gap-1">
-                <span className="px-6 text-[8px] font-bold text-slate-500 uppercase tracking-widest mt-1">Info</span>
-                {menuGroups.info.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      setActiveTab(item.id);
-                      setMobileMenuOpen(false);
-                    }}
-                    className={`flex items-center gap-3 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-                      activeTab === item.id 
-                        ? 'bg-[#161033] text-white border border-purple-900/40' 
-                        : 'text-slate-400 hover:bg-[#030014]'
-                    }`}
-                  >
-                    {item.icon}
-                    <span>{item.name}</span>
-                  </button>
-                ))}
+                {/* Digital Marketing Ads Group */}
+                <div className="flex flex-col gap-1.5">
+                  <span className="px-5 text-[8.5px] font-black text-slate-500 uppercase tracking-widest mt-2 block">Digital Marketing Ads</span>
+                  {menuGroups.digitalMarketingAds.map((item) => {
+                    const isActive = activeTab === item.id;
+                    return (
+                      <button
+                        key={item.id}
+                        onClick={() => {
+                          setActiveTab(item.id);
+                          setMobileMenuOpen(false);
+                        }}
+                        className={`flex items-center gap-3.5 px-5 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all border ${
+                          isActive 
+                            ? 'bg-[#161033] text-white border-purple-900/50 shadow-inner' 
+                            : 'text-slate-400 hover:bg-[#030014]/50 border-transparent'
+                        }`}
+                      >
+                        {item.icon}
+                        <span>{item.name}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Info Group */}
+                <div className="flex flex-col gap-1.5 pb-8">
+                  <span className="px-5 text-[8.5px] font-black text-slate-500 uppercase tracking-widest mt-2 block">Info</span>
+                  {menuGroups.info.map((item) => {
+                    const isActive = activeTab === item.id;
+                    return (
+                      <button
+                        key={item.id}
+                        onClick={() => {
+                          setActiveTab(item.id);
+                          setMobileMenuOpen(false);
+                        }}
+                        className={`flex items-center gap-3.5 px-5 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all border ${
+                          isActive 
+                            ? 'bg-[#161033] text-white border-purple-900/50 shadow-inner' 
+                            : 'text-slate-400 hover:bg-[#030014]/50 border-transparent'
+                        }`}
+                      >
+                        {item.icon}
+                        <span>{item.name}</span>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
 
@@ -425,7 +471,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {/* General */}
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1.5">
               {menuGroups.general.map((item) => {
                 const isActive = activeTab === item.id;
                 const resizedIcon = React.cloneElement(item.icon as React.ReactElement, { size: 18 });
@@ -433,7 +479,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                   <button
                     key={item.id}
                     onClick={() => setActiveTab(item.id)}
-                    className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-[10.5px] font-black uppercase tracking-wider transition-all group ${
+                    className={`flex items-center justify-between px-4 py-3 rounded-xl text-[10.5px] font-black uppercase tracking-wider transition-all group ${
                       isActive 
                         ? 'bg-[#0f0b24] text-white shadow-sm border border-purple-900/40' 
                         : 'text-slate-400 hover:text-white hover:bg-[#161033]/50'
@@ -452,7 +498,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             </div>
 
             {/* Digital App */}
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1.5">
               <span className="px-4 text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-1 border-l-2 border-purple-500/40 pl-2">Digital app</span>
               {menuGroups.digitalApp.map((item) => {
                 const isActive = activeTab === item.id;
@@ -461,7 +507,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                   <button
                     key={item.id}
                     onClick={() => setActiveTab(item.id)}
-                    className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-[10.5px] font-black uppercase tracking-wider transition-all group ${
+                    className={`flex items-center justify-between px-4 py-3 rounded-xl text-[10.5px] font-black uppercase tracking-wider transition-all group ${
                       isActive 
                         ? 'bg-[#0f0b24] text-white shadow-sm border border-purple-900/40' 
                         : 'text-slate-400 hover:text-white hover:bg-[#161033]/50'
@@ -480,7 +526,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             </div>
 
             {/* Build Automation */}
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1.5">
               <span className="px-4 text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-1 border-l-2 border-purple-500/40 pl-2">Build Automation</span>
               {menuGroups.buildAutomation.map((item) => {
                 const isActive = activeTab === item.id;
@@ -489,7 +535,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                   <button
                     key={item.id}
                     onClick={() => setActiveTab(item.id)}
-                    className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-[10.5px] font-black uppercase tracking-wider transition-all group ${
+                    className={`flex items-center justify-between px-4 py-3 rounded-xl text-[10.5px] font-black uppercase tracking-wider transition-all group ${
                       isActive 
                         ? 'bg-[#0f0b24] text-white shadow-sm border border-purple-900/40' 
                         : 'text-slate-400 hover:text-white hover:bg-[#161033]/50'
@@ -508,7 +554,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             </div>
 
             {/* Digital Marketing Ads */}
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1.5">
               <span className="px-4 text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-1 border-l-2 border-purple-500/40 pl-2">Digital Marketing ads</span>
               {menuGroups.digitalMarketingAds.map((item) => {
                 const isActive = activeTab === item.id;
@@ -517,7 +563,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                   <button
                     key={item.id}
                     onClick={() => setActiveTab(item.id)}
-                    className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-[10.5px] font-black uppercase tracking-wider transition-all group ${
+                    className={`flex items-center justify-between px-4 py-3 rounded-xl text-[10.5px] font-black uppercase tracking-wider transition-all group ${
                       isActive 
                         ? 'bg-[#0f0b24] text-white shadow-sm border border-purple-900/40' 
                         : 'text-slate-400 hover:text-white hover:bg-[#161033]/50'
@@ -536,7 +582,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             </div>
 
             {/* Info */}
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1.5">
               <span className="px-4 text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-1 border-l-2 border-purple-500/40 pl-2">Info</span>
               {menuGroups.info.map((item) => {
                 const isActive = activeTab === item.id;
@@ -545,7 +591,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                   <button
                     key={item.id}
                     onClick={() => setActiveTab(item.id)}
-                    className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-[10.5px] font-black uppercase tracking-wider transition-all group ${
+                    className={`flex items-center justify-between px-4 py-3 rounded-xl text-[10.5px] font-black uppercase tracking-wider transition-all group ${
                       isActive 
                         ? 'bg-[#0f0b24] text-white shadow-sm border border-purple-900/40' 
                         : 'text-slate-400 hover:text-white hover:bg-[#161033]/50'
@@ -1421,8 +1467,8 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                 </div>
                 <div className="grid lg:grid-cols-12 gap-12 items-center">
                   <div className="lg:col-span-6 flex flex-col items-center justify-center">
-                    {/* SLEEK PHONE MOCKUP (iPhone 15 Pro style - Thinner bezel & wider) */}
-                    <div className="relative z-10 w-[340px] md:w-[410px] h-[640px] md:h-[750px] bg-[#030014] rounded-[40px] p-2 shadow-[0_0_50px_rgba(168,85,247,0.25)] border-[3px] border-[#2e264f]">
+                    {/* SLEEK PHONE MOCKUP (iPhone 15 Pro style - Thinner bezel, wider & highly mobile responsive) */}
+                    <div className="relative z-10 w-full max-w-[325px] md:max-w-[410px] h-[580px] md:h-[750px] bg-[#030014] rounded-[40px] p-2 shadow-[0_0_50px_rgba(168,85,247,0.25)] border-[3px] border-[#2e264f]">
                       {/* Inner screen frame */}
                       <div className="relative w-full h-full rounded-[32px] overflow-hidden border border-black/40 ring-1 ring-white/10 bg-[#0c051e] flex flex-col">
                         {/* Dynamic Island Notch */}
@@ -1951,21 +1997,23 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
 
       </main>
 
+      {/* FLOATING CHATBOT WINDOW */}
+      <AnimatePresence>
+        {chatOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 50, scale: 0.95 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 220 }}
+            className="fixed bottom-0 right-0 sm:bottom-28 sm:right-6 w-full sm:w-[380px] h-[100dvh] sm:h-[580px] z-50 sm:rounded-2xl shadow-2xl overflow-hidden border-t sm:border border-purple-900/40 bg-[#0f0b24]"
+          >
+            <DomiBot onNavigate={handleNavigateFromBot} activeTab={activeTab} onClose={() => setChatOpen(false)} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* FLOATING CHATBOT WIDGET */}
       <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-        <AnimatePresence>
-          {chatOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: 50, scale: 0.8 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 50, scale: 0.8 }}
-              className="w-[360px] sm:w-[380px] h-[550px] mb-4 shadow-2xl rounded-2xl overflow-hidden border border-purple-900/40 z-50 bg-[#0f0b24]"
-            >
-              <DomiBot onNavigate={handleNavigateFromBot} activeTab={activeTab} />
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}

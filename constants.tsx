@@ -186,7 +186,7 @@ export const EXPERIENCES: Experience[] = [
     role: 'Quản trị kinh doanh - Marketing', 
     company: 'Banking University HCMC', 
     period: '2019 - 2023', 
-    description: 'Digital Marketing, học thêm các khóa học lập trình Fullstack', 
+    description: 'Digital Marketing, học thêm các khóa học lập trình Fullstack tại Fullstack.edu.vn - F8', 
     type: 'education' 
   }
 ];

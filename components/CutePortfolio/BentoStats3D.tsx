@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { STATS } from '../../constants';
 
@@ -41,10 +41,24 @@ const StatCard: React.FC<StatCardProps> = ({ label, value, suffix, index }) => {
   const [rotateY, setRotateY] = useState(0);
   const [spotlightPos, setSpotlightPos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    const checkTouch = () => {
+      setIsTouchDevice(
+        ('ontouchstart' in window) ||
+        (navigator.maxTouchPoints > 0) ||
+        // @ts-ignore
+        (navigator.msMaxTouchPoints > 0)
+      );
+    };
+    checkTouch();
+  }, []);
 
   const scheme = colorSchemes[index % colorSchemes.length];
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isTouchDevice) return;
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
     const width = rect.width;

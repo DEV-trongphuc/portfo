@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Bot, User, Sparkles, MessageSquare, Compass, Phone, SendHorizontal } from 'lucide-react';
+import { Send, Bot, User, Sparkles, MessageSquare, Compass, Phone, SendHorizontal, X } from 'lucide-react';
 
 interface Message {
   id: string;
@@ -12,6 +12,7 @@ interface Message {
 interface DomiBotProps {
   onNavigate: (tab: string) => void;
   activeTab: string;
+  onClose?: () => void;
 }
 
 const API_KEY = (process.env.GEMINI_API_KEY || (process.env as any).API_KEY) as string;
@@ -133,7 +134,7 @@ const getLocalResponse = (input: string): { text: string; tab?: string } => {
   };
 };
 
-const DomiBot: React.FC<DomiBotProps> = ({ onNavigate, activeTab }) => {
+const DomiBot: React.FC<DomiBotProps> = ({ onNavigate, activeTab, onClose }) => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'welcome',
@@ -268,9 +269,20 @@ const DomiBot: React.FC<DomiBotProps> = ({ onNavigate, activeTab }) => {
             <p className="text-[10px] text-white/70 font-medium">Trợ lý AI của Trong Phuc</p>
           </div>
         </div>
-        <div className="flex items-center gap-2 px-3 py-1.5 bg-[#0f0b24]/10 rounded-full border border-purple-900/40 text-[9px] font-black uppercase tracking-wider">
-          <Sparkles size={10} className="text-amber-300" />
-          <span>{isOnline ? 'Gemini Live' : 'AI Agent Local'}</span>
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-[#0f0b24]/10 rounded-full border border-purple-900/40 text-[9px] font-black uppercase tracking-wider">
+            <Sparkles size={10} className="text-amber-300" />
+            <span>{isOnline ? 'Gemini Live' : 'AI Agent Local'}</span>
+          </div>
+          {onClose && (
+            <button 
+              onClick={onClose}
+              className="p-1 hover:bg-white/10 rounded-full text-slate-400 hover:text-white transition-colors"
+              aria-label="Close Chat"
+            >
+              <X size={18} />
+            </button>
+          )}
         </div>
       </div>
 

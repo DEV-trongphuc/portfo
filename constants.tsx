@@ -99,6 +99,8 @@ import partnerNavastore from './imgs/partner_navastore.webp';
 import partnerFlora from './imgs/partner_flora.webp';
 // @ts-ignore
 import partnerBrandson from './imgs/partner_brandson.webp';
+// @ts-ignore
+import partnerAmpersand from './imgs/ampersand logo.jpg';
 
 // LOGO URL CONSTANT
 export const BRAND_LOGO = domLogo;
@@ -242,7 +244,8 @@ export const PARTNERS: Partner[] = [
   { name: 'IDEAS Institute', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(10).jpg', website: '#', industry: 'Education / Research' },
   { name: 'Navastore', image: 'https://bizweb.dktcdn.net/100/543/817/themes/1000289/assets/logo.png?1775454528082', website: 'https://navastore.vn/', industry: 'Retail / Ecommerce' },
   { name: 'Nha khoa Flora', image: 'https://nhakhoaflora.com/wp-content/uploads/2022/05/cropped-LOGO-FLORA1-3-192x192.png', website: 'https://nhakhoaflora.com', industry: 'Dental / Clinic' },
-  { name: 'Brandson', image: 'https://brandson.vn/wp-content/uploads/2025/11/logo2.png', website: 'https://brandson.vn', industry: 'Branding / Agency' }
+  { name: 'Brandson', image: 'https://brandson.vn/wp-content/uploads/2025/11/logo2.png', website: 'https://brandson.vn', industry: 'Branding / Agency' },
+  { name: 'Ampersand', image: partnerAmpersand, website: 'https://www.ampersand.vn/', industry: 'FNB / Management' }
 ];
 
 export const EXPERIENCES: Experience[] = [

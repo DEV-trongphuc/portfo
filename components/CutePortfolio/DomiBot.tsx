@@ -75,14 +75,14 @@ const getLocalResponse = (input: string): { text: string; tab?: string } => {
   
   if (query.includes('zalo') || query.includes('mini app') || query.includes('miniapp')) {
     return {
-      text: "Tôi thiết lập Zalo Mini App hoàn toàn bằng React và TypeScript (code tay 100%, không dùng no-code) để đạt tốc độ tải trang cực đỉnh dưới 1s. Tích hợp sẵn hệ thống tích điểm QR, thăng hạng thành viên tự động đồng bộ. Tôi đã chuyển màn hình sang phần giả lập Zalo Mini App để bạn trải nghiệm trực tiếp rồi đấy! ",
+      text: "Tôi thiết lập Zalo Mini App hoàn toàn bằng React và TypeScript (code native 100%) để đạt tốc độ tải cực đỉnh dưới 1s. Tích hợp sẵn hệ thống tích điểm QR, thăng hạng thành viên tự động đồng bộ. Tôi đã chuyển màn hình sang phần giả lập Zalo Mini App để bạn trải nghiệm trực tiếp rồi đấy! ",
       tab: 'zalo'
     };
   }
   
   if (query.includes('sách') || query.includes('book') || query.includes('facebook ads') || query.includes('ai chạy')) {
     return {
-      text: "Cuốn sách 'Facebook Ads - AI Chạy Không Được' là cuốn cẩm nang đúc kết 5 năm thực chiến tối ưu ngân sách của tôi. Nó cung cấp bản đồ tư duy giúp nhà quảng cáo vượt qua bão bùng giá thầu. Bạn có thể lật xem thử bản thảo 3D ngay trên màn hình chính nhé! ",
+      text: "Cuốn sách 'Facebook Ads - AI Chạy Không Được' là cẩm nang đúc kết 5 năm thực chiến tối ưu ngân sách của tôi. Nó cung cấp bản đồ tư duy giúp nhà quảng cáo vượt qua bão bùng giá thầu. Bạn có thể lật xem thử bản thảo 3D ngay trên màn hình chính nhé! ",
       tab: 'book'
     };
   }
@@ -108,29 +108,71 @@ const getLocalResponse = (input: string): { text: string; tab?: string } => {
     };
   }
 
+  if (query.includes('crm') || query.includes('pos') || query.includes('minth') || query.includes('lms') || query.includes('learning') || query.includes('saas') || query.includes('e-learning')) {
+    return {
+      text: "Chào mừng bạn đến với khu vực SaaS Apps! Tại đây bạn có thể xem các giải pháp ERP/CRM hoàn chỉnh của tôi bao gồm: DOMATION CRM (dành cho doanh nghiệp SME), MINTH CRM & POS (dành cho các cửa hàng bán lẻ tinh gọn), và LMS E-LEARNING Platform (quản lý học tập trực tuyến). Tôi đã chuyển màn hình sang tab SaaS Apps rồi đấy! ",
+      tab: 'saas'
+    };
+  }
+
+  if (query.includes('data routing') || query.includes('chia data') || query.includes('martech') || query.includes('lọc số')) {
+    return {
+      text: "Hệ thống DOMATION Data Routing hỗ trợ chuyển dữ liệu tự động thời gian thực từ Landing Page, Facebook Ads, Zalo Form về CRM nội bộ. Phân chia Data xoay vòng Round-Robin cho các Sale, tự động đền bù số lỗi qua Zalo Bot. Tôi đã chuyển sang tab Martech để bạn xem chi tiết! ",
+      tab: 'martech'
+    };
+  }
+
+  if (query.includes('báo cáo ads') || query.includes('meta report') || query.includes('meta-report') || query.includes('insight') || query.includes('quét ads')) {
+    return {
+      text: "Hệ thống Realtime Meta Insights quét dữ liệu trực tiếp từ Facebook Ads API để tạo báo cáo trực quan, theo dõi tức thời hiệu suất quảng cáo (ROAS, CPM, CPC). Tôi đã mở tab Ads Report để bạn theo dõi! ",
+      tab: 'meta-report'
+    };
+  }
+
+  if (query.includes('flow') || query.includes('automation') || query.includes('autoflow') || query.includes('n8n') || query.includes('zapier')) {
+    return {
+      text: "Hệ thống AutoFlow Pro thiết lập các kịch bản tự động hóa quy trình vận hành (Zalo ZNS, SMS, Webhook, CRM) giúp giảm thiểu sai sót thủ công và tối ưu năng suất. Tôi đã chuyển sang tab Automation để bạn xem chi tiết! ",
+      tab: 'automation'
+    };
+  }
+
+  if (query.includes('landing') || query.includes('website') || query.includes('nava') || query.includes('ideas mba') || query.includes('giới thiệu')) {
+    return {
+      text: "Tôi đã thiết kế và triển khai hàng loạt Landing Page tối ưu hóa tỷ lệ chuyển đổi (CRO) cho các đối tác lớn nhỏ. Tôi đã chuyển sang tab Landings để bạn xem các dự án thực tế! ",
+      tab: 'landings'
+    };
+  }
+
   if (query.includes('đối tác') || query.includes('partner') || query.includes('khách hàng') || query.includes('hợp tác')) {
     return {
-      text: "Chào mừng bạn đến với danh sách Đối Tác & Khách Hàng đồng hành cùng tôi! Tại đây bạn có thể xem các doanh nghiệp, thương hiệu đã tin tưởng hợp tác trong các dự án công nghệ và marketing. ",
+      text: "Chào mừng bạn đến với danh sách Đối Tác & Khách Hàng đồng hành cùng tôi! Tại đây bạn có thể xem các doanh nghiệp, thương hiệu đã tin tưởng hợp tác trong các dự án công nghệ và marketing. Tôi đã mở tab Partners cho bạn! ",
       tab: 'partners'
     };
   }
 
-  if (query.includes('chứng chỉ') || query.includes('học vấn') || query.includes('freecodecamp') || query.includes('cert') || query.includes('kinh nghiệm')) {
+  if (query.includes('chứng chỉ') || query.includes('học vấn') || query.includes('freecodecamp') || query.includes('cert') || query.includes('kinh nghiệm') || query.includes('cv') || query.includes('sơ yếu')) {
     return {
       text: "Tôi có các chứng chỉ Lập trình viên Front-End, Responsive Web Design từ FreeCodeCamp và Javascript Advanced từ F8. Về kinh nghiệm, tôi đã làm việc tại IDEAS Institute, Le Gia ICT và hiện là Founder tại DOMARKETING. Tôi đã chuyển giao diện sang tab Chứng chỉ & Kinh nghiệm để bạn tiện theo dõi! ",
       tab: 'certifications'
     };
   }
 
-  if (query.includes('liên hệ') || query.includes('sđt') || query.includes('email') || query.includes('phone')) {
+  if (query.includes('chỉ số') || query.includes('dashboard') || query.includes('overview') || query.includes('tổng quan')) {
+    return {
+      text: "Tôi đã chuyển bạn về màn hình Dashboard Tổng Quan để theo dõi các chỉ số vận hành quan trọng như lượt Subs TikTok, ngân sách quảng cáo tháng, và Leads đã tạo. ",
+      tab: 'dashboard'
+    };
+  }
+
+  if (query.includes('liên hệ') || query.includes('sđt') || query.includes('email') || query.includes('phone') || query.includes('mạng xã hội')) {
     return {
       text: "Bạn có thể kết nối với tôi qua LinkedIn bằng nút liên hệ trên Navbar hoặc gửi tin nhắn trực tiếp qua các mạng xã hội. Rất mong được hợp tác cùng bạn! "
     };
   }
 
   return {
-    text: "DomiBot xin chào! Tôi là trợ lý AI của Phúc. Bạn có muốn tìm hiểu về lập trình Zalo Mini App, cuốn sách Facebook Ads, các chiến dịch marketing thực chiến (IDEAS Institute, Phúc Lộc Thọ) hay xem danh sách các đối tác đồng hành không? Hãy chọn gợi ý hoặc gõ câu hỏi nhé! ",
-    tab: 'partners'
+    text: "DomiBot xin chào! Tôi là trợ lý AI của Phúc. Bạn có muốn tìm hiểu về các giải pháp SaaS (DOMATION CRM, LMS), lập trình Zalo Mini App, sách Facebook Ads, các chiến dịch tự động hóa hay danh sách đối tác không? Hãy chọn gợi ý hoặc gõ câu hỏi nhé! ",
+    tab: 'dashboard'
   };
 };
 
@@ -260,8 +302,8 @@ const DomiBot: React.FC<DomiBotProps> = ({ onNavigate, activeTab, onClose }) => 
       {/* Bot Header */}
       <div className="px-8 py-5 bg-[#0f0b24] text-white flex items-center justify-between shadow-md">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-[#0f0b24]/10 flex items-center justify-center border border-white/20 shadow-inner relative">
-            <Bot size={20} className="text-white animate-pulse" />
+          <div className="w-10 h-10 rounded-full bg-[#0f0b24]/10 flex items-center justify-center border border-white/20 shadow-inner relative overflow-hidden">
+            <img src="https://crm-domation.vercel.app/LOGO.jpg" alt="DomiBot Avatar" className="w-full h-full object-cover" />
             <div className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-purple-900/40 ${isOnline ? 'bg-emerald-400' : 'bg-amber-400'}`} />
           </div>
           <div>
@@ -298,12 +340,12 @@ const DomiBot: React.FC<DomiBotProps> = ({ onNavigate, activeTab, onClose }) => 
               className={`flex gap-3 max-w-[85%] ${msg.sender === 'user' ? 'ml-auto flex-row-reverse' : ''}`}
             >
               {/* Avatar */}
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border ${
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border overflow-hidden ${
                 msg.sender === 'user' 
                   ? 'bg-[#161033] text-slate-300 border-purple-900/40' 
                   : 'bg-[#161033] text-white border-purple-900/40'
               }`}>
-                {msg.sender === 'user' ? <User size={14} /> : <Bot size={14} />}
+                {msg.sender === 'user' ? <User size={14} /> : <img src="https://crm-domation.vercel.app/LOGO.jpg" alt="DomiBot" className="w-full h-full object-cover" />}
               </div>
 
               {/* Speech Bubble */}
@@ -326,8 +368,8 @@ const DomiBot: React.FC<DomiBotProps> = ({ onNavigate, activeTab, onClose }) => 
               animate={{ opacity: 1, y: 0 }}
               className="flex gap-3 max-w-[80%]"
             >
-              <div className="w-8 h-8 rounded-full bg-[#161033] text-white border border-purple-900/40 flex items-center justify-center shrink-0">
-                <Bot size={14} />
+              <div className="w-8 h-8 rounded-full bg-[#161033] text-white border border-purple-900/40 flex items-center justify-center shrink-0 overflow-hidden">
+                <img src="https://crm-domation.vercel.app/LOGO.jpg" alt="DomiBot" className="w-full h-full object-cover" />
               </div>
               <div className="px-4 py-3 bg-[#161033] text-white rounded-2xl rounded-tl-none border border-purple-900/30 shadow-sm flex items-center gap-1">
                 <span className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />

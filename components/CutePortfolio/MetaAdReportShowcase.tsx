@@ -76,76 +76,77 @@ const MetaAdReportShowcase: React.FC = () => {
 
     return (
         <div className="space-y-10 w-full text-left">
-            <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-8 md:p-12 shadow-sm space-y-8">
+            <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-4 sm:p-6 md:p-12 shadow-sm space-y-6 md:space-y-8">
                 <div className="flex flex-col md:flex-row justify-between items-start gap-6">
-                    <div className="space-y-4 max-w-3xl">
-                        <span className="text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-3 py-1 rounded-full border border-purple-900/40 inline-block">
+                    <div className="space-y-3 md:space-y-4 max-w-3xl">
+                        <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
                             Ads Performance Solution
                         </span>
-                        <h3 className="text-3xl font-black text-white">DOMATION Meta Ad Realtime Report</h3>
-                        <p className="text-slate-400 text-sm leading-relaxed font-light text-justify">
+                        <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white">DOMATION Meta Ad Realtime Report</h3>
+                        <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light text-justify">
                             Hệ thống báo cáo hiệu suất Meta Ads tích hợp AI phân tích dữ liệu chuyên sâu, hỗ trợ ra quyết định Scale hay Vít ngân sách.
                         </p>
                     </div>
-                    <div className="shrink-0 pt-2">
+                    <div className="shrink-0 pt-1 md:pt-2">
                         <a 
                             href="https://domation.net/meta-report" 
                             target="_blank" 
                             rel="noreferrer"
-                            className="px-6 py-3 bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:via-violet-500 hover:to-indigo-500 text-white font-bold text-xs uppercase tracking-widest rounded-full shadow-[0_0_15px_rgba(168,85,247,0.35)] hover:shadow-[0_0_25px_rgba(168,85,247,0.55)] flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
+                            className="px-5 py-2.5 bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:via-violet-500 hover:to-indigo-500 text-white font-bold text-[10px] sm:text-xs uppercase tracking-widest rounded-full shadow-[0_0_15px_rgba(168,85,247,0.35)] hover:shadow-[0_0_25px_rgba(168,85,247,0.55)] flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
                         >
-                            Dùng Thử Ngay <ExternalLink size={12} />
+                            Dùng Thử Ngay <ExternalLink size={11} />
                         </a>
                     </div>
                 </div>
 
-                {/* Slideshow Gallery with Next/Prev */}
-                <div className="flex flex-col items-center">
-                    <div className="flex items-center gap-4 w-full max-w-4xl justify-center">
-                        {/* Prev Button */}
-                        <button 
-                            onClick={handlePrev}
-                            className="p-3 bg-[#0f0b24] hover:bg-[#030014] border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all shrink-0"
-                        >
-                            <ChevronLeft size={22} />
-                        </button>
-
-                        {/* Image Container */}
-                        <div className="flex-1 aspect-video rounded-2xl overflow-hidden border border-purple-900/40 shadow-xl relative group bg-[#161033]">
-                            <div className="absolute inset-0">
-                                <AnimatePresence mode="wait">
-                                    <motion.img 
-                                        key={activeIdx}
-                                        src={images[activeIdx]} 
-                                        alt={`Meta Ad Report Screenshot ${activeIdx + 1}`} 
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        exit={{ opacity: 0 }}
-                                        transition={{ duration: 0.25, ease: "easeInOut" }}
-                                        className="w-full h-full object-cover" 
-                                    />
-                                </AnimatePresence>
-                            </div>
-                            {/* Zoom overlay */}
-                            <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" onClick={() => setPreviewImage(images[activeIdx])}>
-                                <span className="px-4 py-2 bg-[#0f0b24]/95 rounded-full text-xs font-bold text-slate-200 shadow-md">Zoom Screen</span>
-                            </div>
+                {/* Slideshow Gallery with Overlay Navigation */}
+                <div className="flex flex-col items-center w-full">
+                    {/* Image Container with Overlay Controls */}
+                    <div className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden border border-purple-900/40 shadow-xl bg-[#161033]">
+                        <div className="absolute inset-0">
+                            <AnimatePresence mode="wait">
+                                <motion.img 
+                                    key={activeIdx}
+                                    src={images[activeIdx]} 
+                                    alt={`Meta Ad Report Screenshot ${activeIdx + 1}`} 
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                                    className="w-full h-full object-cover" 
+                                />
+                            </AnimatePresence>
+                        </div>
+                        {/* Zoom overlay */}
+                        <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" onClick={() => setPreviewImage(images[activeIdx])}>
+                            <span className="px-4 py-2 bg-[#0f0b24]/90 rounded-full text-xs font-bold text-slate-200 shadow-md">Zoom Screen</span>
                         </div>
 
-                        {/* Next Button */}
+                        {/* Glassmorphic Overlay Navigation Buttons */}
+                        <button 
+                            onClick={handlePrev}
+                            className="absolute left-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#0f0b24]/60 hover:bg-[#0f0b24]/90 border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all z-20 backdrop-blur-md"
+                            aria-label="Previous image"
+                        >
+                            <ChevronLeft size={18} className="sm:w-[22px] sm:h-[22px]" />
+                        </button>
+
                         <button 
                             onClick={handleNext}
-                            className="p-3 bg-[#0f0b24] hover:bg-[#030014] border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all shrink-0"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#0f0b24]/60 hover:bg-[#0f0b24]/90 border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all z-20 backdrop-blur-md"
+                            aria-label="Next image"
                         >
-                            <ChevronRight size={22} />
+                            <ChevronRight size={18} className="sm:w-[22px] sm:h-[22px]" />
                         </button>
                     </div>
+
                     {/* Index Indicator */}
-                    <span className="text-xs text-slate-400 font-bold mt-3">
+                    <span className="text-[10px] sm:text-xs text-slate-400 font-bold mt-2.5">
                         Image {activeIdx + 1} of {images.length}
                     </span>
-                    {/* Thumbnails list */}
-                    <div className="w-full max-w-4xl flex justify-start md:justify-center gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
+
+                    {/* Thumbnails list (Hidden on Mobile) */}
+                    <div className="hidden md:flex w-full max-w-4xl justify-center gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
                         {images.map((img, idx) => (
                             <button 
                                 key={idx}
@@ -160,14 +161,14 @@ const MetaAdReportShowcase: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-6 pt-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2 md:pt-4">
                     {features.map((feat, i) => (
-                      <div key={i} className="bg-[#030014] border border-purple-900/30 rounded-2xl p-5 hover:border-purple-500/50 transition-colors">
-                            <div className="w-9 h-9 rounded-full bg-[#161033] border border-purple-900/40 text-white flex items-center justify-center mb-3">
+                        <div key={i} className="bg-[#030014] border border-purple-900/30 rounded-2xl p-4 md:p-5 hover:border-purple-500/50 transition-colors">
+                            <div className="w-8 h-8 rounded-full bg-[#161033] border border-purple-900/40 text-white flex items-center justify-center mb-3">
                                 {feat.icon}
                             </div>
-                            <h4 className="text-sm font-black text-slate-200 mb-1">{feat.title}</h4>
-                            <p className="text-slate-400 text-xs leading-relaxed font-light">{feat.desc}</p>
+                            <h4 className="text-xs sm:text-sm font-black text-slate-200 mb-1">{feat.title}</h4>
+                            <p className="text-slate-400 text-[11px] sm:text-xs leading-relaxed font-light">{feat.desc}</p>
                         </div>
                     ))}
                 </div>

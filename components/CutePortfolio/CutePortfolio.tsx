@@ -828,33 +828,53 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             {activeTab === 'saas' && (
               <div className="space-y-10 w-full">
                 {/* DOMATION CRM CARD */}
-                <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-8 md:p-12 shadow-sm space-y-8">
+                <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-4 sm:p-6 md:p-12 shadow-sm space-y-6 md:space-y-8">
                   <div className="flex flex-col md:flex-row justify-between items-start gap-6">
-                    <div className="space-y-4 max-w-3xl text-left">
-                      <span className="text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-3 py-1 rounded-full border border-purple-900/40 inline-block">
+                    <div className="space-y-3 md:space-y-4 max-w-3xl text-left">
+                      <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
                         Enterprise CRM
                       </span>
-                      <h3 className="text-3xl font-black text-white">DOMATION CRM</h3>
-                      <p className="text-slate-400 text-sm leading-relaxed font-light text-justify">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white">DOMATION CRM</h3>
+                      <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light text-justify">
                         Hệ thống quản lý quan hệ khách hàng (CRM) chuyên sâu dành cho doanh nghiệp SME. Hỗ trợ quản lý dữ liệu phễu khách hàng khép kín, phân bổ số tự động, quản lý kho sản phẩm, tài chính hóa đơn và Ticket CSKH.
                       </p>
                     </div>
-                    <div className="shrink-0 pt-2">
+                    <div className="shrink-0 pt-1 md:pt-2">
                       <a 
                         href="https://domation.net/crm" 
                         target="_blank" 
                         rel="noreferrer"
-                        className="px-6 py-3 bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:via-violet-500 hover:to-indigo-500 text-white font-bold text-xs uppercase tracking-widest rounded-full shadow-[0_0_15px_rgba(168,85,247,0.35)] hover:shadow-[0_0_25px_rgba(168,85,247,0.55)] flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
+                        className="px-5 py-2.5 bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:via-violet-500 hover:to-indigo-500 text-white font-bold text-[10px] sm:text-xs uppercase tracking-widest rounded-full shadow-[0_0_15px_rgba(168,85,247,0.35)] hover:shadow-[0_0_25px_rgba(168,85,247,0.55)] flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
                       >
-                        Dùng Thử Ngay <ExternalLink size={12} />
+                        Dùng Thử Ngay <ExternalLink size={11} />
                       </a>
                     </div>
                   </div>
 
                   {/* Widescreen Slideshow Gallery (DOMATION CRM) */}
-                  <div className="flex flex-col items-center">
-                    <div className="flex items-center gap-4 w-full max-w-4xl justify-center">
-                      {/* Prev Button */}
+                  <div className="flex flex-col items-center w-full">
+                    {/* Image Container with Overlay Controls */}
+                    <div className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden border border-purple-900/40 shadow-xl bg-[#161033]">
+                      <div className="absolute inset-0">
+                        <AnimatePresence mode="wait">
+                          <motion.img 
+                            key={activeCrmImg}
+                            src={activeCrmImg} 
+                            alt="DOMATION CRM" 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            className="w-full h-full object-cover" 
+                          />
+                        </AnimatePresence>
+                      </div>
+                      
+                      <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" onClick={() => { setPreviewImage(activeCrmImg); setPreviewList([crms1, crms2, crms3, crms4, crm5, crm6, crm7, crm8, crm9, crm10, crm11, crm12, crm13, crm14, crm15, crm16, crm17, crm18]); }}>
+                        <span className="px-4 py-2 bg-[#0f0b24]/90 rounded-full text-xs font-bold text-slate-200 shadow-md">Zoom Screen</span>
+                      </div>
+
+                      {/* Glassmorphic Overlay Navigation Buttons */}
                       <button 
                         onClick={() => {
                           const crmList = [crms1, crms2, crms3, crms4, crm5, crm6, crm7, crm8, crm9, crm10, crm11, crm12, crm13, crm14, crm15, crm16, crm17, crm18];
@@ -862,33 +882,12 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                           const prevIdx = (curIdx - 1 + crmList.length) % crmList.length;
                           setActiveCrmImg(crmList[prevIdx]);
                         }}
-                        className="p-3 bg-[#0f0b24] hover:bg-[#030014] border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all shrink-0"
+                        className="absolute left-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#0f0b24]/60 hover:bg-[#0f0b24]/90 border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all z-20 backdrop-blur-md"
+                        aria-label="Previous image"
                       >
-                        <ChevronLeft size={22} />
+                        <ChevronLeft size={18} className="sm:w-[22px] sm:h-[22px]" />
                       </button>
 
-                      {/* Image Container */}
-                      <div className="flex-1 aspect-video rounded-2xl overflow-hidden border border-purple-900/40 shadow-xl relative group bg-[#161033]">
-                        <div className="absolute inset-0">
-                          <AnimatePresence mode="wait">
-                            <motion.img 
-                              key={activeCrmImg}
-                              src={activeCrmImg} 
-                              alt="DOMATION CRM" 
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              exit={{ opacity: 0 }}
-                              transition={{ duration: 0.25, ease: "easeInOut" }}
-                              className="w-full h-full object-cover" 
-                            />
-                          </AnimatePresence>
-                        </div>
-                        <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" onClick={() => { setPreviewImage(activeCrmImg); setPreviewList([crms1, crms2, crms3, crms4, crm5, crm6, crm7, crm8, crm9, crm10, crm11, crm12, crm13, crm14, crm15, crm16, crm17, crm18]); }}>
-                          <span className="px-4 py-2 bg-[#0f0b24]/90 rounded-full text-xs font-bold text-slate-200 shadow-md">Zoom Screen</span>
-                        </div>
-                      </div>
-
-                      {/* Next Button */}
                       <button 
                         onClick={() => {
                           const crmList = [crms1, crms2, crms3, crms4, crm5, crm6, crm7, crm8, crm9, crm10, crm11, crm12, crm13, crm14, crm15, crm16, crm17, crm18];
@@ -896,17 +895,20 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                           const nextIdx = (curIdx + 1) % crmList.length;
                           setActiveCrmImg(crmList[nextIdx]);
                         }}
-                        className="p-3 bg-[#0f0b24] hover:bg-[#030014] border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all shrink-0"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#0f0b24]/60 hover:bg-[#0f0b24]/90 border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all z-20 backdrop-blur-md"
+                        aria-label="Next image"
                       >
-                        <ChevronRight size={22} />
+                        <ChevronRight size={18} className="sm:w-[22px] sm:h-[22px]" />
                       </button>
                     </div>
+
                     {/* Index Indicator */}
-                    <span className="text-xs text-slate-400 font-bold mt-3">
+                    <span className="text-[10px] sm:text-xs text-slate-400 font-bold mt-2.5">
                       Image {[crms1, crms2, crms3, crms4, crm5, crm6, crm7, crm8, crm9, crm10, crm11, crm12, crm13, crm14, crm15, crm16, crm17, crm18].indexOf(activeCrmImg) + 1} of 18
                     </span>
-                    {/* CRM Thumbnail Gallery Selector */}
-                    <div className="w-full max-w-4xl flex justify-start md:justify-center gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
+                    
+                    {/* CRM Thumbnail Gallery Selector (Hidden on Mobile) */}
+                    <div className="hidden md:flex w-full max-w-4xl justify-center gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
                       {[crms1, crms2, crms3, crms4, crm5, crm6, crm7, crm8, crm9, crm10, crm11, crm12, crm13, crm14, crm15, crm16, crm17, crm18].map((img, index) => (
                         <button 
                           key={index}
@@ -921,48 +923,68 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-3 gap-6 pt-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 pt-2 md:pt-4">
                     {[
-                      { title: "Quản Lý Khách Hàng", desc: "Lưu trữ toàn bộ thông tin liên hệ, phân loại VIP/Mới khoa học.", icon: <Users size={18} /> },
-                      { title: "Phễu Bán Hàng", desc: "Theo dõi tiến độ Deals, dự báo doanh thu thực tế.", icon: <Compass size={18} /> },
-                      { title: "Kiểm Soát Tồn Kho", desc: "Quản lý tồn kho theo lô, cảnh báo hàng sắp hết.", icon: <Database size={18} /> },
-                      { title: "Tài Chính Hóa Đơn", desc: "Tính hóa đơn, doanh thu và biên lợi nhuận gộp.", icon: <Layers size={18} /> },
-                      { title: "Hỗ Trợ Kỹ Thuật", desc: "Tiếp nhận và xử lý tickets phản hồi của khách hàng.", icon: <Layers size={18} /> },
+                      { title: "Quản Lý Khách Hàng", desc: "Lưu trữ toàn bộ thông tin liên hệ, phân loại VIP/Mới khoa học.", icon: <Users size={16} /> },
+                      { title: "Phễu Bán Hàng", desc: "Theo dõi tiến độ Deals, dự báo doanh thu thực tế.", icon: <Compass size={16} /> },
+                      { title: "Kiểm Soát Tồn Kho", desc: "Quản lý tồn kho theo lô, cảnh báo hàng sắp hết.", icon: <Database size={16} /> },
+                      { title: "Tài Chính Hóa Đơn", desc: "Tính hóa đơn, doanh thu và biên lợi nhuận gộp.", icon: <Layers size={16} /> },
+                      { title: "Hỗ Trợ Kỹ Thuật", desc: "Tiếp nhận và xử lý tickets phản hồi của khách hàng.", icon: <Layers size={16} /> },
                     ].map((feat, i) => (
-                      <div key={i} className="bg-[#030014] border border-purple-900/30 rounded-2xl p-5 hover:border-purple-500/50 transition-colors">
-                        <div className="w-9 h-9 rounded-full bg-[#161033] border border-purple-900/40 text-white flex items-center justify-center mb-3">
+                      <div key={i} className="bg-[#030014] border border-purple-900/30 rounded-2xl p-4 md:p-5 hover:border-purple-500/50 transition-colors">
+                        <div className="w-8 h-8 rounded-full bg-[#161033] border border-purple-900/40 text-white flex items-center justify-center mb-3">
                           {feat.icon}
                         </div>
-                        <h4 className="text-sm font-black text-slate-200 mb-1">{feat.title}</h4>
-                        <p className="text-slate-400 text-xs leading-relaxed font-light">{feat.desc}</p>
+                        <h4 className="text-xs sm:text-sm font-black text-slate-200 mb-1">{feat.title}</h4>
+                        <p className="text-slate-400 text-[11px] sm:text-xs leading-relaxed font-light">{feat.desc}</p>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 {/* MINTH CRM & POS CARD */}
-                <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-8 md:p-12 shadow-sm space-y-8">
+                <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-4 sm:p-6 md:p-12 shadow-sm space-y-6 md:space-y-8">
                   <div className="flex flex-col md:flex-row justify-between items-start gap-6">
-                    <div className="space-y-4 max-w-3xl text-left">
-                      <span className="text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-3 py-1 rounded-full border border-purple-900/40 inline-block">
+                    <div className="space-y-3 md:space-y-4 max-w-3xl text-left">
+                      <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
                         SME Retail ERP
                       </span>
-                      <h3 className="text-3xl font-black text-white">MINTH CRM & POS</h3>
-                      <p className="text-slate-400 text-sm leading-relaxed font-light text-justify">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white">MINTH CRM & POS</h3>
+                      <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light text-justify">
                         Giải pháp quản lý bán hàng "Tinh gọn - Hiện đại - Dễ dùng" dành riêng cho các shop vừa và nhỏ. Chỉ với 1 màn hình duy nhất, bạn nắm trọn toàn bộ bức tranh tài chính và vận hành của cửa hàng.
                       </p>
                     </div>
-                    <div className="shrink-0 pt-2">
-                      <span className="px-5 py-2.5 bg-[#161033] border border-purple-900/40 text-slate-400 font-bold text-xs uppercase tracking-widest rounded-full">
+                    <div className="shrink-0 pt-1 md:pt-2">
+                      <span className="px-4 py-2 bg-[#161033] border border-purple-900/40 text-slate-400 font-bold text-[10px] sm:text-xs uppercase tracking-widest rounded-full">
                         Retail POS System
                       </span>
                     </div>
                   </div>
 
                   {/* Widescreen Slideshow Gallery (MINTH CRM & POS) */}
-                  <div className="flex flex-col items-center">
-                    <div className="flex items-center gap-4 w-full max-w-4xl justify-center">
-                      {/* Prev Button */}
+                  <div className="flex flex-col items-center w-full">
+                    {/* Image Container with Overlay Controls */}
+                    <div className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden border border-purple-900/40 shadow-xl bg-[#161033]">
+                      <div className="absolute inset-0">
+                        <AnimatePresence mode="wait">
+                          <motion.img 
+                            key={activeMinthImg}
+                            src={activeMinthImg} 
+                            alt="MINTH CRM & POS" 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            className="w-full h-full object-cover" 
+                          />
+                        </AnimatePresence>
+                      </div>
+                      
+                      <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" onClick={() => { setPreviewImage(activeMinthImg); setPreviewList([crm1, crm2, crm3, crm4]); }}>
+                        <span className="px-4 py-2 bg-[#0f0b24]/90 rounded-full text-xs font-bold text-slate-200 shadow-md">Zoom Screen</span>
+                      </div>
+
+                      {/* Glassmorphic Overlay Navigation Buttons */}
                       <button 
                         onClick={() => {
                           const minthList = [crm1, crm2, crm3, crm4];
@@ -970,33 +992,12 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                           const prevIdx = (curIdx - 1 + minthList.length) % minthList.length;
                           setActiveMinthImg(minthList[prevIdx]);
                         }}
-                        className="p-3 bg-[#0f0b24] hover:bg-[#030014] border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all shrink-0"
+                        className="absolute left-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#0f0b24]/60 hover:bg-[#0f0b24]/90 border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all z-20 backdrop-blur-md"
+                        aria-label="Previous image"
                       >
-                        <ChevronLeft size={22} />
+                        <ChevronLeft size={18} className="sm:w-[22px] sm:h-[22px]" />
                       </button>
 
-                      {/* Image Container */}
-                      <div className="flex-1 aspect-video rounded-2xl overflow-hidden border border-purple-900/40 shadow-xl relative group bg-[#161033]">
-                        <div className="absolute inset-0">
-                          <AnimatePresence mode="wait">
-                            <motion.img 
-                              key={activeMinthImg}
-                              src={activeMinthImg} 
-                              alt="MINTH CRM & POS" 
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              exit={{ opacity: 0 }}
-                              transition={{ duration: 0.25, ease: "easeInOut" }}
-                              className="w-full h-full object-cover" 
-                            />
-                          </AnimatePresence>
-                        </div>
-                        <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" onClick={() => { setPreviewImage(activeMinthImg); setPreviewList([crm1, crm2, crm3, crm4]); }}>
-                          <span className="px-4 py-2 bg-[#0f0b24]/90 rounded-full text-xs font-bold text-slate-200 shadow-md">Zoom Screen</span>
-                        </div>
-                      </div>
-
-                      {/* Next Button */}
                       <button 
                         onClick={() => {
                           const minthList = [crm1, crm2, crm3, crm4];
@@ -1004,17 +1005,20 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                           const nextIdx = (curIdx + 1) % minthList.length;
                           setActiveMinthImg(minthList[nextIdx]);
                         }}
-                        className="p-3 bg-[#0f0b24] hover:bg-[#030014] border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all shrink-0"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#0f0b24]/60 hover:bg-[#0f0b24]/90 border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all z-20 backdrop-blur-md"
+                        aria-label="Next image"
                       >
-                        <ChevronRight size={22} />
+                        <ChevronRight size={18} className="sm:w-[22px] sm:h-[22px]" />
                       </button>
                     </div>
+
                     {/* Index Indicator */}
-                    <span className="text-xs text-slate-400 font-bold mt-3">
+                    <span className="text-[10px] sm:text-xs text-slate-400 font-bold mt-2.5">
                       Image {[crm1, crm2, crm3, crm4].indexOf(activeMinthImg) + 1} of 4
                     </span>
-                    {/* CRM Thumbnail Gallery Selector */}
-                    <div className="w-full max-w-4xl flex justify-start md:justify-center gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
+                    
+                    {/* CRM Thumbnail Gallery Selector (Hidden on Mobile) */}
+                    <div className="hidden md:flex w-full max-w-4xl justify-center gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
                       {[crm1, crm2, crm3, crm4].map((img, index) => (
                         <button 
                           key={index}
@@ -1029,40 +1033,60 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2 md:pt-4">
                     {[
-                      { title: "Bento Dashboard", desc: "Cập nhật tức thời doanh thu, lợi nhuận gộp, AOV và tính sẵn LN ròng.", icon: <Layers size={18} /> },
-                      { title: "CRM \"Mini\" Siêu Nhẹ", desc: "Quản lý khách hàng, tự động thống kê khách VIP và xem lịch sử mua hàng.", icon: <Users size={18} /> },
-                      { title: "Cảnh Báo Tồn Kho", desc: "Tự động cảnh báo hàng Sắp hết và Sắp hết hạn để tối ưu dòng vốn.", icon: <Database size={18} /> },
-                      { title: "Giờ Vàng Mua Sắm", desc: "Phân tích thời điểm khách chốt đơn nhiều nhất để chạy Ads hoặc khuyến mãi.", icon: <Compass size={18} /> },
+                      { title: "Bento Dashboard", desc: "Cập nhật tức thời doanh thu, lợi nhuận gộp, AOV và tính sẵn LN ròng.", icon: <Layers size={16} /> },
+                      { title: "CRM \"Mini\" Siêu Nhẹ", desc: "Quản lý khách hàng, tự động thống kê khách VIP và xem lịch sử mua hàng.", icon: <Users size={16} /> },
+                      { title: "Cảnh Báo Tồn Kho", desc: "Tự động cảnh báo hàng Sắp hết và Sắp hết hạn để tối ưu dòng vốn.", icon: <Database size={16} /> },
+                      { title: "Giờ Vàng Mua Sắm", desc: "Phân tích thời điểm khách chốt đơn nhiều nhất để chạy Ads hoặc khuyến mãi.", icon: <Compass size={16} /> },
                     ].map((feat, i) => (
-                      <div key={i} className="bg-[#030014] border border-purple-900/30 rounded-2xl p-5 hover:border-purple-500/50 transition-colors">
-                        <div className="w-9 h-9 rounded-full bg-[#161033] border border-purple-900/40 text-white flex items-center justify-center mb-3">
+                      <div key={i} className="bg-[#030014] border border-purple-900/30 rounded-2xl p-4 md:p-5 hover:border-purple-500/50 transition-colors">
+                        <div className="w-8 h-8 rounded-full bg-[#161033] border border-purple-900/40 text-white flex items-center justify-center mb-3">
                           {feat.icon}
                         </div>
-                        <h4 className="text-sm font-black text-slate-200 mb-1">{feat.title}</h4>
-                        <p className="text-slate-400 text-xs leading-relaxed font-light">{feat.desc}</p>
+                        <h4 className="text-xs sm:text-sm font-black text-slate-200 mb-1">{feat.title}</h4>
+                        <p className="text-slate-400 text-[11px] sm:text-xs leading-relaxed font-light">{feat.desc}</p>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 {/* LMS E-LEARNING */}
-                <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-8 md:p-12 shadow-sm space-y-8">
-                  <div className="space-y-4 max-w-3xl">
-                    <span className="text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-3 py-1 rounded-full border border-purple-900/40 inline-block">
+                <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-4 sm:p-6 md:p-12 shadow-sm space-y-6 md:space-y-8">
+                  <div className="space-y-3 md:space-y-4 max-w-3xl">
+                    <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
                       Edu-Tech Solution
                     </span>
-                    <h3 className="text-3xl font-black text-white">LMS E-LEARNING Platform</h3>
-                    <p className="text-slate-400 text-sm leading-relaxed font-light">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white">LMS E-LEARNING Platform</h3>
+                    <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light">
                       Nền tảng quản lý học tập (LMS) hoàn chỉnh. Sở hữu toàn bộ các tính năng cốt lõi của một hệ thống giáo dục trực tuyến chuyên nghiệp nhất, đáp ứng quy mô học viên lớn.
                     </p>
                   </div>
 
                   {/* Widescreen Slideshow Gallery (LMS) */}
-                  <div className="flex flex-col items-center">
-                    <div className="flex items-center gap-4 w-full max-w-4xl justify-center">
-                      {/* Prev Button */}
+                  <div className="flex flex-col items-center w-full">
+                    {/* Image Container with Overlay Controls */}
+                    <div className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden border border-purple-900/40 shadow-xl bg-[#161033]">
+                      <div className="absolute inset-0">
+                        <AnimatePresence mode="wait">
+                          <motion.img 
+                            key={activeLmsImg}
+                            src={activeLmsImg} 
+                            alt="LMS Platform" 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            className="w-full h-full object-cover" 
+                          />
+                        </AnimatePresence>
+                      </div>
+
+                      <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" onClick={() => { setPreviewImage(activeLmsImg); setPreviewList([lms1, lms2, lms3, lms4]); }}>
+                        <span className="px-4 py-2 bg-[#0f0b24]/90 rounded-full text-xs font-bold text-slate-200 shadow-md">Zoom Screen</span>
+                      </div>
+
+                      {/* Glassmorphic Overlay Navigation Buttons */}
                       <button 
                         onClick={() => {
                           const lmsList = [lms1, lms2, lms3, lms4];
@@ -1070,33 +1094,12 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                           const prevIdx = (curIdx - 1 + lmsList.length) % lmsList.length;
                           setActiveLmsImg(lmsList[prevIdx]);
                         }}
-                        className="p-3 bg-[#0f0b24] hover:bg-[#030014] border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all shrink-0"
+                        className="absolute left-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#0f0b24]/60 hover:bg-[#0f0b24]/90 border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all z-20 backdrop-blur-md"
+                        aria-label="Previous image"
                       >
-                        <ChevronLeft size={22} />
+                        <ChevronLeft size={18} className="sm:w-[22px] sm:h-[22px]" />
                       </button>
 
-                      {/* Image Container */}
-                      <div className="flex-1 aspect-video rounded-2xl overflow-hidden border border-purple-900/40 shadow-xl relative group bg-[#161033]">
-                        <div className="absolute inset-0">
-                          <AnimatePresence mode="wait">
-                            <motion.img 
-                              key={activeLmsImg}
-                              src={activeLmsImg} 
-                              alt="LMS Platform" 
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              exit={{ opacity: 0 }}
-                              transition={{ duration: 0.25, ease: "easeInOut" }}
-                              className="w-full h-full object-cover" 
-                            />
-                          </AnimatePresence>
-                        </div>
-                        <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" onClick={() => { setPreviewImage(activeLmsImg); setPreviewList([lms1, lms2, lms3, lms4]); }}>
-                          <span className="px-4 py-2 bg-[#0f0b24]/90 rounded-full text-xs font-bold text-slate-200 shadow-md">Zoom Screen</span>
-                        </div>
-                      </div>
-
-                      {/* Next Button */}
                       <button 
                         onClick={() => {
                           const lmsList = [lms1, lms2, lms3, lms4];
@@ -1104,17 +1107,20 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                           const nextIdx = (curIdx + 1) % lmsList.length;
                           setActiveLmsImg(lmsList[nextIdx]);
                         }}
-                        className="p-3 bg-[#0f0b24] hover:bg-[#030014] border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all shrink-0"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#0f0b24]/60 hover:bg-[#0f0b24]/90 border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all z-20 backdrop-blur-md"
+                        aria-label="Next image"
                       >
-                        <ChevronRight size={22} />
+                        <ChevronRight size={18} className="sm:w-[22px] sm:h-[22px]" />
                       </button>
                     </div>
+
                     {/* Index Indicator */}
-                    <span className="text-xs text-slate-400 font-bold mt-3">
+                    <span className="text-[10px] sm:text-xs text-slate-400 font-bold mt-2.5">
                       Image {[lms1, lms2, lms3, lms4].indexOf(activeLmsImg) + 1} of 4
                     </span>
-                    {/* LMS Thumbnail Gallery Selector */}
-                    <div className="w-full max-w-4xl flex justify-start md:justify-center gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
+                    
+                    {/* LMS Thumbnail Gallery Selector (Hidden on Mobile) */}
+                    <div className="hidden md:flex w-full max-w-4xl justify-center gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
                       {[lms1, lms2, lms3, lms4].map((img, index) => (
                         <button 
                           key={index}
@@ -1129,19 +1135,19 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-4 gap-6 pt-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2 md:pt-4">
                     {[
-                      { title: "Bài Giảng Video", desc: "Streaming mượt mà, Course phân loại khoa học.", icon: <GraduationCap size={18} /> },
-                      { title: "Trắc Nghiệm Tự Động", desc: "Tính giờ câu hỏi, trả kết quả kiểm tra tức thì.", icon: <CheckCircle size={18} /> },
-                      { title: "Cấp Certs PDF", desc: "Tự động xuất chứng chỉ PDF khi đạt yêu cầu.", icon: <Award size={18} /> },
-                      { title: "Tracking Tiến Độ", desc: "Theo dõi % hoàn thành khóa học của từng user.", icon: <BarChart3 size={18} /> },
+                      { title: "Bài Giảng Video", desc: "Streaming mượt mà, Course phân loại khoa học.", icon: <GraduationCap size={16} /> },
+                      { title: "Trắc Nghiệm Tự Động", desc: "Tính giờ câu hỏi, trả kết quả kiểm tra tức thì.", icon: <CheckCircle size={16} /> },
+                      { title: "Cấp Certs PDF", desc: "Tự động xuất chứng chỉ PDF khi đạt yêu cầu.", icon: <Award size={16} /> },
+                      { title: "Tracking Tiến Độ", desc: "Theo dõi % hoàn thành khóa học của từng user.", icon: <BarChart3 size={16} /> },
                     ].map((feat, i) => (
-                      <div key={i} className="bg-[#030014] border border-purple-900/30 rounded-2xl p-5 hover:border-purple-500/50 transition-colors">
-                        <div className="w-9 h-9 rounded-full bg-[#161033] border border-purple-900/40 text-white flex items-center justify-center mb-3">
+                      <div key={i} className="bg-[#030014] border border-purple-900/30 rounded-2xl p-4 md:p-5 hover:border-purple-500/50 transition-colors">
+                        <div className="w-8 h-8 rounded-full bg-[#161033] border border-purple-900/40 text-white flex items-center justify-center mb-3">
                           {feat.icon}
                         </div>
-                        <h4 className="text-sm font-black text-slate-200 mb-1">{feat.title}</h4>
-                        <p className="text-slate-400 text-xs leading-relaxed font-light">{feat.desc}</p>
+                        <h4 className="text-xs sm:text-sm font-black text-slate-200 mb-1">{feat.title}</h4>
+                        <p className="text-slate-400 text-[11px] sm:text-xs leading-relaxed font-light">{feat.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -1151,83 +1157,85 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
 
             {activeTab === 'martech' && (
               <div className="space-y-10 w-full">
-                <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-8 md:p-12 shadow-sm space-y-8">
+                <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-4 sm:p-6 md:p-12 shadow-sm space-y-6 md:space-y-8">
                   <div className="flex flex-col md:flex-row justify-between items-start gap-6">
-                    <div className="space-y-4 max-w-3xl text-left">
-                      <span className="text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-3 py-1 rounded-full border border-purple-900/40 inline-block">
+                    <div className="space-y-3 md:space-y-4 max-w-3xl text-left">
+                      <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
                         Data Routing Solution
                       </span>
-                      <h3 className="text-3xl font-black text-white">DOMATION Data Routing (Chia Data)</h3>
-                      <p className="text-slate-400 text-sm leading-relaxed font-light text-justify">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white">DOMATION Data Routing (Chia Data)</h3>
+                      <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light text-justify">
                         Hệ thống chuyển dữ liệu tự động thời gian thực từ Landing Page, Facebook Ads, Zalo Form về CRM nội bộ. Phân chia Data xoay vòng Round-Robin cho các Sale, nhận diện nghỉ phép, tự động báo lỗi và đền bù số qua Zalo Bot.
                       </p>
                     </div>
-                    <div className="shrink-0 pt-2">
+                    <div className="shrink-0 pt-1 md:pt-2">
                       <a 
                         href="https://domation.net/data" 
                         target="_blank" 
                         rel="noreferrer"
-                        className="px-6 py-3 bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:via-violet-500 hover:to-indigo-500 text-white font-bold text-xs uppercase tracking-widest rounded-full shadow-[0_0_15px_rgba(168,85,247,0.35)] hover:shadow-[0_0_25px_rgba(168,85,247,0.55)] flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
+                        className="px-5 py-2.5 bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:via-violet-500 hover:to-indigo-500 text-white font-bold text-[10px] sm:text-xs uppercase tracking-widest rounded-full shadow-[0_0_15px_rgba(168,85,247,0.35)] hover:shadow-[0_0_25px_rgba(168,85,247,0.55)] flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
                       >
-                        Dùng Thử Ngay <ExternalLink size={12} />
+                        Dùng Thử Ngay <ExternalLink size={11} />
                       </a>
                     </div>
                   </div>
 
                   {/* Widescreen Slideshow Gallery (Data Routing) */}
-                  <div className="flex flex-col items-center">
-                    <div className="flex items-center gap-4 w-full max-w-4xl justify-center">
-                      {/* Prev Button */}
+                  <div className="flex flex-col items-center w-full">
+                    {/* Image Container with Overlay Controls */}
+                    <div className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden border border-purple-900/40 shadow-xl bg-[#161033]">
+                      <div className="absolute inset-0">
+                        <AnimatePresence mode="wait">
+                          <motion.img 
+                            key={activeDataImg}
+                            src={activeDataImg} 
+                            alt="Data Routing Platform" 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            className="w-full h-full object-cover" 
+                          />
+                        </AnimatePresence>
+                      </div>
+                      
+                      <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" onClick={() => { setPreviewImage(activeDataImg); setPreviewList(CHIA_DATA_IMAGES); }}>
+                        <span className="px-4 py-2 bg-[#0f0b24]/90 rounded-full text-xs font-bold text-slate-200 shadow-md">Zoom Screen</span>
+                      </div>
+
+                      {/* Glassmorphic Overlay Navigation Buttons */}
                       <button 
                         onClick={() => {
                           const curIdx = CHIA_DATA_IMAGES.indexOf(activeDataImg);
                           const prevIdx = (curIdx - 1 + CHIA_DATA_IMAGES.length) % CHIA_DATA_IMAGES.length;
                           setActiveDataImg(CHIA_DATA_IMAGES[prevIdx]);
                         }}
-                        className="p-3 bg-[#0f0b24] hover:bg-[#030014] border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all shrink-0"
+                        className="absolute left-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#0f0b24]/60 hover:bg-[#0f0b24]/90 border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all z-20 backdrop-blur-md"
+                        aria-label="Previous image"
                       >
-                        <ChevronLeft size={22} />
+                        <ChevronLeft size={18} className="sm:w-[22px] sm:h-[22px]" />
                       </button>
 
-                      {/* Image Container */}
-                      <div className="flex-1 aspect-video rounded-2xl overflow-hidden border border-purple-900/40 shadow-xl relative group bg-[#161033]">
-                        <div className="absolute inset-0">
-                          <AnimatePresence mode="wait">
-                            <motion.img 
-                              key={activeDataImg}
-                              src={activeDataImg} 
-                              alt="Data Routing Platform" 
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              exit={{ opacity: 0 }}
-                              transition={{ duration: 0.25, ease: "easeInOut" }}
-                              className="w-full h-full object-cover" 
-                            />
-                          </AnimatePresence>
-                        </div>
-                        <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" onClick={() => { setPreviewImage(activeDataImg); setPreviewList(CHIA_DATA_IMAGES); }}>
-                          <span className="px-4 py-2 bg-[#0f0b24]/90 rounded-full text-xs font-bold text-slate-200 shadow-md">Zoom Screen</span>
-                        </div>
-                      </div>
-
-                      {/* Next Button */}
                       <button 
                         onClick={() => {
                           const curIdx = CHIA_DATA_IMAGES.indexOf(activeDataImg);
                           const nextIdx = (curIdx + 1) % CHIA_DATA_IMAGES.length;
                           setActiveDataImg(CHIA_DATA_IMAGES[nextIdx]);
                         }}
-                        className="p-3 bg-[#0f0b24] hover:bg-[#030014] border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all shrink-0"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#0f0b24]/60 hover:bg-[#0f0b24]/90 border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all z-20 backdrop-blur-md"
+                        aria-label="Next image"
                       >
-                        <ChevronRight size={22} />
+                        <ChevronRight size={18} className="sm:w-[22px] sm:h-[22px]" />
                       </button>
                     </div>
+
                     {/* Index Indicator */}
-                    <span className="text-xs text-slate-400 font-bold mt-3">
+                    <span className="text-[10px] sm:text-xs text-slate-400 font-bold mt-2.5">
                       Image {CHIA_DATA_IMAGES.indexOf(activeDataImg) + 1} of {CHIA_DATA_IMAGES.length}
                     </span>
-                    {/* 12 Data Flow Thumbnails */}
-                    <div className="w-full max-w-4xl flex justify-start md:justify-center gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
+
+                    {/* 12 Data Flow Thumbnails (Hidden on Mobile) */}
+                    <div className="hidden md:flex w-full max-w-4xl justify-center gap-1.5 mt-4 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
                       {CHIA_DATA_IMAGES.map((img, index) => (
                         <button 
                           key={index}
@@ -1242,20 +1250,20 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     </div>
                   </div>
                   
-                  <div className="grid md:grid-cols-3 gap-6 pt-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 pt-2 md:pt-4">
                     {[
-                      { title: "Đồng Bộ Realtime", desc: "Leads từ Meta Ads/Sheets đổ thẳng về CRM không trễ.", icon: <Zap size={18} /> },
-                      { title: "Zalo & Email Alert", desc: "Zalo Bot gửi thông tin chi tiết lead cho tư vấn viên.", icon: <Bot size={18} /> },
-                      { title: "Routing Round-Robin", desc: "Tự động xoay vòng phân phối số công bằng cho Sales.", icon: <Compass size={18} /> },
-                      { title: "Đền Bù Số Tự Động", desc: "Hệ thống duyệt báo lỗi số trùng, tự bù data mới.", icon: <ShieldCheck size={18} /> },
-                      { title: "Nhận Diện Nghỉ Phép", desc: "Tạm ngưng chia số khi Sales nghỉ phép để tránh nguội data.", icon: <Users size={18} /> },
-                      { title: "Báo Cáo Cuối Ngày", desc: "Zalo Bot tự động tổng kết báo cáo hiệu suất của từng Sales.", icon: <BarChart3 size={18} /> }
+                      { title: "Đồng Bộ Realtime", desc: "Leads từ Meta Ads/Sheets đổ thẳng về CRM không trễ.", icon: <Zap size={16} /> },
+                      { title: "Zalo & Email Alert", desc: "Zalo Bot gửi thông tin chi tiết lead cho tư vấn viên.", icon: <Bot size={16} /> },
+                      { title: "Routing Round-Robin", desc: "Tự động xoay vòng phân phối số công bằng cho Sales.", icon: <Compass size={16} /> },
+                      { title: "Đền Bù Số Tự Động", desc: "Hệ thống duyệt báo lỗi số trùng, tự bù data mới.", icon: <ShieldCheck size={16} /> },
+                      { title: "Nhận Diện Nghỉ Phép", desc: "Tạm ngưng chia số khi Sales nghỉ phép để tránh nguội data.", icon: <Users size={16} /> },
+                      { title: "Báo Cáo Cuối Ngày", desc: "Zalo Bot tự động tổng kết báo cáo hiệu suất của từng Sales.", icon: <BarChart3 size={16} /> }
                     ].map((item, i) => (
-                      <div key={i} className="flex gap-3 text-xs">
+                      <div key={i} className="flex gap-3 text-xs bg-[#030014] border border-purple-900/30 rounded-2xl p-4 hover:border-purple-500/50 transition-colors">
                         <CheckCircle size={16} className="text-white shrink-0 mt-0.5" />
                         <div>
-                          <h5 className="font-bold text-slate-200">{item.title}</h5>
-                          <p className="text-slate-400 font-light mt-0.5">{item.desc}</p>
+                          <h5 className="font-bold text-slate-200 text-xs sm:text-sm">{item.title}</h5>
+                          <p className="text-slate-400 font-light mt-0.5 text-[11px] sm:text-xs">{item.desc}</p>
                         </div>
                       </div>
                     ))}
@@ -2025,7 +2033,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.95 }}
             transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-            className="fixed bottom-0 right-0 sm:bottom-28 sm:right-6 w-full sm:w-[380px] h-[100dvh] sm:h-[580px] z-50 sm:rounded-2xl shadow-2xl overflow-hidden border-t sm:border border-purple-900/40 bg-[#0f0b24]"
+            className="fixed bottom-0 right-0 sm:bottom-28 sm:right-6 w-full sm:w-[460px] h-[100dvh] sm:h-[650px] z-50 sm:rounded-2xl shadow-2xl overflow-hidden border-t sm:border border-purple-900/40 bg-[#0f0b24]"
           >
             <DomiBot onNavigate={handleNavigateFromBot} activeTab={activeTab} onClose={() => setChatOpen(false)} />
           </motion.div>

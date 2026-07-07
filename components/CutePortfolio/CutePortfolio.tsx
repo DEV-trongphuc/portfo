@@ -950,16 +950,25 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                   <h3 className="text-sm font-black text-white uppercase tracking-widest">The Core Pipeline</h3>
                   <div className="grid md:grid-cols-3 gap-6">
                     {BRIDGE_CARDS.map((card, i) => (
-                      <div key={i} className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-8 shadow-sm relative group hover:border-purple-900/40 transition-all hover:-translate-y-0.5">
-                        <div className="w-12 h-12 rounded-2xl bg-[#161033] border border-purple-900/40 text-white flex items-center justify-center mb-6">
-                          {card.icon}
-                        </div>
-                        <span className="absolute top-8 right-8 text-5xl font-black text-slate-100 group-hover:text-slate-200 transition-colors">
-                          {card.step}
-                        </span>
-                        <h4 className="text-lg font-black text-white mb-3 relative z-10">{card.title}</h4>
-                        <p className="text-slate-400 text-sm leading-relaxed font-light">{card.desc}</p>
-                      </div>
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, y: 25 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: i * 0.12 }}
+                        className="h-full"
+                      >
+                        <GlowCard className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-8 shadow-sm relative group hover:border-purple-500/35 hover:shadow-[0_0_25px_rgba(168,85,247,0.15)] transition-all h-full text-left">
+                          <div className="w-12 h-12 rounded-2xl bg-[#161033] border border-purple-900/40 text-white flex items-center justify-center mb-6 relative z-10 group-hover:scale-110 transition-transform duration-300">
+                            {card.icon}
+                          </div>
+                          <span className="absolute top-8 right-8 text-5xl font-black text-slate-100/5 group-hover:text-slate-100/10 transition-colors pointer-events-none select-none">
+                            {card.step}
+                          </span>
+                          <h4 className="text-lg font-black text-white mb-3 relative z-10">{card.title}</h4>
+                          <p className="text-slate-400 text-sm leading-relaxed font-light relative z-10">{card.desc}</p>
+                        </GlowCard>
+                      </motion.div>
                     ))}
                   </div>
                 </div>

@@ -159,6 +159,14 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [previewList, setPreviewList] = useState<string[]>([]);
 
+  // AI Agent slideshow states
+  const [activeAiIdx, setActiveAiIdx] = useState(0);
+  const aiAgentImages = [
+    'https://domation.net/imgs/kien%20thuc%20ai.jpg',
+    'https://domation.net/imgs/AIchatbot.png',
+    'https://domation.net/imgs/ai_2.jpg'
+  ];
+
   const handleModalPrev = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (previewList.length > 1 && previewImage) {
@@ -254,11 +262,13 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
       resolvedTab = 'zalo';
     } else if (['tarot', 'mystery-tarot'].includes(resolvedTab)) {
       resolvedTab = 'tarot';
+    } else if (['ai-agent', 'ai-custom', 'ai_agent', 'ai_custom', 'tro-ly-ao', 'trolyao'].includes(resolvedTab)) {
+      resolvedTab = 'ai-agent';
     } else if (['dashboard', 'overview'].includes(resolvedTab)) {
       resolvedTab = 'dashboard';
     }
 
-    const validTabs = ['dashboard', 'saas', 'martech', 'meta-report', 'automation', 'zalo', 'tarot', 'book', 'landings', 'outsource', 'partners', 'certifications'];
+    const validTabs = ['dashboard', 'saas', 'martech', 'meta-report', 'automation', 'zalo', 'tarot', 'book', 'landings', 'outsource', 'partners', 'certifications', 'ai-agent'];
     if (validTabs.includes(resolvedTab)) {
       setActiveTab(resolvedTab);
       setMobileMenuOpen(false);
@@ -279,6 +289,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
     buildAutomation: [
       { id: 'martech', name: 'Data Flow', icon: <Server size={16} /> },
       { id: 'automation', name: 'Automation', icon: <Zap size={16} /> },
+      { id: 'ai-agent', name: 'AI Custom', icon: <Bot size={16} /> },
     ],
     digitalMarketingAds: [
       { id: 'meta-report', name: 'Ads Report', icon: <BarChart3 size={16} /> },
@@ -1671,6 +1682,102 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                         onClick={() => { setPreviewImage(cmt); setPreviewList([cmt1, cmt2, cmt3, cmt4]); }}
                       >
                         <img src={cmt} alt="User Feedback" className="w-full h-auto object-cover" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* AI CUSTOM (TRỢ LÝ ẢO AI) */}
+            {activeTab === 'ai-agent' && (
+              <div className="space-y-10 w-full text-left">
+                <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-4 sm:p-6 md:p-12 shadow-sm space-y-6 md:space-y-8">
+                  <div className="flex flex-col md:flex-row justify-between items-start gap-6">
+                    <div className="space-y-3 md:space-y-4 max-w-3xl">
+                      <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-white bg-[#161033] px-2.5 py-0.5 rounded-full border border-purple-900/40 inline-block">
+                        AI Knowledge Base
+                      </span>
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white">Trợ Lý Ảo AI Custom (AI Agent)</h3>
+                      <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light text-justify">
+                        Train AI từ tài liệu nội bộ, website của bạn. Thiết lập nền tảng kiến thức (Knowledge Base) thông minh, trả lời trực tiếp thắc mắc Khách hàng 24/7.
+                      </p>
+                    </div>
+                    <div className="shrink-0 pt-1 md:pt-2">
+                      <a 
+                        href="https://ideas.edu.vn/" 
+                        target="_blank" 
+                        rel="noreferrer"
+                        className="px-5 py-2.5 bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:via-violet-500 hover:to-indigo-500 text-white font-bold text-[10px] sm:text-xs uppercase tracking-widest rounded-full shadow-[0_0_15px_rgba(168,85,247,0.35)] hover:shadow-[0_0_25px_rgba(168,85,247,0.55)] flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
+                      >
+                        Chat Thử AI <ExternalLink size={11} />
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Slideshow Gallery with Overlay Navigation */}
+                  <div className="flex flex-col items-center w-full">
+                    {/* Image Container with Overlay Controls */}
+                    <div className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden border border-purple-900/40 shadow-xl bg-[#161033] group">
+                      <div className="absolute inset-0">
+                        <AnimatePresence mode="wait">
+                          <motion.img 
+                            key={activeAiIdx}
+                            src={aiAgentImages[activeAiIdx]} 
+                            alt={`AI Custom Screenshot ${activeAiIdx + 1}`} 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            className="w-full h-full object-cover" 
+                          />
+                        </AnimatePresence>
+                      </div>
+                      {/* Zoom overlay */}
+                      <div 
+                        className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" 
+                        onClick={() => { setPreviewImage(aiAgentImages[activeAiIdx]); setPreviewList(aiAgentImages); }}
+                      >
+                        <span className="px-4 py-2 bg-[#0f0b24]/90 rounded-full text-xs font-bold text-slate-200 shadow-md">Zoom Screen</span>
+                      </div>
+
+                      {/* Glassmorphic Overlay Navigation Buttons */}
+                      <button 
+                        onClick={() => setActiveAiIdx(prev => (prev - 1 + aiAgentImages.length) % aiAgentImages.length)}
+                        className="absolute left-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#0f0b24]/60 hover:bg-[#0f0b24]/90 border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all z-20 backdrop-blur-md"
+                        aria-label="Previous image"
+                      >
+                        <ChevronLeft size={18} className="sm:w-[22px] sm:h-[22px]" />
+                      </button>
+
+                      <button 
+                        onClick={() => setActiveAiIdx(prev => (prev + 1) % aiAgentImages.length)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#0f0b24]/60 hover:bg-[#0f0b24]/90 border border-purple-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all z-20 backdrop-blur-md"
+                        aria-label="Next image"
+                      >
+                        <ChevronRight size={18} className="sm:w-[22px] sm:h-[22px]" />
+                      </button>
+                    </div>
+
+                    {/* Index Indicator */}
+                    <span className="text-[10px] sm:text-xs text-slate-400 font-bold mt-2.5">
+                      Image {activeAiIdx + 1} of {aiAgentImages.length}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2 md:pt-4">
+                    {[
+                      { title: "Giao Diện Branding", desc: "Custom màu sắc, UI Design & Logo riêng chuẩn thương hiệu.", icon: <Sparkles size={18} /> },
+                      { title: "Thiết Lập Văn Hóa", desc: "Tuỳ chỉnh tone giọng phù hợp, chuẩn văn hoá định vị Brand.", icon: <Award size={18} /> },
+                      { title: "Giao Tiếp Tự Nhiên", desc: "Tư vấn, hỏi đáp, hỗ trợ khách hàng và chốt sale giống như người thật.", icon: <Bot size={18} /> },
+                      { title: "Train Kiến Thức", desc: "Máy học tự động hóa thần tốc qua File dữ liệu thô hoặc Web URL.", icon: <Database size={18} /> },
+                    ].map((feat, i) => (
+                      <div key={i} className="bg-[#030014] border border-purple-900/30 rounded-2xl p-4 md:p-5 hover:border-purple-500/50 transition-colors">
+                        <div className="w-8 h-8 rounded-full bg-[#161033] border border-purple-900/40 text-white flex items-center justify-center mb-3">
+                          {feat.icon}
+                        </div>
+                        <h4 className="text-xs sm:text-sm font-black text-slate-200 mb-1">{feat.title}</h4>
+                        <p className="text-slate-400 text-[11px] sm:text-xs leading-relaxed font-light">{feat.desc}</p>
                       </div>
                     ))}
                   </div>

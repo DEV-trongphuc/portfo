@@ -134,6 +134,13 @@ const getLocalResponse = (input: string): { text: string; tab?: string } => {
     };
   }
 
+  if (query.includes('ai custom') || query.includes('ai agent') || query.includes('trợ lý ảo') || query.includes('tro ly ao') || query.includes('knowledge base') || query.includes('kiến thức ai')) {
+    return {
+      text: "Tôi có giải pháp Trợ Lý Ảo AI Custom thông minh như chuyên gia, cho phép thiết lập Knowledge Base riêng và huấn luyện từ website/tài liệu của bạn. Tôi đã mở tab AI Custom cho bạn trải nghiệm và trò chuyện thử! ",
+      tab: 'ai-agent'
+    };
+  }
+
   if (query.includes('flow') || query.includes('automation') || query.includes('autoflow') || query.includes('n8n') || query.includes('zapier')) {
     return {
       text: "Hệ thống AutoFlow Pro thiết lập các kịch bản tự động hóa quy trình vận hành (Zalo ZNS, SMS, Webhook, CRM) giúp giảm thiểu sai sót thủ công và tối ưu năng suất. Tôi đã chuyển sang tab Automation để bạn xem chi tiết! ",

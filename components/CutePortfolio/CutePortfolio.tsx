@@ -390,7 +390,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
       { id: 'outsource', name: 'Case Study', icon: <BarChart3 size={16} /> },
     ],
     info: [
-      { id: 'certifications', name: 'Credentials', icon: <Award size={16} /> },
+      { id: 'certifications', name: 'Information', icon: <Award size={16} /> },
     ]
   };
 

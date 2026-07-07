@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Cpu, 
@@ -193,6 +193,14 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [isGamePdfOpen, setIsGamePdfOpen] = useState(false);
+  
+  const mainScrollRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (mainScrollRef.current) {
+      mainScrollRef.current.scrollTop = 0;
+    }
+  }, [activeTab]);
   
   // Book simulator states
   const [flippedIndex, setFlippedIndex] = useState(-1);
@@ -761,7 +769,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
       </aside>
 
       {/* CENTRAL MAIN WORKSPACE PANEL - SPANS WIDESCREEN WIDTH WITH PB-32 FOR BOTTOM SPACING */}
-      <main className="flex-1 px-4 md:px-10 pt-8 pb-32 relative z-10 overflow-y-auto max-h-screen">
+      <main ref={mainScrollRef} className="flex-1 px-4 md:px-10 pt-8 pb-32 relative z-10 overflow-y-auto max-h-screen">
         
         <AnimatePresence mode="wait">
           <motion.div

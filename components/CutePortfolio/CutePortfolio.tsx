@@ -427,8 +427,18 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             <p className="text-[8.5px] text-purple-300 font-bold tracking-wide mt-0.5">Digital - AI Automation</p>
           </div>
         </div>
-        <div className="flex items-center gap-3">
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-slate-300">
+        <div className="flex items-center gap-3 relative">
+          {!mobileMenuOpen && activeTab === 'dashboard' && (
+            <motion.div
+              animate={{ x: [0, -6, 0] }}
+              transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+              className="absolute right-10 top-1/2 -translate-y-1/2 flex items-center gap-1 pointer-events-none text-yellow-400 z-50 bg-[#161033] px-2 py-0.5 rounded-full border border-purple-500/40 shadow-[0_0_12px_rgba(234,179,8,0.35)]"
+            >
+              <span className="text-[8px] font-black uppercase tracking-wider text-slate-300">Menu</span>
+              <span className="text-xs select-none animate-pulse">👉</span>
+            </motion.div>
+          )}
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-slate-300 relative z-10 p-1">
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -847,7 +857,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     <span className="text-[9px] font-black uppercase tracking-[0.3em] text-yellow-300 bg-purple-950/60 border border-purple-500/50 px-4 py-1.5 rounded-full inline-block shadow-[0_0_15px_rgba(168,85,247,0.25)] animate-pulse">
                        MARTECH & FULLSTACK COCKPIT
                     </span>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200 drop-shadow-[0_2px_10px_rgba(168,85,247,0.3)]">
+                    <h2 className="text-[25px] xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200 drop-shadow-[0_2px_10px_rgba(168,85,247,0.3)]">
                       HUYNH TRONG PHUC
                     </h2>
                     <p className="text-sm md:text-base text-slate-300 font-light leading-relaxed text-justify">
@@ -2624,7 +2634,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setPreviewImage(null)}
-            className="fixed inset-0 bg-[#161033]/80 backdrop-blur-md z-50 flex items-center justify-center p-4 cursor-pointer"
+            className="fixed inset-0 bg-[#161033]/90 backdrop-blur-md z-[9999] flex items-center justify-center p-4 cursor-pointer"
           >
             <div className="flex items-center gap-4 max-w-5xl w-full justify-center">
               {/* Prev Button inside Zoom Modal */}

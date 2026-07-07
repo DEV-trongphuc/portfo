@@ -33,6 +33,28 @@ const App: React.FC = () => {
   const [portfolioMode, setPortfolioMode] = React.useState<'classic' | 'ai'>('ai');
 
   useEffect(() => {
+    const adjustZoom = () => {
+      const root = document.getElementById('root');
+      if (!root) return;
+      const width = window.innerWidth;
+      if (width >= 1024 && width < 1440) {
+        root.style.zoom = String(width / 1440);
+      } else {
+        root.style.zoom = '1';
+      }
+    };
+    
+    adjustZoom();
+    window.addEventListener('resize', adjustZoom);
+    window.addEventListener('load', adjustZoom);
+    
+    return () => {
+      window.removeEventListener('resize', adjustZoom);
+      window.removeEventListener('load', adjustZoom);
+    };
+  }, []);
+
+  useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
     if (portfolioMode === 'classic') {
       document.documentElement.classList.add('dark');

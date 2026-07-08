@@ -987,7 +987,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                         href="https://domation.net/" 
                         target="_blank" 
                         rel="noreferrer"
-                        className="w-full px-3 py-2.5 sm:px-6 sm:py-3.5 bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-500 hover:from-amber-400 hover:via-orange-400 hover:to-yellow-400 text-slate-950 font-black text-[9px] sm:text-xs tracking-wider sm:tracking-widest uppercase rounded-full shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:shadow-[0_0_30px_rgba(245,158,11,0.7)] flex items-center justify-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5"
+                        className="w-full px-3 py-2.5 sm:px-6 sm:py-3.5 bg-gradient-to-r from-purple-600 via-fuchsia-600 to-indigo-600 hover:from-purple-500 hover:via-fuchsia-500 hover:to-indigo-500 text-white font-black text-[9px] sm:text-xs tracking-wider sm:tracking-widest uppercase rounded-full shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:shadow-[0_0_30px_rgba(168,85,247,0.7)] flex items-center justify-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5"
                       >
                         Visit domation.net <ExternalLink size={12} className="shrink-0" />
                       </a>

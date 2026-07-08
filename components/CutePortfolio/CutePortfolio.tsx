@@ -979,7 +979,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                     <div className="pt-2 grid grid-cols-2 gap-3 w-full max-w-sm sm:max-w-md">
                       <button 
                         onClick={() => setActiveTab('partners')} 
-                        className="w-full px-3 py-2.5 sm:px-6 sm:py-3.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-black text-[9px] sm:text-xs tracking-wider sm:tracking-widest uppercase rounded-full shadow-[0_0_20px_rgba(168,85,247,0.3)] hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] flex items-center justify-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5"
+                        className="w-full px-3 py-2.5 sm:px-6 sm:py-3.5 bg-[#0f0b24]/40 border border-purple-500/30 hover:border-purple-400/50 hover:bg-[#0f0b24]/80 text-white hover:text-purple-300 font-black text-[9px] sm:text-xs tracking-wider sm:tracking-widest uppercase rounded-full flex items-center justify-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5"
                       >
                         View Partners <ArrowRight size={12} className="shrink-0" />
                       </button>
@@ -987,7 +987,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
                         href="https://domation.net/" 
                         target="_blank" 
                         rel="noreferrer"
-                        className="w-full px-3 py-2.5 sm:px-6 sm:py-3.5 bg-[#0f0b24]/40 border border-purple-500/30 hover:border-yellow-400/50 hover:bg-[#0f0b24]/80 text-white hover:text-yellow-400 font-black text-[9px] sm:text-xs tracking-wider sm:tracking-widest uppercase rounded-full flex items-center justify-center gap-1.5 transition-all duration-300"
+                        className="w-full px-3 py-2.5 sm:px-6 sm:py-3.5 bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-500 hover:from-amber-400 hover:via-orange-400 hover:to-yellow-400 text-slate-950 font-black text-[9px] sm:text-xs tracking-wider sm:tracking-widest uppercase rounded-full shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:shadow-[0_0_30px_rgba(245,158,11,0.7)] flex items-center justify-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5"
                       >
                         Visit domation.net <ExternalLink size={12} className="shrink-0" />
                       </a>

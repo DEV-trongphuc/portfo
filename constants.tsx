@@ -101,6 +101,10 @@ import partnerFlora from './imgs/partner_flora.webp';
 import partnerBrandson from './imgs/partner_brandson.webp';
 // @ts-ignore
 import partnerAmpersand from './imgs/ampersand logo.jpg';
+// @ts-ignore
+import partnerImplantswiss from './imgs/partner_implantswiss.png';
+// @ts-ignore
+import partnerRichland from './imgs/partner_richland.webp';
 
 // LOGO URL CONSTANT
 export const BRAND_LOGO = domLogo;
@@ -245,7 +249,9 @@ export const PARTNERS: Partner[] = [
   { name: 'Navastore', image: 'https://bizweb.dktcdn.net/100/543/817/themes/1000289/assets/logo.png?1775454528082', website: 'https://navastore.vn/', industry: 'Retail / Ecommerce' },
   { name: 'Nha khoa Flora', image: 'https://nhakhoaflora.com/wp-content/uploads/2022/05/cropped-LOGO-FLORA1-3-192x192.png', website: 'https://nhakhoaflora.com', industry: 'Dental / Clinic' },
   { name: 'Brandson', image: 'https://brandson.vn/wp-content/uploads/2025/11/logo2.png', website: 'https://brandson.vn', industry: 'Branding / Agency' },
-  { name: 'Ampersand', image: partnerAmpersand, website: 'https://www.ampersand.vn/', industry: 'FNB / Management' }
+  { name: 'Ampersand', image: partnerAmpersand, website: 'https://www.ampersand.vn/', industry: 'FNB / Management' },
+  { name: 'Implantswiss', image: partnerImplantswiss, website: 'https://implantswiss.vn/', industry: 'Dental / Implant' },
+  { name: 'Richland', image: partnerRichland, website: 'https://rich-land.vercel.app/', industry: 'Real Estate / PropTech' }
 ];
 
 export const EXPERIENCES: Experience[] = [
@@ -352,6 +358,18 @@ export const CERTIFICATIONS: Certification[] = [
 ];
 
 export const PROJECTS: Project[] = [
+  {
+    id: 'erp',
+    title: 'Hệ Thống ERP Doanh Nghiệp',
+    category: 'Dev',
+    client: 'IDEAS Institute & Đối Tác Doanh Nghiệp',
+    purpose: 'Số hóa & Tự động hóa 100% vận hành: Data lead, HRM, Chấm công GPS AI Selfie, Payroll tính lương tự động & Đối soát tài chính.',
+    description: 'Hệ thống ERP toàn diện chuẩn Enterprise tích hợp 11 phân hệ: Chia lead 5 cổng, Chấm công GPS AI Selfie, Tính lương tự động, Pipeline CRM và bảo mật RLS.',
+    longDescription: 'Hệ thống hoạch định và tự động hóa vận hành toàn diện cho doanh nghiệp. Bao gồm 11 phân hệ: Tiếp nhận Lead một cửa & chống trùng lặp; Thuật toán chia lead 5 cổng kết hợp van chống ôm (Backpressure); Chăm sóc và tính nhiệt độ Lead (Hot/Warm/Cold, TTL1); Chấm công định vị GPS chuẩn xác kèm chụp ảnh AI Selfie chống gian lận; Bảng tính lương tự động (Payroll Engine) khấu trừ thuế TNCN & BHXH; Xuất phiếu lương điện tử ký số PDF; Quản lý dòng tiền, cọc và chiết khấu hoa hồng; Đồng bộ ngược Meta CAPI tối ưu chi phí quảng cáo.',
+    image: '/ERP-Product/1788856550308_2141578413905312186_2310722037673454867_9dee6011fca6751ff38ce855f9b34ee2.jpg',
+    tech: ['React', 'TypeScript', 'TailwindCSS', 'NodeJS', 'Supabase', 'Meta CAPI', 'GPS AI Selfie', 'Payroll PDF'],
+    link: 'https://domation.net/erp',
+  },
   {
     id: 'p1',
     title: 'IDEAS Instittue',
@@ -504,5 +522,222 @@ export const SHORT_CAMPAIGNS: OutsourceHighlight[] = [
     tags: ['F&B', 'Restaurant'],
     description: 'Xây dựng kế hoạch nội dung truyền thông xã hội và thực thi chiến dịch quảng cáo phủ sóng khu vực lân cận cho nhà hàng Cowboy Steakhouse, lôi kéo lượng thực khách đều đặn hàng tuần.',
     link: 'https://www.facebook.com/CowboySteakhouseVietnam/'
+  }
+];
+
+export interface ErpGalleryItem {
+  id: string;
+  src: string;
+  title: string;
+  category: 'Vận hành & Lead' | 'CRM & Khách hàng' | 'Nhân sự & Chấm công' | 'Lương & Tài chính' | 'Hệ thống & Cài đặt';
+  tag: string;
+  description: string;
+  highlight: string;
+}
+
+export const ERP_GALLERY: ErpGalleryItem[] = [
+  {
+    id: 'splash',
+    src: '/ERP-Product/1788856522396_2141578413905312186_2310722037673454867_637ed02e6f5c0e0560d1bcac82cf9a19.jpg',
+    title: 'Màn hình Khởi động IDEAS ERP (AI Mascot)',
+    category: 'Hệ thống & Cài đặt',
+    tag: 'Splash Screen',
+    description: 'Bộ nhận diện hiện đại với Mascot Robot AI, định hướng tự động hóa thông minh (AI Automation & Intelligent Workflow).',
+    highlight: 'Nhận diện thương hiệu công nghệ cao'
+  },
+  {
+    id: 'inbox',
+    src: '/ERP-Product/1788856540980_2141578413905312186_2310722037673454867_a9d3d972886e0c266f4c5866dec8111d.jpg',
+    title: 'Hộp thư Phê duyệt & Tồn đọng (AI Gatekeeper)',
+    category: 'Vận hành & Lead',
+    tag: 'Approval Inbox',
+    description: 'Trung tâm kiểm duyệt dữ liệu: Ticket báo lỗi data, lead bị tạm giữ qua bộ lọc AI Pre-screener và yêu cầu hỗ trợ IT/CS.',
+    highlight: 'Xử lý nút thắt cổ chai tức thì'
+  },
+  {
+    id: 'dashboard',
+    src: '/ERP-Product/1788856550308_2141578413905312186_2310722037673454867_9dee6011fca6751ff38ce855f9b34ee2.jpg',
+    title: 'Tổng quan Vận hành & Phân bổ Data',
+    category: 'Vận hành & Lead',
+    tag: 'Executive Dashboard',
+    description: 'Thống kê thời gian thực: Tổng data tiếp nhận, tỷ lệ chia thành công 100%, tỷ lệ trùng lặp 0%, biểu đồ hiệu suất theo ngày và top tư vấn viên.',
+    highlight: 'Báo cáo trực quan & Real-time'
+  },
+  {
+    id: 'kanban',
+    src: '/ERP-Product/1788856559658_2141578413905312186_2310722037673454867_192068dc865f82425fa3645d12da931a.jpg',
+    title: 'Bàn làm việc & Task Kanban Thông minh',
+    category: 'Vận hành & Lead',
+    tag: 'Workspace & Kanban',
+    description: 'Quản trị công việc cá nhân và đội ngũ: Cảnh báo công việc quá hạn, đếm giờ phiên làm việc, lọc theo trạng thái và nhóm phụ trách.',
+    highlight: 'Tăng 40% năng suất xử lý công việc'
+  },
+  {
+    id: 'expenses',
+    src: '/ERP-Product/1788856566822_2141578413905312186_2310722037673454867_c63e338a900a1ede4d6aa48393ce24da.jpg',
+    title: 'Quản lý Chi phí Vận hành (Purchase Order)',
+    category: 'Lương & Tài chính',
+    tag: 'Purchase Order',
+    description: 'Kiểm soát dòng tiền ra: Tổng chi phí kỳ này, hóa đơn đã duyệt, chờ duyệt, phân loại chi phí vận hành và hạn mức giải ngân.',
+    highlight: 'Minh bạch từng đồng chi phí'
+  },
+  {
+    id: 'crm_lead',
+    src: '/ERP-Product/1788856586610_2141578413905312186_2310722037673454867_3a3e0cd6e45b99e3e82c953988b294c7.jpg',
+    title: 'Hồ sơ Khách hàng & Pipeline Chăm sóc',
+    category: 'CRM & Khách hàng',
+    tag: 'Lead Detail & Pipeline',
+    description: 'Theo dõi chi tiết khách hàng: Phân cấp nhiệt độ (Ấm/Nóng), AI chấm điểm tiềm năng, quy trình 8 bước, doanh thu dự kiến và ghi chú tương tác.',
+    highlight: 'Quản lý 360 độ vòng đời khách hàng'
+  },
+  {
+    id: 'hr_overview',
+    src: '/ERP-Product/1788856615239_2141578413905312186_2310722037673454867_68e999d52c39291dacc6740f9084167c.jpg',
+    title: 'Quản lý Nhân sự & Cơ cấu Phòng ban',
+    category: 'Nhân sự & Chấm công',
+    tag: 'HRM Overview',
+    description: 'Toàn cảnh nhân sự doanh nghiệp: Tỷ lệ đi làm trong tuần, nhân viên đi trễ, nhân sự tăng ca OT, cơ cấu phòng ban và đơn chờ duyệt.',
+    highlight: 'Tự động hóa báo cáo chấm công'
+  },
+  {
+    id: 'leave_approval',
+    src: '/ERP-Product/1788856627087_2141578413905312186_2310722037673454867_33798ebb805d3335cfcfedec3f73c1c0.jpg',
+    title: 'Phê duyệt Đơn từ & Tăng ca Trực tuyến',
+    category: 'Nhân sự & Chấm công',
+    tag: 'Online Approval',
+    description: 'Quy trình xét duyệt đa cấp: Phép năm, tăng ca, làm việc từ xa (WFH), giải trình đi trễ với đầy đủ thời gian và lý do xác thực.',
+    highlight: 'Không còn giấy tờ thủ công'
+  },
+  {
+    id: 'payroll_calc',
+    src: '/ERP-Product/1788856643268_2141578413905312186_2310722037673454867_90891228871ff88a333f15fc1497741d.jpg',
+    title: 'Bảng tính Lương Tháng Tự Động (Payroll Engine)',
+    category: 'Lương & Tài chính',
+    tag: 'Payroll System',
+    description: 'Thuật toán tính lương phức hợp: Lương ngày công, thưởng chuyên cần, KPI, khấu trừ BHXH, thuế thu nhập cá nhân TNCN và thực lĩnh NET.',
+    highlight: 'Tính lương tự động chuẩn xác 100%'
+  },
+  {
+    id: 'payslip_pdf',
+    src: '/ERP-Product/1788856653987_2141578413905312186_2310722037673454867_b778c3abf946efda6e8623075e8ea445.jpg',
+    title: 'Phiếu Lương Điện Tử & Xuất File PDF',
+    category: 'Lương & Tài chính',
+    tag: 'Digital Payslip & PDF',
+    description: 'Phiếu lương điện tử cá nhân hóa: Bảng kê chi tiết từng khoản cộng/trừ, hỗ trợ in hoặc xuất file PDF ký số xác nhận lương Net trực tuyến.',
+    highlight: 'Bảo mật thông tin lương tuyệt đối'
+  },
+  {
+    id: 'attendance_cal',
+    src: '/ERP-Product/1788856662127_2141578413905312186_2310722037673454867_5cecf569bb851d994237076459b3995a.jpg',
+    title: 'Quản lý Chấm công Theo Tháng & Ca trực',
+    category: 'Nhân sự & Chấm công',
+    tag: 'Monthly Attendance',
+    description: 'Lịch chấm công tổng hợp: Giám sát ngày công thực tế, số lần đi trễ, phút trễ, ca trực đêm, tăng ca và cập nhật bổ sung công hợp lệ.',
+    highlight: 'Minh bạch dữ liệu chuyên cần'
+  },
+  {
+    id: 'gps_selfie',
+    src: '/ERP-Product/1788856668006_2141578413905312186_2310722037673454867_72b9a0047bb54f03c54fb657c81e41dc.jpg',
+    title: 'Chấm công Định vị GPS & Chụp Ảnh Selfie AI',
+    category: 'Nhân sự & Chấm công',
+    tag: 'GPS & Face Check-in',
+    description: 'Chống gian lận chấm công tuyệt đối: Xác thực tọa độ vệ tinh GPS văn phòng, thời gian chuẩn xác đến từng giây kèm ảnh chụp selfie vào ca.',
+    highlight: 'Chống Fake GPS & Gian lận ca'
+  },
+  {
+    id: 'system_settings',
+    src: '/ERP-Product/1788856679081_2141578413905312186_2310722037673454867_8628e61bf60b5866f7474a75753c6fda.jpg',
+    title: 'Trung tâm Cấu hình Hệ thống & SLA (v246)',
+    category: 'Hệ thống & Cài đặt',
+    tag: 'System Rules & SLA',
+    description: 'Cấu hình linh hoạt không hardcode: Thời gian chờ nhận lead (2 phút), van chống ôm (Backpressure), quy tắc cọc & bể cọc, hạn mức Databank.',
+    highlight: 'Linh hoạt tùy biến 100% nghiệp vụ'
+  },
+  {
+    id: 'nav_menu_1',
+    src: '/ERP-Product/1788856691047_2141578413905312186_2310722037673454867_2dacee1206b6e8f836cdea82018d556e.jpg',
+    title: 'Hệ thống Menu Điều hướng Nhanh (Phần 1)',
+    category: 'Hệ thống & Cài đặt',
+    tag: 'Navigation System',
+    description: 'Điều hướng đa phân hệ: Lead một cửa, Databank, Giỏ hàng dự án, Đối tác liên kết, HRM, Phê duyệt và Cấu hình hệ thống.',
+    highlight: 'Giao diện tối ưu công thái học UX/UI'
+  },
+  {
+    id: 'nav_menu_2',
+    src: '/ERP-Product/1788856705546_2141578413905312186_2310722037673454867_91d3fd439a4e7f45eee7ae77dc8c20a1.jpg',
+    title: 'Hệ sinh thái Phân hệ Mở rộng (Phần 2)',
+    category: 'Hệ thống & Cài đặt',
+    tag: 'System Ecosystem',
+    description: 'Mở rộng phân hệ chuyên sâu: Chấm công GPS, Bảng tính lương tự động, Quản lý tài chính, Báo cáo CAPI và Phân quyền bảo mật RLS.',
+    highlight: 'Kiến trúc module độc lập & mở rộng'
+  }
+];
+
+export const ERP_MODULES = [
+  {
+    num: "01",
+    title: "Tiếp nhận Lead Một Cửa & Chống Trùng",
+    desc: "Bóc tách thực thể Person (Con người) và Lead (Nhu cầu). Cùng một số điện thoại chỉ tồn tại 1 hồ sơ duy nhất, không trùng lặp data giữa các kênh tiếp thị.",
+    tag: "Data Ingestion"
+  },
+  {
+    num: "02",
+    title: "Chia Lead 5 Cổng & Van Chống Ôm",
+    desc: "Thuật toán xoay vòng Round-Robin 5 cổng thông minh. Cơ chế Backpressure giới hạn số lead đang xử lý, tự động thu hồi và chia lại nếu vượt quá SLA 2 phút.",
+    tag: "Smart Routing"
+  },
+  {
+    num: "03",
+    title: "Ma Trận Nhiệt Độ & Rào Cản Form TTL1",
+    desc: "Phân loại khách hàng theo độ nóng: Hot / Warm / Cold với cơ chế Decay 5 ngày. Bắt buộc cập nhật nhật ký tương tác trước khi mở khóa trạng thái mới.",
+    tag: "Pipeline CRM"
+  },
+  {
+    num: "04",
+    title: "Hợp Tác Số & Phân Chia Hoa Hồng 100%",
+    desc: "Quy trình kết nối đối tác liên kết, ký kết hợp tác số và phê duyệt tự động. Phân bổ hoa hồng nhiều tầng minh bạch và tức thì theo từng giao dịch.",
+    tag: "Affiliate & Partner"
+  },
+  {
+    num: "05",
+    title: "Kho Databank & Đồng Hồ Tái Khai Thác",
+    desc: "Lead không phát sinh giao dịch sau thời gian quy định sẽ tự động chuyển về Kho chung Databank để các tư vấn viên khác nhận và tái khai thác.",
+    tag: "Databank Pool"
+  },
+  {
+    num: "06",
+    title: "Quản Lý Dự Án & Giỏ Hàng Thời Gian Thực",
+    desc: "Theo dõi tình trạng sản phẩm/căn hộ/dịch vụ theo thời gian thực (Trống, Giữ chỗ, Đã cọc). Tích hợp kho tài liệu số, brochure và pháp lý phân quyền.",
+    tag: "Inventory Matrix"
+  },
+  {
+    num: "07",
+    title: "Quản Trị Nhân Sự & Chấm Công GPS AI Selfie",
+    desc: "Quản lý hồ sơ nhân sự, phòng ban, ca trực và xét duyệt nghỉ phép trực tuyến. Chấm công xác thực tọa độ GPS bán kính văn phòng kèm chụp ảnh selfie AI.",
+    tag: "Smart HRM & GPS"
+  },
+  {
+    num: "08",
+    title: "Bảng Tính Lương Tự Động & Xuất PDF Ký Số",
+    desc: "Engine tính lương tự động từ dữ liệu chấm công: Lương cơ bản, OT, KPI, hoa hồng, khấu trừ BHXH và thuế TNCN. Tự động xuất phiếu lương PDF cá nhân.",
+    tag: "Payroll Engine"
+  },
+  {
+    num: "09",
+    title: "Dòng Tiền, Cọc & Phí Môi Giới",
+    desc: "Theo dõi toàn bộ phiếu thu chi, đặt cọc, chuyển cọc và hoàn cọc. Đính kèm ủy nhiệm chi ngân hàng (UNC) và tự động ghi nhận vào sổ quỹ kế toán.",
+    tag: "Cashflow & Deposits"
+  },
+  {
+    num: "10",
+    title: "Dữ Liệu Ngược Meta CAPI (Forward-Only)",
+    desc: "Bắn ngược các sự kiện chuyển đổi giá trị cao (Cọc, Hợp đồng thành công) về Meta Ads API để máy học tối ưu quảng cáo, giảm chi phí CAC và tăng ROAS.",
+    tag: "Meta CAPI Loop"
+  },
+  {
+    num: "11",
+    title: "Bảo Mật Row-Level Security (RLS) & Audit Log",
+    desc: "Kiểm soát truy cập dữ liệu đa tầng theo chi nhánh/phòng ban/vai trò. Mọi thao tác xem, sửa, xuất dữ liệu đều được ghi lại trong Audit Log bất biến.",
+    tag: "Security & RLS"
   }
 ];

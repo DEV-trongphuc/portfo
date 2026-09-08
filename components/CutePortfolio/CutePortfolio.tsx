@@ -37,7 +37,13 @@ import {
   SlidersHorizontal,
   QrCode,
   Ticket,
-  ScanLine
+  ScanLine,
+  Building2,
+  MapPin,
+  Camera,
+  FileSpreadsheet,
+  Clock,
+  Maximize2
 } from 'lucide-react';
 import { 
   STATS, 
@@ -49,7 +55,9 @@ import {
   CERTIFICATIONS,
   PROJECTS, // Original 8 developer projects
   PARTNERS,
-  BRAND_LOGO
+  BRAND_LOGO,
+  ERP_GALLERY,
+  ERP_MODULES
 } from '../../constants';
 import DomiBot from './DomiBot';
 import BentoStats3D from './BentoStats3D';
@@ -411,6 +419,8 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
   const [activeMinthImg, setActiveMinthImg] = useState(crm1);
   const [activeLmsImg, setActiveLmsImg] = useState(lms1);
   const [activeDataImg, setActiveDataImg] = useState('https://domation.net/CHIA DATA/chia_data (6).png');
+  const [activeErpCategory, setActiveErpCategory] = useState<string>('Tất Cả');
+  const [activeErpImgIndex, setActiveErpImgIndex] = useState<number>(2);
 
   const CHIA_DATA_IMAGES = [
     'https://domation.net/CHIA DATA/chia_data (6).png',
@@ -442,7 +452,9 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
     let resolvedTab = tab.toLowerCase().trim();
     
     // Robust alias routing mappings for AI bot outputs
-    if (['partner', 'partners', 'doi_tac', 'doitac'].includes(resolvedTab)) {
+    if (['erp', 'ideas-erp', 'ideas_erp', 'erp-system', 'erp_system'].includes(resolvedTab)) {
+      resolvedTab = 'erp';
+    } else if (['partner', 'partners', 'doi_tac', 'doitac'].includes(resolvedTab)) {
       resolvedTab = 'partners';
     } else if (['certification', 'certifications', 'chung_chi', 'chungchi', 'cv'].includes(resolvedTab)) {
       resolvedTab = 'certifications';
@@ -470,7 +482,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
       resolvedTab = 'dashboard';
     }
 
-    const validTabs = ['dashboard', 'saas', 'martech', 'meta-report', 'automation', 'zalo', 'tarot', 'landings', 'outsource', 'book', 'partners', 'certifications', 'ai-agent'];
+    const validTabs = ['dashboard', 'erp', 'saas', 'martech', 'meta-report', 'automation', 'zalo', 'tarot', 'landings', 'outsource', 'book', 'partners', 'certifications', 'ai-agent'];
     if (validTabs.includes(resolvedTab)) {
       setActiveTab(resolvedTab);
       setMobileMenuOpen(false);
@@ -484,6 +496,7 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
       { id: 'partners', name: 'Partners', icon: <Users size={16} /> },
     ],
     digitalApp: [
+      { id: 'erp', name: 'ERP System', icon: <Building2 size={16} /> },
       { id: 'saas', name: 'SaaS Apps', icon: <Database size={16} /> },
       { id: 'zalo', name: 'Zalo App', icon: <MonitorSmartphone size={16} /> },
       { id: 'tarot', name: 'Tarot App', icon: <Sparkles size={16} /> },
@@ -1122,9 +1135,284 @@ const CutePortfolio: React.FC<CutePortfolioProps> = ({ onToggleClassic }) => {
             )}
 
 
+            {/* ERP ENTERPRISE SHOWCASE TAB */}
+            {activeTab === 'erp' && (() => {
+              const erpCategories = ['Tất Cả', 'Vận hành & Lead', 'CRM & Khách hàng', 'Nhân sự & Chấm công', 'Lương & Tài chính', 'Hệ thống & Cài đặt'];
+              const filteredErpList = activeErpCategory === 'Tất Cả'
+                ? ERP_GALLERY
+                : ERP_GALLERY.filter(item => item.category === activeErpCategory);
+              const curErpItem = filteredErpList[activeErpImgIndex] || filteredErpList[0] || ERP_GALLERY[0];
+
+              return (
+                <div className="space-y-10 w-full relative overflow-hidden p-1">
+                  <TechDecor />
+                  
+                  {/* MAIN ERP HERO CARD */}
+                  <div className="bg-[#0f0b24] border border-red-950/60 rounded-3xl p-4 sm:p-6 md:p-12 shadow-2xl space-y-6 md:space-y-8 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/10 rounded-full blur-[120px] pointer-events-none -z-10" />
+                    
+                    <div className="flex flex-col md:flex-row justify-between items-start gap-6">
+                      <div className="space-y-3 md:space-y-4 max-w-3xl text-left">
+                        <div className="flex items-center gap-2">
+                          <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-rose-300 bg-red-950/70 border border-red-500/30 px-2.5 py-0.5 rounded-full inline-flex items-center gap-1.5">
+                            <Building2 size={11} className="text-red-400" />
+                            Enterprise ERP Solution
+                          </span>
+                          <span className="text-[9px] font-black uppercase tracking-wider text-amber-300 bg-amber-950/50 border border-amber-500/30 px-2 py-0.5 rounded-full">
+                            11 Phân Hệ
+                          </span>
+                        </div>
+                        <h3 className="text-xl sm:text-2xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-rose-100 to-amber-200 drop-shadow-[0_2px_10px_rgba(225,29,72,0.3)]">
+                          HỆ THỐNG ERP DOANH NGHIỆP
+                        </h3>
+                        <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-light text-justify">
+                          Nền tảng hoạch định và tự động hóa vận hành 100% dành cho doanh nghiệp SME & Enterprise. 
+                          Tích hợp trọn vẹn 11 phân hệ: Tiếp nhận Lead một cửa & chống trùng, Thuật toán chia lead 5 cổng với van chống ôm (SLA 2m), 
+                          Chấm công định vị GPS kèm AI Selfie chống gian lận, Bảng tính lương tự động (Payroll Engine - Thuế TNCN & BHXH), 
+                          xuất phiếu lương PDF ký số và đồng bộ ngược Meta CAPI.
+                        </p>
+                      </div>
+
+                      <div className="shrink-0 pt-1 md:pt-2">
+                        <a 
+                          href="https://domation.net/erp" 
+                          target="_blank" 
+                          rel="noreferrer"
+                          className="px-6 py-3 bg-gradient-to-r from-red-600 via-rose-600 to-purple-600 hover:from-red-500 hover:via-rose-500 hover:to-purple-500 text-white font-bold text-[10px] sm:text-xs uppercase tracking-widest rounded-full shadow-[0_0_20px_rgba(225,29,72,0.35)] hover:shadow-[0_0_30px_rgba(225,29,72,0.55)] flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
+                        >
+                          Trải Nghiệm Trực Tuyến <ExternalLink size={12} />
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Widescreen Slideshow Gallery */}
+                    <div className="flex flex-col items-center w-full space-y-4">
+                      {/* Filter Categories */}
+                      <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto w-full pb-2 scrollbar-none justify-start sm:justify-center">
+                        {erpCategories.map((cat) => (
+                          <button
+                            key={cat}
+                            onClick={() => {
+                              setActiveErpCategory(cat);
+                              setActiveErpImgIndex(0);
+                            }}
+                            className={`px-3 py-1.5 rounded-full text-[10px] sm:text-xs font-bold whitespace-nowrap transition-all duration-200 ${
+                              activeErpCategory === cat
+                                ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-md'
+                                : 'bg-[#161033] text-slate-400 hover:text-white border border-purple-900/40'
+                            }`}
+                          >
+                            {cat}
+                          </button>
+                        ))}
+                      </div>
+
+                      {/* Main Image Viewport with Glassmorphic Controls */}
+                      <div className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden border border-red-950/60 shadow-2xl bg-[#140e2b] group">
+                        <div className="absolute inset-0">
+                          <img 
+                            src={curErpItem.src} 
+                            alt={curErpItem.title} 
+                            className="w-full h-full object-cover select-none" 
+                          />
+                        </div>
+                        
+                        {/* Zoom Screen Overlay */}
+                        <div 
+                          className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10" 
+                          onClick={() => { 
+                            setPreviewImage(curErpItem.src); 
+                            setPreviewList(filteredErpList.map(i => i.src)); 
+                          }}
+                        >
+                          <span className="px-4 py-2 bg-[#0f0b24]/90 border border-red-500/40 rounded-full text-xs font-bold text-slate-200 shadow-md flex items-center gap-2">
+                            <Maximize2 size={13} /> Phóng To Ảnh HD
+                          </span>
+                        </div>
+
+                        {/* Navigation Buttons */}
+                        <button 
+                          onClick={() => {
+                            const curIdx = filteredErpList.findIndex(i => i.id === curErpItem.id);
+                            const prevIdx = (curIdx - 1 + filteredErpList.length) % filteredErpList.length;
+                            setActiveErpImgIndex(prevIdx);
+                          }}
+                          className="absolute left-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#0f0b24]/70 hover:bg-[#0f0b24]/95 border border-red-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all z-20 backdrop-blur-md"
+                          aria-label="Previous image"
+                        >
+                          <ChevronLeft size={18} className="sm:w-[22px] sm:h-[22px]" />
+                        </button>
+
+                        <button 
+                          onClick={() => {
+                            const curIdx = filteredErpList.findIndex(i => i.id === curErpItem.id);
+                            const nextIdx = (curIdx + 1) % filteredErpList.length;
+                            setActiveErpImgIndex(nextIdx);
+                          }}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#0f0b24]/70 hover:bg-[#0f0b24]/95 border border-red-900/40 rounded-full shadow-md text-slate-200 hover:text-white transition-all z-20 backdrop-blur-md"
+                          aria-label="Next image"
+                        >
+                          <ChevronRight size={18} className="sm:w-[22px] sm:h-[22px]" />
+                        </button>
+
+                        {/* Counter Tag */}
+                        <div className="absolute top-3 right-3 px-3 py-1 bg-black/70 backdrop-blur-md rounded-full border border-white/10 text-[10px] font-bold text-slate-300 z-20">
+                          {activeErpImgIndex + 1} / {filteredErpList.length}
+                        </div>
+                      </div>
+
+                      {/* Caption & Metadata Strip */}
+                      <div className="w-full max-w-4xl p-4 bg-[#140e2b] border border-purple-900/40 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-left">
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[9px] font-black uppercase tracking-wider text-rose-300 bg-red-950/70 border border-red-500/30 px-2 py-0.5 rounded">
+                              {curErpItem.tag}
+                            </span>
+                            <span className="text-[10px] text-slate-400 font-medium">
+                              {curErpItem.category}
+                            </span>
+                          </div>
+                          <h4 className="text-sm sm:text-base font-bold text-white">{curErpItem.title}</h4>
+                          <p className="text-xs text-slate-300 font-light leading-relaxed">{curErpItem.description}</p>
+                        </div>
+                        <div className="shrink-0 pt-1 sm:pt-0">
+                          <span className="px-3 py-1 bg-purple-950/60 border border-purple-500/30 text-purple-300 text-[10px] sm:text-[11px] font-medium rounded-full inline-block">
+                            ✨ {curErpItem.highlight}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Thumbnails Selector Strip */}
+                      <div className="w-full max-w-4xl flex gap-1.5 overflow-x-auto pb-2 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
+                        {filteredErpList.map((item, index) => (
+                          <button 
+                            key={item.id}
+                            onClick={() => setActiveErpImgIndex(index)}
+                            className={`w-20 h-12 rounded-lg overflow-hidden border-2 shrink-0 transition-all ${
+                              activeErpImgIndex === index 
+                                ? 'border-red-500 scale-105 shadow-[0_0_10px_rgba(239,68,68,0.4)]' 
+                                : 'border-purple-900/40 hover:border-slate-400 opacity-60 hover:opacity-100'
+                            }`}
+                          >
+                            <img src={item.src} alt={item.title} className="w-full h-full object-cover" />
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* 3 INNOVATION BENTO CARDS */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 md:pt-4 text-left">
+                      <div className="bg-[#030014] border border-red-900/30 rounded-2xl p-5 space-y-2.5 hover:border-red-500/50 transition-colors">
+                        <div className="w-9 h-9 rounded-full bg-red-950/60 border border-red-500/40 text-red-400 flex items-center justify-center">
+                          <Camera size={18} />
+                        </div>
+                        <h4 className="text-xs sm:text-sm font-black text-slate-200">Chấm Công GPS & Selfie AI</h4>
+                        <p className="text-slate-400 text-[11px] sm:text-xs leading-relaxed font-light text-justify">
+                          Xác thực tọa độ vệ tinh GPS bán kính văn phòng chuẩn xác. Nhân sự vào ca bắt buộc chụp ảnh selfie, AI nhận diện chống gian lận vị trí và thay ca gian lận.
+                        </p>
+                      </div>
+
+                      <div className="bg-[#030014] border border-purple-900/30 rounded-2xl p-5 space-y-2.5 hover:border-purple-500/50 transition-colors">
+                        <div className="w-9 h-9 rounded-full bg-purple-950/60 border border-purple-500/40 text-purple-400 flex items-center justify-center">
+                          <FileSpreadsheet size={18} />
+                        </div>
+                        <h4 className="text-xs sm:text-sm font-black text-slate-200">Bảng Tính Lương Tự Động (Payroll)</h4>
+                        <p className="text-slate-400 text-[11px] sm:text-xs leading-relaxed font-light text-justify">
+                          Tự động tính ngày công, OT, KPI, khấu trừ BHXH và thuế TNCN theo biểu lũy tiến. Tự động xuất phiếu lương cá nhân điện tử file PDF ký số.
+                        </p>
+                      </div>
+
+                      <div className="bg-[#030014] border border-rose-900/30 rounded-2xl p-5 space-y-2.5 hover:border-rose-500/50 transition-colors">
+                        <div className="w-9 h-9 rounded-full bg-rose-950/60 border border-rose-500/40 text-rose-400 flex items-center justify-center">
+                          <Clock size={18} />
+                        </div>
+                        <h4 className="text-xs sm:text-sm font-black text-slate-200">Chia Lead 5 Cổng & Van Chống Ôm</h4>
+                        <p className="text-slate-400 text-[11px] sm:text-xs leading-relaxed font-light text-justify">
+                          Tiếp nhận Lead một cửa chống trùng (Person vs Lead). Cơ chế van chống ôm Backpressure tự động thu hồi và tái chia sau 2 phút nếu Sale bỏ quên.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 11 ENTERPRISE MODULES GRID */}
+                  <div className="space-y-6 text-left">
+                    <div>
+                      <span className="text-[9px] font-black uppercase tracking-wider text-rose-300 bg-red-950/70 border border-red-500/30 px-2.5 py-0.5 rounded-full inline-block">
+                        Enterprise Architecture
+                      </span>
+                      <h3 className="text-xl sm:text-2xl font-black text-white mt-2">
+                        11 Phân Hệ Nghiệp Vụ Chuẩn Enterprise
+                      </h3>
+                      <p className="text-slate-400 text-xs font-light mt-1">
+                        Hệ sinh thái phân hệ độc lập, đồng bộ dữ liệu thời gian thực và đáp ứng quy mô mở rộng không giới hạn.
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {ERP_MODULES.map((mod, i) => (
+                        <div
+                          key={i}
+                          className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-5 hover:border-red-500/40 transition-all duration-300 space-y-2 relative group"
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-rose-400">
+                              {mod.num}
+                            </span>
+                            <span className="text-[8px] font-black uppercase tracking-wider text-slate-400 bg-[#161033] px-2 py-0.5 rounded border border-purple-900/40">
+                              {mod.tag}
+                            </span>
+                          </div>
+                          <h4 className="text-xs sm:text-sm font-bold text-white group-hover:text-red-300 transition-colors">
+                            {mod.title}
+                          </h4>
+                          <p className="text-[11px] sm:text-xs text-slate-400 leading-relaxed font-light text-justify">
+                            {mod.desc}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
             {activeTab === 'saas' && (
               <div className="space-y-10 w-full relative overflow-hidden p-1">
                 <TechDecor />
+
+                {/* ERP SYSTEM HIGHLIGHT BANNER */}
+                <div className="bg-gradient-to-r from-red-950/40 via-purple-950/40 to-[#0f0b24] border border-red-500/30 rounded-2xl p-5 sm:p-6 shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                  <div className="space-y-1.5 text-left">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[9px] font-black uppercase tracking-wider text-rose-300 bg-red-950/70 border border-red-500/30 px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+                        <Sparkles size={10} className="text-red-400" /> Mới Ra Mắt
+                      </span>
+                      <span className="text-xs font-bold text-slate-200">Hệ Thống ERP Doanh Nghiệp Toàn Diện</span>
+                    </div>
+                    <p className="text-xs text-slate-400 font-light max-w-2xl leading-relaxed">
+                      11 phân hệ chuẩn Enterprise: Tiếp nhận Lead 1 cửa, Chia data 5 cổng (SLA 2m), Chấm công GPS AI Selfie, Tính lương tự động Payroll Engine & Xuất PDF ký số.
+                    </p>
+                  </div>
+                  <div className="shrink-0 flex items-center gap-2.5">
+                    <button
+                      onClick={() => setActiveTab('erp')}
+                      className="px-4 py-2 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-full shadow-md flex items-center gap-1.5 transition-all"
+                    >
+                      <span>Khám Phá Tab ERP</span>
+                      <ArrowRight size={12} />
+                    </button>
+                    <a
+                      href="https://domation.net/erp"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-3.5 py-2 bg-[#161033] hover:bg-[#20184a] border border-purple-900/40 text-slate-300 hover:text-white font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-full flex items-center gap-1 transition-all"
+                    >
+                      <span>Live URL</span>
+                      <ExternalLink size={11} />
+                    </a>
+                  </div>
+                </div>
+
                 {/* DOMATION CRM CARD */}
                 <div className="bg-[#0f0b24] border border-purple-900/40 rounded-2xl p-4 sm:p-6 md:p-12 shadow-sm space-y-6 md:space-y-8">
                   <div className="flex flex-col md:flex-row justify-between items-start gap-6">

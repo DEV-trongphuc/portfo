@@ -23,6 +23,7 @@ const ZaloMiniAppShowcase = lazy(() => import('./components/Sections/ZaloMiniApp
 const TarotShowcase = lazy(() => import('./components/Sections/TarotShowcase'));
 const LmsShowcase = lazy(() => import('./components/Sections/LmsShowcase'));
 const CrmShowcase = lazy(() => import('./components/Sections/CrmShowcase'));
+const ErpShowcase = lazy(() => import('./components/Sections/ErpShowcase'));
 const DomationCrmShowcase = lazy(() => import('./components/Sections/DomationCrmShowcase'));
 const DomationDataShowcase = lazy(() => import('./components/Sections/DomationDataShowcase'));
 const AutoFlowPro = lazy(() => import('./components/Sections/AutoFlowPro'));
@@ -130,6 +131,7 @@ const App: React.FC = () => {
           <TarotShowcase />
           <LmsShowcase />
           <CrmShowcase />
+          <ErpShowcase />
           <DomationCrmShowcase />
           <DomationDataShowcase />
           <AutoFlowPro />

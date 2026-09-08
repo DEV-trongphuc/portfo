@@ -35,6 +35,7 @@ Dưới đây là thông tin chi tiết về Huynh Trong Phuc:
   - **Fullstack Development**: ReactJS, NextJS, NodeJS, Golang, Python, MongoDB, TailwindCSS, Zalo Mini App.
   - **Process Automation**: Google Apps Script, kết nối API (CRM, Leads), Zapier, n8n, Cloudflare Workers, Server-side tracking (GTM Server).
 - **Dự án và sản phẩm tiêu biểu**:
+  - **Hệ Thống ERP Doanh Nghiệp (IDEAS / DOMATION ERP)**: Nền tảng hoạch định và tự động hóa vận hành 100% doanh nghiệp với 11 phân hệ: Tiếp nhận Lead một cửa, Chia lead 5 cổng với van chống ôm Backpressure (SLA 2m), Chấm công định vị GPS & Selfie AI chống gian lận, Bảng tính lương tự động (Payroll Engine - Thuế TNCN & BHXH) xuất PDF ký số, đối soát hoa hồng và bắn ngược Meta CAPI. Địa chỉ trực tuyến: https://domation.net/erp (xem tại tab "erp").
   - **DOMATION CRM System**: Hệ thống CRM tùy chỉnh đầy đủ tính năng: quản lý khách hàng, lịch sử chăm sóc, phễu bán hàng (Deals), kiểm kho sản phẩm, tài chính hóa đơn, ticket CSKH.
   - **Zalo Mini Apps**: Lập trình native (React & TypeScript) giúp tích điểm QR Code, đặt lịch hẹn, thăng hạng thành viên. Tải dưới 1s. Demo trực tuyến tại tab "zalo".
   - **Mystery Tarot**: Website trải nghiệm Tarot kỹ thuật số. Đạt 1000+ người dùng trong tuần đầu tiên. Viết hơn 600 bài viết SEO hoàn toàn bằng AI. Địa chỉ: https://www.mystery-tarot.net/ (xem tại tab "tarot").
@@ -51,6 +52,7 @@ Dưới đây là thông tin chi tiết về Huynh Trong Phuc:
 Bạn có khả năng chuyển tab hiển thị trên màn hình của người dùng để dẫn họ đến đúng sản phẩm/thông tin họ quan tâm. Hãy thêm mã điều hướng đặc biệt ở CUỐI CÙNG của câu trả lời của bạn theo cú pháp: [NAVIGATE: <tên_tab>].
 Các tên tab hợp lệ gồm:
 - \`dashboard\` : Xem tổng quan chỉ số và các thẻ MarTech.
+- \`erp\` : Xem hệ thống ERP Doanh Nghiệp toàn diện (11 phân hệ, Chấm công GPS AI Selfie, Tính lương Payroll).
 - \`partners\` : Xem danh sách các đối tác & khách hàng đồng hành.
 - \`outsource\` : Xem kết quả thực chiến (Case Studies: IDEAS, Phúc Lộc Thọ, v.v.).
 - \`zalo\` : Xem Zalo Mini App và giả lập điện thoại.
@@ -68,6 +70,7 @@ Lưu ý: Không bao giờ được bịa đặt thông tin khác ngoài dữ li�
 `;
 
 const SUGGESTIONS = [
+  { text: "Hệ thống ERP Doanh Nghiệp có gì?", tag: "erp" },
   { text: "Zalo Mini App hoạt động thế nào?", tag: "zalo" },
   { text: "Kể về dự án IDEAS Institute", tag: "outsource" },
   { text: "Sách Facebook Ads có gì hay?", tag: "book" },
@@ -77,6 +80,13 @@ const SUGGESTIONS = [
 // Fallback response engine for local execution
 const getLocalResponse = (input: string): { text: string; tab?: string } => {
   const query = input.toLowerCase();
+  
+  if (query.includes('erp') || query.includes('doanh nghiệp') || query.includes('chấm công') || query.includes('payroll') || query.includes('tính lương')) {
+    return {
+      text: "Hệ thống ERP Doanh Nghiệp được tôi xây dựng chuẩn Enterprise với 11 phân hệ: Tiếp nhận Lead một cửa, Chia data 5 cổng (SLA 2m), Chấm công GPS + AI Selfie chống gian lận và Bảng tính lương tự động xuất file PDF ký số. Bạn có thể xem trực tuyến tại domation.net/erp hoặc trải nghiệm ngay trên màn hình tab ERP nhé! ",
+      tab: 'erp'
+    };
+  }
   
   if (query.includes('zalo') || query.includes('mini app') || query.includes('miniapp')) {
     return {

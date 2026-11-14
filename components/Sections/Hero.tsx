@@ -32,6 +32,13 @@ const SPHERE_NODES: SphereBrandNode[] = [
     target: 'real-estate',
   },
   {
+    name: 'INKICA AI Studio',
+    logo: '/assets/partners/logo_inkica_icon.svg',
+    sub: 'AI Prepress & AOP 3D WebGL',
+    target: 'inkica-pod',
+    url: 'https://ai.inkica.com/',
+  },
+  {
     name: 'DOMATION Ecosystem',
     logo: domLogo,
     sub: 'ERP 5.0 & Marketing Automation',
@@ -55,7 +62,7 @@ const SPHERE_NODES: SphereBrandNode[] = [
     sub: 'Meta CAPI Dataset Sync',
     target: 'domation-data',
   },
-  ...PARTNERS.map((p) => ({
+  ...PARTNERS.filter((p) => p.name.toLowerCase() !== 'inkica').map((p) => ({
     name: p.name,
     logo: p.image,
     sub: 'Enterprise Partner',

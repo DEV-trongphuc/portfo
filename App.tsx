@@ -5,6 +5,7 @@ import Footer from './components/Layout/Footer';
 import Background from './components/UI/Background';
 import ScrollProgress from './components/UI/ScrollProgress';
 import { StudioDrawerModal } from './components/UI/StudioDrawerModal';
+import { AiPortfolioChatbot } from './components/UI/AiPortfolioChatbot';
 
 import Hero from './components/Sections/Hero';
 import InkicaPodShowcase from './components/Sections/InkicaPodShowcase';
@@ -203,6 +204,8 @@ export default function App() {
           />
         </Suspense>
       </StudioDrawerModal>
+
+      <AiPortfolioChatbot onNavigateSection={jumpToSection} />
     </div>
   );
 }

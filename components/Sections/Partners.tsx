@@ -12,6 +12,7 @@ import {
   FEATURED_FLAGSHIP_PARTNERS,
   PARTNERS,
 } from '../../constants';
+import { InkicaBrandLogo } from '../UI/InkicaBrandLogo';
 
 const Partners: React.FC = () => {
   const [selectedIndustry, setSelectedIndustry] = useState<string>('ALL');
@@ -57,14 +58,14 @@ const Partners: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* TOP TIER: CAPITAL HOUSE & ECOLIFE SIGNATURE */}
+        {/* TOP TIER: CAPITAL HOUSE, ECOLIFE SIGNATURE & INKICA */}
         <div className="mb-10">
           <div className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#1E40FF] mb-3.5">
             <Building2 size={14} />
             <span>Đối Tác Trọng Điểm (Chủ Đầu Tư &amp; Dự Án Flagship)</span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {FEATURED_FLAGSHIP_PARTNERS.map((partner) => (
               <div
                 key={partner.id}
@@ -73,11 +74,15 @@ const Partners: React.FC = () => {
                 <div>
                   <div className="flex items-center justify-between gap-3 pb-3.5 mb-3.5 border-b border-slate-100">
                     <div className="h-11 px-3.5 rounded-xl bg-white border border-slate-200/80 flex items-center justify-center">
-                      <img
-                        src={partner.logo}
-                        alt={partner.name}
-                        className="h-7 w-auto object-contain"
-                      />
+                      {partner.id === 'inkica' ? (
+                        <InkicaBrandLogo compact />
+                      ) : (
+                        <img
+                          src={partner.logo}
+                          alt={partner.name}
+                          className="h-7 w-auto object-contain"
+                        />
+                      )}
                     </div>
                     {partner.url && (
                       <a
@@ -177,16 +182,22 @@ const Partners: React.FC = () => {
                   rel="noreferrer"
                   className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white/75 backdrop-blur-md border border-white/90 ring-1 ring-slate-200/70 hover:border-[#1E40FF]/45 shrink-0 transition-all"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 p-1.5 flex items-center justify-center shrink-0">
-                    <img
-                      src={brand.image}
-                      alt={brand.name}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  <span className="text-[13px] font-bold text-slate-800 whitespace-nowrap">
-                    {brand.name}
-                  </span>
+                  {brand.name.toLowerCase() === 'inkica' ? (
+                    <InkicaBrandLogo compact />
+                  ) : (
+                    <>
+                      <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 p-1.5 flex items-center justify-center shrink-0">
+                        <img
+                          src={brand.image}
+                          alt={brand.name}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <span className="text-[13px] font-bold text-slate-800 whitespace-nowrap">
+                        {brand.name}
+                      </span>
+                    </>
+                  )}
                 </a>
               ))}
             </div>

@@ -210,7 +210,8 @@ export const PARTNERS: Partner[] = [
   { name: 'Brandson', image: partnerBrandson, website: 'https://brandson.vn', industry: 'Branding / Agency' },
   { name: 'Ampersand', image: partnerAmpersand, website: 'https://www.ampersand.vn/', industry: 'FNB / Management' },
   { name: 'Implantswiss', image: partnerImplantswiss, website: 'https://implantswiss.vn/', industry: 'Dental / Implant' },
-  { name: 'Richland', image: partnerRichland, website: 'https://rich-land.vercel.app/', industry: 'Real Estate / PropTech' }
+  { name: 'Richland', image: partnerRichland, website: 'https://rich-land.vercel.app/', industry: 'Real Estate / PropTech' },
+  { name: 'INKICA', image: '/assets/partners/logo_inkica_icon.svg', website: 'https://ai.inkica.com/', industry: 'AI POD / SaaS' }
 ];
 
 export const EXPERIENCES: Experience[] = [
@@ -754,6 +755,17 @@ export const FEATURED_FLAGSHIP_PARTNERS: FlagshipPartnerItem[] = [
     url: "https://ai.ecolifesignature.vn/",
     badge: "AI.ECOLIFESIGNATURE.VN",
     metrics: ["Website WordPress + 3D Bóc Mái", "Trợ lý AI Sales & Knowledge Vault", "Auto Chia Data 3 Đại lý F1 < 5s"]
+  },
+  {
+    id: "inkica",
+    name: "INKICA AI POD Studio",
+    role: "ĐỐI TÁC CÔNG NGHỆ • AI PREPRESS & 3D",
+    subtitle:
+      "Nền tảng AI Prepress & 3D Studio ngành Print-on-Demand toàn cầu. Kiến trúc 300 DPI Neural Extract (20+ ONNX Models), AOP 3D 208 SKU / 88 Models (0 px lệch), bóc rập .PSD & Chat Omni-Agent.",
+    logo: "/assets/partners/logo_inkica_icon.svg",
+    url: "https://ai.inkica.com/",
+    badge: "AI.INKICA.COM",
+    metrics: ["300 DPI Neural Extract + ViTMatte", "208 SKU AOP 3D • 0px Lệch Rập", "6+ AI Prepress Agents Orchestrator"]
   }
 ];
 

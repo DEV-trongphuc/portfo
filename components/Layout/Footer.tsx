@@ -24,18 +24,18 @@ interface FooterProps {
 }
 
 const InkicaSvgLogo: React.FC<{ className?: string }> = ({ className = 'w-5 h-5' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 48" fill="none" className={className}>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 48" fill="none" className={className} aria-hidden="true">
     <defs>
-      <linearGradient id="inkica_footer_grad" x1="6" y1="14" x2="30" y2="48" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="#5AB4F0" />
-        <stop offset="100%" stopColor="#1E40FF" />
+      <linearGradient id="inkica_footer_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#00F0FF" />
+        <stop offset="45%" stopColor="#38BDF8" />
+        <stop offset="100%" stopColor="#2563EB" />
       </linearGradient>
     </defs>
-    <path
-      d="M20 15C26 25 31 30 31 36A11 11 0 1 1 9 36C9 30 14 25 20 15Z"
-      fill="url(#inkica_footer_grad)"
-    />
-    <path d="M20 0 22 4 26 6 22 8 20 12 18 8 14 6 18 4Z" fill="#FF7A00" />
+    <path d="M20 1 L22.5 5.5 L27 7.5 L22.5 9.5 L20 14 L17.5 9.5 L13 7.5 L17.5 5.5 Z" fill="#F59E0B" />
+    <path d="M20 15C26 25 31 30 31 36A11 11 0 1 1 9 36C9 30 14 25 20 15Z" fill="#00F0FF" />
+    <path d="M20 15C26 25 31 30 31 36A11 11 0 1 1 9 36C9 30 14 25 20 15Z" fill="url(#inkica_footer_grad)" />
+    <ellipse cx="16" cy="33" rx="3" ry="4.5" fill="#FFFFFF" fillOpacity="0.45" transform="rotate(-20 16 33)" />
   </svg>
 );
 

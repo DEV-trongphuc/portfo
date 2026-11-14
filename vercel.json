@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "api/chat.ts": {
+      "includeFiles": "src/data/ragIndex.json",
+      "maxDuration": 30
+    }
+  }
+}

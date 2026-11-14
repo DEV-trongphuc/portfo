@@ -477,6 +477,11 @@ const Hero: React.FC<HeroProps> = ({
               </p>
             </motion.div>
 
+            {/* Mobile Brand Sphere: Positioned above the 3 stat cards on mobile */}
+            <div className="my-6 lg:hidden">
+              <InteractiveBrandSphere />
+            </div>
+
             {/* 3 Inline Compact Stats with Animated Count-Up */}
             <div className="grid grid-cols-3 gap-3.5 max-w-xl mb-8">
               <motion.div
@@ -546,8 +551,8 @@ const Hero: React.FC<HeroProps> = ({
             </div>
           </motion.div>
 
-          {/* Right Column: Interactive 3D Rotating Brand Sphere (Logos Only) */}
-          <div className="lg:col-span-6">
+          {/* Right Column: Interactive 3D Rotating Brand Sphere (Logos Only on Desktop) */}
+          <div className="hidden lg:block lg:col-span-6">
             <InteractiveBrandSphere />
           </div>
         </div>

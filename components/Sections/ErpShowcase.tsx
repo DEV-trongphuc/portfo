@@ -222,8 +222,8 @@ const ErpShowcase: React.FC = () => {
           </div>
         )}
 
-        {/* Category Filter Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 py-2 px-1 mb-6">
+        {/* Category Filter Tabs (Hidden on Mobile, visible on Tablet/Desktop) */}
+        <div className="hidden sm:flex sm:flex-wrap items-center justify-center gap-2 py-2 px-1 mb-6">
           {CATEGORIES.map((cat) => {
             const count =
               cat === 'Tất cả'

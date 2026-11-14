@@ -311,11 +311,11 @@ const RealEstateShowcase: React.FC<RealEstateShowcaseProps> = ({
         </div>
 
         {/* Sub-Logos Row Below (Logo phụ hàng dưới: CĐT + Dự án | 3 Sàn F1) */}
-        <div className="mt-8 pt-5 border-t border-slate-200/75 flex flex-wrap items-center justify-between gap-4">
-          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+        <div className="mt-8 pt-5 border-t border-slate-200/75 flex flex-wrap items-center justify-center sm:justify-between gap-4">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 text-center sm:text-left">
             Chủ Đầu Tư • Dự Án &nbsp;|&nbsp; 3 Đại Lý Phân Phối F1
           </span>
-          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5 sm:gap-3">
             {subPartnerLogos.slice(0, 2).map((logo) => (
               <div
                 key={logo.alt}

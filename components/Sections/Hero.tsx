@@ -514,8 +514,8 @@ const Hero: React.FC<HeroProps> = ({
               </motion.div>
             </div>
 
-            {/* Clean Action Buttons: Strictly 2 buttons on 1 single row on Mobile, 3 on Desktop/Tablet */}
-            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 sm:gap-3 pt-1">
+            {/* Action Buttons: Hidden on Mobile, visible on Tablet/Desktop */}
+            <div className="hidden sm:flex sm:flex-wrap items-center gap-3 pt-1">
               <button
                 type="button"
                 onClick={() => onJumpSection('inkica-pod')}

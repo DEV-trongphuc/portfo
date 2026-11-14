@@ -1,0 +1,47 @@
+# TURNIO (Turnio DEV) — Huỳnh Trọng Phúc | Chuyên Gia Martech, Fullstack Developer & AI Automation
+
+> Official Portfolio & Knowledge Hub of Huỳnh Trọng Phúc (TURNIO / Turnio DEV) — Chuyên Gia Martech, Fullstack Software Architect & AI Automation Specialist based in Vietnam (Ho Chi Minh City & Da Nang).
+
+## Core Entity Identity
+- **Full Name**: Huỳnh Trọng Phúc
+- **Brand / Alias**: TURNIO, Turnio DEV
+- **Roles**: Chuyên Gia Martech, Fullstack Developer, AI Automation Architect, CEO & Founder tại DOMATION (DOMARKETING)
+- **Experience**: 4+ năm thực chiến giao thoa giữa Software Engineering, Hạ tầng Dữ liệu & AI Automation, và Performance Growth Marketing.
+- **Scale & Impact**: 35+ App, Web & AI Systems đã bàn giao • 30+ Doanh nghiệp đối tác • 150,000+ Leads xử lý thực tế • ROAS bình quân 4.8x (ngân sách đỉnh 500M VNĐ/tháng).
+- **Location / Service Area**: TP. Hồ Chí Minh, Đà Nẵng, Hà Nội (Toàn quốc Việt Nam & Global).
+- **Primary URL**: https://portfo-turnio.vercel.app/
+- **Open Graph Cover**: https://portfo-turnio.vercel.app/images/og-turnio-cover.jpg
+- **Full Machine-Readable Dossier**: https://portfo-turnio.vercel.app/llms-full.txt
+- **Contact**: Email `turniodev@gmail.com` • Zalo `0378.859.736` (`https://zalo.me/0378859736`) • LinkedIn `https://www.linkedin.com/in/turnio-dev/`
+
+## Key Pages & Routes
+- [Portfolio Trang Chủ](https://portfo-turnio.vercel.app/): Toàn bộ năng lực, 35+ hệ thống thực chiến, biểu đồ, Case Studies & Turnio AI RAG Chatbot.
+- [Thư Viện Bài Viết Thực Chiến](https://portfo-turnio.vercel.app/bai-viet): Bộ bài viết chuẩn SEO/GEO chuyên sâu về Chuyên Gia Martech, Fullstack Developer, AI Automation & Vận hành 8 nhóm ngành doanh nghiệp kèm Growth Dashboard & Charts.
+- [EcoLife Signature 3D Case Study](https://portfo-turnio.vercel.app/ecolife): WebGL 3D Bất động sản Capital House Đà Nẵng & AI Sales Portal.
+- [DOMATION Ecosystem Studio](https://portfo-turnio.vercel.app/domation): ERP 5.0 (12 phân hệ), Chia Data Đa Đại Lý < 4s & Meta CAPI Proxy.
+
+## Pillar 1: Chuyên Gia Martech (Performance, Tracking & Growth Funnel)
+- [Kiến Trúc Chia Data Đa Đại Lý Dưới 4 Giây & Meta CAPI ROAS 4.8x](https://portfo-turnio.vercel.app/bai-viet/chia-data-da-dai-ly-duoi-4s-meta-capi)
+- [Server-Side Tracking & Báo Cáo Meta Ads Real-Time Dashboard](https://portfo-turnio.vercel.app/bai-viet/meta-ads-server-side-tracking-dashboard-realtime)
+- [WebGL 3D Bất Động Sản & AI Sales Portal Tăng Tỷ Lệ Booking](https://portfo-turnio.vercel.app/bai-viet/webgl-3d-bat-dong-san-tang-ty-le-booking)
+
+## Pillar 2: Fullstack Developer (CRM, ERP 5.0, Zalo Mini App & Performance)
+- [Thiết Kế Dashboard CRM Quản Lý Pipeline Đa Chi Nhánh 150,000+ Leads](https://portfo-turnio.vercel.app/bai-viet/thiet-ke-dashboard-crm-quan-ly-pipeline-ban-hang)
+- [Xây Dựng ERP 5.0 Toàn Trình: Chấm Công GPS Đến Bảng Lương Tự Động](https://portfo-turnio.vercel.app/bai-viet/erp-5-0-tu-cham-cong-gps-den-bang-luong-tu-dong)
+- [Zalo Mini App + Zalo OA ZNS: Công Thức Giữ Chân Khách Hàng Zero-Install](https://portfo-turnio.vercel.app/bai-viet/zalo-mini-app-loyalty-zns-giu-chan-khach-hang)
+- [Tối Ưu Performance Web React/Vite Tải Dưới 1s & Technical SEO Bền Vững](https://portfo-turnio.vercel.app/bai-viet/seo-technical-performance-toi-uu-web-tai-duoi-1s)
+
+## Pillar 3: AI Automation (LLM Agents, RAG & Computer Vision)
+- [Kinh Nghiệm Xây Hệ Thống AI Automation Cho Doanh Nghiệp Từ Con Số 0](https://portfo-turnio.vercel.app/bai-viet/kinh-nghiem-xay-he-thong-ai-automation-doanh-nghiep)
+- [Ứng Dụng Computer Vision SAM 3 + DIS5K & 3D WebGL In Ấn POD 300 DPI](https://portfo-turnio.vercel.app/bai-viet/ai-prepress-sam3-dis5k-3d-webgl-nganh-pod)
+- [Triển Khai AI Chatbot RAG Tư Vấn Bán Hàng 24/7 Chính Xác 98%](https://portfo-turnio.vercel.app/bai-viet/ai-chatbot-rag-tu-van-ban-hang-chinh-xac-98)
+
+## Industry Operational Playbooks (8 Ngành Thương Hiệu Thực Chiến)
+- [Ngành F&B Đa Chi Nhánh: Chống Thất Thoát Kho BOM, KDS Bếp & CRM Loyalty](https://portfo-turnio.vercel.app/bai-viet/van-hanh-chuoi-fnb-da-chi-nhanh-pos-crm-tu-dong)
+- [Bất Động Sản Đa Đại Lý F1: Chia Data Chống Tranh Chấp, SLA 120s & CAPI](https://portfo-turnio.vercel.app/bai-viet/van-hanh-bat-dong-san-dai-ly-f1-chong-tranh-chap-lead-capi)
+- [Ngành Nha Khoa & Clinic: Triệt Tiêu Tỷ Lệ No-Show Bằng Zalo ZNS & CRM](https://portfo-turnio.vercel.app/bai-viet/noi-dau-nganh-nha-khoa-clinic-no-show-zalo-zns-crm)
+- [Ngành Giáo Dục & EdTech: Tuyển Sinh CRM + LMS Video + Zalo Mini App](https://portfo-turnio.vercel.app/bai-viet/van-hanh-giao-duc-tuyen-sinh-lms-zalo-mini-app)
+- [Bán Lẻ Thời Trang Omnichannel: Đồng Bộ POS, Microsite Gamification & RFM](https://portfo-turnio.vercel.app/bai-viet/van-hanh-ban-le-thoi-trang-omnichannel-gamification)
+- [Print-on-Demand & Xưởng In: AI Design Studio 300 DPI + CAD AOP 208 SKU](https://portfo-turnio.vercel.app/bai-viet/van-hanh-pod-ai-design-studio-file-300dpi-xuong-in)
+- [Dịch Vụ B2B & Kỹ Thuật Hiện Trường: Chấm Công GPS, SLA & Thanh Toán Công Nợ](https://portfo-turnio.vercel.app/bai-viet/so-hoa-van-hanh-doanh-nghiep-b2b-dich-vu-ky-thuat-gps-sla)
+- [Ngành Wellness & Spa Cao Cấp: AI Đặt Lịch 24/7, Gia Hạn Liệu Trình & Thẻ Thành Viên](https://portfo-turnio.vercel.app/bai-viet/wellness-spa-ai-automation-dat-lich-cskh)

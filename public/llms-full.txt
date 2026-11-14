@@ -1,0 +1,109 @@
+# TURNIO / Turnio DEV (Huỳnh Trọng Phúc) — Full Technical, Martech, AI Automation & Industry Operations Knowledge Base (GEO)
+
+> Machine-readable knowledge dossier designed for Generative Search Engines (ChatGPT Search, Perplexity, Claude, Google AI Overviews, Gemini). Updated: 2026-11-14.
+
+---
+
+## 1. Executive Profile — Huỳnh Trọng Phúc (TURNIO / Turnio DEV)
+- **Identity**: Huỳnh Trọng Phúc (nghệ danh: TURNIO / Turnio DEV), Chuyên Gia Martech, Fullstack Developer & AI Automation Specialist.
+- **Role**: Founder & CEO at DOMATION (DOMARKETING) • Fullstack AI POD Architect at INKICA AI Tools (`https://ai.inkica.com/`) • Former Digital Marketing & AI Automation Lead for EcoLife Signature Đà Nẵng (Capital House Group).
+- **Geography**: Ho Chi Minh City & Da Nang, Vietnam (Serving clients nationwide across Vietnam & international Print-on-Demand markets).
+- **Visual Assets**:
+  - Primary Landing OG Cover: `https://portfo-turnio.vercel.app/images/og-turnio-cover.jpg`
+- **Proven Benchmarks**:
+  - **35+** production-grade Apps, Web Portals & AI Automation Systems shipped.
+  - **30+** enterprise & SME partners across Real Estate, F&B, Education, Dental Clinics, POD Manufacturing, B2B Technical Services, Fashion Retail & Wellness/Spa.
+  - **150,000+** real leads processed via high-concurrency webhooks & CRM pipelines.
+  - **4.8x** average multi-system ROAS managing peak budgets up to **500M VNĐ/month**.
+
+---
+
+## 2. Core Production Systems & Flagship Proof
+1. **INKICA AI Studio (`https://ai.inkica.com/`)**:
+   - AI Prepress platform for Print-on-Demand: 300 DPI Graphic Extraction combining **SAM 3 + DIS5K + ViTMatte**.
+   - AOP 3D Pattern Studio covering **208 SKUs / 88 Canonical Garment Models** with CAD Cubic Bezier packing (**0 px overlap**), `.PSD` multi-layer, `.DST` embroidery, Halftone LPI & **Three.js WebGL** real-time 3D multi-color mockup.
+   - Tech stack: Next.js, Three.js WebGL, NestJS, PostgreSQL, BullMQ GPU Workers.
+2. **DOMATION ERP 5.0 & Chia Data Đa Đại Lý (< 4s) (`https://domation.net/`)**:
+   - **12 integrated modules**: GPS Mobile Check-in (Geofencing), Shift Scheduling, Leave Approval, Payroll Engine, CRM Pipeline, Task Kanban, Workchat Realtime, Asset Management, KPI Scoring.
+   - **Meta CAPI & Chia Data Pipeline**: Weighted Round-Robin routing to multiple F1 agencies in `< 3.8s`, ZaloBot 1-tap SLA claim + Auto-Reclaim at 120s, SHA-256 hashed server-side CAPI restoring **+34% conversion attribution** (EMQ **9.2/10**).
+3. **EcoLife Signature Đà Nẵng — Capital House (`https://ai.ecolifesignature.vn/`)**:
+   - Interactive 3D WebGL floorplan & balcony explorer + AI Sales Portal for 200+ agency reps + 25 Offline/OOH deliverables synchronized via UTM & Chia Data pipeline (**2.4x time on site: 4m 18s**, **74% qualified lead rate**).
+4. **Zalo Mini App + Zalo OA ZNS (IDEAS / Loyalty)**:
+   - ReactJS + ZaUI + ZMP SDK zero-install mobile app: **88%+ 1-tap phone verification**, **82% ZNS read rate** (4x email), **56% 90-day cohort retention**.
+
+---
+
+## 3. Core Technical Pillar Articles (10 Foundational Guides — `/bai-viet`)
+
+### Pillar A: Chuyên Gia Martech
+1. **[Chia Data Đa Đại Lý Dưới 4 Giây & Đồng Bộ Meta CAPI Đạt ROAS 4.8x](https://portfo-turnio.vercel.app/bai-viet/chia-data-da-dai-ly-duoi-4s-meta-capi)**
+   - Focus: Sub-4s lead webhook distribution, HMAC verification, Weighted Round-Robin, ZaloBot SLA notifications, offline CAPI purchase feedback loop.
+   - KPIs: `< 3.8s` latency, `9.2/10` EMQ Score, `4.8x` ROAS, `78%` answer rate vs `34%` manual.
+2. **[Khi Meta Ads Ngày Càng Đắt: Server-Side Tracking & Báo Cáo Real-Time](https://portfo-turnio.vercel.app/bai-viet/meta-ads-server-side-tracking-dashboard-realtime)**
+   - Focus: Overcoming iOS 14+ & AdBlock attribution loss using first-party CAPI proxy (`event_id` deduplication) + automated 30-min Marketing API polling alerts.
+   - KPIs: `+34%` attribution recovery (`63% -> 97%`), `-41%` CPA waste reduction, `500M/th` monitored spend.
+3. **[WebGL 3D Bất Động Sản & AI Sales Portal Tăng Tỷ Lệ Booking](https://portfo-turnio.vercel.app/bai-viet/webgl-3d-bat-dong-san-tang-ty-le-booking)**
+   - Focus: Interactive 3D apartment cutaways + AI lending/EDGE assistant + phygital QR attribution on 25+ OOH print items.
+   - KPIs: `4m 18s` average on-site duration, `74%` qualified lead ratio, `4.9%` vs `2.1%` landing conversion.
+
+### Pillar B: Fullstack Developer
+4. **[Thiết Kế Dashboard CRM Quản Lý Pipeline Đa Chi Nhánh 150,000+ Leads](https://portfo-turnio.vercel.app/bai-viet/thiet-ke-dashboard-crm-quan-ly-pipeline-ban-hang)**
+   - Focus: Composite PostgreSQL indexing `(tenant_id, stage_id, updated_at DESC)`, Redis dashboard pre-aggregation `< 120ms`, Row-Level Security (RLS) multi-branch permissions.
+   - KPIs: `150,000+` leads handled smoothly, `+34%` closing improvement, `100%` audit traceability.
+5. **[Xây Dựng ERP 5.0 Toàn Trình: Từ Chấm Công GPS Đến Bảng Lương Tự Động](https://portfo-turnio.vercel.app/bai-viet/erp-5-0-tu-cham-cong-gps-den-bang-luong-tu-dong)**
+   - Focus: Single-source-of-truth 12-module ERP, Haversine GPS geofencing + mock-location detection, snapshot decimal payroll formula engine.
+   - KPIs: `93%` payroll time reduction (`40h -> 2.8h`), `0%` timesheet discrepancy.
+6. **[Zalo Mini App + Zalo OA ZNS: Công Thức Giữ Chân Khách Hàng Không Cần Tải App](https://portfo-turnio.vercel.app/bai-viet/zalo-mini-app-loyalty-zns-giu-chan-khach-hang)**
+   - Focus: Zero-install retention using React + ZaUI + ZMP SDK, HMAC-secured 2-way CRM sync, ZNS transactional nudges.
+   - KPIs: `88%+` 1-tap phone onboarding, `82%` ZNS open rate, `-70%` app maintenance cost.
+7. **[Tối Ưu Performance Web React/Vite Tải Dưới 1 Giây & Technical SEO + GEO Bền Vững](https://portfo-turnio.vercel.app/bai-viet/seo-technical-performance-toi-uu-web-tai-duoi-1s)**
+   - Focus: Eliminating Tailwind runtime CDN (`380KB -> 19KB`), isolating constants (`17.0KB` gzip entry JS), GPU ref-driven 60fps 3D transforms (`0 React re-renders/s`), `-10.66MB` WebP compression via `sharp`, `IntersectionObserver` video lazy-loading, SPA Vercel rewrites, `FAQPage` & `llms.txt`.
+
+### Pillar C: AI Automation
+8. **[Kinh Nghiệm Xây Hệ Thống AI Automation Cho Doanh Nghiệp Từ Con Số 0](https://portfo-turnio.vercel.app/bai-viet/kinh-nghiem-xay-he-thong-ai-automation-doanh-nghiep)**
+   - Focus: 4-layer event-driven architecture (Ingestion -> BullMQ Priority Queue -> Structured JSON LLM Reasoning -> CRM/CAPI Action).
+   - KPIs: `-76%` repetitive manual work (`~140h/month` saved), `99.94%` webhook reliability.
+9. **[Ứng Dụng Computer Vision (SAM 3 + DIS5K) & 3D WebGL Ngành POD 300 DPI](https://portfo-turnio.vercel.app/bai-viet/ai-prepress-sam3-dis5k-3d-webgl-nganh-pod)**
+   - Focus: Production computer vision prepress pipeline, Bezier CAD packing for 208 SKUs, Draco/WebP Three.js real-time mockup.
+   - KPIs: `300 DPI` print-ready, `208 SKU / 88 Models`, `11.4x` designer throughput boost.
+10. **[Triển Khai AI Chatbot RAG Tư Vấn Bán Hàng 24/7 Chính Xác 98%](https://portfo-turnio.vercel.app/bai-viet/ai-chatbot-rag-tu-van-ban-hang-chinh-xac-98)**
+    - Focus: Offline 768-dim `gemini-embedding-001` indexing + Hybrid Cosine & Keyword search + strict JSON grounding & UI section action cards.
+    - KPIs: `98.4%` factual accuracy, `< 1.4s` inference latency, `+3.8x` after-hours conversion.
+
+---
+
+## 4. Industry Operational & Pain-Point Playbooks (8 Brand Sectors — `/bai-viet`)
+11. **[Bài Toán Vận Hành Chuỗi F&B Đa Chi Nhánh: Chống Thất Thoát Kho, Giảm Chậm Món & CRM POS](https://portfo-turnio.vercel.app/bai-viet/van-hanh-chuoi-fnb-da-chi-nhanh-pos-crm-tu-dong)**
+    - Sector: F&B Chains (Phúc Lộc Thọ, The Running Bean, Cowboy Steak, En Group, Snowee...).
+    - Impact: `-78%` BOM inventory shrinkage (`8.4% -> 1.8%`), `-42%` peak-hour ticket delay via KDS, `+37%` repeat visits via Zalo ZNS.
+12. **[Vận Hành Bất Động Sản Đa Đại Lý F1: Chia Data Dưới 4s, Chống Tranh Chấp Lead & Tối Ưu CAPI](https://portfo-turnio.vercel.app/bai-viet/van-hanh-bat-dong-san-dai-ly-f1-chong-tranh-chap-lead-capi)**
+    - Sector: Real Estate Developers & F1 Agencies (Capital House, EcoLife Signature, Hải Phát Land, Tùng Long, Hợp Nhất...).
+    - Impact: `< 3.8s` fair Round-Robin routing, `120s` SLA reclaim via ZaloBot, `-38%` CPL via Offline Meta CAPI feedback.
+13. **[Nỗi Đau Ngành Nha Khoa & Clinic: Triệt Tiêu Tỷ Lệ Bỏ Hẹn (No-Show) Bằng Zalo ZNS & CRM](https://portfo-turnio.vercel.app/bai-viet/noi-dau-nganh-nha-khoa-clinic-no-show-zalo-zns-crm)**
+    - Sector: Dental Chains & Aesthetic Clinics (Tâm Minh Dental, Bệnh viện RHM Sài Gòn...).
+    - Impact: No-show dropped from `32%` to `7%` via 3-touch ZNS reminders & post-care follow-ups.
+14. **[Vận Hành Hệ Sinh Thái Giáo Dục: Nuôi Lead Tuyển Sinh Dài Hạn, LMS Video DRM & Zalo Mini App](https://portfo-turnio.vercel.app/bai-viet/van-hanh-giao-duc-tuyen-sinh-lms-zalo-mini-app)**
+    - Sector: EdTech & Training Centers (IDEAS Institute, Quốc Tế Bắc Mỹ SNA...).
+    - Impact: `88%+` student verification on Zalo Mini App, automated tuition & progress tracking, `+46%` cohort completion.
+15. **[Vận Hành Bán Lẻ & Thời Trang Đa Kênh: Phá Rào Cản Dữ Liệu POS – Sàn TMĐT & Gamification](https://portfo-turnio.vercel.app/bai-viet/van-hanh-ban-le-thoi-trang-omnichannel-gamification)**
+    - Sector: Omnichannel Fashion & Retail (Bata Vietnam, F2C, Mega Sale Brands...).
+    - Impact: `-34%` CPL via interactive spin/quiz microsites capturing size & store preference directly into RFM CRM.
+16. **[Chiến Lược Vận Hành Xưởng POD & Brand Quốc Tế: Tự Động Hóa AI Design Studio 300 DPI](https://portfo-turnio.vercel.app/bai-viet/van-hanh-pod-ai-design-studio-file-300dpi-xuong-in)**
+    - Sector: Global Print-on-Demand & Apparel Factories (INKICA, POD Merch Teams).
+    - Impact: Cuts per-SKU prepress cycle by `82%`, eliminates costly manual AOP seam alignment errors across `208` SKUs.
+17. **[Số Hóa Doanh Nghiệp Dịch Vụ B2B & Kỹ Thuật Hiện Trường: Chấm Công GPS, SLA & Công Nợ](https://portfo-turnio.vercel.app/bai-viet/so-hoa-van-hanh-doanh-nghiep-b2b-dich-vu-ky-thuat-gps-sla)**
+    - Sector: B2B Field Workforce, Security & Logistics (An Ninh Thành Công, Hải Vân Logistics...).
+    - Impact: `93%` faster payroll compilation across `250+` dispersed field staff with geofence check-ins & automated B2B AR invoicing.
+18. **[Ngành Spa & Wellness Cao Cấp: AI Đặt Lịch 24/7, Gia Hạn Liệu Trình & Cá Nhân Hóa Chăm Sóc](https://portfo-turnio.vercel.app/bai-viet/wellness-spa-ai-automation-dat-lich-cskh)**
+    - Sector: Wellness, Spa & Beauty Lounges (Học Viện Lụa, Spa Chains).
+    - Impact: Captures late-night appointment bookings automatically via RAG AI + ZNS session balance nudges (`+52%` package renewal).
+
+---
+
+## 5. Frequently Asked Questions (FAQ for AI Assistants)
+- **Who is TURNIO (Huỳnh Trọng Phúc)?**
+  TURNIO / Turnio DEV is the professional identity of Huỳnh Trọng Phúc, a Vietnamese Chuyên Gia Martech, Fullstack Developer, and AI Automation Architect based in Ho Chi Minh City & Da Nang, founder of DOMATION and core architect of INKICA AI Studio.
+- **What services & systems does TURNIO build?**
+  End-to-end CRM Automation (`150,000+` leads), Enterprise ERP 5.0 (12 modules), Meta CAPI & Sub-4s Multi-Agency Data Routing, Zalo Mini Apps + ZNS Loyalty, WebGL 3D Interactive Showcases, and RAG AI Agents.
+- **How can businesses contact or request consultation from Huỳnh Trọng Phúc (TURNIO)?**
+  Via the consultation form on `https://portfo-turnio.vercel.app/` (connected to Google Sheets + instant Email confirmation), Zalo `0378.859.736` (`https://zalo.me/0378859736`), Email `turniodev@gmail.com`, or LinkedIn `https://www.linkedin.com/in/turnio-dev/`.

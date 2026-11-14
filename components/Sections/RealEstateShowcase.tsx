@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowUpRight,
@@ -25,6 +25,27 @@ const RealEstateShowcase: React.FC<RealEstateShowcaseProps> = ({
 }) => {
   const [zoomImg, setZoomImg] = useState<{ src: string; title: string } | null>(null);
   const [videoMode, setVideoMode] = useState<'3d' | 'facade'>('3d');
+  const [videoVisible, setVideoVisible] = useState(false);
+  const videoStageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = videoStageRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      setVideoVisible(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setVideoVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '250px 0px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const highlights = [
     {
@@ -192,19 +213,33 @@ const RealEstateShowcase: React.FC<RealEstateShowcaseProps> = ({
             </div>
 
             <Tilt3DCard maxTilt={3}>
-              <div className="relative aspect-video rounded-2xl overflow-hidden bg-slate-950 border border-slate-200 shadow-[0_18px_46px_-18px_rgba(15,23,42,0.2)]">
+              <div
+                ref={videoStageRef}
+                className="relative aspect-video rounded-2xl overflow-hidden bg-slate-950 border border-slate-200 shadow-[0_18px_46px_-18px_rgba(15,23,42,0.2)]"
+              >
                 {videoMode === '3d' ? (
-                  <video
-                    key="video-3d"
-                    src="/assets/ecolife/ecolife_3d_preview.mp4"
-                    poster="/assets/ecolife/FACADE_HUONG_CHINH_03.webp"
-                    muted
-                    loop
-                    controls
-                    playsInline
-                    preload="none"
-                    className="w-full h-full object-cover"
-                  />
+                  videoVisible ? (
+                    <video
+                      key="video-3d"
+                      src="/assets/ecolife/ecolife_3d_preview.mp4"
+                      poster="/assets/ecolife/FACADE_HUONG_CHINH_03.webp"
+                      autoPlay
+                      muted
+                      loop
+                      controls
+                      playsInline
+                      preload="metadata"
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <img
+                      src="/assets/ecolife/FACADE_HUONG_CHINH_03.webp"
+                      alt="EcoLife Signature 3D Walkthrough Preview"
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                    />
+                  )
                 ) : (
                   <iframe
                     key="video-youtube-project"

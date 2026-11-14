@@ -118,7 +118,6 @@ const CrmShowcase: React.FC = () => {
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                    
                     />
                     <span className="absolute top-2 right-2 w-7 h-7 rounded-lg bg-white/95 border border-slate-200 text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
                       <Maximize2 size={13} />
@@ -126,13 +125,13 @@ const CrmShowcase: React.FC = () => {
                   </div>
                   <div className="px-2 pt-2.5 pb-1 flex items-center justify-between gap-2">
                     <span className="text-xs font-bold text-slate-800 group-hover:text-[#1E40FF] transition-colors truncate">
-                      {screen.title}
-                    </span>
-                    <span className="text-[10px] font-mono text-slate-400 shrink-0">0{idx + 1}</span>
-                  </div>
-                </button>
-              )}
-            />
+                        {screen.title}
+                      </span>
+                      <span className="text-[10px] font-mono text-slate-400 shrink-0">0{idx + 1}</span>
+                    </div>
+                  </button>
+                )}
+              />
           </div>
         </div>
       </div>

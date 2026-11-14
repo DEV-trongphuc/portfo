@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { name: 'Dự Án 3D & AI', href: '#real-estate', id: 'real-estate' },
   { name: 'Hệ Sinh Thái', href: '#domation-data', id: 'domation-data' },
   { name: 'Kinh Nghiệm', href: '#experience', id: 'experience' },
-  { name: 'Digital Thực Chiến', href: '#outsource', id: 'outsource' },
+  { name: 'Kỹ Năng', href: '#skills-mastery', id: 'skills-mastery' },
   { name: 'Đối Tác', href: '#partners', id: 'partners' },
 ];
 
@@ -24,13 +24,19 @@ export interface NavbarProps {
   activeView?: 'profile' | 'ecolife' | 'domation';
   onOpenDomation?: () => void;
   onOpenEcoLife?: () => void;
+  onOpenBlog?: () => void;
+  isBlogView?: boolean;
   onOpenSearch?: () => void;
+  onOpenContact?: () => void;
 }
 
 const Navbar: React.FC<NavbarProps> = ({
   onNavigate,
   activeSection,
+  onOpenBlog,
+  isBlogView = false,
   onOpenSearch,
+  onOpenContact,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -49,10 +55,15 @@ const Navbar: React.FC<NavbarProps> = ({
     };
   }, [isOpen]);
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string, id: string) => {
     e.preventDefault();
     setIsOpen(false);
-    const cleanId = id.replace(/^#/, '') || 'hero';
+    if (href === '/bai-viet' && onOpenBlog) {
+      setSelectedNav('blog');
+      onOpenBlog();
+      return;
+    }
+    const cleanId = id || 'hero';
     setSelectedNav(cleanId);
     if (onNavigate) onNavigate(cleanId);
 
@@ -79,7 +90,7 @@ const Navbar: React.FC<NavbarProps> = ({
         {/* Brand Monogram */}
         <a
           href="#hero"
-          onClick={(e) => scrollToSection(e, '#hero')}
+          onClick={(e) => scrollToSection(e, '#hero', 'hero')}
           className="flex items-center gap-3 shrink-0 group"
         >
           <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-blue-600/30 shadow-sm bg-white p-0.5 shrink-0">
@@ -98,12 +109,12 @@ const Navbar: React.FC<NavbarProps> = ({
         {/* Desktop Nav Links with Smooth Sliding Active Pill */}
         <nav className="hidden lg:flex items-center gap-1 bg-slate-100/80 border border-slate-200/80 rounded-full px-2 py-1">
           {navLinks.map((link) => {
-            const active = selectedNav === link.id;
+            const active = !isBlogView && selectedNav === link.id;
             return (
               <a
                 key={link.id}
                 href={link.href}
-                onClick={(e) => scrollToSection(e, link.href)}
+                onClick={(e) => scrollToSection(e, link.href, link.id)}
                 className={`relative px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-colors ${
                   active ? 'text-blue-700' : 'text-slate-600 hover:text-slate-950'
                 }`}
@@ -137,16 +148,28 @@ const Navbar: React.FC<NavbarProps> = ({
               </kbd>
             </button>
           )}
-          <a
-            href="https://zalo.me/0378859736"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-inkica-primary px-5 py-2 text-xs whitespace-nowrap"
-          >
-            <MessageCircle size={14} className="shrink-0" />
-            <span>Contact</span>
-            <ArrowUpRight size={14} className="shrink-0" />
-          </a>
+          {onOpenContact ? (
+            <button
+              type="button"
+              onClick={onOpenContact}
+              className="btn-inkica-primary px-5 py-2 text-xs whitespace-nowrap cursor-pointer"
+            >
+              <MessageCircle size={14} className="shrink-0" />
+              <span>Contact</span>
+              <ArrowUpRight size={14} className="shrink-0" />
+            </button>
+          ) : (
+            <a
+              href="https://zalo.me/0378859736"
+              target="_blank"
+              rel="noreferrer"
+              className="btn-inkica-primary px-5 py-2 text-xs whitespace-nowrap"
+            >
+              <MessageCircle size={14} className="shrink-0" />
+              <span>Contact</span>
+              <ArrowUpRight size={14} className="shrink-0" />
+            </a>
+          )}
         </div>
 
         {/* Mobile Toggle */}
@@ -175,7 +198,7 @@ const Navbar: React.FC<NavbarProps> = ({
                 <a
                   key={link.id}
                   href={link.href}
-                  onClick={(e) => scrollToSection(e, link.href)}
+                  onClick={(e) => scrollToSection(e, link.href, link.id)}
                   className="px-4 py-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs font-bold text-slate-900 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-200 text-center"
                 >
                   {link.name}
@@ -183,16 +206,30 @@ const Navbar: React.FC<NavbarProps> = ({
               ))}
             </div>
 
-            <div className="pt-2 border-t border-slate-200">
+            <div className="pt-2 border-t border-slate-200 space-y-2">
+              {onOpenContact && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsOpen(false);
+                    onOpenContact();
+                  }}
+                  className="btn-inkica-primary w-full h-11 text-xs inline-flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <MessageCircle size={14} />
+                  <span>Gửi Yêu Cầu Tư Vấn • Contact</span>
+                  <ArrowUpRight size={14} />
+                </button>
+              )}
               <a
                 href="https://zalo.me/0378859736"
                 target="_blank"
                 rel="noreferrer"
                 onClick={() => setIsOpen(false)}
-                className="btn-inkica-primary w-full h-11 text-xs inline-flex items-center justify-center gap-2"
+                className="w-full h-10 rounded-full border border-slate-200 bg-slate-50 text-xs font-bold text-slate-700 inline-flex items-center justify-center gap-2"
               >
-                <MessageCircle size={14} />
-                <span>Contact • Zalo 0378.859.736</span>
+                <MessageCircle size={14} className="text-[#1E40FF]" />
+                <span>Zalo Nhanh: 0378.859.736</span>
                 <ArrowUpRight size={14} />
               </a>
             </div>

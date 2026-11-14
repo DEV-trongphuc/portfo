@@ -20,11 +20,12 @@ import {
   X,
 } from 'lucide-react';
 import { copyWithToast } from '../../utils/toast';
+import { BLOG_POSTS } from '../../constants/blogPosts';
 
 interface CommandItem {
   id: string;
   label: string;
-  group: 'Điều hướng' | 'Hồ sơ chi tiết' | 'Liên hệ nhanh';
+  group: 'Điều hướng' | 'Bài viết SEO & GEO' | 'Hồ sơ chi tiết' | 'Liên hệ nhanh';
   keywords: string;
   icon: React.ReactNode;
   run: () => void;
@@ -36,6 +37,8 @@ interface CommandPaletteProps {
   onNavigate: (sectionId: string) => void;
   onOpenEcoLife: () => void;
   onOpenDomation: () => void;
+  onOpenBlog?: () => void;
+  onOpenPost?: (slug: string) => void;
 }
 
 /** Fast keyboard-driven Quick Jump & Contact Command Palette (Ctrl/Cmd + K). */
@@ -45,6 +48,8 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
   onNavigate,
   onOpenEcoLife,
   onOpenDomation,
+  onOpenBlog,
+  onOpenPost,
 }) => {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -141,6 +146,22 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
         run: () => onNavigate('partners'),
       },
       {
+        id: 'blog-hub',
+        label: 'Thư Viện Bài Viết Thực Chiến (/bai-viet)',
+        group: 'Bài viết SEO & GEO',
+        keywords: 'bai viet blog seo geo martech fullstack ai automation llms',
+        icon: <BookOpen size={15} className="text-[#1E40FF]" />,
+        run: () => (onOpenBlog ? onOpenBlog() : onNavigate('blog')),
+      },
+      ...BLOG_POSTS.map((post) => ({
+        id: `post-${post.slug}`,
+        label: post.title,
+        group: 'Bài viết SEO & GEO' as const,
+        keywords: `${post.pillar} ${post.tags.join(' ')} ${post.seoKeywords.join(' ')}`.toLowerCase(),
+        icon: <BookOpen size={15} className="text-[#0EA5E9]" />,
+        run: () => (onOpenPost ? onOpenPost(post.slug) : onNavigate('blog')),
+      })),
+      {
         id: 'drawer-ecolife',
         label: 'Mở Hồ Sơ Chi Tiết EcoLife 3D',
         group: 'Hồ sơ chi tiết',
@@ -173,7 +194,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
         run: () => void copyWithToast('0378859736', 'Zalo'),
       },
     ],
-    [onNavigate, onOpenEcoLife, onOpenDomation]
+    [onNavigate, onOpenEcoLife, onOpenDomation, onOpenBlog, onOpenPost]
   );
 
   const filtered = useMemo(() => {

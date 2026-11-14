@@ -78,17 +78,17 @@ const Partners: React.FC = () => {
             renderItem={(partner) => (
               <div className="inkica-glass-card rounded-3xl p-5 sm:p-6 flex flex-col justify-between h-full">
                 <div>
-                  <div className="flex items-center justify-between gap-3 pb-3.5 mb-3.5 border-b border-slate-100">
-                    <div className="h-11 px-3.5 rounded-xl bg-white border border-slate-200/80 flex items-center justify-center">
+                  <div className="flex items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-100">
+                    <div className="h-16 px-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-center">
                       {partner.id === 'inkica' ? (
-                        <InkicaBrandLogo compact />
+                        <InkicaBrandLogo darkText className="scale-110 origin-center" />
                       ) : (
                         <img
                           src={partner.logo}
                           alt={partner.name}
                           loading="lazy"
                           decoding="async"
-                          className="h-7 w-auto object-contain"
+                          className="h-11 sm:h-12 w-auto object-contain"
                         />
                       )}
                     </div>
@@ -146,10 +146,9 @@ const Partners: React.FC = () => {
                 </div>
                 <div className="min-w-0">
                   <div className="text-sm font-extrabold text-slate-900 truncate">{agency.name}</div>
-                  <div className="text-[10.5px] font-bold text-[#1E40FF] truncate">
-                    {agency.routeMetric}
+                  <div className="text-xs font-medium text-slate-500 truncate mt-0.5">
+                    Real Estate / Đại lý F1
                   </div>
-                  <div className="text-[11px] text-slate-500 truncate mt-0.5">{agency.role}</div>
                 </div>
               </div>
             )}
@@ -188,12 +187,9 @@ const Partners: React.FC = () => {
           <div className="overflow-hidden border-y border-slate-200/60 py-3.5 mb-6">
             <div className="animate-marquee items-center gap-4">
               {marqueeBrands.map((brand, idx) => (
-                <a
+                <div
                   key={`${brand.name}-marq-${idx}`}
-                  href={brand.website}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white/75 backdrop-blur-md border border-white/90 ring-1 ring-slate-200/70 hover:border-[#1E40FF]/45 shrink-0 transition-all"
+                  className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white/75 backdrop-blur-md border border-white/90 ring-1 ring-slate-200/70 shrink-0"
                 >
                   <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 p-1.5 flex items-center justify-center shrink-0">
                     <img
@@ -207,7 +203,7 @@ const Partners: React.FC = () => {
                   <span className="text-[13px] font-bold text-slate-800 whitespace-nowrap">
                     {brand.name}
                   </span>
-                </a>
+                </div>
               ))}
             </div>
           </div>
@@ -222,13 +218,10 @@ const Partners: React.FC = () => {
             gapClass="gap-3.5"
             ariaLabel="Danh mục thương hiệu đồng hành"
             renderItem={(partner) => (
-              <a
-                href={partner.website}
-                target="_blank"
-                rel="noreferrer"
-                className="group flex items-center gap-4 p-4 rounded-2xl bg-white/75 backdrop-blur-md border border-white/90 ring-1 ring-slate-200/75 hover:bg-white/95 hover:border-[#1E40FF]/45 hover:shadow-md transition-all h-full"
+              <div
+                className="flex items-center gap-4 p-4 rounded-2xl bg-white/75 backdrop-blur-md border border-white/90 ring-1 ring-slate-200/75 h-full"
               >
-                <div className="w-14 h-14 rounded-xl bg-white border border-slate-200/90 p-2 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+                <div className="w-14 h-14 rounded-xl bg-white border border-slate-200/90 p-2 flex items-center justify-center shrink-0">
                   <img
                     src={partner.image}
                     alt={partner.name}
@@ -238,14 +231,14 @@ const Partners: React.FC = () => {
                   />
                 </div>
                 <div className="min-w-0">
-                  <div className="text-sm sm:text-[15px] font-extrabold text-slate-900 group-hover:text-[#1E40FF] truncate transition-colors">
+                  <div className="text-sm sm:text-[15px] font-extrabold text-slate-900 truncate">
                     {partner.name}
                   </div>
                   <div className="text-xs font-medium text-slate-500 truncate mt-0.5">
                     {partner.industry}
                   </div>
                 </div>
-              </a>
+              </div>
             )}
           />
         </div>

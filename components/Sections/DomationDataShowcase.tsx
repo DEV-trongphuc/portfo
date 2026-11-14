@@ -125,7 +125,8 @@ const DomationDataShowcase: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Right: Paginated Slider Screenshot Deck (1/mobile, 2/tablet, 2x2/desktop) */}
+          {/* Right: Clean Light Glass Architecture Visual + Optional Raw CAPI Screens */}
+          {/* Right: 2x2 Clean Real Operational Screens */}
           <motion.div
             initial={{ opacity: 1, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -152,7 +153,6 @@ const DomationDataShowcase: React.FC = () => {
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                    
                     />
                     <span className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/95 text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow">
                       <Maximize2 size={12} />

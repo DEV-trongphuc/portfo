@@ -12,6 +12,8 @@ const DOCK_CHAPTERS = [
   { id: 'zalo-mini-app', label: 'Zalo Mini App' },
   { id: 'skills-mastery', label: 'Hệ Kỹ Năng' },
   { id: 'certifications', label: 'Chứng Chỉ' },
+  { id: 'tech-stack', label: 'Hệ Sinh Thái' },
+  { id: 'blog', label: 'Bài Viết SEO' },
   { id: 'partners', label: 'Đối Tác' },
 ];
 

@@ -157,7 +157,7 @@ const AutoFlowPro: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Left (Desktop): Paginated Flow Gallery */}
+          {/* Left (Desktop): Real Workflow Builder Screenshots */}
           <div className="lg:col-span-7 order-2 lg:order-1">
             <ResponsiveSlideDeck
               items={WORKFLOW_IMAGES}
@@ -180,7 +180,6 @@ const AutoFlowPro: React.FC = () => {
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                    
                     />
                     <span className="absolute top-2 right-2 w-7 h-7 rounded-lg bg-white/95 border border-slate-200 text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
                       <Maximize2 size={13} />

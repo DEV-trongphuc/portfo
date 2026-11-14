@@ -3,7 +3,6 @@ import {
   ArrowUpRight,
   Bot,
   ExternalLink,
-  Loader2,
   RotateCcw,
   Send,
   Sparkles,
@@ -66,7 +65,7 @@ function createMsgId(): string {
 
 function isSafeHref(rawUrl: string): boolean {
   const trimmed = rawUrl.trim();
-  if (trimmed.startsWith('/')) return true;
+  if (trimmed.startsWith('/') || trimmed.toLowerCase().startsWith('mailto:')) return true;
   try {
     const parsed = new URL(trimmed);
     return parsed.protocol === 'https:' || parsed.protocol === 'http:';
@@ -235,6 +234,18 @@ export const AiPortfolioChatbot: React.FC<AiPortfolioChatbotProps> = ({
   const abortRef = useRef<AbortController | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
+  const typingTimerRef = useRef<number | null>(null);
+  const targetContentRef = useRef<string>('');
+  const shownLenRef = useRef<number>(0);
+  const streamEndedRef = useRef<boolean>(false);
+  const activeAssistantIdRef = useRef<string | null>(null);
+
+  const clearTypingTimer = useCallback(() => {
+    if (typingTimerRef.current !== null) {
+      window.clearInterval(typingTimerRef.current);
+      typingTimerRef.current = null;
+    }
+  }, []);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -270,9 +281,10 @@ export const AiPortfolioChatbot: React.FC<AiPortfolioChatbotProps> = ({
 
   useEffect(() => {
     return () => {
+      clearTypingTimer();
       abortRef.current?.abort();
     };
-  }, []);
+  }, [clearTypingTimer]);
 
   const scrollToBottom = useCallback((smooth = false) => {
     const el = scrollContainerRef.current;
@@ -290,22 +302,43 @@ export const AiPortfolioChatbot: React.FC<AiPortfolioChatbotProps> = ({
   }, [messages.length, isOpen, scrollToBottom]);
 
   const stopGeneration = useCallback(() => {
+    clearTypingTimer();
     abortRef.current?.abort();
     abortRef.current = null;
+    streamEndedRef.current = true;
     setIsStreaming(false);
+    const activeId = activeAssistantIdRef.current;
+    const partialOrFull = targetContentRef.current;
+    activeAssistantIdRef.current = null;
     setMessages((prev) =>
-      prev.map((m) => (m.isStreaming ? { ...m, isStreaming: false } : m))
+      prev.map((m) =>
+        m.isStreaming
+          ? {
+              ...m,
+              content:
+                m.id === activeId && partialOrFull.length > m.content.length
+                  ? partialOrFull.slice(0, Math.max(m.content.length, shownLenRef.current))
+                  : m.content,
+              isStreaming: false,
+            }
+          : m
+      )
     );
-  }, []);
+  }, [clearTypingTimer]);
 
   const resetChat = useCallback(() => {
+    clearTypingTimer();
     abortRef.current?.abort();
     abortRef.current = null;
+    activeAssistantIdRef.current = null;
+    targetContentRef.current = '';
+    shownLenRef.current = 0;
+    streamEndedRef.current = false;
     setIsStreaming(false);
     setLastFailedPrompt(null);
     setMessages([]);
     setInput('');
-  }, []);
+  }, [clearTypingTimer]);
 
   const sendMessage = useCallback(
     async (rawText: string, options?: { isRetry?: boolean }) => {
@@ -352,9 +385,55 @@ export const AiPortfolioChatbot: React.FC<AiPortfolioChatbotProps> = ({
         return [...cleaned, assistantPlaceholder];
       });
 
+      clearTypingTimer();
+      activeAssistantIdRef.current = assistantId;
+      targetContentRef.current = '';
+      shownLenRef.current = 0;
+      streamEndedRef.current = false;
+
       setIsStreaming(true);
       const controller = new AbortController();
       abortRef.current = controller;
+
+      const startTypingLoop = () => {
+        if (typingTimerRef.current !== null) return;
+        typingTimerRef.current = window.setInterval(() => {
+          const full = targetContentRef.current;
+          const shown = shownLenRef.current;
+          if (shown < full.length) {
+            const remaining = full.length - shown;
+            const step = Math.max(2, Math.min(8, Math.ceil(remaining / 10)));
+            const nextLen = Math.min(full.length, shown + step);
+            shownLenRef.current = nextLen;
+            const nextSlice = full.slice(0, nextLen);
+            setMessages((prev) =>
+              prev.map((m) => (m.id === assistantId ? { ...m, content: nextSlice } : m))
+            );
+            scrollToBottom(false);
+            return;
+          }
+
+          if (streamEndedRef.current) {
+            clearTypingTimer();
+            activeAssistantIdRef.current = null;
+            setIsStreaming(false);
+            setMessages((prev) =>
+              prev.map((m) => {
+                if (m.id !== assistantId) return m;
+                if (!full.trim() && !m.error) {
+                  return {
+                    ...m,
+                    isStreaming: false,
+                    error: 'Chưa nhận được phản hồi từ hệ thống. Vui lòng thử lại.',
+                  };
+                }
+                return { ...m, content: full, isStreaming: false };
+              })
+            );
+            scrollToBottom(true);
+          }
+        }, 16);
+      };
 
       try {
         const response = await fetch('/api/chat', {
@@ -424,18 +503,18 @@ export const AiPortfolioChatbot: React.FC<AiPortfolioChatbotProps> = ({
           } else if (eventName === 'delta') {
             const deltaText = typeof parsed.text === 'string' ? parsed.text : '';
             if (!deltaText) return;
-            setMessages((prev) =>
-              prev.map((m) =>
-                m.id === assistantId ? { ...m, content: m.content + deltaText } : m
-              )
-            );
-            scrollToBottom(false);
+            targetContentRef.current += deltaText;
+            startTypingLoop();
           } else if (eventName === 'error') {
             const errText =
               typeof parsed.error === 'string'
                 ? parsed.error
                 : 'Lỗi kết nối máy chủ Turnio AI. Vui lòng thử lại.';
             streamError = errText;
+            clearTypingTimer();
+            streamEndedRef.current = true;
+            activeAssistantIdRef.current = null;
+            setIsStreaming(false);
             setLastFailedPrompt(prompt);
             setMessages((prev) =>
               prev.map((m) =>
@@ -443,9 +522,8 @@ export const AiPortfolioChatbot: React.FC<AiPortfolioChatbotProps> = ({
               )
             );
           } else if (eventName === 'done') {
-            setMessages((prev) =>
-              prev.map((m) => (m.id === assistantId ? { ...m, isStreaming: false } : m))
-            );
+            streamEndedRef.current = true;
+            startTypingLoop();
           }
         };
 
@@ -468,21 +546,31 @@ export const AiPortfolioChatbot: React.FC<AiPortfolioChatbotProps> = ({
         }
 
         if (!streamError) {
-          setMessages((prev) =>
-            prev.map((m) => {
-              if (m.id !== assistantId) return m;
-              if (!m.content.trim() && !m.error) {
-                return {
-                  ...m,
-                  isStreaming: false,
-                  error: 'Chưa nhận được phản hồi từ hệ thống. Vui lòng thử lại.',
-                };
-              }
-              return { ...m, isStreaming: false };
-            })
-          );
+          streamEndedRef.current = true;
+          if (!targetContentRef.current.trim()) {
+            clearTypingTimer();
+            activeAssistantIdRef.current = null;
+            setIsStreaming(false);
+            setMessages((prev) =>
+              prev.map((m) =>
+                m.id === assistantId
+                  ? {
+                      ...m,
+                      isStreaming: false,
+                      error: 'Chưa nhận được phản hồi từ hệ thống. Vui lòng thử lại.',
+                    }
+                  : m
+              )
+            );
+          } else {
+            startTypingLoop();
+          }
         }
       } catch (err) {
+        clearTypingTimer();
+        streamEndedRef.current = true;
+        activeAssistantIdRef.current = null;
+        setIsStreaming(false);
         if ((err as Error)?.name === 'AbortError') {
           setMessages((prev) =>
             prev.map((m) => (m.id === assistantId ? { ...m, isStreaming: false } : m))
@@ -501,11 +589,9 @@ export const AiPortfolioChatbot: React.FC<AiPortfolioChatbotProps> = ({
         );
       } finally {
         abortRef.current = null;
-        setIsStreaming(false);
-        scrollToBottom(true);
       }
     },
-    [isStreaming, messages, scrollToBottom]
+    [clearTypingTimer, isStreaming, messages, scrollToBottom]
   );
 
   const handleSourceJump = useCallback(
@@ -698,13 +784,20 @@ export const AiPortfolioChatbot: React.FC<AiPortfolioChatbotProps> = ({
                           <>
                             {renderSafeMarkdown(msg.content)}
                             {msg.isStreaming && (
-                              <span className="inline-block w-1.5 h-3.5 ml-1 align-middle bg-[#1E40FF] animate-pulse rounded-xs" />
+                              <div className="inline-flex items-center gap-1.5 mt-1.5 text-[11px] font-semibold text-[#1E40FF]">
+                                <span className="inline-block w-1.5 h-3.5 bg-[#1E40FF] animate-pulse rounded-xs" />
+                                <span>Đang gõ...</span>
+                              </div>
                             )}
                           </>
                         ) : (
-                          <div className="flex items-center gap-2 text-[12.5px] text-slate-500">
-                            <Loader2 size={14} className="animate-spin text-[#1E40FF]" />
-                            <span>Turnio AI đang trả lời...</span>
+                          <div className="flex items-center gap-2.5 text-[12.5px] text-slate-500 py-0.5">
+                            <span className="inline-flex items-center gap-1">
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#1E40FF] animate-bounce [animation-delay:-0.3s]" />
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#0EA5E9] animate-bounce [animation-delay:-0.15s]" />
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#1E40FF] animate-bounce" />
+                            </span>
+                            <span>Turnio AI đang nhập...</span>
                           </div>
                         )}
                       </div>

@@ -51,7 +51,6 @@ h1, h2, h3, h4, .font-display {
   text-wrap: balance;
   line-height: 1.38;
   letter-spacing: 0.01em;
-  overflow: visible;
 }
 
 .font-editorial {

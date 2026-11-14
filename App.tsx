@@ -7,9 +7,12 @@ import ScrollProgress from './components/UI/ScrollProgress';
 import SectionQuickDock from './components/UI/SectionQuickDock';
 import { StudioDrawerModal } from './components/UI/StudioDrawerModal';
 import { subscribeToast } from './utils/toast';
+import { applyPageSeo } from './utils/seo';
+import type { BlogPillar } from './types/blog';
 import Hero from './components/Sections/Hero';
 
 const CommandPalette = React.lazy(() => import('./components/UI/CommandPalette'));
+const ContactConsultModal = React.lazy(() => import('./components/UI/ContactConsultModal'));
 
 // Below-the-fold lazy code splitting for fast initial mobile, tablet & desktop TTI
 const Experience = React.lazy(() => import('./components/Sections/Experience'));
@@ -39,6 +42,22 @@ const AiPortfolioChatbot = React.lazy(() =>
 
 const EcoLifeDetailView = React.lazy(() => import('./components/Sections/EcoLifeDetailView'));
 const DomationDetailView = React.lazy(() => import('./components/Sections/DomationDetailView'));
+const BlogSpotlight = React.lazy(() => import('./components/Sections/BlogSpotlight'));
+const BlogArchiveView = React.lazy(() => import('./components/Sections/BlogArchiveView'));
+const BlogSinglePostView = React.lazy(() => import('./components/Sections/BlogSinglePostView'));
+
+type BlogRouteState =
+  | { view: 'home' }
+  | { view: 'blog-list' }
+  | { view: 'blog-post'; slug: string };
+
+function parseBlogRoute(pathname: string): BlogRouteState {
+  const clean = pathname.replace(/\/+$/, '').toLowerCase();
+  if (clean === '/bai-viet') return { view: 'blog-list' };
+  const match = pathname.match(/^\/bai-viet\/([^/?#]+)/i);
+  if (match?.[1]) return { view: 'blog-post', slug: decodeURIComponent(match[1]) };
+  return { view: 'home' };
+}
 
 const SectionShell: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <motion.div
@@ -62,9 +81,26 @@ export default function App() {
     return 'none';
   });
 
+  const [route, setRoute] = useState<BlogRouteState>(() =>
+    typeof window === 'undefined' ? { view: 'home' } : parseBlogRoute(window.location.pathname)
+  );
+  const [blogFilter, setBlogFilter] = useState<'Tất Cả' | BlogPillar>('Tất Cả');
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [commandOpen, setCommandOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
+  const [contactService, setContactService] = useState<string | undefined>(undefined);
   const [toastMsg, setToastMsg] = useState<string | null>(null);
+
+  const openContactModal = (service?: string) => {
+    setContactService(service);
+    setContactOpen(true);
+  };
+
+  useEffect(() => {
+    if (route.view === 'home') {
+      applyPageSeo({ path: '/', type: 'profile' });
+    }
+  }, [route.view]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -159,13 +195,35 @@ export default function App() {
       if (p.includes('/ecolife')) setDrawer('ecolife');
       else if (p.includes('/domation')) setDrawer('domation');
       else setDrawer('none');
+      setRoute(parseBlogRoute(window.location.pathname));
     };
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
+  const openBlogArchive = (pillar: 'Tất Cả' | BlogPillar = 'Tất Cả') => {
+    setDrawer('none');
+    setBlogFilter(pillar);
+    setRoute({ view: 'blog-list' });
+    if (window.location.pathname !== '/bai-viet') {
+      window.history.pushState({}, '', '/bai-viet');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const openBlogPost = (slug: string) => {
+    setDrawer('none');
+    setRoute({ view: 'blog-post', slug });
+    const targetPath = `/bai-viet/${slug}`;
+    if (window.location.pathname !== targetPath) {
+      window.history.pushState({}, '', targetPath);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const jumpToSection = (sectionId: string) => {
     setDrawer('none');
+    setRoute({ view: 'home' });
     if (window.location.pathname !== '/') {
       window.history.pushState({}, '', '/');
     }
@@ -191,17 +249,41 @@ export default function App() {
     <div className="min-h-screen bg-[#F8F9FA] text-[#0F172A] font-sans relative selection:bg-blue-100 selection:text-[#1E40FF]">
       <Background />
       <ScrollProgress />
-      <SectionQuickDock onNavigate={jumpToSection} />
+      {route.view === 'home' && <SectionQuickDock onNavigate={jumpToSection} />}
 
       <div className="relative z-10 flex flex-col min-h-screen">
           <Navbar
             onNavigate={jumpToSection}
             onOpenDomation={() => setDrawer('domation')}
             onOpenEcoLife={() => setDrawer('ecolife')}
+            onOpenBlog={() => openBlogArchive()}
+            isBlogView={route.view !== 'home'}
             onOpenSearch={() => setCommandOpen(true)}
+            onOpenContact={() => openContactModal()}
           />
 
         <main className="flex-grow">
+          {route.view === 'blog-list' ? (
+            <Suspense fallback={<div className="py-32 text-center text-sm font-bold text-[#1E40FF]">Đang tải Bộ Sưu Tập Bài Viết...</div>}>
+              <BlogArchiveView
+                initialPillar={blogFilter}
+                onBackHome={() => jumpToSection('hero')}
+                onOpenPost={openBlogPost}
+              />
+            </Suspense>
+          ) : route.view === 'blog-post' ? (
+            <Suspense fallback={<div className="py-32 text-center text-sm font-bold text-[#1E40FF]">Đang tải Bài Viết &amp; Growth Dashboard...</div>}>
+              <BlogSinglePostView
+                slug={route.slug}
+                onBackArchive={() => openBlogArchive()}
+                onBackHome={() => jumpToSection('hero')}
+                onOpenPost={openBlogPost}
+                onJumpSection={jumpToSection}
+                onOpenContact={(svc) => openContactModal(svc)}
+              />
+            </Suspense>
+          ) : (
+            <>
           <Hero
             onOpenDomationModal={() => setDrawer('domation')}
             onOpenEcoLifeModal={() => setDrawer('ecolife')}
@@ -285,21 +367,32 @@ export default function App() {
           </SectionShell>
 
           <SectionShell>
+            <BlogSpotlight
+              onOpenArchive={(pillar) => openBlogArchive(pillar)}
+              onOpenPost={openBlogPost}
+            />
+          </SectionShell>
+
+          <SectionShell>
             <Partners />
           </SectionShell>
+            </>
+          )}
         </main>
 
         <Suspense fallback={null}>
           <Footer
             onOpenDomation={() => setDrawer('domation')}
             onOpenEcoLife={() => setDrawer('ecolife')}
+            onOpenBlog={() => openBlogArchive()}
             onNavigateProfile={jumpToSection}
+            onOpenContact={() => openContactModal()}
           />
         </Suspense>
       </div>
 
       {/* Floating Scroll to Top Button (Centered when scrollY > 100px) */}
-      {showScrollTop && drawer === 'none' && (
+      {showScrollTop && drawer === 'none' && !contactOpen && (
         <button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -368,6 +461,18 @@ export default function App() {
             onNavigate={jumpToSection}
             onOpenEcoLife={() => setDrawer('ecolife')}
             onOpenDomation={() => setDrawer('domation')}
+            onOpenBlog={() => openBlogArchive()}
+            onOpenPost={openBlogPost}
+          />
+        </Suspense>
+      )}
+
+      {contactOpen && (
+        <Suspense fallback={null}>
+          <ContactConsultModal
+            isOpen={contactOpen}
+            onClose={() => setContactOpen(false)}
+            defaultService={contactService}
           />
         </Suspense>
       )}

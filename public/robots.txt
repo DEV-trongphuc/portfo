@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+
+# Generative AI Search & LLM Crawlers (GEO Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# LLM Structured Context Endpoints
+# https://portfo-turnio.vercel.app/llms.txt
+# https://portfo-turnio.vercel.app/llms-full.txt
+
+Sitemap: https://portfo-turnio.vercel.app/sitemap.xml

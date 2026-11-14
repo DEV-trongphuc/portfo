@@ -22,7 +22,9 @@ import domLogo from '../../imgs/dom_logo.webp';
 interface FooterProps {
   onOpenDomation?: () => void;
   onOpenEcoLife?: () => void;
+  onOpenBlog?: () => void;
   onNavigateProfile?: (sectionId: string) => void;
+  onOpenContact?: () => void;
 }
 
 const InkicaSvgLogo: React.FC<{ className?: string }> = ({ className = 'w-5 h-5' }) => (
@@ -80,17 +82,23 @@ const QUICK_NAV = [
   { id: 'real-estate', label: 'Dự Án 3D & AI', icon: Box },
   { id: 'experience', label: 'Kinh Nghiệm', icon: Briefcase },
   { id: 'erp-showcase', label: 'DOMATION ERP', icon: Database },
+  { id: 'blog', label: 'Bài Viết SEO', icon: Sparkles },
   { id: 'outsource', label: 'Digital Thực Chiến', icon: TrendingUp },
-  { id: 'domarketing', label: 'DOM MARKETING', icon: Zap },
   { id: 'partners', label: 'Đối Tác & F1', icon: Handshake },
 ];
 
 const Footer: React.FC<FooterProps> = ({
   onOpenDomation,
   onOpenEcoLife,
+  onOpenBlog,
   onNavigateProfile,
+  onOpenContact,
 }) => {
   const handleJump = (id: string) => {
+    if (id === 'blog' && onOpenBlog) {
+      onOpenBlog();
+      return;
+    }
     if (onNavigateProfile) {
       onNavigateProfile(id);
     } else {
@@ -130,6 +138,16 @@ const Footer: React.FC<FooterProps> = ({
             </div>
 
             <div className="flex flex-col sm:flex-row lg:flex-col gap-2.5 shrink-0">
+              {onOpenContact && (
+                <button
+                  type="button"
+                  onClick={onOpenContact}
+                  className="px-6 py-3.5 rounded-2xl bg-white hover:bg-sky-50 text-[#0F172A] text-xs font-extrabold uppercase tracking-wider inline-flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer"
+                >
+                  <Sparkles size={15} className="text-[#1E40FF]" />
+                  <span>Gửi Yêu Cầu Tư Vấn Ngay</span>
+                </button>
+              )}
               <div className="flex items-stretch gap-1.5">
                 <a
                   href="mailto:turniodev@gmail.com"
@@ -284,9 +302,28 @@ const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
 
-        {/* Bottom Legal */}
-        <div className="pt-6 text-center text-xs font-semibold text-slate-500">
-          @2026 Fullstack Developer - AI Automation | Turnio DEV
+        {/* Bottom Legal + SEO/GEO Discovery */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-semibold text-slate-500">
+          <span>
+            @2026 Chuyên Gia Martech • Fullstack Developer - AI Automation | Turnio DEV
+          </span>
+          <div className="flex items-center gap-3 text-[11px] font-bold">
+            <a href="/bai-viet" onClick={(e) => { e.preventDefault(); onOpenBlog?.(); }} className="hover:text-[#1E40FF]">
+              Thư Viện Bài Viết
+            </a>
+            <span>•</span>
+            <a href="/llms.txt" target="_blank" rel="noreferrer" className="hover:text-[#1E40FF]">
+              llms.txt
+            </a>
+            <span>•</span>
+            <a href="/llms-full.txt" target="_blank" rel="noreferrer" className="hover:text-[#1E40FF]">
+              llms-full.txt (GEO)
+            </a>
+            <span>•</span>
+            <a href="/sitemap.xml" target="_blank" rel="noreferrer" className="hover:text-[#1E40FF]">
+              sitemap.xml
+            </a>
+          </div>
         </div>
       </div>
     </footer>

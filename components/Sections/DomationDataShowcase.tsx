@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Activity, Bot, CheckCircle2, Maximize2, Radio, ShieldCheck, XCircle } from 'lucide-react';
 import { DOMATION_V2_CAPI_SHOWCASE } from '../../constants';
 import Modal from '../UI/Modal';
+import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
 
 const FEATURES = [
   {
@@ -77,12 +78,15 @@ const DomationDataShowcase: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {FEATURES.map((f) => (
-                <div
-                  key={f.title}
-                  className="bg-white/95 border border-slate-200/90 hover:border-[#1E40FF]/40 p-3.5 rounded-2xl shadow-xs transition-all group"
-                >
+            <ResponsiveSlideDeck
+              items={FEATURES}
+              keyExtractor={(f) => f.title}
+              desktopMode="grid"
+              desktopGridClass="lg:grid-cols-2"
+              gapClass="gap-3"
+              ariaLabel="Tính năng DOMATION Data & Meta CAPI"
+              renderItem={(f) => (
+                <div className="bg-white/95 border border-slate-200/90 hover:border-[#1E40FF]/40 p-3.5 rounded-2xl shadow-xs transition-all group h-full">
                   <div className="w-8 h-8 rounded-xl bg-blue-50 text-[#1E40FF] flex items-center justify-center mb-2 group-hover:bg-[#1E40FF] group-hover:text-white [&_svg]:group-hover:text-white transition-colors">
                     {f.icon}
                   </div>
@@ -91,8 +95,8 @@ const DomationDataShowcase: React.FC = () => {
                   </h3>
                   <p className="text-[11px] text-slate-600 leading-relaxed">{f.desc}</p>
                 </div>
-              ))}
-            </div>
+              )}
+            />
 
             {/* Compact 1-Line Interactive CAPI Signal Switch */}
             <div className="bg-white/90 border border-slate-200/90 rounded-2xl p-3.5 space-y-2.5">
@@ -119,36 +123,45 @@ const DomationDataShowcase: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Right: Clean 2x2 Floating Screenshot Grid (MINTH Reference Style) */}
+          {/* Right: Paginated Slider Screenshot Deck (1/mobile, 2/tablet, 2x2/desktop) */}
           <motion.div
             initial={{ opacity: 1, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.05 }}
-            className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5"
+            className="lg:col-span-7"
           >
-            {DOMATION_V2_CAPI_SHOWCASE.map((screen) => (
-              <div
-                key={screen.id}
-                onClick={() => setZoomScreen({ src: screen.image, title: screen.title })}
-                className="group relative rounded-2xl overflow-hidden border border-slate-200/90 bg-white p-1.5 shadow-sm hover:border-[#1E40FF]/45 hover:shadow-md transition-all cursor-zoom-in"
-              >
-                <div className="aspect-[16/10] rounded-xl overflow-hidden bg-slate-50 relative">
-                  <img
-                    src={screen.image}
-                    alt={screen.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                  />
-                  <span className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/95 text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow">
-                    <Maximize2 size={12} />
-                  </span>
+            <ResponsiveSlideDeck
+              items={DOMATION_V2_CAPI_SHOWCASE}
+              keyExtractor={(screen) => screen.id}
+              desktopMode="slider"
+              desktopPerPage={4}
+              desktopGridClass="lg:grid-cols-2"
+              gapClass="gap-3.5"
+              ariaLabel="Thư viện màn hình DOMATION V2 CAPI"
+              renderItem={(screen) => (
+                <div
+                  onClick={() => setZoomScreen({ src: screen.image, title: screen.title })}
+                  className="group relative rounded-2xl overflow-hidden border border-slate-200/90 bg-white p-1.5 shadow-sm hover:border-[#1E40FF]/45 hover:shadow-md transition-all cursor-zoom-in h-full"
+                >
+                  <div className="aspect-[16/10] rounded-xl overflow-hidden bg-slate-50 relative">
+                    <img
+                      src={screen.image}
+                      alt={screen.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                    />
+                    <span className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/95 text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow">
+                      <Maximize2 size={12} />
+                    </span>
+                  </div>
+                  <div className="px-2 pt-2 pb-1 flex items-center justify-between gap-2">
+                    <span className="text-xs font-bold text-slate-900 truncate">{screen.title}</span>
+                    <span className="text-[10px] font-semibold text-[#1E40FF] shrink-0">HD ↗</span>
+                  </div>
                 </div>
-                <div className="px-2 pt-2 pb-1 flex items-center justify-between gap-2">
-                  <span className="text-xs font-bold text-slate-900 truncate">{screen.title}</span>
-                  <span className="text-[10px] font-semibold text-[#1E40FF] shrink-0">HD ↗</span>
-                </div>
-              </div>
-            ))}
+              )}
+            />
           </motion.div>
         </div>
 

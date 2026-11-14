@@ -14,6 +14,7 @@ import {
 import { OUTSOURCE_HIGHLIGHTS, SHORT_CAMPAIGNS } from '../../constants';
 import { OutsourceHighlight } from '../../types';
 import Modal from '../UI/Modal';
+import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
 
 import gameBlindbag from '../../imgs/game_blindbag.webp';
 import gameWheelKnowledge from '../../imgs/game_wheel_knowledge.webp';
@@ -115,18 +116,21 @@ const OutsourceHighlights: React.FC = () => {
           </div>
         </div>
 
-        {/* 4x2 Compact 8-Card Grid in One Single Frame */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
-          {visibleCampaigns.map((item, idx) => (
-            <motion.button
+        {/* Paginated Campaigns Deck (1/mobile, 2/tablet, 4x2 grid desktop) */}
+        <ResponsiveSlideDeck
+          items={visibleCampaigns}
+          keyExtractor={(item, idx) => `${item.company}-${idx}`}
+          resetKey={filter}
+          desktopMode="grid"
+          desktopGridClass="lg:grid-cols-4"
+          gapClass="gap-3.5"
+          className="mb-8"
+          ariaLabel="Danh sách chiến dịch triển khai"
+          renderItem={(item) => (
+            <button
               type="button"
-              key={`${item.company}-${idx}`}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.35, delay: Math.min(idx * 0.03, 0.2) }}
               onClick={() => setSelectedCampaign(item)}
-              className="group text-left bg-white rounded-2xl border border-slate-200/90 hover:border-[#1E40FF]/45 hover:shadow-lg transition-all p-3.5 flex flex-col justify-between cursor-pointer h-full"
+              className="group w-full text-left bg-white rounded-2xl border border-slate-200/90 hover:border-[#1E40FF]/45 hover:shadow-lg transition-all p-4 flex flex-col justify-between cursor-pointer h-full"
             >
               <div>
                 {/* Logo + Tags */}
@@ -137,6 +141,8 @@ const OutsourceHighlights: React.FC = () => {
                         <img
                           src={item.logo}
                           alt={item.company}
+                          loading="lazy"
+                          decoding="async"
                           className="w-full h-full object-contain"
                         />
                       </div>
@@ -191,9 +197,9 @@ const OutsourceHighlights: React.FC = () => {
                   Chi tiết →
                 </span>
               </div>
-            </motion.button>
-          ))}
-        </div>
+            </button>
+          )}
+        />
 
         {/* FLAGSHIP HORIZONTAL COMPACT CARD: WATERBOMB 2025 + TINY MINIGAMES */}
         <div className="rounded-2xl bg-white border border-slate-200/90 shadow-sm p-4 sm:p-5">
@@ -270,54 +276,87 @@ const OutsourceHighlights: React.FC = () => {
       <Modal
         isOpen={!!selectedCampaign}
         onClose={() => setSelectedCampaign(null)}
-        title={selectedCampaign?.company || 'Case Study Detail'}
+        title="Case Study • Chi Tiết Triển Khai"
         className="max-w-2xl"
       >
         {selectedCampaign && (
           <div className="space-y-4">
-            <div className="flex flex-wrap items-center gap-3 pb-3 border-b border-slate-100">
-              {selectedCampaign.logo && (
-                <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 p-1.5 flex items-center justify-center">
-                  <img
-                    src={selectedCampaign.logo}
-                    alt={selectedCampaign.company}
-                    className="w-full h-full object-contain"
-                  />
+            {/* Hero Identity Header Card (no duplicate modal title) */}
+            <div className="rounded-2xl bg-white border border-slate-200/90 p-4 sm:p-5 shadow-xs flex flex-wrap items-center justify-between gap-3.5">
+              <div className="flex items-center gap-3.5 min-w-0">
+                {selectedCampaign.logo ? (
+                  <div className="w-13 h-13 rounded-2xl bg-slate-50 border border-slate-200 p-2 flex items-center justify-center shrink-0">
+                    <img
+                      src={selectedCampaign.logo}
+                      alt={selectedCampaign.company}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-13 h-13 rounded-2xl bg-blue-50 border border-blue-200 text-[#1E40FF] flex items-center justify-center text-lg font-black shrink-0">
+                    {selectedCampaign.company.charAt(0)}
+                  </div>
+                )}
+                <div className="min-w-0">
+                  <h4 className="text-lg sm:text-xl font-extrabold text-slate-950 truncate">
+                    {selectedCampaign.company}
+                  </h4>
+                  <div className="flex flex-wrap gap-1.5 mt-1.5">
+                    {selectedCampaign.tags.map((t, i) => (
+                      <span
+                        key={i}
+                        className="text-[10.5px] font-bold px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200/70 text-[#1E40FF]"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              )}
-              <div>
-                <h4 className="text-lg font-extrabold text-slate-900">{selectedCampaign.company}</h4>
-                <div className="flex flex-wrap gap-1.5 mt-1">
-                  {selectedCampaign.tags.map((t, i) => (
-                    <span
-                      key={i}
-                      className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-[#1E40FF]"
-                    >
-                      {t}
-                    </span>
+              </div>
+            </div>
+
+            {/* Responsive 3-Metric Highlights */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="p-3.5 rounded-2xl bg-gradient-to-br from-blue-50 to-white border border-blue-200/80 shadow-xs">
+                <div className="text-[10px] font-extrabold uppercase tracking-wider text-[#1E40FF]/80 mb-1">
+                  Kết quả đạt được
+                </div>
+                <div className="text-lg font-black text-[#1E40FF] leading-tight">
+                  {selectedCampaign.result}
+                </div>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-xs">
+                <div className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-1">
+                  Ngân sách / HQ
+                </div>
+                <div className="text-sm font-bold text-slate-900 leading-snug">
+                  {selectedCampaign.cost}
+                </div>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-xs">
+                <div className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-1">
+                  Tác động kinh doanh
+                </div>
+                <div className="text-sm font-bold text-slate-900 leading-snug">
+                  {selectedCampaign.impact}
+                </div>
+              </div>
+            </div>
+
+            {/* Clean Formatted Narrative Card */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs text-xs sm:text-sm text-slate-700 leading-relaxed flex items-start gap-3">
+              <div className="w-8 h-8 rounded-xl bg-blue-50 border border-blue-100 text-[#1E40FF] flex items-center justify-center shrink-0 mt-0.5">
+                <Quote size={15} />
+              </div>
+              <div className="space-y-1.5 min-w-0">
+                {selectedCampaign.description
+                  .split(/<br\s*\/?>/gi)
+                  .map((line) => line.replace(/<[^>]*>/g, '').trim())
+                  .filter(Boolean)
+                  .map((paragraph, idx) => (
+                    <p key={idx}>{paragraph}</p>
                   ))}
-                </div>
               </div>
-            </div>
-
-            <div className="grid grid-cols-3 gap-2.5">
-              <div className="p-3 rounded-xl bg-blue-50/70 border border-blue-200/70">
-                <div className="text-[10px] font-bold uppercase text-slate-500">Kết quả</div>
-                <div className="text-base font-black text-[#1E40FF]">{selectedCampaign.result}</div>
-              </div>
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                <div className="text-[10px] font-bold uppercase text-slate-500">Ngân sách / HQ</div>
-                <div className="text-sm font-bold text-slate-900">{selectedCampaign.cost}</div>
-              </div>
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                <div className="text-[10px] font-bold uppercase text-slate-500">Tác động</div>
-                <div className="text-sm font-bold text-slate-900">{selectedCampaign.impact}</div>
-              </div>
-            </div>
-
-            <div className="p-4 rounded-xl bg-slate-50/70 border border-slate-200/80 text-sm text-slate-700 leading-relaxed flex gap-2.5">
-              <Quote size={18} className="text-[#1E40FF] shrink-0 mt-0.5" />
-              <div dangerouslySetInnerHTML={{ __html: selectedCampaign.description }} />
             </div>
 
             {selectedCampaign.logos && selectedCampaign.logos.length > 0 && (
@@ -328,7 +367,7 @@ const OutsourceHighlights: React.FC = () => {
                     href={l.link}
                     target="_blank"
                     rel="noreferrer"
-                    className="h-9 px-3 rounded-lg bg-white border border-slate-200 hover:border-[#1E40FF] flex items-center justify-center"
+                    className="h-10 px-3.5 rounded-xl bg-white border border-slate-200 hover:border-[#1E40FF] flex items-center justify-center shadow-xs transition-colors"
                   >
                     <img src={l.src} alt="Brand logo" className="h-5 w-auto object-contain" />
                   </a>
@@ -337,7 +376,7 @@ const OutsourceHighlights: React.FC = () => {
             )}
 
             {selectedCampaign.link && (
-              <div className="pt-2 flex justify-end">
+              <div className="pt-1 flex justify-end">
                 <a
                   href={selectedCampaign.link}
                   target="_blank"

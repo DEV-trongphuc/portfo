@@ -4,8 +4,6 @@ import {
   Activity,
   BarChart3,
   BrainCircuit,
-  ChevronDown,
-  ChevronUp,
   Cpu,
   Database,
   Maximize2,
@@ -13,6 +11,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import Modal from '../UI/Modal';
+import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
 
 import domRp1 from '../../imgs/dom_rp_1.webp';
 import domRp2 from '../../imgs/dom_rp_2.webp';
@@ -65,9 +64,6 @@ const REPORT_FEATURES = [
 
 const MetaAdReportShowcase: React.FC = () => {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
-  const [showAll, setShowAll] = useState(false);
-
-  const visibleImages = showAll ? REPORT_IMAGES : REPORT_IMAGES.slice(0, 4);
 
   return (
     <section
@@ -76,21 +72,28 @@ const MetaAdReportShowcase: React.FC = () => {
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-          {/* Left: Clean 2x2 Gallery */}
+          {/* Left: Paginated Gallery */}
           <div className="lg:col-span-7 order-2 lg:order-1">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              {visibleImages.map((img, idx) => (
+            <ResponsiveSlideDeck
+              items={REPORT_IMAGES}
+              keyExtractor={(img) => img.title}
+              desktopMode="slider"
+              desktopPerPage={4}
+              desktopGridClass="lg:grid-cols-2"
+              gapClass="gap-3.5"
+              ariaLabel="Giao diện Meta Ad Insights"
+              renderItem={(img, idx) => (
                 <button
                   type="button"
-                  key={idx}
                   onClick={() => setPreviewImage(img.src)}
-                  className="group relative text-left rounded-2xl overflow-hidden bg-white border border-slate-200/90 hover:border-[#1E40FF]/45 shadow-sm hover:shadow-xl transition-all cursor-pointer p-2"
+                  className="group relative w-full text-left rounded-2xl overflow-hidden bg-white border border-slate-200/90 hover:border-[#1E40FF]/45 shadow-sm hover:shadow-xl transition-all cursor-pointer p-2 h-full"
                 >
                   <div className="relative rounded-xl overflow-hidden bg-slate-50 aspect-[16/10]">
                     <img
                       src={img.src}
                       alt={img.title}
                       loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
                     />
                     <span className="absolute top-2 right-2 w-7 h-7 rounded-lg bg-white/95 border border-slate-200 text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
@@ -104,26 +107,8 @@ const MetaAdReportShowcase: React.FC = () => {
                     <span className="text-[10px] font-mono text-slate-400 shrink-0">0{idx + 1}</span>
                   </div>
                 </button>
-              ))}
-            </div>
-
-            <div className="mt-4 flex justify-start">
-              <button
-                type="button"
-                onClick={() => setShowAll((v) => !v)}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white border border-slate-200 hover:border-[#1E40FF]/40 text-xs font-bold text-slate-700 hover:text-[#1E40FF] transition-all cursor-pointer"
-              >
-                {showAll ? (
-                  <>
-                    <ChevronUp size={14} /> Thu gọn bớt báo cáo
-                  </>
-                ) : (
-                  <>
-                    <ChevronDown size={14} /> Xem đủ 6 màn hình Meta Insights
-                  </>
-                )}
-              </button>
-            </div>
+              )}
+            />
           </div>
 
           {/* Right: Header + Compact Features */}
@@ -149,12 +134,15 @@ const MetaAdReportShowcase: React.FC = () => {
                 đối chiếu thẳng với Lead thiện chí từ CRM.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {REPORT_FEATURES.map((feature, idx) => (
-                  <div
-                    key={idx}
-                    className="group p-3.5 rounded-2xl bg-white border border-slate-200/80 hover:border-[#1E40FF]/35 hover:shadow-md transition-all"
-                  >
+              <ResponsiveSlideDeck
+                items={REPORT_FEATURES}
+                keyExtractor={(feature) => feature.title}
+                desktopMode="grid"
+                desktopGridClass="lg:grid-cols-2"
+                gapClass="gap-3"
+                ariaLabel="Tính năng Meta Ad Insights"
+                renderItem={(feature) => (
+                  <div className="group p-3.5 rounded-2xl bg-white border border-slate-200/80 hover:border-[#1E40FF]/35 hover:shadow-md transition-all h-full">
                     <div className="flex items-start gap-3">
                       <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-200/70 text-[#1E40FF] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#1E40FF] group-hover:border-[#1E40FF] group-hover:text-white [&_svg]:group-hover:text-white">
                         {feature.icon}
@@ -169,8 +157,8 @@ const MetaAdReportShowcase: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
+                )}
+              />
             </motion.div>
           </div>
         </div>

@@ -13,6 +13,7 @@ import {
   PARTNERS,
 } from '../../constants';
 import { InkicaBrandLogo } from '../UI/InkicaBrandLogo';
+import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
 
 const Partners: React.FC = () => {
   const [selectedIndustry, setSelectedIndustry] = useState<string>('ALL');
@@ -65,12 +66,15 @@ const Partners: React.FC = () => {
             <span>Đối Tác Trọng Điểm (Chủ Đầu Tư &amp; Dự Án Flagship)</span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {FEATURED_FLAGSHIP_PARTNERS.map((partner) => (
-              <div
-                key={partner.id}
-                className="inkica-glass-card rounded-3xl p-5 sm:p-6 flex flex-col justify-between"
-              >
+          <ResponsiveSlideDeck
+            items={FEATURED_FLAGSHIP_PARTNERS}
+            keyExtractor={(partner) => partner.id}
+            desktopMode="grid"
+            desktopGridClass="lg:grid-cols-3"
+            gapClass="gap-4"
+            ariaLabel="Đối tác trọng điểm"
+            renderItem={(partner) => (
+              <div className="inkica-glass-card rounded-3xl p-5 sm:p-6 flex flex-col justify-between h-full">
                 <div>
                   <div className="flex items-center justify-between gap-3 pb-3.5 mb-3.5 border-b border-slate-100">
                     <div className="h-11 px-3.5 rounded-xl bg-white border border-slate-200/80 flex items-center justify-center">
@@ -80,6 +84,8 @@ const Partners: React.FC = () => {
                         <img
                           src={partner.logo}
                           alt={partner.name}
+                          loading="lazy"
+                          decoding="async"
                           className="h-7 w-auto object-contain"
                         />
                       )}
@@ -108,8 +114,8 @@ const Partners: React.FC = () => {
                   </p>
                 </div>
               </div>
-            ))}
-          </div>
+            )}
+          />
         </div>
 
         {/* BOTTOM TIER 1: 3 F1 AGENCY PARTNERS */}
@@ -118,16 +124,21 @@ const Partners: React.FC = () => {
             <Sparkles size={13} className="text-[#1E40FF]" />
             <span>3 Đại Lý F1 Triển Khai Auto Routing &amp; Meta CAPI</span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
-            {F1_AGENCY_PARTNERS.map((agency) => (
-              <div
-                key={agency.id}
-                className="inkica-glass-card rounded-2xl p-4 flex items-center gap-3.5"
-              >
+          <ResponsiveSlideDeck
+            items={F1_AGENCY_PARTNERS}
+            keyExtractor={(agency) => agency.id}
+            desktopMode="grid"
+            desktopGridClass="lg:grid-cols-3"
+            gapClass="gap-3.5"
+            ariaLabel="3 đại lý phân phối F1"
+            renderItem={(agency) => (
+              <div className="inkica-glass-card rounded-2xl p-4 flex items-center gap-3.5 h-full">
                 <div className="w-14 h-12 rounded-xl bg-slate-50 border border-slate-200 p-1.5 flex items-center justify-center shrink-0">
                   <img
                     src={agency.logo}
                     alt={agency.name}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-contain"
                   />
                 </div>
@@ -139,8 +150,8 @@ const Partners: React.FC = () => {
                   <div className="text-[11px] text-slate-500 truncate mt-0.5">{agency.role}</div>
                 </div>
               </div>
-            ))}
-          </div>
+            )}
+          />
         </div>
 
         {/* BOTTOM TIER 2: HORIZONTAL MARQUEE + FULL 24-BRAND SPREAD GRID */}
@@ -182,42 +193,45 @@ const Partners: React.FC = () => {
                   rel="noreferrer"
                   className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white/75 backdrop-blur-md border border-white/90 ring-1 ring-slate-200/70 hover:border-[#1E40FF]/45 shrink-0 transition-all"
                 >
-                  {brand.name.toLowerCase() === 'inkica' ? (
-                    <InkicaBrandLogo compact />
-                  ) : (
-                    <>
-                      <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 p-1.5 flex items-center justify-center shrink-0">
-                        <img
-                          src={brand.image}
-                          alt={brand.name}
-                          className="w-full h-full object-contain"
-                        />
-                      </div>
-                      <span className="text-[13px] font-bold text-slate-800 whitespace-nowrap">
-                        {brand.name}
-                      </span>
-                    </>
-                  )}
+                  <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 p-1.5 flex items-center justify-center shrink-0">
+                    <img
+                      src={brand.image}
+                      alt={brand.name}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <span className="text-[13px] font-bold text-slate-800 whitespace-nowrap">
+                    {brand.name}
+                  </span>
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Spacious 4-Column Frosted Glass Brand Directory */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {filteredBrands.map((partner) => (
+          {/* Balanced 24-Brand Directory (1/mobile, 2/tablet via SlideDeck, 4-col grid Desktop) */}
+          <ResponsiveSlideDeck
+            items={filteredBrands}
+            keyExtractor={(partner) => partner.name}
+            resetKey={selectedIndustry}
+            desktopMode="grid"
+            desktopGridClass="lg:grid-cols-4"
+            gapClass="gap-3.5"
+            ariaLabel="Danh mục thương hiệu đồng hành"
+            renderItem={(partner) => (
               <a
-                key={partner.name}
                 href={partner.website}
                 target="_blank"
                 rel="noreferrer"
-                className="group flex items-center gap-4 p-4 rounded-2xl bg-white/70 backdrop-blur-md border border-white/90 ring-1 ring-slate-200/75 hover:bg-white/95 hover:border-[#1E40FF]/45 hover:shadow-md transition-all"
+                className="group flex items-center gap-4 p-4 rounded-2xl bg-white/75 backdrop-blur-md border border-white/90 ring-1 ring-slate-200/75 hover:bg-white/95 hover:border-[#1E40FF]/45 hover:shadow-md transition-all h-full"
               >
                 <div className="w-14 h-14 rounded-xl bg-white border border-slate-200/90 p-2 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
                   <img
                     src={partner.image}
                     alt={partner.name}
                     loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-contain"
                   />
                 </div>
@@ -230,8 +244,8 @@ const Partners: React.FC = () => {
                   </div>
                 </div>
               </a>
-            ))}
-          </div>
+            )}
+          />
         </div>
       </div>
     </section>

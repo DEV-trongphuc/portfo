@@ -11,6 +11,37 @@ import {
   Shield,
 } from 'lucide-react';
 import Modal from '../UI/Modal';
+import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
+
+const ZALO_FEATURES = [
+  {
+    id: 'zaui',
+    icon: <Code2 size={18} />,
+    iconClass:
+      'bg-blue-50 border-blue-200/70 text-[#1E40FF] group-hover:bg-[#1E40FF] group-hover:border-[#1E40FF]',
+    hoverBorder: 'hover:border-[#1E40FF]/35',
+    title: 'Kiến trúc React & ZaUI (IDEAS App)',
+    desc: 'Xây dựng trên ReactJS & Zalo Mini App SDK theo chuẩn UI Native Zalo với tốc độ tải tức thì và trải nghiệm mượt mà.',
+  },
+  {
+    id: 'loyalty',
+    icon: <Shield size={18} />,
+    iconClass:
+      'bg-emerald-50 border-emerald-200/70 text-emerald-600 group-hover:bg-emerald-600 group-hover:border-emerald-600',
+    hoverBorder: 'hover:border-emerald-300',
+    title: 'Loyalty & Tích Điểm Tự Động',
+    desc: 'Xác thực tài khoản qua Zalo Phone Number không cần mật khẩu, kích hoạt voucher và theo dõi tiến độ trực tiếp.',
+  },
+  {
+    id: 'crm-sync',
+    icon: <RefreshCcw size={18} />,
+    iconClass:
+      'bg-sky-50 border-sky-200/70 text-[#0284C7] group-hover:bg-[#0284C7] group-hover:border-[#0284C7]',
+    hoverBorder: 'hover:border-sky-300',
+    title: 'Đồng Bộ CRM & ZaloBot',
+    desc: 'Đẩy hành vi & trạng thái học viên về CRM doanh nghiệp, kích hoạt nhắc lịch qua Zalo OA ZNS tự động.',
+  },
+];
 
 const ZaloMiniAppShowcase: React.FC = () => {
   const [showQrModal, setShowQrModal] = useState(false);
@@ -48,7 +79,7 @@ const ZaloMiniAppShowcase: React.FC = () => {
           {/* Right (Desktop): Widened Phone Frame Iframe Simulator */}
           <div className="lg:col-span-6 order-2 flex justify-center">
             <div className="relative pt-4">
-              <div className="w-full max-w-[395px] sm:w-[405px] h-[660px] sm:h-[700px] bg-slate-900 rounded-[2.5rem] border-[5px] border-slate-800 overflow-hidden relative flex flex-col">
+              <div className="w-full max-w-[395px] sm:w-[405px] h-[620px] sm:h-[700px] bg-slate-900 rounded-[2.5rem] border-[5px] border-slate-800 overflow-hidden relative flex flex-col">
                 <div className="h-6 bg-slate-900 w-full flex items-center justify-center relative z-20 shrink-0">
                   <div className="w-20 h-3 bg-slate-800 rounded-full" />
                 </div>
@@ -57,6 +88,7 @@ const ZaloMiniAppShowcase: React.FC = () => {
                   <iframe
                     src="https://turniodev.github.io/zala_ideas"
                     title="IDEAS Institute Zalo Mini App"
+                    loading="lazy"
                     className="w-full h-full border-0"
                     sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
                   />
@@ -76,57 +108,36 @@ const ZaloMiniAppShowcase: React.FC = () => {
           </div>
 
           {/* Left (Desktop): 3 Compact Technical Feature Cards */}
-          <div className="lg:col-span-6 order-1 space-y-3.5">
-            <div className="group p-4 sm:p-5 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:bg-white hover:border-[#1E40FF]/35 hover:shadow-md transition-all">
-              <div className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200/70 text-[#1E40FF] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#1E40FF] group-hover:border-[#1E40FF] group-hover:text-white [&_svg]:group-hover:text-white">
-                  <Code2 size={18} />
+          <div className="lg:col-span-6 order-1 space-y-4">
+            <ResponsiveSlideDeck
+              items={ZALO_FEATURES}
+              keyExtractor={(item) => item.id}
+              desktopMode="grid"
+              desktopGridClass="lg:grid-cols-1"
+              gapClass="gap-3.5"
+              ariaLabel="Tính năng Zalo Mini App"
+              renderItem={(item) => (
+                <div
+                  className={`group p-4 sm:p-5 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:bg-white ${item.hoverBorder} hover:shadow-md transition-all h-full`}
+                >
+                  <div className="flex items-start gap-3.5">
+                    <div
+                      className={`w-10 h-10 rounded-xl border flex items-center justify-center shrink-0 transition-colors group-hover:text-white [&_svg]:group-hover:text-white ${item.iconClass}`}
+                    >
+                      {item.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-1">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-1">
-                    Kiến trúc React &amp; ZaUI (IDEAS App)
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    Xây dựng trên ReactJS &amp; Zalo Mini App SDK theo chuẩn UI Native Zalo với tốc
-                    độ tải tức thì và trải nghiệm mượt mà.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="group p-4 sm:p-5 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:bg-white hover:border-emerald-300 hover:shadow-md transition-all">
-              <div className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200/70 text-emerald-600 flex items-center justify-center shrink-0 transition-colors group-hover:bg-emerald-600 group-hover:border-emerald-600 group-hover:text-white [&_svg]:group-hover:text-white">
-                  <Shield size={18} />
-                </div>
-                <div>
-                  <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-1">
-                    Loyalty &amp; Tích Điểm Tự Động
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    Xác thực tài khoản qua Zalo Phone Number không cần mật khẩu, kích hoạt voucher
-                    và theo dõi tiến độ trực tiếp.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="group p-4 sm:p-5 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:bg-white hover:border-sky-300 hover:shadow-md transition-all">
-              <div className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-sky-50 border border-sky-200/70 text-[#0284C7] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#0284C7] group-hover:border-[#0284C7] group-hover:text-white [&_svg]:group-hover:text-white">
-                  <RefreshCcw size={18} />
-                </div>
-                <div>
-                  <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-1">
-                    Đồng Bộ CRM &amp; ZaloBot
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    Đẩy hành vi &amp; trạng thái học viên về CRM doanh nghiệp, kích hoạt nhắc lịch
-                    qua Zalo OA ZNS tự động.
-                  </p>
-                </div>
-              </div>
-            </div>
+              )}
+            />
 
             <div className="flex flex-wrap gap-3 pt-2">
               <a

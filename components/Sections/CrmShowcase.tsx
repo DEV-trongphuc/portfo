@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Clock, LayoutDashboard, Maximize2, Package, Store, Users } from 'lucide-react';
 import Modal from '../UI/Modal';
+import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
 
 import crm1 from '../../imgs/CRM (1).webp';
 import crm2 from '../../imgs/CRM (2).webp';
@@ -71,12 +72,15 @@ const CrmShowcase: React.FC = () => {
                 tồn kho và doanh thu theo thời gian thực.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {CRM_FEATURES.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="group p-4 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:bg-white hover:border-[#1E40FF]/35 hover:shadow-md transition-all"
-                  >
+              <ResponsiveSlideDeck
+                items={CRM_FEATURES}
+                keyExtractor={(item) => item.title}
+                desktopMode="grid"
+                desktopGridClass="lg:grid-cols-2"
+                gapClass="gap-3"
+                ariaLabel="Tính năng CRM & POS"
+                renderItem={(item) => (
+                  <div className="group p-4 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:bg-white hover:border-[#1E40FF]/35 hover:shadow-md transition-all h-full">
                     <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-200/70 text-[#1E40FF] flex items-center justify-center mb-2.5 transition-colors group-hover:bg-[#1E40FF] group-hover:border-[#1E40FF] group-hover:text-white [&_svg]:group-hover:text-white">
                       {item.icon}
                     </div>
@@ -85,26 +89,32 @@ const CrmShowcase: React.FC = () => {
                     </h3>
                     <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
                   </div>
-                ))}
-              </div>
+                )}
+              />
             </motion.div>
           </div>
 
-          {/* Right Column: Clean 2x2 Visual Showcase */}
+          {/* Right Column: Clean Visual Showcase Slider */}
           <div className="lg:col-span-7">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              {CRM_SCREENS.map((screen, idx) => (
+            <ResponsiveSlideDeck
+              items={CRM_SCREENS}
+              keyExtractor={(screen) => screen.title}
+              desktopMode="grid"
+              desktopGridClass="lg:grid-cols-2"
+              gapClass="gap-3.5"
+              ariaLabel="Giao diện CRM & POS"
+              renderItem={(screen, idx) => (
                 <button
                   type="button"
-                  key={idx}
                   onClick={() => setPreviewImage(screen.src)}
-                  className="group relative text-left rounded-2xl overflow-hidden bg-white border border-slate-200/90 hover:border-[#1E40FF]/45 shadow-sm hover:shadow-xl transition-all cursor-pointer p-2"
+                  className="group relative w-full text-left rounded-2xl overflow-hidden bg-white border border-slate-200/90 hover:border-[#1E40FF]/45 shadow-sm hover:shadow-xl transition-all cursor-pointer p-2 h-full"
                 >
                   <div className="relative rounded-xl overflow-hidden bg-slate-50 aspect-[16/10]">
                     <img
                       src={screen.src}
                       alt={screen.title}
                       loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
                     />
                     <span className="absolute top-2 right-2 w-7 h-7 rounded-lg bg-white/95 border border-slate-200 text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
@@ -118,8 +128,8 @@ const CrmShowcase: React.FC = () => {
                     <span className="text-[10px] font-mono text-slate-400 shrink-0">0{idx + 1}</span>
                   </div>
                 </button>
-              ))}
-            </div>
+              )}
+            />
           </div>
         </div>
       </div>

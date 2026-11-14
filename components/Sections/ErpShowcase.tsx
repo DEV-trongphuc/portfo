@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { ERP_16_EXTRA, ERP_GALLERY, ERP_MODULES, ErpGalleryItem } from '../../constants';
 import Modal from '../UI/Modal';
+import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
 import logoIdeas from '../../imgs/logo_ideas.webp';
 import partnerRichland from '../../imgs/partner_richland.webp';
 
@@ -173,29 +174,30 @@ const ErpShowcase: React.FC = () => {
 
         {/* Optional Expandable 11 Modules Matrix */}
         {showModules && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            className="mb-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4"
-          >
-            {ERP_MODULES.map((m) => (
-              <div
-                key={m.num}
-                className="p-5 rounded-2xl bg-white/95 border border-slate-200/90 hover:border-[#1E40FF]/35 transition-all"
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-mono font-bold text-[#1E40FF]">
-                    MODULE {m.num}
-                  </span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-blue-50 text-[#1E40FF] border border-blue-200/70">
-                    {m.tag}
-                  </span>
+          <div className="mb-10">
+            <ResponsiveSlideDeck
+              items={ERP_MODULES}
+              keyExtractor={(m) => String(m.num)}
+              desktopMode="grid"
+              desktopGridClass="lg:grid-cols-3"
+              gapClass="gap-4"
+              ariaLabel="11 phân hệ DOMATION ERP"
+              renderItem={(m) => (
+                <div className="p-5 rounded-2xl bg-white/95 border border-slate-200/90 hover:border-[#1E40FF]/35 transition-all h-full">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-mono font-bold text-[#1E40FF]">
+                      MODULE {m.num}
+                    </span>
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-blue-50 text-[#1E40FF] border border-blue-200/70">
+                      {m.tag}
+                    </span>
+                  </div>
+                  <h4 className="text-sm font-bold text-slate-900 mb-1.5">{m.title}</h4>
+                  <p className="text-xs text-slate-600 leading-relaxed">{m.desc}</p>
                 </div>
-                <h4 className="text-sm font-bold text-slate-900 mb-1.5">{m.title}</h4>
-                <p className="text-xs text-slate-600 leading-relaxed">{m.desc}</p>
-              </div>
-            ))}
-          </motion.div>
+              )}
+            />
+          </div>
         )}
 
         {/* Category Filter Tabs */}
@@ -222,9 +224,9 @@ const ErpShowcase: React.FC = () => {
         </div>
 
         {/* Main Interactive Gallery Stage */}
-        <div className="grid lg:grid-cols-12 gap-8 items-start bg-white/95 border border-slate-200/90 rounded-3xl p-6 md:p-8 shadow-[0_22px_54px_-24px_rgba(15,23,42,0.12)]">
+        <div className="grid lg:grid-cols-12 gap-8 items-start bg-white/95 border border-slate-200/90 rounded-3xl p-5 sm:p-6 md:p-8 shadow-[0_22px_54px_-24px_rgba(15,23,42,0.12)]">
           {/* Right (Desktop): Details & Screen Switcher */}
-          <div className="lg:col-span-5 order-1 lg:order-2 flex flex-col justify-between space-y-6">
+          <div className="lg:col-span-5 order-1 lg:order-2 flex flex-col justify-between space-y-5">
             <div>
               <div className="flex items-center justify-between gap-3 mb-3">
                 <span className="px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-[#1E40FF] text-[11px] font-bold uppercase tracking-wider">
@@ -236,7 +238,7 @@ const ErpShowcase: React.FC = () => {
                 </span>
               </div>
 
-              <h3 className="text-2xl md:text-3xl font-black text-slate-900 leading-snug mb-3">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 leading-snug mb-3">
                 {currentItem.title}
               </h3>
 
@@ -250,12 +252,12 @@ const ErpShowcase: React.FC = () => {
               </div>
             </div>
 
-            {/* Thumbnail List */}
-            <div>
+            {/* Thumbnail List (Desktop Only - clean SlideDot + Prev/Next on Mobile/Tablet) */}
+            <div className="hidden lg:block">
               <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2.5">
                 Chọn nhanh phân hệ ({filteredScreens.length})
               </div>
-              <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-4 gap-2 max-h-48 overflow-y-auto pr-1">
+              <div className="grid grid-cols-4 gap-2 max-h-48 overflow-y-auto pr-1">
                 {filteredScreens.map((screen, idx) => {
                   const isActive = idx === activeIndex;
                   return (
@@ -274,6 +276,7 @@ const ErpShowcase: React.FC = () => {
                         src={screen.src}
                         alt={screen.title}
                         loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover"
                       />
                     </button>
@@ -282,30 +285,57 @@ const ErpShowcase: React.FC = () => {
               </div>
             </div>
 
-            {/* Controls */}
-            <div className="flex items-center gap-3 pt-2 border-t border-slate-100">
-              <button
-                type="button"
-                onClick={handlePrev}
-                className="p-2.5 rounded-full bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-[#1E40FF] transition-colors cursor-pointer"
-                aria-label="Màn hình trước"
-              >
-                <ChevronLeft size={18} />
-              </button>
-              <button
-                type="button"
-                onClick={handleNext}
-                className="p-2.5 rounded-full bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-[#1E40FF] transition-colors cursor-pointer"
-                aria-label="Màn hình tiếp theo"
-              >
-                <ChevronRight size={18} />
-              </button>
+            {/* Controls + Windowed SlideDots */}
+            <div className="flex flex-wrap items-center justify-between gap-2.5 pt-3 border-t border-slate-100">
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handlePrev}
+                  className="p-2 rounded-full bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-[#1E40FF] transition-colors cursor-pointer"
+                  aria-label="Màn hình trước"
+                >
+                  <ChevronLeft size={17} />
+                </button>
+                <div className="flex items-center gap-1.5 px-1">
+                  {Array.from(
+                    { length: Math.min(filteredScreens.length, 6) },
+                    (_, offset) => {
+                      const start =
+                        filteredScreens.length <= 6
+                          ? 0
+                          : Math.max(0, Math.min(activeIndex - 3, filteredScreens.length - 6));
+                      const idx = start + offset;
+                      return (
+                        <button
+                          key={filteredScreens[idx].id}
+                          type="button"
+                          onClick={() => setActiveIndex(idx)}
+                          aria-label={`Chọn màn hình ${idx + 1}`}
+                          className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                            idx === activeIndex
+                              ? 'w-6 bg-[#1E40FF]'
+                              : 'w-2 bg-slate-300 hover:bg-blue-300'
+                          }`}
+                        />
+                      );
+                    }
+                  )}
+                </div>
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="p-2 rounded-full bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-[#1E40FF] transition-colors cursor-pointer"
+                  aria-label="Màn hình tiếp theo"
+                >
+                  <ChevronRight size={17} />
+                </button>
+              </div>
               <button
                 type="button"
                 onClick={() => setZoomItem(currentItem)}
-                className="ml-auto inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1E40FF] hover:bg-blue-700 text-white text-xs font-bold shadow-sm transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#1E40FF] hover:bg-blue-700 text-white text-xs font-bold shadow-sm transition-colors cursor-pointer"
               >
-                <Maximize2 size={14} />
+                <Maximize2 size={13} />
                 <span>Phóng to HD</span>
               </button>
             </div>
@@ -315,7 +345,17 @@ const ErpShowcase: React.FC = () => {
           <div className="lg:col-span-7 order-2 lg:order-1">
             <div
               onClick={() => setZoomItem(currentItem)}
-              className="group relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 shadow-inner cursor-zoom-in"
+              onTouchStart={(e) => {
+                e.currentTarget.dataset.touchX = String(e.touches[0]?.clientX ?? '');
+              }}
+              onTouchEnd={(e) => {
+                const startX = Number(e.currentTarget.dataset.touchX);
+                const endX = e.changedTouches[0]?.clientX ?? startX;
+                if (!Number.isFinite(startX)) return;
+                if (endX - startX < -40) handleNext();
+                else if (endX - startX > 40) handlePrev();
+              }}
+              className="group relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 shadow-inner cursor-zoom-in touch-pan-y"
             >
               <div className="bg-slate-100/90 border-b border-slate-200 px-4 py-2.5 flex items-center justify-between">
                 <div className="flex items-center gap-1.5">
@@ -363,153 +403,170 @@ const ErpShowcase: React.FC = () => {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Module 1: SI IDEAS WorkChat 11 AI Agents */}
-            <div className="inkica-glass-card rounded-3xl p-5 flex flex-col justify-between gap-4">
-              <div>
-                <div
-                  onClick={() =>
-                    setZoomItem({
-                      id: 'si-workchat-11',
-                      src: '/assets/erp/workchat_11_agents.webp',
-                      title: 'SI IDEAS WorkChat — Trung Tâm Điều Hành 11 Siêu Agent AI Trên 1 Màn Hình',
-                      tag: '11 MULTI-AGENT AI',
-                      category: 'Hệ thống & Cài đặt',
-                      description:
-                        'Kết nối trực tiếp CSDL MySQL thời gian thực, Training Realtime RAG và hiển thị Bảng Markdown + Thẻ ERP 1 chạm ngay trong khung chat.',
-                      highlight: 'Direct MySQL + 11 AI Agents',
-                    })
-                  }
-                  className="group relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 mb-4 cursor-zoom-in"
-                >
-                  <img
-                    src="/assets/erp/workchat_11_agents.webp"
-                    alt="SI IDEAS WorkChat 11 Agent AI"
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                  />
-                  <span className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-white/95 border border-slate-200 text-[11px] font-bold text-slate-800 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Maximize2 size={11} /> Phóng to
-                  </span>
-                </div>
+          <ResponsiveSlideDeck
+            items={[
+              {
+                id: 'workchat-11-agents',
+                render: () => (
+                  <div className="inkica-glass-card rounded-3xl p-5 flex flex-col justify-between gap-4 h-full">
+                    <div>
+                      <div
+                        onClick={() =>
+                          setZoomItem({
+                            id: 'si-workchat-11',
+                            src: '/assets/erp/workchat_11_agents.webp',
+                            title: 'SI IDEAS WorkChat — Trung Tâm Điều Hành 11 Siêu Agent AI Trên 1 Màn Hình',
+                            tag: '11 MULTI-AGENT AI',
+                            category: 'Hệ thống & Cài đặt',
+                            description:
+                              'Kết nối trực tiếp CSDL MySQL thời gian thực, Training Realtime RAG và hiển thị Bảng Markdown + Thẻ ERP 1 chạm ngay trong khung chat.',
+                            highlight: 'Direct MySQL + 11 AI Agents',
+                          })
+                        }
+                        className="group relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 mb-4 cursor-zoom-in"
+                      >
+                        <img
+                          src="/assets/erp/workchat_11_agents.webp"
+                          alt="SI IDEAS WorkChat 11 Agent AI"
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                        />
+                        <span className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-white/95 border border-slate-200 text-[11px] font-bold text-slate-800 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <Maximize2 size={11} /> Phóng to
+                        </span>
+                      </div>
 
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <span className="inline-flex items-center gap-1.5 text-[10.5px] font-extrabold uppercase tracking-wider text-[#1E40FF]">
-                    <Bot size={13} /> Feature 01 • Super Intelligent Multi-Agent
-                  </span>
-                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10.5px] font-bold">
-                    Real-time MySQL Ground Truth
-                  </span>
-                </div>
+                      <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <span className="inline-flex items-center gap-1.5 text-[10.5px] font-extrabold uppercase tracking-wider text-[#1E40FF]">
+                          <Bot size={13} /> Feature 01 • Super Intelligent Multi-Agent
+                        </span>
+                        <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10.5px] font-bold">
+                          Real-time MySQL Ground Truth
+                        </span>
+                      </div>
 
-                <h4 className="text-base sm:text-lg font-extrabold text-slate-950 mb-3 leading-snug">
-                  SI IDEAS WorkChat: 11 Siêu Agent AI Trên 1 Màn Hình
-                </h4>
+                      <h4 className="text-base sm:text-lg font-extrabold text-slate-950 mb-3 leading-snug">
+                        SI IDEAS WorkChat: 11 Siêu Agent AI Trên 1 Màn Hình
+                      </h4>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 mb-1">
-                      <Database size={13} className="text-[#1E40FF]" /> Kết Nối MySQL Trực Tiếp
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
+                          <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 mb-1">
+                            <Database size={13} className="text-[#1E40FF]" /> Kết Nối MySQL Trực Tiếp
+                          </div>
+                          <p className="text-[11px] text-slate-600 leading-relaxed">
+                            Truy vấn 360° hồ sơ, công nợ, đặt cọc, PO/SO &amp; hợp đồng bằng tiếng Việt tức thì.
+                          </p>
+                        </div>
+
+                        <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
+                          <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 mb-1">
+                            <Bot size={13} className="text-[#1E40FF]" /> 11 Agent Phối Hợp Đa Nhiệm
+                          </div>
+                          <p className="text-[11px] text-slate-600 leading-relaxed">
+                            Chỉ Huy, CRM 360, Kế Toán, Học Vụ, Pháp Lý, Kho &amp; Tài Sản, Nhân Sự...
+                          </p>
+                        </div>
+
+                        <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
+                          <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 mb-1">
+                            <Brain size={13} className="text-[#1E40FF]" /> Training Realtime RAG
+                          </div>
+                          <p className="text-[11px] text-slate-600 leading-relaxed">
+                            Học liên tục từ quy chế, hồ sơ và biểu mẫu mới nhất cho câu trả lời chuẩn xác.
+                          </p>
+                        </div>
+
+                        <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
+                          <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 mb-1">
+                            <Zap size={13} className="text-[#1E40FF]" /> Thẻ Điều Khiển ERP 1 Chạm
+                          </div>
+                          <p className="text-[11px] text-slate-600 leading-relaxed">
+                            Hiển thị Bảng Markdown sắc nét &amp; mở Drawer chi tiết ngay trong khung chat.
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-[11px] text-slate-600 leading-relaxed">
-                      Truy vấn 360° hồ sơ, công nợ, đặt cọc, PO/SO &amp; hợp đồng bằng tiếng Việt tức thì.
-                    </p>
                   </div>
+                ),
+              },
+              {
+                id: 'workchat-enterprise',
+                render: () => (
+                  <div className="inkica-glass-card rounded-3xl p-5 flex flex-col justify-between gap-4 h-full">
+                    <div>
+                      <div
+                        onClick={() =>
+                          setZoomItem({
+                            id: 'ideas-workchat-enterprise',
+                            src: '/assets/erp/workchat_enterprise.webp',
+                            title: 'IDEAS WorkChat Enterprise — Gắn Kết Dữ Liệu ERP Trên Bàn Làm Việc MYERP',
+                            tag: 'ERP ENTERPRISE CHAT',
+                            category: 'Hệ thống & Cài đặt',
+                            description:
+                              'Đính kèm trực tiếp Khách hàng, Thẻ công việc & Phê duyệt phiếu đề xuất ngay trong luồng chat cùng bộ Sticker Mascot IDEAS.',
+                            highlight: 'CRM + Task + Approval in Chat',
+                          })
+                        }
+                        className="group relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 mb-4 cursor-zoom-in"
+                      >
+                        <img
+                          src="/assets/erp/workchat_enterprise.webp"
+                          alt="IDEAS WorkChat Enterprise"
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                        />
+                        <span className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-white/95 border border-slate-200 text-[11px] font-bold text-slate-800 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <Maximize2 size={11} /> Phóng to
+                        </span>
+                      </div>
 
-                  <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 mb-1">
-                      <Bot size={13} className="text-[#1E40FF]" /> 11 Agent Phối Hợp Đa Nhiệm
+                      <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <span className="inline-flex items-center gap-1.5 text-[10.5px] font-extrabold uppercase tracking-wider text-[#1E40FF]">
+                          <MessageSquare size={13} /> Feature 02 • Enterprise Workspace Chat
+                        </span>
+                        <span className="px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-[#1E40FF] text-[10.5px] font-bold">
+                          Zero Context Switching
+                        </span>
+                      </div>
+
+                      <h4 className="text-base sm:text-lg font-extrabold text-slate-950 mb-3 leading-snug">
+                        IDEAS WorkChat Enterprise: Gắn Kết Dữ Liệu ERP Trong Luồng Chat
+                      </h4>
+
+                      <div className="space-y-2.5">
+                        <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80">
+                          <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 mb-1">
+                            <Layers size={13} className="text-[#1E40FF]" /> Gắn Kết Khách Hàng, Công Việc &amp; Phê Duyệt 1 Chạm
+                          </div>
+                          <p className="text-[11px] text-slate-600 leading-relaxed">
+                            Đính kèm trực tiếp hồ sơ Khách hàng, Thẻ công việc và Phiếu đề xuất thanh toán để duyệt ngay trong cuộc hội thoại phòng ban.
+                          </p>
+                        </div>
+
+                        <div className="p-3.5 rounded-2xl bg-slate-50/75 border border-slate-200/80">
+                          <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 mb-1">
+                            <Smile size={13} className="text-[#1E40FF]" /> Bộ Sticker Mascot Văn Hóa Doanh Nghiệp
+                          </div>
+                          <p className="text-[11px] text-slate-600 leading-relaxed">
+                            Bộ sưu tập nhãn dán Mascot độc quyền giúp giao tiếp vận hành hàng ngày trên MYERP trở nên gần gũi, năng động và gắn kết đội ngũ.
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-[11px] text-slate-600 leading-relaxed">
-                      Chỉ Huy, CRM 360, Kế Toán, Học Vụ, Pháp Lý, Kho &amp; Tài Sản, Nhân Sự...
-                    </p>
                   </div>
-
-                  <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 mb-1">
-                      <Brain size={13} className="text-[#1E40FF]" /> Training Realtime RAG
-                    </div>
-                    <p className="text-[11px] text-slate-600 leading-relaxed">
-                      Học liên tục từ quy chế, hồ sơ và biểu mẫu mới nhất cho câu trả lời chuẩn xác.
-                    </p>
-                  </div>
-
-                  <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 mb-1">
-                      <Zap size={13} className="text-[#1E40FF]" /> Thẻ Điều Khiển ERP 1 Chạm
-                    </div>
-                    <p className="text-[11px] text-slate-600 leading-relaxed">
-                      Hiển thị Bảng Markdown sắc nét &amp; mở Drawer chi tiết ngay trong khung chat.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Module 2: IDEAS WorkChat Enterprise */}
-            <div className="inkica-glass-card rounded-3xl p-5 flex flex-col justify-between gap-4">
-              <div>
-                <div
-                  onClick={() =>
-                    setZoomItem({
-                      id: 'ideas-workchat-enterprise',
-                      src: '/assets/erp/workchat_enterprise.webp',
-                      title: 'IDEAS WorkChat Enterprise — Gắn Kết Dữ Liệu ERP Trên Bàn Làm Việc MYERP',
-                      tag: 'ERP ENTERPRISE CHAT',
-                      category: 'Hệ thống & Cài đặt',
-                      description:
-                        'Đính kèm trực tiếp Khách hàng, Thẻ công việc & Phê duyệt phiếu đề xuất ngay trong luồng chat cùng bộ Sticker Mascot IDEAS.',
-                      highlight: 'CRM + Task + Approval in Chat',
-                    })
-                  }
-                  className="group relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 mb-4 cursor-zoom-in"
-                >
-                  <img
-                    src="/assets/erp/workchat_enterprise.webp"
-                    alt="IDEAS WorkChat Enterprise"
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                  />
-                  <span className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-white/95 border border-slate-200 text-[11px] font-bold text-slate-800 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Maximize2 size={11} /> Phóng to
-                  </span>
-                </div>
-
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <span className="inline-flex items-center gap-1.5 text-[10.5px] font-extrabold uppercase tracking-wider text-[#1E40FF]">
-                    <MessageSquare size={13} /> Feature 02 • Enterprise Workspace Chat
-                  </span>
-                  <span className="px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-[#1E40FF] text-[10.5px] font-bold">
-                    Zero Context Switching
-                  </span>
-                </div>
-
-                <h4 className="text-base sm:text-lg font-extrabold text-slate-950 mb-3 leading-snug">
-                  IDEAS WorkChat Enterprise: Gắn Kết Dữ Liệu ERP Trong Luồng Chat
-                </h4>
-
-                <div className="space-y-2.5">
-                  <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 mb-1">
-                      <Layers size={13} className="text-[#1E40FF]" /> Gắn Kết Khách Hàng, Công Việc &amp; Phê Duyệt 1 Chạm
-                    </div>
-                    <p className="text-[11px] text-slate-600 leading-relaxed">
-                      Đính kèm trực tiếp hồ sơ Khách hàng, Thẻ công việc và Phiếu đề xuất thanh toán để duyệt ngay trong cuộc hội thoại phòng ban.
-                    </p>
-                  </div>
-
-                  <div className="p-3.5 rounded-2xl bg-slate-50/75 border border-slate-200/80">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 mb-1">
-                      <Smile size={13} className="text-[#1E40FF]" /> Bộ Sticker Mascot Văn Hóa Doanh Nghiệp
-                    </div>
-                    <p className="text-[11px] text-slate-600 leading-relaxed">
-                      Bộ sưu tập nhãn dán Mascot độc quyền giúp giao tiếp vận hành hàng ngày trên MYERP trở nên gần gũi, năng động và gắn kết đội ngũ.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                ),
+              },
+            ]}
+            keyExtractor={(mod) => mod.id}
+            desktopMode="grid"
+            desktopGridClass="lg:grid-cols-2"
+            gapClass="gap-6"
+            ariaLabel="Phân hệ SI IDEAS WorkChat"
+            renderItem={(mod) => mod.render()}
+          />
         </div>
       </div>
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { EXPERIENCES } from '../../constants';
 import { Briefcase, Building2, Calendar } from 'lucide-react';
+import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
 
 const Experience: React.FC = () => {
   return (
@@ -35,8 +36,55 @@ const Experience: React.FC = () => {
           </p>
         </div>
 
-        {/* Classic Alternating Vertical Spine Timeline (Widened Full Container) */}
-        <div className="relative">
+        {/* Mobile/Tablet Responsive SlideDeck (1/slide Mobile, 2/slide Tablet) */}
+        <ResponsiveSlideDeck
+          items={EXPERIENCES}
+          keyExtractor={(item, idx) => item.id || String(idx)}
+          className="lg:hidden"
+          desktopMode="slider"
+          mobilePerPage={1}
+          tabletPerPage={2}
+          gapClass="gap-4"
+          ariaLabel="Hành trình kinh nghiệm"
+          renderItem={(item, index) => {
+            const isCurrent = index <= 2;
+            return (
+              <div
+                className={`relative inkica-glass-card rounded-2xl p-5 sm:p-6 group h-full ${
+                  isCurrent ? 'ring-1 ring-blue-200/70' : 'ring-1 ring-slate-200/60'
+                }`}
+              >
+                <div
+                  className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10.5px] font-mono font-bold mb-3 backdrop-blur-md ${
+                    isCurrent
+                      ? 'bg-blue-50/75 text-[#1E40FF] border border-blue-200/80'
+                      : 'bg-white/65 text-slate-600 border border-slate-200/80'
+                  }`}
+                >
+                  <Calendar size={11} />
+                  <span>{item.period}</span>
+                </div>
+
+                <div className="mb-3">
+                  <h3 className="text-base sm:text-lg font-extrabold text-slate-900 group-hover:text-[#1E40FF] transition-colors leading-snug">
+                    {item.role}
+                  </h3>
+                  <div className="flex items-center gap-1.5 text-[#1E40FF] text-[11px] font-bold uppercase tracking-wider mt-1">
+                    <Building2 size={12} className="shrink-0" />
+                    <span>{item.company}</span>
+                  </div>
+                </div>
+
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-200/60 pt-3">
+                  {item.description}
+                </p>
+              </div>
+            );
+          }}
+        />
+
+        {/* Desktop Classic Alternating Vertical Spine Timeline */}
+        <div className="hidden lg:block relative">
           {/* Central Spine Line */}
           <div className="absolute left-[22px] md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-200 via-[#1E40FF]/40 to-blue-200 md:-translate-x-1/2" />
 

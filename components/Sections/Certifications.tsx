@@ -106,8 +106,20 @@ const Certifications: React.FC = () => {
           </div>
         </div>
 
-        {/* Multi-Card Carousel */}
-        <div className="relative min-h-[420px]">
+        {/* Multi-Card Carousel (with touch swipe) */}
+        <div
+          className="relative min-h-[420px] touch-pan-y"
+          onTouchStart={(e) => {
+            e.currentTarget.dataset.touchX = String(e.touches[0]?.clientX ?? '');
+          }}
+          onTouchEnd={(e) => {
+            const startX = Number(e.currentTarget.dataset.touchX);
+            const endX = e.changedTouches[0]?.clientX ?? startX;
+            if (!Number.isFinite(startX)) return;
+            if (endX - startX < -40) handleNext();
+            else if (endX - startX > 40) handlePrev();
+          }}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={activePage}
@@ -221,20 +233,38 @@ const Certifications: React.FC = () => {
           </AnimatePresence>
         </div>
 
-        {/* Pagination Dots */}
+        {/* Pagination Dots + Mobile/Desktop Prev & Next */}
         <div className="mt-10 flex flex-col items-center justify-center gap-3">
-          <div className="flex items-center gap-2">
-            {Array.from({ length: totalPages }).map((_, idx) => (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => setActivePage(idx)}
-                aria-label={`Trang ${idx + 1}`}
-                className={`h-2.5 rounded-full transition-all cursor-pointer ${
-                  idx === activePage ? 'w-8 bg-[#1E40FF]' : 'w-2.5 bg-slate-300 hover:bg-blue-300'
-                }`}
-              />
-            ))}
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={handlePrev}
+              aria-label="Trang trước"
+              className="w-8 h-8 rounded-full border border-slate-200 hover:border-[#1E40FF] bg-white hover:bg-blue-50 text-slate-700 hover:text-[#1E40FF] flex items-center justify-center transition-all cursor-pointer"
+            >
+              <ChevronLeft size={15} />
+            </button>
+            <div className="flex items-center gap-2">
+              {Array.from({ length: totalPages }).map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => setActivePage(idx)}
+                  aria-label={`Trang ${idx + 1}`}
+                  className={`h-2.5 rounded-full transition-all cursor-pointer ${
+                    idx === activePage ? 'w-8 bg-[#1E40FF]' : 'w-2.5 bg-slate-300 hover:bg-blue-300'
+                  }`}
+                />
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={handleNext}
+              aria-label="Trang tiếp theo"
+              className="w-8 h-8 rounded-full border border-slate-200 hover:border-[#1E40FF] bg-white hover:bg-blue-50 text-slate-700 hover:text-[#1E40FF] flex items-center justify-center transition-all cursor-pointer"
+            >
+              <ChevronRight size={15} />
+            </button>
           </div>
           <span className="text-[11px] font-mono text-slate-500">
             Trang {activePage + 1} / {totalPages} • {CERTIFICATIONS.length} Chứng Chỉ Quốc Tế

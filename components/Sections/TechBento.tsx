@@ -11,6 +11,7 @@ import {
   Smartphone,
   Zap,
 } from 'lucide-react';
+import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
 
 const TechBento: React.FC = () => {
   const logos = [
@@ -46,8 +47,140 @@ const TechBento: React.FC = () => {
           </p>
         </div>
 
-        {/* BENTO GRID LAYOUT */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto h-auto md:h-[580px]">
+        {/* MOBILE / TABLET SLIDER DECK (1/mobile, 2/tablet) */}
+        <ResponsiveSlideDeck
+          items={[
+            {
+              id: 'bento-ui',
+              render: () => (
+                <div className="bg-white/95 border border-slate-200/90 rounded-3xl p-6 relative overflow-hidden shadow-sm h-full">
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <h3 className="text-xl font-black text-slate-900">Interface Engineering</h3>
+                    <div className="p-2.5 bg-blue-50 rounded-xl border border-blue-100">
+                      <LayoutTemplate size={18} className="text-[#1E40FF]" />
+                    </div>
+                  </div>
+                  <p className="text-sm text-slate-600 mb-5">
+                    Pixel-perfect UI/UX với tốc độ phản hồi dưới 100ms.
+                  </p>
+                  <div className="flex flex-wrap gap-2.5 items-center">
+                    {logos.map((logo) => (
+                      <div
+                        key={logo.name}
+                        className="p-2.5 bg-slate-50 border border-slate-200 rounded-xl"
+                        title={logo.name}
+                      >
+                        <img
+                          src={logo.url}
+                          alt={logo.name}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-5 h-5 object-contain"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ),
+            },
+            {
+              id: 'bento-zalo',
+              render: () => (
+                <div className="bg-white/95 border border-slate-200/90 rounded-3xl p-6 shadow-sm h-full flex items-center gap-4">
+                  <div className="p-3 bg-sky-50 border border-sky-200 rounded-xl text-[#0284C7] shrink-0">
+                    <Smartphone size={22} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-lg">Zalo Mini App</h4>
+                    <p className="text-xs text-slate-500">Tiếp cận 74tr người dùng</p>
+                  </div>
+                </div>
+              ),
+            },
+            {
+              id: 'bento-core',
+              render: () => (
+                <div className="bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#1E3A8A] border border-blue-900/40 rounded-3xl p-6 text-center shadow-[0_20px_50px_-20px_rgba(30,64,255,0.35)] h-full flex flex-col items-center justify-center">
+                  <div className="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/25 rounded-full flex items-center justify-center mb-3">
+                    <GitBranch size={24} className="text-white" />
+                  </div>
+                  <h3 className="text-xl font-black text-white mb-2">THE HYBRID CORE</h3>
+                  <p className="text-slate-300 text-xs max-w-xs mx-auto leading-relaxed">
+                    Điểm giao thoa nơi <span className="text-sky-300 font-bold">Dữ liệu thô</span>{' '}
+                    được xử lý thành <span className="text-cyan-300 font-bold">Doanh thu thực</span>{' '}
+                    qua Middleware tự động hóa.
+                  </p>
+                </div>
+              ),
+            },
+            {
+              id: 'bento-flow',
+              render: () => (
+                <div className="bg-white/95 border border-slate-200/90 rounded-3xl p-6 flex items-center justify-between shadow-sm h-full">
+                  <div>
+                    <h4 className="font-black text-slate-900 text-lg">Automation Flow</h4>
+                    <div className="flex gap-2 mt-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
+                      <span className="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                    </div>
+                  </div>
+                  <Repeat size={26} className="text-[#1E40FF]" />
+                </div>
+              ),
+            },
+            {
+              id: 'bento-server',
+              render: () => (
+                <div className="bg-white/95 border border-slate-200/90 rounded-3xl p-6 shadow-sm h-full flex items-center justify-between gap-3">
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-lg">Server-side Data</h4>
+                    <p className="text-xs text-slate-500 mt-1">GTM Server • Meta CAPI • Supabase</p>
+                  </div>
+                  <div className="p-3 bg-blue-50 rounded-xl border border-blue-100 shrink-0">
+                    <Database size={20} className="text-[#1E40FF]" />
+                  </div>
+                </div>
+              ),
+            },
+            {
+              id: 'bento-growth',
+              render: () => (
+                <div className="bg-white/95 border border-slate-200/90 rounded-3xl p-6 shadow-sm h-full">
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <h3 className="text-xl font-black text-slate-900">Growth Hacking</h3>
+                    <div className="p-2.5 bg-sky-50 rounded-xl border border-sky-100">
+                      <Zap size={18} className="text-[#0284C7]" />
+                    </div>
+                  </div>
+                  <p className="text-sm text-slate-600 mb-4">
+                    Tối ưu hóa chỉ số ROAS dựa trên dữ liệu realtime.
+                  </p>
+                  <div className="space-y-2.5">
+                    <div className="flex items-center justify-between text-xs font-mono text-slate-600">
+                      <span>Meta Ads API</span>
+                      <span className="text-[#1E40FF] font-bold">Connected</span>
+                    </div>
+                    <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                      <div className="h-full w-[82%] bg-gradient-to-r from-[#1E40FF] to-[#0EA5E9] rounded-full"></div>
+                    </div>
+                  </div>
+                </div>
+              ),
+            },
+          ]}
+          keyExtractor={(card) => card.id}
+          className="lg:hidden"
+          desktopMode="slider"
+          mobilePerPage={1}
+          tabletPerPage={2}
+          gapClass="gap-4"
+          ariaLabel="Hệ sinh thái công nghệ"
+          renderItem={(card) => card.render()}
+        />
+
+        {/* DESKTOP BENTO GRID LAYOUT */}
+        <div className="hidden lg:grid grid-cols-3 gap-6 max-w-7xl mx-auto h-[580px]">
           {/* COLUMN 1: ENGINEERING */}
           <div className="flex flex-col gap-6 h-full">
             <motion.div

@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { DOMATION_CRM_IMAGES } from '../../constants';
 import Modal from '../UI/Modal';
+import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
 
 const CRM_FEATURES = [
   {
@@ -36,10 +37,7 @@ const CRM_FEATURES = [
 ];
 
 const DomationCrmShowcase: React.FC = () => {
-  const [showAll, setShowAll] = useState(false);
   const [zoomImage, setZoomImage] = useState<{ src: string; title: string } | null>(null);
-
-  const visibleImages = showAll ? DOMATION_CRM_IMAGES : DOMATION_CRM_IMAGES.slice(0, 4);
 
   return (
     <section
@@ -72,12 +70,15 @@ const DomationCrmShowcase: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {CRM_FEATURES.map((item) => (
-                <div
-                  key={item.title}
-                  className="bg-white/95 border border-slate-200/90 hover:border-[#1E40FF]/40 p-3.5 rounded-2xl shadow-xs transition-all group"
-                >
+            <ResponsiveSlideDeck
+              items={CRM_FEATURES}
+              keyExtractor={(item) => item.title}
+              desktopMode="grid"
+              desktopGridClass="lg:grid-cols-2"
+              gapClass="gap-3"
+              ariaLabel="Tính năng Capital House CRM"
+              renderItem={(item) => (
+                <div className="bg-white/95 border border-slate-200/90 hover:border-[#1E40FF]/40 p-3.5 rounded-2xl shadow-xs transition-all group h-full">
                   <div className="w-8 h-8 rounded-xl bg-sky-50 text-[#0284C7] flex items-center justify-center mb-2 group-hover:bg-[#1E40FF] group-hover:text-white [&_svg]:group-hover:text-white transition-colors">
                     {item.icon}
                   </div>
@@ -86,54 +87,58 @@ const DomationCrmShowcase: React.FC = () => {
                   </h3>
                   <p className="text-[11px] text-slate-600 leading-relaxed">{item.desc}</p>
                 </div>
-              ))}
-            </div>
+              )}
+            />
 
             <div className="flex flex-wrap items-center gap-2.5">
-              <button
-                type="button"
-                onClick={() => setShowAll((v) => !v)}
-                className="ql-btn-outline px-4 py-2 text-xs font-bold cursor-pointer"
-              >
-                <Building2 size={13} className="text-[#1E40FF]" />
-                {showAll ? 'Thu Gọn 4 Màn Hình' : `Xem Tất Cả ${DOMATION_CRM_IMAGES.length} Màn Hình`}
-              </button>
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-[#1E40FF] text-[11px] font-bold">
+                <Building2 size={12} /> {DOMATION_CRM_IMAGES.length} Màn Hình CRM
+              </span>
               <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[11px] font-bold">
                 <CheckCircle2 size={12} /> BBNT 2026
               </span>
             </div>
           </motion.div>
 
-          {/* Right: Clean Floating Screenshot Collage */}
+          {/* Right: Paginated Screenshot Deck */}
           <motion.div
             initial={{ opacity: 1, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.05 }}
-            className={`lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5`}
+            className="lg:col-span-7"
           >
-            {visibleImages.map((img) => (
-              <div
-                key={img.id}
-                onClick={() => setZoomImage(img)}
-                className="group relative rounded-2xl overflow-hidden border border-slate-200/90 bg-white p-1.5 shadow-sm hover:border-[#1E40FF]/45 hover:shadow-md transition-all cursor-zoom-in"
-              >
-                <div className="aspect-[16/10] rounded-xl overflow-hidden bg-slate-50 relative">
-                  <img
-                    src={img.src}
-                    alt={img.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                  />
-                  <span className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/95 text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow">
-                    <Maximize2 size={12} />
-                  </span>
+            <ResponsiveSlideDeck
+              items={DOMATION_CRM_IMAGES}
+              keyExtractor={(img) => String(img.id)}
+              desktopMode="slider"
+              desktopPerPage={4}
+              desktopGridClass="lg:grid-cols-2"
+              gapClass="gap-3.5"
+              ariaLabel="Giao diện Capital House CRM"
+              renderItem={(img) => (
+                <div
+                  onClick={() => setZoomImage(img)}
+                  className="group relative rounded-2xl overflow-hidden border border-slate-200/90 bg-white p-1.5 shadow-sm hover:border-[#1E40FF]/45 hover:shadow-md transition-all cursor-zoom-in h-full"
+                >
+                  <div className="aspect-[16/10] rounded-xl overflow-hidden bg-slate-50 relative">
+                    <img
+                      src={img.src}
+                      alt={img.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                    />
+                    <span className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/95 text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow">
+                      <Maximize2 size={12} />
+                    </span>
+                  </div>
+                  <div className="px-2 pt-2 pb-1 flex items-center justify-between gap-2">
+                    <span className="text-xs font-bold text-slate-900 truncate">{img.title}</span>
+                    <span className="text-[10px] font-semibold text-[#0284C7] shrink-0">Zoom ↗</span>
+                  </div>
                 </div>
-                <div className="px-2 pt-2 pb-1 flex items-center justify-between gap-2">
-                  <span className="text-xs font-bold text-slate-900 truncate">{img.title}</span>
-                  <span className="text-[10px] font-semibold text-[#0284C7] shrink-0">Zoom ↗</span>
-                </div>
-              </div>
-            ))}
+              )}
+            />
           </motion.div>
         </div>
 

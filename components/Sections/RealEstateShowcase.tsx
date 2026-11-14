@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { ECOLIFE_3D_UNITS } from '../../constants';
 import Modal from '../UI/Modal';
+import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
 
 export interface RealEstateShowcaseProps {
   onOpenEcoLifeModal: () => void;
@@ -97,12 +98,15 @@ const RealEstateShowcase: React.FC<RealEstateShowcaseProps> = ({
             transition={{ duration: 0.25 }}
             className="lg:col-span-5 space-y-4"
           >
-            <div className="space-y-3">
-              {highlights.map((item, i) => (
-                <div
-                  key={i}
-                  className="bg-white/95 border border-slate-200/90 hover:border-blue-300 rounded-2xl p-4 shadow-xs transition-all"
-                >
+            <ResponsiveSlideDeck
+              items={highlights}
+              keyExtractor={(item) => item.title}
+              desktopMode="grid"
+              desktopGridClass="lg:grid-cols-1"
+              gapClass="gap-3"
+              ariaLabel="Điểm nhấn hệ thống EcoLife Signature"
+              renderItem={(item) => (
+                <div className="bg-white/95 border border-slate-200/90 hover:border-blue-300 rounded-2xl p-4 shadow-xs transition-all h-full">
                   <div className="flex items-start gap-3">
                     <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0">
                       {item.icon}
@@ -115,8 +119,8 @@ const RealEstateShowcase: React.FC<RealEstateShowcaseProps> = ({
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              )}
+            />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
               <button
@@ -231,20 +235,26 @@ const RealEstateShowcase: React.FC<RealEstateShowcaseProps> = ({
             </a>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5">
-            {ECOLIFE_3D_UNITS.map((unit) => (
+          <ResponsiveSlideDeck
+            items={ECOLIFE_3D_UNITS}
+            keyExtractor={(unit) => unit.code}
+            desktopMode="grid"
+            desktopGridClass="lg:grid-cols-8"
+            gapClass="gap-2.5"
+            ariaLabel="8 căn hộ mẫu 3D EcoLife Signature"
+            renderItem={(unit) => (
               <a
-                key={unit.code}
                 href={unit.url}
                 target="_blank"
                 rel="noreferrer"
-                className="bg-white border border-slate-200 hover:border-[#1E40FF] rounded-xl p-1.5 group transition-all"
+                className="bg-white border border-slate-200 hover:border-[#1E40FF] rounded-xl p-1.5 group transition-all block h-full"
               >
                 <div className="aspect-[4/3] w-full rounded-lg overflow-hidden bg-slate-50 mb-1.5">
                   <img
                     src={unit.image}
                     alt={unit.code}
                     loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
@@ -258,8 +268,8 @@ const RealEstateShowcase: React.FC<RealEstateShowcaseProps> = ({
                   />
                 </div>
               </a>
-            ))}
-          </div>
+            )}
+          />
         </div>
 
         {/* Sub-Logos Row Below (Logo phụ hàng dưới: CĐT + Dự án | 3 Sàn F1) */}

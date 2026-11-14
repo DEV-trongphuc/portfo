@@ -1,35 +1,45 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import { ArrowUp } from 'lucide-react';
 import Navbar from './components/Layout/Navbar';
-import Footer from './components/Layout/Footer';
 import Background from './components/UI/Background';
 import ScrollProgress from './components/UI/ScrollProgress';
 import { StudioDrawerModal } from './components/UI/StudioDrawerModal';
-import { AiPortfolioChatbot } from './components/UI/AiPortfolioChatbot';
-
 import Hero from './components/Sections/Hero';
-import InkicaPodShowcase from './components/Sections/InkicaPodShowcase';
-import RealEstateShowcase from './components/Sections/RealEstateShowcase';
-import OutsourceHighlights from './components/Sections/OutsourceHighlights';
-import Experience from './components/Sections/Experience';
-import TheBridge from './components/Sections/TheBridge';
-import DomationDataShowcase from './components/Sections/DomationDataShowcase';
-import ErpShowcase from './components/Sections/ErpShowcase';
-import DomationCrmShowcase from './components/Sections/DomationCrmShowcase';
-import CrmShowcase from './components/Sections/CrmShowcase';
-import AutoFlowPro from './components/Sections/AutoFlowPro';
-import MetaAdReportShowcase from './components/Sections/MetaAdReportShowcase';
-import ZaloMiniAppShowcase from './components/Sections/ZaloMiniAppShowcase';
-import LmsShowcase from './components/Sections/LmsShowcase';
-import TarotShowcase from './components/Sections/TarotShowcase';
-import BookSpotlight from './components/Sections/BookSpotlight';
-import Certifications from './components/Sections/Certifications';
-import DomMarketing from './components/Sections/DomMarketing';
-import TechBento from './components/Sections/TechBento';
-import Partners from './components/Sections/Partners';
+
+// Below-the-fold lazy code splitting for fast initial mobile, tablet & desktop TTI
+const Experience = React.lazy(() => import('./components/Sections/Experience'));
+const SkillsMatrix = React.lazy(() => import('./components/Sections/SkillsMatrix'));
+const InkicaPodShowcase = React.lazy(() => import('./components/Sections/InkicaPodShowcase'));
+const RealEstateShowcase = React.lazy(() => import('./components/Sections/RealEstateShowcase'));
+const TheBridge = React.lazy(() => import('./components/Sections/TheBridge'));
+const DomationDataShowcase = React.lazy(() => import('./components/Sections/DomationDataShowcase'));
+const ErpShowcase = React.lazy(() => import('./components/Sections/ErpShowcase'));
+const DomationCrmShowcase = React.lazy(() => import('./components/Sections/DomationCrmShowcase'));
+const CrmShowcase = React.lazy(() => import('./components/Sections/CrmShowcase'));
+const AutoFlowPro = React.lazy(() => import('./components/Sections/AutoFlowPro'));
+const MetaAdReportShowcase = React.lazy(() => import('./components/Sections/MetaAdReportShowcase'));
+const ZaloMiniAppShowcase = React.lazy(() => import('./components/Sections/ZaloMiniAppShowcase'));
+const LmsShowcase = React.lazy(() => import('./components/Sections/LmsShowcase'));
+const TarotShowcase = React.lazy(() => import('./components/Sections/TarotShowcase'));
+const OutsourceHighlights = React.lazy(() => import('./components/Sections/OutsourceHighlights'));
+const BookSpotlight = React.lazy(() => import('./components/Sections/BookSpotlight'));
+const Certifications = React.lazy(() => import('./components/Sections/Certifications'));
+const DomMarketing = React.lazy(() => import('./components/Sections/DomMarketing'));
+const TechBento = React.lazy(() => import('./components/Sections/TechBento'));
+const Partners = React.lazy(() => import('./components/Sections/Partners'));
+const Footer = React.lazy(() => import('./components/Layout/Footer'));
+const AiPortfolioChatbot = React.lazy(() =>
+  import('./components/UI/AiPortfolioChatbot').then((m) => ({ default: m.AiPortfolioChatbot }))
+);
 
 const EcoLifeDetailView = React.lazy(() => import('./components/Sections/EcoLifeDetailView'));
 const DomationDetailView = React.lazy(() => import('./components/Sections/DomationDetailView'));
+
+const SectionShell: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <div style={{ contentVisibility: 'auto', containIntrinsicSize: '1px 650px' }}>
+    <Suspense fallback={<div className="py-16" aria-hidden="true" />}>{children}</Suspense>
+  </div>
+);
 
 type DrawerMode = 'none' | 'ecolife' | 'domation';
 
@@ -54,6 +64,51 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const warmupChunks = () => {
+      void import('./components/Sections/Experience');
+      void import('./components/Sections/SkillsMatrix');
+      void import('./components/Sections/InkicaPodShowcase');
+      void import('./components/Sections/RealEstateShowcase');
+      void import('./components/Sections/TheBridge');
+      void import('./components/Sections/DomationDataShowcase');
+      void import('./components/Sections/ErpShowcase');
+      void import('./components/Sections/DomationCrmShowcase');
+      void import('./components/Sections/AutoFlowPro');
+      void import('./components/Sections/CrmShowcase');
+      void import('./components/Sections/MetaAdReportShowcase');
+      void import('./components/Sections/ZaloMiniAppShowcase');
+      void import('./components/Sections/LmsShowcase');
+      void import('./components/Sections/TarotShowcase');
+      void import('./components/Sections/OutsourceHighlights');
+      void import('./components/Sections/BookSpotlight');
+      void import('./components/Sections/Certifications');
+      void import('./components/Sections/DomMarketing');
+      void import('./components/Sections/TechBento');
+      void import('./components/Sections/Partners');
+      void import('./components/Layout/Footer');
+      void import('./components/UI/AiPortfolioChatbot');
+    };
+    const ric = (
+      globalThis as unknown as {
+        requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+        cancelIdleCallback?: (id: number) => void;
+      }
+    ).requestIdleCallback;
+    if (ric) {
+      const id = ric(warmupChunks, { timeout: 2200 });
+      return () => {
+        const cic = (
+          globalThis as unknown as { cancelIdleCallback?: (id: number) => void }
+        ).cancelIdleCallback;
+        cic?.(id);
+      };
+    }
+    const timer = globalThis.setTimeout(warmupChunks, 1200);
+    return () => globalThis.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
     const onPopState = () => {
       const p = window.location.pathname.toLowerCase();
       if (p.includes('/ecolife')) setDrawer('ecolife');
@@ -69,7 +124,7 @@ export default function App() {
     if (window.location.pathname !== '/') {
       window.history.pushState({}, '', '/');
     }
-    setTimeout(() => {
+    const tryScroll = (attempt: number) => {
       if (sectionId === 'hero') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
@@ -78,8 +133,13 @@ export default function App() {
       if (el) {
         const y = el.getBoundingClientRect().top + window.pageYOffset - 80;
         window.scrollTo({ top: y, behavior: 'smooth' });
+        return;
       }
-    }, 40);
+      if (attempt < 10) {
+        window.setTimeout(() => tryScroll(attempt + 1), 90);
+      }
+    };
+    window.setTimeout(() => tryScroll(0), 50);
   };
 
   return (
@@ -101,50 +161,94 @@ export default function App() {
             onJumpSection={jumpToSection}
           />
 
-          <Experience />
+          <SectionShell>
+            <Experience />
+          </SectionShell>
 
-          <InkicaPodShowcase />
+          <SectionShell>
+            <SkillsMatrix />
+          </SectionShell>
 
-          <RealEstateShowcase onOpenEcoLifeModal={() => setDrawer('ecolife')} />
+          <SectionShell>
+            <InkicaPodShowcase />
+          </SectionShell>
 
-          <TheBridge />
+          <SectionShell>
+            <RealEstateShowcase onOpenEcoLifeModal={() => setDrawer('ecolife')} />
+          </SectionShell>
 
-          <DomationDataShowcase />
+          <SectionShell>
+            <TheBridge />
+          </SectionShell>
 
-          <ErpShowcase />
+          <SectionShell>
+            <DomationDataShowcase />
+          </SectionShell>
 
-          <DomationCrmShowcase />
+          <SectionShell>
+            <ErpShowcase />
+          </SectionShell>
 
-          <AutoFlowPro />
+          <SectionShell>
+            <DomationCrmShowcase />
+          </SectionShell>
 
-          <CrmShowcase />
+          <SectionShell>
+            <AutoFlowPro />
+          </SectionShell>
 
-          <MetaAdReportShowcase />
+          <SectionShell>
+            <CrmShowcase />
+          </SectionShell>
 
-          <ZaloMiniAppShowcase />
+          <SectionShell>
+            <MetaAdReportShowcase />
+          </SectionShell>
 
-          <LmsShowcase />
+          <SectionShell>
+            <ZaloMiniAppShowcase />
+          </SectionShell>
 
-          <TarotShowcase />
+          <SectionShell>
+            <LmsShowcase />
+          </SectionShell>
 
-          <OutsourceHighlights />
+          <SectionShell>
+            <TarotShowcase />
+          </SectionShell>
 
-          <BookSpotlight />
+          <SectionShell>
+            <OutsourceHighlights />
+          </SectionShell>
 
-          <Certifications />
+          <SectionShell>
+            <BookSpotlight />
+          </SectionShell>
 
-          <DomMarketing />
+          <SectionShell>
+            <Certifications />
+          </SectionShell>
 
-          <TechBento />
+          <SectionShell>
+            <DomMarketing />
+          </SectionShell>
 
-          <Partners />
+          <SectionShell>
+            <TechBento />
+          </SectionShell>
+
+          <SectionShell>
+            <Partners />
+          </SectionShell>
         </main>
 
-        <Footer
-          onOpenDomation={() => setDrawer('domation')}
-          onOpenEcoLife={() => setDrawer('ecolife')}
-          onNavigateProfile={jumpToSection}
-        />
+        <Suspense fallback={null}>
+          <Footer
+            onOpenDomation={() => setDrawer('domation')}
+            onOpenEcoLife={() => setDrawer('ecolife')}
+            onNavigateProfile={jumpToSection}
+          />
+        </Suspense>
       </div>
 
       {/* Floating Scroll to Top Button (Centered when scrollY > 100px) */}
@@ -205,7 +309,9 @@ export default function App() {
         </Suspense>
       </StudioDrawerModal>
 
-      <AiPortfolioChatbot onNavigateSection={jumpToSection} />
+      <Suspense fallback={null}>
+        <AiPortfolioChatbot onNavigateSection={jumpToSection} />
+      </Suspense>
     </div>
   );
 }

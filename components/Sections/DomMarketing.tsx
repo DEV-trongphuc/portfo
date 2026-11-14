@@ -4,20 +4,17 @@ import {
   ArrowUpRight,
   CheckCircle2,
   ExternalLink,
-  FileText,
   Globe,
   Maximize2,
   Sparkles,
-  Terminal,
-  Zap,
 } from 'lucide-react';
 import { DOM_PROJECTS } from '../../constants';
 import Modal from '../UI/Modal';
+import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
 
 import domLogo from '../../imgs/dom_logo.webp';
 import keEbImg from '../../imgs/ke-eb.jpg';
 import tr1Img from '../../imgs/tr1.webp';
-import micrositePdf from '../../pdf/microsite game_compressed.pdf';
 
 interface LandingPageItem {
   name: string;
@@ -138,14 +135,17 @@ const DomMarketing: React.FC = () => {
             </div>
           </div>
 
-          {/* Right: 2 Core Reporting & CRM Connector Products + Action Strips */}
-          <div className="lg:col-span-7 space-y-3.5">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              {DOM_PROJECTS.map((proj, idx) => (
-                <div
-                  key={idx}
-                  className="group bg-slate-50/75 hover:bg-white rounded-2xl border border-slate-200/90 hover:border-[#1E40FF]/40 hover:shadow-lg transition-all p-3 flex flex-col justify-between"
-                >
+          {/* Right: 2 Core Reporting & CRM Connector Products (no small Waterbomb/Classic cards) */}
+          <div className="lg:col-span-7">
+            <ResponsiveSlideDeck
+              items={DOM_PROJECTS}
+              keyExtractor={(proj) => proj.title}
+              desktopMode="grid"
+              desktopGridClass="lg:grid-cols-2"
+              gapClass="gap-3.5"
+              ariaLabel="Sản phẩm DOM MARKETING"
+              renderItem={(proj) => (
+                <div className="group bg-slate-50/75 hover:bg-white rounded-2xl border border-slate-200/90 hover:border-[#1E40FF]/40 hover:shadow-lg transition-all p-3 flex flex-col justify-between h-full">
                   <div>
                     <div
                       onClick={() => setPreviewProject(proj)}
@@ -155,6 +155,7 @@ const DomMarketing: React.FC = () => {
                         src={proj.image}
                         alt={proj.title}
                         loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
                       />
                       <span className="absolute top-2 right-2 w-7 h-7 rounded-lg bg-white/95 border border-slate-200 text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
@@ -186,58 +187,8 @@ const DomMarketing: React.FC = () => {
                     </a>
                   </div>
                 </div>
-              ))}
-            </div>
-
-            {/* Compact Dual Quick Cards: Waterbomb PDF & DOMATION CLI / Stack */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <a
-                href={micrositePdf}
-                target="_blank"
-                rel="noreferrer"
-                className="group flex items-center justify-between gap-3 p-3.5 rounded-2xl bg-slate-50/80 hover:bg-white border border-slate-200/85 hover:border-[#1E40FF]/40 transition-all"
-              >
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-9 h-9 rounded-xl bg-amber-50 border border-amber-200 text-amber-600 flex items-center justify-center shrink-0 transition-colors group-hover:bg-amber-500 group-hover:border-amber-500 group-hover:text-white [&_svg]:group-hover:text-white">
-                    <Zap size={16} />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-xs font-extrabold text-slate-900 truncate">
-                      Waterbomb 2025 Microsite
-                    </div>
-                    <div className="text-[11px] text-slate-500 truncate">
-                      Gamification &amp; Activation PDF
-                    </div>
-                  </div>
-                </div>
-                <FileText size={15} className="text-slate-400 group-hover:text-[#1E40FF] shrink-0" />
-              </a>
-
-              <a
-                href="https://portfo-turnio.vercel.app/"
-                target="_blank"
-                rel="noreferrer"
-                className="group flex items-center justify-between gap-3 p-3.5 rounded-2xl bg-slate-50/80 hover:bg-white border border-slate-200/85 hover:border-[#1E40FF]/40 transition-all"
-              >
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-200 text-[#1E40FF] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#1E40FF] group-hover:border-[#1E40FF] group-hover:text-white [&_svg]:group-hover:text-white">
-                    <Terminal size={16} />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-xs font-extrabold text-slate-900 truncate">
-                      Classic Purple Portfolio
-                    </div>
-                    <div className="text-[11px] text-slate-500 truncate">
-                      portfo-turnio.vercel.app
-                    </div>
-                  </div>
-                </div>
-                <ExternalLink
-                  size={14}
-                  className="text-slate-400 group-hover:text-[#1E40FF] shrink-0"
-                />
-              </a>
-            </div>
+              )}
+            />
           </div>
         </div>
 
@@ -255,14 +206,19 @@ const DomMarketing: React.FC = () => {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
-            {LANDING_PAGES.map((lp) => (
+          <ResponsiveSlideDeck
+            items={LANDING_PAGES}
+            keyExtractor={(lp) => lp.url}
+            desktopMode="grid"
+            desktopGridClass="lg:grid-cols-4"
+            gapClass="gap-3.5"
+            ariaLabel="Danh sách Landing Page triển khai"
+            renderItem={(lp) => (
               <a
-                key={lp.url}
                 href={lp.url}
                 target="_blank"
                 rel="noreferrer"
-                className={`group rounded-2xl border p-2.5 transition-all flex flex-col justify-between ${
+                className={`group rounded-2xl border p-2.5 transition-all flex flex-col justify-between h-full ${
                   lp.highlight
                     ? 'bg-white/75 backdrop-blur-md border-blue-200 hover:border-[#1E40FF]'
                     : 'bg-white/65 backdrop-blur-md border-white/90 ring-1 ring-slate-200/70 hover:border-[#1E40FF]/50 hover:bg-white/90'
@@ -273,6 +229,7 @@ const DomMarketing: React.FC = () => {
                     src={lp.thumbnail}
                     alt={lp.name}
                     loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-top group-hover:scale-[1.04] transition-transform duration-500"
                   />
                 </div>
@@ -289,8 +246,8 @@ const DomMarketing: React.FC = () => {
                   />
                 </div>
               </a>
-            ))}
-          </div>
+            )}
+          />
         </div>
       </div>
 

@@ -67,7 +67,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title, classNa
               </button>
             </div>
 
-            <div className="overflow-y-auto flex-grow bg-[#F8F9FA]">{children}</div>
+            <div className="overflow-y-auto flex-grow bg-[#F8F9FA] p-4 sm:p-6">{children}</div>
           </motion.div>
         </div>
       )}

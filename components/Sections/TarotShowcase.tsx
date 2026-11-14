@@ -22,6 +22,7 @@ import cmt3 from '../../imgs/CMT3.webp';
 // @ts-ignore
 import cmt4 from '../../imgs/CMT4.webp';
 import Modal from '../UI/Modal';
+import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
 
 const TarotShowcase: React.FC = () => {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
@@ -75,9 +76,38 @@ const TarotShowcase: React.FC = () => {
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left side on desktop: Overlapping Screens */}
-          <div className="lg:col-span-7 order-2 lg:order-1 relative h-[420px] md:h-[580px] flex justify-center items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          {/* Mobile Screen Slider */}
+          <div className="md:hidden order-2">
+            <ResponsiveSlideDeck
+              items={[
+                { src: tr1, alt: 'Tarot App Screen 1' },
+                { src: tr2, alt: 'Tarot App Screen 2' },
+              ]}
+              keyExtractor={(s) => s.alt}
+              desktopMode="slider"
+              mobilePerPage={1}
+              gapClass="gap-3"
+              ariaLabel="Giao diện Mystery Tarot"
+              renderItem={(s) => (
+                <div
+                  onClick={() => setPreviewImage(s.src)}
+                  className="rounded-3xl overflow-hidden border border-slate-200 bg-white p-1.5 shadow-sm cursor-zoom-in"
+                >
+                  <img
+                    src={s.src}
+                    alt={s.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-auto object-cover rounded-2xl"
+                  />
+                </div>
+              )}
+            />
+          </div>
+
+          {/* Tablet/Desktop Overlapping Screens */}
+          <div className="hidden md:flex lg:col-span-7 order-2 lg:order-1 relative h-[480px] md:h-[580px] justify-center items-center">
             <motion.div
               initial={{ opacity: 1, x: -35 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -89,6 +119,8 @@ const TarotShowcase: React.FC = () => {
               <img
                 src={tr1}
                 alt="Tarot App Screen 1"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-auto object-cover rounded-2xl"
               />
             </motion.div>
@@ -104,6 +136,8 @@ const TarotShowcase: React.FC = () => {
               <img
                 src={tr2}
                 alt="Tarot App Screen 2"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-auto object-cover rounded-2xl"
               />
             </motion.div>
@@ -121,16 +155,15 @@ const TarotShowcase: React.FC = () => {
               </p>
             </div>
 
-            <div className="space-y-4">
-              {highlights.map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 1, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.05 }}
-                  transition={{ delay: 0.08 * idx }}
-                  className="flex gap-4 group p-3.5 rounded-2xl inkica-glass-card"
-                >
+            <ResponsiveSlideDeck
+              items={highlights}
+              keyExtractor={(item) => item.title}
+              desktopMode="grid"
+              desktopGridClass="lg:grid-cols-1"
+              gapClass="gap-3.5"
+              ariaLabel="Điểm nhấn Mystery Tarot"
+              renderItem={(item) => (
+                <div className="flex gap-4 group p-3.5 rounded-2xl inkica-glass-card h-full">
                   <div className="shrink-0 w-11 h-11 bg-blue-50 rounded-xl flex items-center justify-center text-[#1E40FF] border border-blue-200/70 group-hover:bg-[#1E40FF] group-hover:text-white [&_svg]:group-hover:text-white transition-colors duration-300">
                     {item.icon}
                   </div>
@@ -140,9 +173,9 @@ const TarotShowcase: React.FC = () => {
                     </h4>
                     <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                </div>
+              )}
+            />
 
             <div className="pt-2">
               <a
@@ -218,21 +251,29 @@ const TarotShowcase: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-            {[cmt1, cmt2, cmt3, cmt4].map((cmt, idx) => (
+          <ResponsiveSlideDeck
+            items={[cmt1, cmt2, cmt3, cmt4]}
+            keyExtractor={(_, idx) => `cmt-${idx}`}
+            desktopMode="grid"
+            desktopGridClass="lg:grid-cols-4"
+            gapClass="gap-4"
+            className="max-w-5xl mx-auto"
+            ariaLabel="Đánh giá cộng đồng Mystery Tarot"
+            renderItem={(cmt, idx) => (
               <div
-                key={idx}
-                className="rounded-2xl overflow-hidden border border-slate-200 bg-white p-1 cursor-zoom-in hover:border-[#1E40FF]/45 transition-all shadow-sm"
+                className="rounded-2xl overflow-hidden border border-slate-200 bg-white p-1 cursor-zoom-in hover:border-[#1E40FF]/45 transition-all shadow-sm h-full"
                 onClick={() => setPreviewImage(cmt)}
               >
                 <img
                   src={cmt}
                   alt={`Community Feedback ${idx + 1}`}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-auto object-cover rounded-xl"
                 />
               </div>
-            ))}
-          </div>
+            )}
+          />
         </motion.div>
       </div>
 

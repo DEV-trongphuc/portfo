@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import {
   ArrowUpRight,
   Box,
+  ChevronLeft,
+  ChevronRight,
   Cpu,
   Layers,
   Maximize2,
@@ -12,6 +14,7 @@ import {
   Wand2,
 } from 'lucide-react';
 import Modal from '../UI/Modal';
+import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
 
 interface InkicaScreen {
   id: string;
@@ -179,6 +182,12 @@ const InkicaPodShowcase: React.FC = () => {
   const [activeIdx, setActiveIdx] = useState(0);
   const [previewImg, setPreviewImg] = useState<InkicaScreen | null>(null);
   const currentScreen = INKICA_SCREENS[activeIdx];
+  const touchStartX = React.useRef<number | null>(null);
+
+  const handlePrevScreen = () =>
+    setActiveIdx((prev) => (prev > 0 ? prev - 1 : INKICA_SCREENS.length - 1));
+  const handleNextScreen = () =>
+    setActiveIdx((prev) => (prev < INKICA_SCREENS.length - 1 ? prev + 1 : 0));
 
   return (
     <section
@@ -229,12 +238,25 @@ const InkicaPodShowcase: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.25 }}
               onClick={() => setPreviewImg(currentScreen)}
-              className="group relative rounded-2xl overflow-hidden bg-slate-100 border border-slate-200/90 hover:border-[#1E40FF]/40 transition-all cursor-pointer"
+              onTouchStart={(e) => {
+                touchStartX.current = e.touches[0]?.clientX ?? null;
+              }}
+              onTouchEnd={(e) => {
+                const startX = touchStartX.current;
+                touchStartX.current = null;
+                if (startX === null) return;
+                const endX = e.changedTouches[0]?.clientX ?? startX;
+                const dx = endX - startX;
+                if (dx < -40) handleNextScreen();
+                else if (dx > 40) handlePrevScreen();
+              }}
+              className="group relative rounded-2xl overflow-hidden bg-slate-100 border border-slate-200/90 hover:border-[#1E40FF]/40 transition-all cursor-pointer touch-pan-y"
             >
               <div className="aspect-[16/9] w-full overflow-hidden bg-white">
                 <img
                   src={currentScreen.src}
                   alt={currentScreen.title}
+                  decoding="async"
                   className="w-full h-full object-cover object-top group-hover:scale-[1.015] transition-transform duration-500"
                 />
               </div>
@@ -261,8 +283,48 @@ const InkicaPodShowcase: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* 5 Clean Thumbnail Switchers (Image Only) */}
-            <div className="grid grid-cols-5 gap-2.5">
+            {/* Prev / SlideDot / Next Navigation Strip (Mobile & All Viewports) */}
+            <div className="flex items-center justify-between gap-3 px-1">
+              <div className="flex items-center gap-1.5">
+                {INKICA_SCREENS.map((screen, idx) => (
+                  <button
+                    key={screen.id}
+                    type="button"
+                    aria-label={`Xem ${screen.badge}`}
+                    onClick={() => setActiveIdx(idx)}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      idx === activeIdx
+                        ? 'w-7 bg-[#1E40FF]'
+                        : 'w-2 bg-slate-300 hover:bg-blue-300'
+                    }`}
+                  />
+                ))}
+                <span className="ml-2 text-[11px] font-mono font-bold text-slate-500 tabular-nums">
+                  0{activeIdx + 1}/0{INKICA_SCREENS.length}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handlePrevScreen}
+                  aria-label="Màn hình INKICA trước"
+                  className="w-8 h-8 rounded-full border border-slate-200 bg-white hover:border-[#1E40FF] hover:text-[#1E40FF] text-slate-700 flex items-center justify-center transition-colors cursor-pointer"
+                >
+                  <ChevronLeft size={15} />
+                </button>
+                <button
+                  type="button"
+                  onClick={handleNextScreen}
+                  aria-label="Màn hình INKICA tiếp theo"
+                  className="w-8 h-8 rounded-full border border-slate-200 bg-white hover:border-[#1E40FF] hover:text-[#1E40FF] text-slate-700 flex items-center justify-center transition-colors cursor-pointer"
+                >
+                  <ChevronRight size={15} />
+                </button>
+              </div>
+            </div>
+
+            {/* 5 Clean Thumbnail Switchers (Desktop/Tablet) */}
+            <div className="hidden sm:grid grid-cols-5 gap-2.5">
               {INKICA_SCREENS.map((screen, idx) => {
                 const isActive = idx === activeIdx;
                 return (
@@ -282,6 +344,7 @@ const InkicaPodShowcase: React.FC = () => {
                         src={screen.src}
                         alt={screen.badge}
                         loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover object-top"
                       />
                     </div>
@@ -291,15 +354,18 @@ const InkicaPodShowcase: React.FC = () => {
             </div>
           </div>
 
-          {/* Right: Balanced 2x2 Feature Cards + Tech Language Logo Grid */}
+          {/* Right: Balanced Feature Cards + Tech Language Logo Grid */}
           <div className="lg:col-span-6 order-1 lg:order-2 flex flex-col justify-between gap-4">
-            {/* 2x2 Feature Matrix */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 flex-1">
-              {INKICA_FEATURES.map((feat, idx) => (
-                <div
-                  key={idx}
-                  className="group p-4 rounded-2xl inkica-glass-card flex flex-col justify-between gap-3"
-                >
+            <ResponsiveSlideDeck
+              items={INKICA_FEATURES}
+              keyExtractor={(feat) => feat.title}
+              desktopMode="grid"
+              desktopGridClass="lg:grid-cols-2"
+              gapClass="gap-3.5"
+              className="flex-1"
+              ariaLabel="Tính năng INKICA AI Studio"
+              renderItem={(feat, idx) => (
+                <div className="group p-4 rounded-2xl inkica-glass-card flex flex-col justify-between gap-3 h-full">
                   <div className="flex items-center justify-between gap-2">
                     <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200/75 text-[#1E40FF] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#1E40FF] group-hover:border-[#1E40FF] group-hover:text-white [&_svg]:group-hover:text-white">
                       {feat.icon}
@@ -312,13 +378,11 @@ const InkicaPodShowcase: React.FC = () => {
                     <h3 className="text-sm font-extrabold text-slate-900 leading-snug mb-1">
                       {feat.title}
                     </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      {feat.desc}
-                    </p>
+                    <p className="text-xs text-slate-600 leading-relaxed">{feat.desc}</p>
                   </div>
                 </div>
-              ))}
-            </div>
+              )}
+            />
 
             {/* Tech Stack Matrix with Language / Framework Icons */}
             <div className="p-4 rounded-2xl inkica-glass-card space-y-2.5">

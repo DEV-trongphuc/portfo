@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight, MessageCircle } from 'lucide-react';
+import { Menu, X, ArrowUpRight, MessageCircle, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useActiveSection } from '../../utils/scrollSpy';
 // @ts-ignore
 import meAvatar from '../../me.webp';
+
+const NAV_LINKS = [
+  { name: 'INKICA AI POD', href: '#inkica-pod', id: 'inkica-pod' },
+  { name: 'Dự Án 3D & AI', href: '#real-estate', id: 'real-estate' },
+  { name: 'Hệ Sinh Thái', href: '#domation-data', id: 'domation-data' },
+  { name: 'Kinh Nghiệm', href: '#experience', id: 'experience' },
+  { name: 'Digital Thực Chiến', href: '#outsource', id: 'outsource' },
+  { name: 'Đối Tác', href: '#partners', id: 'partners' },
+];
+
+const NAV_SPY_IDS = ['hero', ...NAV_LINKS.map((n) => n.id)];
 
 export interface NavbarProps {
   activeMode?: 'classic' | 'ai';
@@ -12,15 +24,17 @@ export interface NavbarProps {
   activeView?: 'profile' | 'ecolife' | 'domation';
   onOpenDomation?: () => void;
   onOpenEcoLife?: () => void;
+  onOpenSearch?: () => void;
 }
 
 const Navbar: React.FC<NavbarProps> = ({
   onNavigate,
   activeSection,
+  onOpenSearch,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [selectedNav, setSelectedNav] = useState<string>(activeSection || 'hero');
+  const [selectedNav, setSelectedNav] = useActiveSection(NAV_SPY_IDS, activeSection || 'hero');
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 18);
@@ -49,14 +63,7 @@ const Navbar: React.FC<NavbarProps> = ({
     }
   };
 
-  const navLinks = [
-    { name: 'INKICA AI POD', href: '#inkica-pod', id: 'inkica-pod' },
-    { name: 'Dự Án 3D & AI', href: '#real-estate', id: 'real-estate' },
-    { name: 'Hệ Sinh Thái', href: '#domation-data', id: 'domation-data' },
-    { name: 'Kinh Nghiệm', href: '#experience', id: 'experience' },
-    { name: 'Digital Thực Chiến', href: '#outsource', id: 'outsource' },
-    { name: 'Đối Tác', href: '#partners', id: 'partners' },
-  ];
+  const navLinks = NAV_LINKS;
 
   return (
     <header
@@ -88,7 +95,7 @@ const Navbar: React.FC<NavbarProps> = ({
           </div>
         </a>
 
-        {/* Desktop Nav Links */}
+        {/* Desktop Nav Links with Smooth Sliding Active Pill */}
         <nav className="hidden lg:flex items-center gap-1 bg-slate-100/80 border border-slate-200/80 rounded-full px-2 py-1">
           {navLinks.map((link) => {
             const active = selectedNav === link.id;
@@ -97,20 +104,39 @@ const Navbar: React.FC<NavbarProps> = ({
                 key={link.id}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
-                  active
-                    ? 'bg-white text-blue-700 shadow-sm'
-                    : 'text-slate-600 hover:text-slate-950 hover:bg-white/70'
+                className={`relative px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-colors ${
+                  active ? 'text-blue-700' : 'text-slate-600 hover:text-slate-950'
                 }`}
               >
-                {link.name}
+                {active && (
+                  <motion.span
+                    layoutId="navbar-active-pill"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    className="absolute inset-0 rounded-full bg-white shadow-sm"
+                  />
+                )}
+                <span className="relative z-10">{link.name}</span>
               </a>
             );
           })}
         </nav>
 
-        {/* Action Button: Direct Zalo Contact */}
-        <div className="hidden md:flex items-center shrink-0">
+        {/* Action Buttons: Quick Search (Ctrl+K) + Direct Zalo Contact */}
+        <div className="hidden md:flex items-center gap-2 shrink-0">
+          {onOpenSearch && (
+            <button
+              type="button"
+              onClick={onOpenSearch}
+              aria-label="Tìm nhanh trên Portfolio"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-white border border-slate-200 hover:border-[#1E40FF]/50 text-slate-600 hover:text-[#1E40FF] text-[11px] font-bold shadow-xs transition-colors cursor-pointer"
+            >
+              <Search size={13} />
+              <span className="hidden xl:inline">Tìm nhanh</span>
+              <kbd className="hidden xl:inline px-1.5 py-0.5 text-[9.5px] font-mono bg-slate-100 border border-slate-200 rounded text-slate-500">
+                ⌘K
+              </kbd>
+            </button>
+          )}
           <a
             href="https://zalo.me/0378859736"
             target="_blank"

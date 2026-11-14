@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import Modal from '../UI/Modal';
 import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
+import Tilt3DCard from '../UI/Tilt3DCard';
 
 interface InkicaScreen {
   id: string;
@@ -232,56 +233,58 @@ const InkicaPodShowcase: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Left: Interactive Real Studio Preview Stage */}
           <div className="lg:col-span-6 order-2 lg:order-1 flex flex-col justify-between gap-3.5">
-            <motion.div
-              key={currentScreen.id}
-              initial={{ opacity: 0.7 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.25 }}
-              onClick={() => setPreviewImg(currentScreen)}
-              onTouchStart={(e) => {
-                touchStartX.current = e.touches[0]?.clientX ?? null;
-              }}
-              onTouchEnd={(e) => {
-                const startX = touchStartX.current;
-                touchStartX.current = null;
-                if (startX === null) return;
-                const endX = e.changedTouches[0]?.clientX ?? startX;
-                const dx = endX - startX;
-                if (dx < -40) handleNextScreen();
-                else if (dx > 40) handlePrevScreen();
-              }}
-              className="group relative rounded-2xl overflow-hidden bg-slate-100 border border-slate-200/90 hover:border-[#1E40FF]/40 transition-all cursor-pointer touch-pan-y"
-            >
-              <div className="aspect-[16/9] w-full overflow-hidden bg-white">
-                <img
-                  src={currentScreen.src}
-                  alt={currentScreen.title}
-                  decoding="async"
-                  className="w-full h-full object-cover object-top group-hover:scale-[1.015] transition-transform duration-500"
-                />
-              </div>
-
-              <button
-                type="button"
-                aria-label="Phóng to màn hình INKICA"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setPreviewImg(currentScreen);
+            <Tilt3DCard maxTilt={3.5}>
+              <motion.div
+                key={currentScreen.id}
+                initial={{ opacity: 0.7 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.25 }}
+                onClick={() => setPreviewImg(currentScreen)}
+                onTouchStart={(e) => {
+                  touchStartX.current = e.touches[0]?.clientX ?? null;
                 }}
-                className="absolute top-3 right-3 px-3 py-1.5 rounded-full bg-white/95 border border-slate-200 text-[11px] font-bold text-slate-800 hover:text-[#1E40FF] flex items-center gap-1.5 cursor-pointer"
+                onTouchEnd={(e) => {
+                  const startX = touchStartX.current;
+                  touchStartX.current = null;
+                  if (startX === null) return;
+                  const endX = e.changedTouches[0]?.clientX ?? startX;
+                  const dx = endX - startX;
+                  if (dx < -40) handleNextScreen();
+                  else if (dx > 40) handlePrevScreen();
+                }}
+                className="group relative rounded-2xl overflow-hidden bg-slate-100 border border-slate-200/90 hover:border-[#1E40FF]/40 transition-all cursor-pointer touch-pan-y"
               >
-                <Maximize2 size={12} /> Phóng to
-              </button>
+                <div className="aspect-[16/9] w-full overflow-hidden bg-white">
+                  <img
+                    src={currentScreen.src}
+                    alt={currentScreen.title}
+                    decoding="async"
+                    className="w-full h-full object-cover object-top group-hover:scale-[1.015] transition-transform duration-500"
+                  />
+                </div>
 
-              <div className="px-4 py-3 bg-white border-t border-slate-200/80 flex items-center justify-between gap-3">
-                <h3 className="text-sm font-extrabold text-slate-900 truncate">
-                  {currentScreen.title}
-                </h3>
-                <span className="inline-flex items-center gap-1 text-[10px] font-extrabold uppercase tracking-wider text-[#1E40FF] shrink-0">
-                  <Layers size={11} /> {currentScreen.badge}
-                </span>
-              </div>
-            </motion.div>
+                <button
+                  type="button"
+                  aria-label="Phóng to màn hình INKICA"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setPreviewImg(currentScreen);
+                  }}
+                  className="absolute top-3 right-3 px-3 py-1.5 rounded-full bg-white/95 border border-slate-200 text-[11px] font-bold text-slate-800 hover:text-[#1E40FF] flex items-center gap-1.5 cursor-pointer"
+                >
+                  <Maximize2 size={12} /> Phóng to
+                </button>
+
+                <div className="px-4 py-3 bg-white border-t border-slate-200/80 flex items-center justify-between gap-3">
+                  <h3 className="text-sm font-extrabold text-slate-900 truncate">
+                    {currentScreen.title}
+                  </h3>
+                  <span className="inline-flex items-center gap-1 text-[10px] font-extrabold uppercase tracking-wider text-[#1E40FF] shrink-0">
+                    <Layers size={11} /> {currentScreen.badge}
+                  </span>
+                </div>
+              </motion.div>
+            </Tilt3DCard>
 
             {/* Prev / SlideDot / Next Navigation Strip (Mobile & All Viewports) */}
             <div className="flex items-center justify-between gap-3 px-1">

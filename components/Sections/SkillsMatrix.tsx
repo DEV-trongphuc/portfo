@@ -278,20 +278,30 @@ const SkillsMatrix: React.FC = () => {
           </div>
 
           <div className="flex flex-wrap gap-1.5">
-            {DOMAIN_TABS.map((tab) => (
-              <button
-                type="button"
-                key={tab.id}
-                onClick={() => setActiveDomain(tab.id)}
-                className={`px-3 py-1.5 rounded-full text-[11px] font-bold transition-all cursor-pointer ${
-                  activeDomain === tab.id
-                    ? 'bg-[#1E40FF] text-white shadow-xs'
-                    : 'bg-white/85 border border-slate-200/90 text-slate-600 hover:border-[#1E40FF]/40 hover:text-slate-900'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+            {DOMAIN_TABS.map((tab) => {
+              const active = activeDomain === tab.id;
+              return (
+                <button
+                  type="button"
+                  key={tab.id}
+                  onClick={() => setActiveDomain(tab.id)}
+                  className={`relative px-3 py-1.5 rounded-full text-[11px] font-bold transition-colors cursor-pointer ${
+                    active
+                      ? 'text-white'
+                      : 'bg-white/85 border border-slate-200/90 text-slate-600 hover:border-[#1E40FF]/40 hover:text-slate-900'
+                  }`}
+                >
+                  {active && (
+                    <motion.span
+                      layoutId="skills-domain-pill"
+                      transition={{ type: 'spring', stiffness: 360, damping: 28 }}
+                      className="absolute inset-0 rounded-full bg-[#1E40FF] shadow-xs"
+                    />
+                  )}
+                  <span className="relative z-10">{tab.label}</span>
+                </button>
+              );
+            })}
           </div>
         </motion.div>
 
@@ -311,7 +321,13 @@ const SkillsMatrix: React.FC = () => {
           gapClass="gap-4"
           ariaLabel="Kỹ năng chuyên môn theo nhóm"
           renderItem={(group) => (
-            <div className="inkica-glass-card rounded-3xl p-4 sm:p-5 h-full">
+            <motion.div
+              layout
+              initial={{ opacity: 0.75, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.22 }}
+              className="inkica-glass-card rounded-3xl p-4 sm:p-5 h-full"
+            >
               <div className="flex items-center gap-3 pb-3 mb-3.5 border-b border-slate-200/70">
                 <div
                   className={`w-9 h-9 rounded-xl border flex items-center justify-center shrink-0 ${group.accentBg} ${group.accentText}`}
@@ -334,16 +350,18 @@ const SkillsMatrix: React.FC = () => {
                 {group.skills.map((skill) => (
                   <div
                     key={skill.name}
-                    className="flex items-center gap-2.5 p-2 rounded-xl bg-white/90 border border-slate-200/80 hover:border-[#1E40FF]/40 transition-colors min-w-0"
+                    className="group/tile flex items-center gap-2.5 p-2 rounded-xl bg-white/90 border border-slate-200/80 hover:border-[#1E40FF]/45 hover:-translate-y-0.5 hover:shadow-xs transition-all min-w-0"
                   >
-                    {skill.badge}
+                    <span className="transition-transform duration-200 group-hover/tile:scale-110 shrink-0">
+                      {skill.badge}
+                    </span>
                     <span className="text-[11.5px] sm:text-xs font-bold text-slate-800 truncate">
                       {skill.name}
                     </span>
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           )}
         />
       </div>

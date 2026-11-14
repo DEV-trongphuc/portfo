@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Box,
   Briefcase,
+  Copy,
   Cpu,
   Database,
   ExternalLink,
@@ -14,6 +15,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { SOCIALS } from '../../constants';
+import { copyWithToast } from '../../utils/toast';
 import meAvatar from '../../me.webp';
 import domLogo from '../../imgs/dom_logo.webp';
 
@@ -128,13 +130,23 @@ const Footer: React.FC<FooterProps> = ({
             </div>
 
             <div className="flex flex-col sm:flex-row lg:flex-col gap-2.5 shrink-0">
-              <a
-                href="mailto:turniodev@gmail.com"
-                className="px-6 py-3 rounded-2xl bg-gradient-to-r from-[#1E40FF] to-[#0EA5E9] hover:from-[#254EDB] hover:to-[#0284C7] text-white text-xs font-extrabold tracking-wider inline-flex items-center justify-center gap-2 transition-all"
-              >
-                <Mail size={15} />
-                <span>turniodev@gmail.com</span>
-              </a>
+              <div className="flex items-stretch gap-1.5">
+                <a
+                  href="mailto:turniodev@gmail.com"
+                  className="flex-1 px-5 py-3 rounded-2xl bg-gradient-to-r from-[#1E40FF] to-[#0EA5E9] hover:from-[#254EDB] hover:to-[#0284C7] text-white text-xs font-extrabold tracking-wider inline-flex items-center justify-center gap-2 transition-all"
+                >
+                  <Mail size={15} />
+                  <span>turniodev@gmail.com</span>
+                </a>
+                <button
+                  type="button"
+                  aria-label="Sao chép email turniodev@gmail.com"
+                  onClick={() => void copyWithToast('turniodev@gmail.com', 'Email')}
+                  className="px-3.5 py-3 rounded-2xl bg-white/15 hover:bg-white/25 border border-white/25 text-white inline-flex items-center justify-center transition-colors cursor-pointer"
+                >
+                  <Copy size={14} />
+                </button>
+              </div>
               <a
                 href="https://www.linkedin.com/in/turnio-dev/"
                 target="_blank"

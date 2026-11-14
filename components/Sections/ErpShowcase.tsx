@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Bot,
@@ -59,6 +59,24 @@ const ErpShowcase: React.FC = () => {
   const handlePrev = () => {
     setActiveIndex((prev) => (prev - 1 + filteredScreens.length) % filteredScreens.length);
   };
+
+  // Support Next / Prev gallery navigation directly inside the Zoom Lightbox Modal
+  const zoomIdx = zoomItem ? ALL_ERP_SCREENS.findIndex((s) => s.id === zoomItem.id) : -1;
+  const handleZoomStep = (delta: number) => {
+    if (zoomIdx < 0) return;
+    const nextIdx = (zoomIdx + delta + ALL_ERP_SCREENS.length) % ALL_ERP_SCREENS.length;
+    setZoomItem(ALL_ERP_SCREENS[nextIdx]);
+  };
+
+  useEffect(() => {
+    if (!zoomItem) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') handleZoomStep(1);
+      else if (e.key === 'ArrowLeft') handleZoomStep(-1);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [zoomIdx, zoomItem]);
 
   return (
     <section
@@ -572,7 +590,7 @@ const ErpShowcase: React.FC = () => {
         </div>
       </div>
 
-      {/* Portal Modal */}
+      {/* Portal Lightbox Modal with Prev/Next Gallery Navigation */}
       <Modal
         isOpen={!!zoomItem}
         onClose={() => setZoomItem(null)}
@@ -581,18 +599,45 @@ const ErpShowcase: React.FC = () => {
       >
         {zoomItem && (
           <div className="space-y-4">
-            <div className="rounded-2xl overflow-hidden border border-slate-200 bg-slate-50">
+            <div className="relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-50">
               <img
                 src={zoomItem.src}
                 alt={zoomItem.title}
                 className="w-full max-h-[70vh] object-contain mx-auto"
               />
+              {zoomIdx >= 0 && (
+                <>
+                  <button
+                    type="button"
+                    aria-label="Ảnh trước"
+                    onClick={() => handleZoomStep(-1)}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/95 border border-slate-200 hover:border-[#1E40FF] text-slate-700 hover:text-[#1E40FF] flex items-center justify-center shadow-md cursor-pointer"
+                  >
+                    <ChevronLeft size={17} />
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="Ảnh tiếp theo"
+                    onClick={() => handleZoomStep(1)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/95 border border-slate-200 hover:border-[#1E40FF] text-slate-700 hover:text-[#1E40FF] flex items-center justify-center shadow-md cursor-pointer"
+                  >
+                    <ChevronRight size={17} />
+                  </button>
+                </>
+              )}
             </div>
             <div className="flex flex-wrap items-center justify-between gap-3">
               <p className="text-sm text-slate-600">{zoomItem.description}</p>
-              <span className="px-3 py-1 rounded-full bg-blue-50 text-[#1E40FF] text-xs font-bold border border-blue-200/80">
-                {zoomItem.highlight}
-              </span>
+              <div className="flex items-center gap-2 shrink-0">
+                {zoomIdx >= 0 && (
+                  <span className="text-xs font-mono font-bold text-slate-500">
+                    {String(zoomIdx + 1).padStart(2, '0')} / {ALL_ERP_SCREENS.length}
+                  </span>
+                )}
+                <span className="px-3 py-1 rounded-full bg-blue-50 text-[#1E40FF] text-xs font-bold border border-blue-200/80">
+                  {zoomItem.highlight}
+                </span>
+              </div>
             </div>
           </div>
         )}

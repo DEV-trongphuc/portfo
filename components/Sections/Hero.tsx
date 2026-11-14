@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Box, Building2, Layers, Linkedin, Sparkles } from 'lucide-react';
 import { PARTNERS } from '../../constants';
 import domLogo from '../../imgs/dom_logo.webp';
+import AnimatedNumber from '../UI/AnimatedNumber';
 
 interface HeroProps {
   onOpenDomationModal: () => void;
@@ -430,12 +431,12 @@ const Hero: React.FC<HeroProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Column: Crisp Identity & 1-Row Quick Actions */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-6"
           >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50/90 border border-blue-200/80 mb-6">
+            <div className="animate-float-gentle inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50/90 border border-blue-200/80 mb-6">
               <Sparkles size={12} className="text-[#1E40FF]" />
               <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#1E40FF]">
                 Fullstack Developer - AI Automation
@@ -446,7 +447,12 @@ const Hero: React.FC<HeroProps> = ({
               Hello, I&apos;m <span className="text-[#1E40FF]">{text || 'TURNIO.'}</span>
             </h1>
 
-            <div className="relative rounded-2xl inkica-glass-card px-4 py-3.5 sm:px-5 sm:py-4 max-w-xl mb-7 overflow-hidden">
+            <motion.div
+              initial={{ opacity: 0, y: 18, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+              className="relative rounded-2xl inkica-glass-card px-4 py-3.5 sm:px-5 sm:py-4 max-w-xl mb-7 overflow-hidden"
+            >
               <p className="text-sm sm:text-[15.5px] text-slate-700 leading-[1.7] font-medium">
                 Thiết kế hệ thống{' '}
                 <span className="font-extrabold text-[#1E40FF]">
@@ -462,28 +468,43 @@ const Hero: React.FC<HeroProps> = ({
                 </span>
                 .
               </p>
-            </div>
+            </motion.div>
 
-            {/* 3 Inline Compact Stats */}
+            {/* 3 Inline Compact Stats with Animated Count-Up */}
             <div className="grid grid-cols-3 gap-3.5 max-w-xl mb-8">
-              <div className="rounded-2xl inkica-glass-card px-4 py-3.5">
-                <div className="text-lg sm:text-2xl font-black text-[#1E40FF] leading-tight mb-1">
-                  35+
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, delay: 0.08 }}
+                className="rounded-2xl inkica-glass-card px-4 py-3.5"
+              >
+                <div className="text-lg sm:text-2xl font-black text-[#1E40FF] leading-tight mb-1 tabular-nums">
+                  <AnimatedNumber target={35} suffix="+" />
                 </div>
                 <div className="text-[11px] font-bold text-slate-800">App, Web &amp; AI</div>
-              </div>
-              <div className="rounded-2xl inkica-glass-card px-4 py-3.5">
-                <div className="text-lg sm:text-2xl font-black text-slate-950 leading-tight mb-1">
-                  30+
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, delay: 0.16 }}
+                className="rounded-2xl inkica-glass-card px-4 py-3.5"
+              >
+                <div className="text-lg sm:text-2xl font-black text-slate-950 leading-tight mb-1 tabular-nums">
+                  <AnimatedNumber target={30} suffix="+" />
                 </div>
                 <div className="text-[11px] font-bold text-slate-800">Doanh Nghiệp Hợp Tác</div>
-              </div>
-              <div className="rounded-2xl inkica-glass-card px-4 py-3.5">
-                <div className="text-lg sm:text-2xl font-black text-emerald-600 leading-tight mb-1">
-                  4+ Năm
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, delay: 0.24 }}
+                className="rounded-2xl inkica-glass-card px-4 py-3.5"
+              >
+                <div className="text-lg sm:text-2xl font-black text-emerald-600 leading-tight mb-1 tabular-nums">
+                  <AnimatedNumber target={4} suffix="+ Năm" />
                 </div>
                 <div className="text-[11px] font-bold text-slate-800">Growth &amp; Engineering</div>
-              </div>
+              </motion.div>
             </div>
 
             {/* Clean Action Buttons: Strictly 2 buttons on 1 single row on Mobile, 3 on Desktop/Tablet */}

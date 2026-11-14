@@ -1,9 +1,13 @@
 import React, { Suspense, useEffect, useState } from 'react';
-import { ArrowUp } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowUp, CheckCircle2 } from 'lucide-react';
 import Navbar from './components/Layout/Navbar';
 import Background from './components/UI/Background';
 import ScrollProgress from './components/UI/ScrollProgress';
+import SectionQuickDock from './components/UI/SectionQuickDock';
+import CommandPalette from './components/UI/CommandPalette';
 import { StudioDrawerModal } from './components/UI/StudioDrawerModal';
+import { subscribeToast } from './utils/toast';
 import Hero from './components/Sections/Hero';
 
 // Below-the-fold lazy code splitting for fast initial mobile, tablet & desktop TTI
@@ -36,9 +40,14 @@ const EcoLifeDetailView = React.lazy(() => import('./components/Sections/EcoLife
 const DomationDetailView = React.lazy(() => import('./components/Sections/DomationDetailView'));
 
 const SectionShell: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <div style={{ contentVisibility: 'auto', containIntrinsicSize: '1px 650px' }}>
+  <motion.div
+    initial={{ opacity: 0, y: 36 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.06 }}
+    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+  >
     <Suspense fallback={<div className="py-16" aria-hidden="true" />}>{children}</Suspense>
-  </div>
+  </motion.div>
 );
 
 type DrawerMode = 'none' | 'ecolife' | 'domation';
@@ -53,6 +62,8 @@ export default function App() {
   });
 
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [commandOpen, setCommandOpen] = useState(false);
+  const [toastMsg, setToastMsg] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -61,6 +72,47 @@ export default function App() {
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Global Cmd/Ctrl + K Command Palette shortcut
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setCommandOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, []);
+
+  // Global toast notifications for quick copy feedback
+  useEffect(() => {
+    let timer = 0;
+    const unsub = subscribeToast((msg) => {
+      setToastMsg(msg);
+      if (timer) window.clearTimeout(timer);
+      timer = window.setTimeout(() => setToastMsg(null), 2600);
+    });
+    return () => {
+      unsub();
+      if (timer) window.clearTimeout(timer);
+    };
+  }, []);
+
+  // Fine-pointer delegated spotlight highlight on .inkica-glass-card without React re-renders
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (!window.matchMedia?.('(hover: hover) and (pointer: fine)').matches) return;
+    const onPointerMove = (e: PointerEvent) => {
+      const target = (e.target as HTMLElement | null)?.closest('.inkica-glass-card') as HTMLElement | null;
+      if (!target) return;
+      const rect = target.getBoundingClientRect();
+      target.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+      target.style.setProperty('--my', `${e.clientY - rect.top}px`);
+    };
+    document.addEventListener('pointermove', onPointerMove, { passive: true });
+    return () => document.removeEventListener('pointermove', onPointerMove);
   }, []);
 
   useEffect(() => {
@@ -146,13 +198,15 @@ export default function App() {
     <div className="min-h-screen bg-[#F8F9FA] text-[#0F172A] font-sans relative selection:bg-blue-100 selection:text-[#1E40FF]">
       <Background />
       <ScrollProgress />
+      <SectionQuickDock onNavigate={jumpToSection} />
 
       <div className="relative z-10 flex flex-col min-h-screen">
-        <Navbar
-          onNavigate={jumpToSection}
-          onOpenDomation={() => setDrawer('domation')}
-          onOpenEcoLife={() => setDrawer('ecolife')}
-        />
+          <Navbar
+            onNavigate={jumpToSection}
+            onOpenDomation={() => setDrawer('domation')}
+            onOpenEcoLife={() => setDrawer('ecolife')}
+            onOpenSearch={() => setCommandOpen(true)}
+          />
 
         <main className="flex-grow">
           <Hero
@@ -312,6 +366,29 @@ export default function App() {
       <Suspense fallback={null}>
         <AiPortfolioChatbot onNavigateSection={jumpToSection} />
       </Suspense>
+
+      <CommandPalette
+        isOpen={commandOpen}
+        onClose={() => setCommandOpen(false)}
+        onNavigate={jumpToSection}
+        onOpenEcoLife={() => setDrawer('ecolife')}
+        onOpenDomation={() => setDrawer('domation')}
+      />
+
+      <AnimatePresence>
+        {toastMsg && (
+          <motion.div
+            initial={{ opacity: 0, y: 18, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 12, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="fixed bottom-16 sm:bottom-6 left-1/2 -translate-x-1/2 z-[120] px-4 py-2.5 rounded-full bg-slate-900 text-white text-xs font-bold shadow-xl inline-flex items-center gap-2 whitespace-nowrap pointer-events-none"
+          >
+            <CheckCircle2 size={14} className="text-emerald-400 shrink-0" />
+            <span>{toastMsg}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

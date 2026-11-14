@@ -14,6 +14,7 @@ import {
 import { ECOLIFE_3D_UNITS } from '../../constants';
 import Modal from '../UI/Modal';
 import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
+import Tilt3DCard from '../UI/Tilt3DCard';
 
 export interface RealEstateShowcaseProps {
   onOpenEcoLifeModal: () => void;
@@ -190,31 +191,33 @@ const RealEstateShowcase: React.FC<RealEstateShowcaseProps> = ({
               </button>
             </div>
 
-            <div className="relative aspect-video rounded-2xl overflow-hidden bg-slate-950 border border-slate-200 shadow-[0_18px_46px_-18px_rgba(15,23,42,0.2)]">
-              {videoMode === '3d' ? (
-                <video
-                  key="video-3d"
-                  src="/assets/ecolife/ecolife_3d_preview.mp4"
-                  poster="/assets/ecolife/FACADE_HUONG_CHINH_03.webp"
-                  autoPlay
-                  muted
-                  loop
-                  controls
-                  playsInline
-                  preload="metadata"
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <iframe
-                  key="video-youtube-project"
-                  src="https://www.youtube.com/embed/To3VGqPfwY8?rel=0"
-                  title="Phim dự án EcoLife Signature"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full border-0"
-                />
-              )}
-            </div>
+            <Tilt3DCard maxTilt={3}>
+              <div className="relative aspect-video rounded-2xl overflow-hidden bg-slate-950 border border-slate-200 shadow-[0_18px_46px_-18px_rgba(15,23,42,0.2)]">
+                {videoMode === '3d' ? (
+                  <video
+                    key="video-3d"
+                    src="/assets/ecolife/ecolife_3d_preview.mp4"
+                    poster="/assets/ecolife/FACADE_HUONG_CHINH_03.webp"
+                    autoPlay
+                    muted
+                    loop
+                    controls
+                    playsInline
+                    preload="metadata"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <iframe
+                    key="video-youtube-project"
+                    src="https://www.youtube.com/embed/To3VGqPfwY8?rel=0"
+                    title="Phim dự án EcoLife Signature"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full border-0"
+                  />
+                )}
+              </div>
+            </Tilt3DCard>
           </motion.div>
         </div>
 

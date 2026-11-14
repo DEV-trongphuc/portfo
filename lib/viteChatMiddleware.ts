@@ -1,7 +1,8 @@
 import type { Plugin } from 'vite';
 import { handleRagChatHttp } from './ragEngine';
+import { handleContactHttp } from './contactEngine';
 
-export function ragChatApiPlugin(explicitApiKey?: string): Plugin {
+export function ragChatApiPlugin(explicitApiKey?: string, explicitWebhookUrl?: string): Plugin {
   const attachMiddleware = (middlewares: {
     use: (
       route: string,
@@ -10,6 +11,9 @@ export function ragChatApiPlugin(explicitApiKey?: string): Plugin {
   }) => {
     middlewares.use('/api/chat', (req, res) => {
       void handleRagChatHttp(req, res, explicitApiKey);
+    });
+    middlewares.use('/api/contact', (req, res) => {
+      void handleContactHttp(req, res, explicitWebhookUrl);
     });
   };
 

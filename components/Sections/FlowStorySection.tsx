@@ -419,7 +419,7 @@ const FlowStorySection: React.FC<FlowStorySectionProps> = ({ onOpenDomationModal
             <img
               src={zoomImg.src}
               alt={zoomImg.title}
-              className="max-w-full max-h-[80vh] object-contain rounded-xl border border-[#E2E8F0]"
+              className="max-w-full max-h-[80vh] object-contain rounded-xl border border-[#E2E8F0]" loading="lazy" decoding="async"
             />
           </div>
         )}

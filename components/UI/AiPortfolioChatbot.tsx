@@ -722,7 +722,7 @@ export const AiPortfolioChatbot: React.FC<AiPortfolioChatbotProps> = ({
                                   src={src.image}
                                   alt={src.title}
                                   loading="lazy"
-                                  className="w-9 h-9 rounded-lg object-cover shrink-0 border border-slate-100"
+                                  className="w-9 h-9 rounded-lg object-cover shrink-0 border border-slate-100" decoding="async"
                                 />
                               )}
                               <div className="min-w-0 flex-1">

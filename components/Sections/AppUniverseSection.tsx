@@ -514,7 +514,7 @@ const AppUniverseSection: React.FC<AppUniverseSectionProps> = ({ onOpenDomationM
                           src={app.cover}
                           alt={app.name}
                           loading="lazy"
-                          className="w-full h-full object-cover object-top group-hover:scale-[1.04] transition-transform duration-500"
+                          className="w-full h-full object-cover object-top group-hover:scale-[1.04] transition-transform duration-500" decoding="async"
                         />
 
                         {/* Top Floating Badges */}
@@ -650,7 +650,7 @@ const AppUniverseSection: React.FC<AppUniverseSectionProps> = ({ onOpenDomationM
                   <img
                     src={selectedApp.screens[slideIdx]?.src || selectedApp.cover}
                     alt={selectedApp.screens[slideIdx]?.title || selectedApp.name}
-                    className="w-full h-full object-contain bg-white/40"
+                    className="w-full h-full object-contain bg-white/40" loading="lazy" decoding="async"
                   />
 
                   {selectedApp.screens.length > 1 && (
@@ -702,7 +702,7 @@ const AppUniverseSection: React.FC<AppUniverseSectionProps> = ({ onOpenDomationM
                             : 'border-[#E2E8F0] opacity-65 hover:opacity-100'
                         }`}
                       >
-                        <img src={sc.src} alt={sc.title} className="w-full h-full object-cover" />
+                        <img src={sc.src} alt={sc.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                       </button>
                     ))}
                   </div>
@@ -793,7 +793,7 @@ const AppUniverseSection: React.FC<AppUniverseSectionProps> = ({ onOpenDomationM
                       key={idx}
                       className="rounded-xl overflow-hidden border border-[#E2E8F0] bg-white/40"
                     >
-                      <img src={rev} alt={`Tarot Feedback ${idx + 1}`} className="w-full h-auto" />
+                      <img src={rev} alt={`Tarot Feedback ${idx + 1}`} className="w-full h-auto" loading="lazy" decoding="async" />
                     </div>
                   ))}
                 </div>

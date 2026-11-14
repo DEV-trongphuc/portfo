@@ -168,7 +168,7 @@ const Footer: React.FC<FooterProps> = ({
               <img
                 src={meAvatar}
                 alt="Huỳnh Trọng Phúc"
-                className="w-11 h-11 rounded-full object-cover object-top border border-blue-200 shrink-0"
+                className="w-11 h-11 rounded-full object-cover object-top border border-blue-200 shrink-0" loading="lazy" decoding="async"
               />
               <div>
                 <div className="text-sm font-extrabold text-slate-950">Huỳnh Trọng Phúc</div>
@@ -235,7 +235,7 @@ const Footer: React.FC<FooterProps> = ({
               >
                 <span className="inline-flex items-center gap-2.5">
                   <span className="w-6 h-6 rounded-lg bg-white border border-slate-200 p-0.5 flex items-center justify-center shrink-0">
-                    <img src={domLogo} alt="DOMATION" className="w-full h-full object-contain" />
+                    <img src={domLogo} alt="DOMATION" className="w-full h-full object-contain" loading="lazy" decoding="async" />
                   </span>
                   <span>DOMATION Ecosystem</span>
                 </span>
@@ -252,7 +252,7 @@ const Footer: React.FC<FooterProps> = ({
                     <img
                       src="/assets/ecolife/ecolife-leaf-emblem.webp"
                       alt="EcoLife Signature"
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-contain" loading="lazy" decoding="async"
                     />
                   </span>
                   <span>Hồ Sơ EcoLife 3D</span>

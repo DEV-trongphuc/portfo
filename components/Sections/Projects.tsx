@@ -46,7 +46,7 @@ const Projects: React.FC = () => {
                     <img 
                         src={project.image} 
                         alt={project.title} 
-                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100"
+                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100" loading="lazy" decoding="async"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#020202]/50 to-transparent"></div>
                 </div>
@@ -96,7 +96,7 @@ const Projects: React.FC = () => {
             {selectedProject && (
                 <div className="grid md:grid-cols-2">
                     <div className="h-64 md:h-auto overflow-hidden">
-                        <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-full object-cover" />
+                        <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                     </div>
                     <div className="p-10">
                         <span className={`px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest ${selectedProject.category === 'Marketing' ? 'bg-gold-500 text-black' : 'bg-blue-600 text-white'}`}>

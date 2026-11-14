@@ -1,7 +1,7 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Box, Building2, Layers, Linkedin, Sparkles } from 'lucide-react';
-import { PARTNERS } from '../../constants';
+import { PARTNERS } from '../../constants/partners';
 import domLogo from '../../imgs/dom_logo.webp';
 import AnimatedNumber from '../UI/AnimatedNumber';
 
@@ -90,7 +90,13 @@ const InteractiveBrandSphere: React.FC = () => {
     totalMoved: 0,
   });
   const hoveredRef = useRef<number | null>(null);
-  const [, setTick] = useState(0);
+  const nodeRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const isCompactViewport = containerWidth < 460;
+  const nodePad = isCompactViewport ? 60 : 72;
+  const radius = Math.min(205, Math.max(116, Math.floor((containerWidth - nodePad) / 2)));
+  const outerRingPx = Math.round(radius * 2);
+  const innerRingPx = Math.round(radius * 1.38);
 
   useEffect(() => {
     hoveredRef.current = hoveredIdx;
@@ -123,6 +129,42 @@ const InteractiveBrandSphere: React.FC = () => {
     });
   }, []);
 
+  // Mutates 3D node transforms directly via refs so 60fps rotation triggers zero React re-renders
+  const applySphereTransforms = useCallback(() => {
+    const { yaw, pitch } = rotRef.current;
+    const cosY = Math.cos(yaw);
+    const sinY = Math.sin(yaw);
+    const cosP = Math.cos(pitch);
+    const sinP = Math.sin(pitch);
+    const hover = hoveredRef.current;
+    const hoverScale = isCompactViewport ? 1.15 : 1.28;
+
+    for (let idx = 0; idx < basePoints.length; idx++) {
+      const nodeEl = nodeRefs.current[idx];
+      if (!nodeEl) continue;
+      const pt = basePoints[idx];
+      const x1 = pt.x * cosY - pt.z * sinY;
+      const z1 = pt.x * sinY + pt.z * cosY;
+      const y2 = pt.y * cosP - z1 * sinP;
+      const z2 = pt.y * sinP + z1 * cosP;
+
+      const depth = (z2 + 1) / 2;
+      const scale = isCompactViewport ? 0.62 + depth * 0.36 : 0.62 + depth * 0.48;
+      const opacity = 0.48 + depth * 0.52;
+      const isHovered = hover === idx;
+
+      nodeEl.style.transform = `translate3d(${(x1 * radius).toFixed(1)}px, ${(y2 * radius).toFixed(1)}px, 0) scale(${
+        isHovered ? hoverScale : scale.toFixed(3)
+      })`;
+      nodeEl.style.opacity = isHovered ? '1' : opacity.toFixed(3);
+      nodeEl.style.zIndex = String(isHovered ? 200 : Math.round(depth * 100));
+    }
+  }, [basePoints, isCompactViewport, radius]);
+
+  useLayoutEffect(() => {
+    applySphereTransforms();
+  }, [applySphereTransforms, hoveredIdx]);
+
   useEffect(() => {
     const el = containerRef.current;
     let rafId = 0;
@@ -143,7 +185,7 @@ const InteractiveBrandSphere: React.FC = () => {
         rotRef.current.vx += (IDLE_VX - rotRef.current.vx) * 0.03 * dt;
         rotRef.current.vy += (IDLE_VY - rotRef.current.vy) * 0.03 * dt;
       }
-      setTick((t) => (t + 1) % 10000);
+      applySphereTransforms();
       rafId = requestAnimationFrame(animate);
     };
 
@@ -187,7 +229,7 @@ const InteractiveBrandSphere: React.FC = () => {
       observer?.disconnect();
       document.removeEventListener('visibilitychange', onVisibility);
     };
-  }, []);
+  }, [applySphereTransforms]);
 
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     dragRef.current = {
@@ -258,40 +300,6 @@ const InteractiveBrandSphere: React.FC = () => {
     }
   };
 
-  // Clamp radius dynamically from containerWidth so orbiting badges (<= 48px on mobile) never clip horizontally
-  const isCompactViewport = containerWidth < 460;
-  const nodePad = isCompactViewport ? 60 : 72;
-  const radius = Math.min(205, Math.max(116, Math.floor((containerWidth - nodePad) / 2)));
-  const outerRingPx = Math.round(radius * 2);
-  const innerRingPx = Math.round(radius * 1.38);
-
-  const { yaw, pitch } = rotRef.current;
-  const cosY = Math.cos(yaw);
-  const sinY = Math.sin(yaw);
-  const cosP = Math.cos(pitch);
-  const sinP = Math.sin(pitch);
-
-  const projected = basePoints.map((pt, idx) => {
-    const x1 = pt.x * cosY - pt.z * sinY;
-    const z1 = pt.x * sinY + pt.z * cosY;
-    const y2 = pt.y * cosP - z1 * sinP;
-    const z2 = pt.y * sinP + z1 * cosP;
-
-    const depth = (z2 + 1) / 2;
-    const scale = isCompactViewport ? 0.62 + depth * 0.36 : 0.62 + depth * 0.48;
-    const opacity = 0.48 + depth * 0.52;
-
-    return {
-      idx,
-      node: SPHERE_NODES[idx],
-      x: x1 * radius,
-      y: y2 * radius,
-      scale,
-      opacity,
-      zIndex: Math.round(depth * 100),
-    };
-  });
-
   const hoveredItem = hoveredIdx !== null ? SPHERE_NODES[hoveredIdx] : null;
 
   return (
@@ -353,38 +361,37 @@ const InteractiveBrandSphere: React.FC = () => {
       </div>
 
       {/* Logo-only 3D Orbiting Nodes — drag sphere to rotate freely in 3D */}
-      {projected.map((p) => {
-        const isHovered = hoveredIdx === p.idx;
+      {SPHERE_NODES.map((node, idx) => {
+        const isHovered = hoveredIdx === idx;
         return (
           <div
-            key={`${p.node.name}-${p.idx}`}
+            key={`${node.name}-${idx}`}
+            ref={(nodeEl) => {
+              nodeRefs.current[idx] = nodeEl;
+            }}
             onMouseEnter={() => {
-              if (!dragRef.current.active) setHoveredIdx(p.idx);
+              if (!dragRef.current.active) setHoveredIdx(idx);
             }}
             onMouseLeave={() => setHoveredIdx(null)}
             onClick={() => {
               if (dragRef.current.totalMoved < 6) {
-                setHoveredIdx((prev) => (prev === p.idx ? null : p.idx));
+                setHoveredIdx((prev) => (prev === idx ? null : idx));
               }
             }}
-            style={{
-              transform: `translate3d(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px, 0) scale(${
-                isHovered ? (isCompactViewport ? 1.15 : 1.28) : p.scale.toFixed(3)
-              })`,
-              opacity: isHovered ? 1 : p.opacity,
-              zIndex: isHovered ? 200 : p.zIndex,
-            }}
-            aria-label={p.node.name}
-            className={`absolute w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-sm border p-1.5 sm:p-2 flex items-center justify-center transition-shadow select-none ${
+            aria-label={node.name}
+            className={`will-change-transform absolute w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-sm border p-1.5 sm:p-2 flex items-center justify-center transition-shadow select-none ${
               isHovered
                 ? 'border-[#1E40FF] ring-4 ring-blue-100/80'
                 : 'border-slate-200/90'
             }`}
           >
             <img
-              src={p.node.logo}
-              alt={p.node.name}
+              src={node.logo}
+              alt={node.name}
               draggable={false}
+              decoding="async"
+              width={56}
+              height={56}
               className="w-full h-full object-contain pointer-events-none"
             />
           </div>

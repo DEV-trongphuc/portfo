@@ -259,7 +259,7 @@ const InkicaPodShowcase: React.FC = () => {
                     src={currentScreen.src}
                     alt={currentScreen.title}
                     decoding="async"
-                    className="w-full h-full object-cover object-top group-hover:scale-[1.015] transition-transform duration-500"
+                    className="w-full h-full object-cover object-top group-hover:scale-[1.015] transition-transform duration-500" loading="lazy"
                   />
                 </div>
 
@@ -349,6 +349,7 @@ const InkicaPodShowcase: React.FC = () => {
                         loading="lazy"
                         decoding="async"
                         className="w-full h-full object-cover object-top"
+                      
                       />
                     </div>
                   </button>
@@ -433,7 +434,7 @@ const InkicaPodShowcase: React.FC = () => {
             <img
               src={previewImg.src}
               alt={previewImg.title}
-              className="w-full h-auto max-h-[78vh] object-contain rounded-xl"
+              className="w-full h-auto max-h-[78vh] object-contain rounded-xl" loading="lazy" decoding="async"
             />
           </div>
         )}

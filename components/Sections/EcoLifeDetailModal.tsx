@@ -330,7 +330,7 @@ export const EcoLifeDetailModal: React.FC<EcoLifeDetailModalProps> = ({
               <img
                 src="/assets/ecolife/ecolife_signature_logo_official_gold.webp"
                 alt="EcoLife Signature Đà Nẵng Gold Logo"
-                className="w-8 h-8 sm:w-9 sm:h-9 object-contain drop-shadow"
+                className="w-8 h-8 sm:w-9 sm:h-9 object-contain drop-shadow" loading="lazy" decoding="async"
               />
               <div>
                 <span className="text-[10px] font-black uppercase tracking-[0.2em] text-amber-400">
@@ -586,7 +586,7 @@ export const EcoLifeDetailModal: React.FC<EcoLifeDetailModalProps> = ({
                               src={b.img}
                               alt={b.title}
                               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                              loading="lazy"
+                              loading="lazy" decoding="async"
                             />
                           </div>
                           <div className="p-2 bg-black/90 text-center">
@@ -725,7 +725,7 @@ export const EcoLifeDetailModal: React.FC<EcoLifeDetailModalProps> = ({
                             imageOrientation: 'from-image',
                             display: 'block',
                           }}
-                          loading="lazy"
+                          loading="lazy" decoding="async"
                         />
                       </div>
                       <p className="text-[10px] text-slate-400 mt-2 font-mono">
@@ -764,7 +764,7 @@ export const EcoLifeDetailModal: React.FC<EcoLifeDetailModalProps> = ({
                           src="/assets/ecolife/TO_GAP_2_MAT_ONLINE_WEBSITE_BO_TRI_HOP_LY.webp"
                           alt="Tờ gấp 7x7 Accordion hai mặt"
                           className="w-full h-auto rounded-lg object-cover"
-                          loading="lazy"
+                          loading="lazy" decoding="async"
                         />
                       </div>
                     </div>
@@ -955,7 +955,7 @@ export const EcoLifeDetailModal: React.FC<EcoLifeDetailModalProps> = ({
                       src="/assets/ecolife/3_TIEN_DO_THI_CONG_THUC_TE_THAT.webp"
                       alt="Tiến độ thi công thực tế tại công trường EcoLife Signature"
                       className="w-full h-full object-cover max-h-[420px]"
-                      loading="lazy"
+                      loading="lazy" decoding="async"
                     />
                   </div>
                 </div>
@@ -1073,7 +1073,7 @@ export const EcoLifeDetailModal: React.FC<EcoLifeDetailModalProps> = ({
                         alt={`Mặt bằng 3D ${activeUnit.name}`}
                         data-testid="floorplan-image"
                         className="max-w-full max-h-full object-contain transition-transform duration-500 hover:scale-105"
-                        loading="lazy"
+                        loading="lazy" decoding="async"
                       />
                     </div>
                     <div className="text-[11px] font-mono text-slate-400 mt-2 text-center">

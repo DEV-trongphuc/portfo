@@ -73,7 +73,7 @@ const TrustShowcase: React.FC<TrustShowcaseProps> = ({ onOpenEcoLife }) => {
                       src={item.logo}
                       alt={item.name}
                       className="max-h-14 w-auto object-contain"
-                      loading="lazy"
+                      loading="lazy" decoding="async"
                     />
                   </div>
 
@@ -134,7 +134,7 @@ const TrustShowcase: React.FC<TrustShowcaseProps> = ({ onOpenEcoLife }) => {
                     src={agency.logo}
                     alt={agency.name}
                     className="max-h-14 w-auto object-contain"
-                    loading="lazy"
+                    loading="lazy" decoding="async"
                   />
                 </div>
                 <div>
@@ -180,7 +180,7 @@ const TrustShowcase: React.FC<TrustShowcaseProps> = ({ onOpenEcoLife }) => {
                             src={partner.image}
                             alt={partner.name}
                             className="max-h-8 max-w-[100px] w-auto object-contain"
-                            loading="lazy"
+                            loading="lazy" decoding="async"
                           />
                         ) : (
                           <span className="font-display font-bold text-xs text-[#B45309]">
@@ -222,7 +222,7 @@ const TrustShowcase: React.FC<TrustShowcaseProps> = ({ onOpenEcoLife }) => {
                     src={cert.image}
                     alt={cert.name}
                     className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform"
-                    loading="lazy"
+                    loading="lazy" decoding="async"
                   />
                 </div>
                 <div className="text-[10.5px] font-semibold text-[#0F172A] line-clamp-1 w-full">
@@ -245,7 +245,7 @@ const TrustShowcase: React.FC<TrustShowcaseProps> = ({ onOpenEcoLife }) => {
             <img
               src={selectedCert.image}
               alt={selectedCert.name}
-              className="max-h-[62vh] w-auto object-contain mx-auto rounded-xl"
+              className="max-h-[62vh] w-auto object-contain mx-auto rounded-xl" loading="lazy" decoding="async"
             />
             <div className="text-xs font-bold text-[#B45309]">
               {selectedCert.issuer} • {selectedCert.year}

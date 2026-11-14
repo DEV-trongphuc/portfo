@@ -103,6 +103,7 @@ const TarotShowcase: React.FC = () => {
                     loading="lazy"
                     decoding="async"
                     className="w-full h-auto object-cover rounded-2xl"
+                  
                   />
                 </div>
               )}
@@ -125,6 +126,7 @@ const TarotShowcase: React.FC = () => {
                 loading="lazy"
                 decoding="async"
                 className="w-full h-auto object-cover rounded-2xl"
+              
               />
             </motion.div>
 
@@ -142,6 +144,7 @@ const TarotShowcase: React.FC = () => {
                 loading="lazy"
                 decoding="async"
                 className="w-full h-auto object-cover rounded-2xl"
+              
               />
             </motion.div>
           </div>
@@ -273,6 +276,7 @@ const TarotShowcase: React.FC = () => {
                   loading="lazy"
                   decoding="async"
                   className="w-full h-auto object-cover rounded-xl"
+                
                 />
               </div>
             )}
@@ -291,7 +295,7 @@ const TarotShowcase: React.FC = () => {
             <img
               src={previewImage}
               alt="Preview Fullscreen"
-              className="max-w-full max-h-[75vh] object-contain rounded-xl"
+              className="max-w-full max-h-[75vh] object-contain rounded-xl" loading="lazy" decoding="async"
             />
           </div>
         )}

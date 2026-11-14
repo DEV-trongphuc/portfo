@@ -159,6 +159,8 @@ const ErpShowcase: React.FC = () => {
                 <img
                   src="https://ideas.edu.vn/wp-content/uploads/2026/06/Logo_IDEAS_Slg-optimized.webp"
                   alt="Viện Quản Trị & Kinh Doanh IDEAS"
+                  loading="lazy"
+                  decoding="async"
                   onError={(e) => {
                     e.currentTarget.src = logoIdeas;
                   }}
@@ -178,7 +180,7 @@ const ErpShowcase: React.FC = () => {
                 <img
                   src={partnerRichland}
                   alt="RichLandVn"
-                  className="h-6 w-auto object-contain"
+                  className="h-6 w-auto object-contain" loading="lazy" decoding="async"
                 />
               </div>
               <div>
@@ -298,6 +300,7 @@ const ErpShowcase: React.FC = () => {
                         loading="lazy"
                         decoding="async"
                         className="w-full h-full object-cover"
+                      
                       />
                     </button>
                   );
@@ -396,7 +399,7 @@ const ErpShowcase: React.FC = () => {
                   key={currentItem.src}
                   src={currentItem.src}
                   alt={currentItem.title}
-                  className="w-full h-full object-contain bg-slate-50 transition-transform duration-500 group-hover:scale-[1.015]"
+                  className="w-full h-full object-contain bg-slate-50 transition-transform duration-500 group-hover:scale-[1.015]" loading="lazy" decoding="async"
                 />
               </div>
             </div>
@@ -451,6 +454,7 @@ const ErpShowcase: React.FC = () => {
                           loading="lazy"
                           decoding="async"
                           className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                        
                         />
                         <span className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-white/95 border border-slate-200 text-[11px] font-bold text-slate-800 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                           <Maximize2 size={11} /> Phóng to
@@ -537,6 +541,7 @@ const ErpShowcase: React.FC = () => {
                           loading="lazy"
                           decoding="async"
                           className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                        
                         />
                         <span className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-white/95 border border-slate-200 text-[11px] font-bold text-slate-800 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                           <Maximize2 size={11} /> Phóng to
@@ -603,7 +608,7 @@ const ErpShowcase: React.FC = () => {
               <img
                 src={zoomItem.src}
                 alt={zoomItem.title}
-                className="w-full max-h-[70vh] object-contain mx-auto"
+                className="w-full max-h-[70vh] object-contain mx-auto" loading="lazy" decoding="async"
               />
               {zoomIdx >= 0 && (
                 <>

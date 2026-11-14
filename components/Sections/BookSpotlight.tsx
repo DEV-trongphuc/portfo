@@ -191,7 +191,7 @@ const BookSpotlight: React.FC = () => {
                 <img
                   src={RAW_PAGES[0]}
                   alt="Facebook Ads Digital Book Cover"
-                  className="w-full h-full object-cover rounded-r-2xl"
+                  className="w-full h-full object-cover rounded-r-2xl" loading="lazy" decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-transparent rounded-r-2xl pointer-events-none"></div>
                 <div className="absolute inset-0 border border-slate-900/10 rounded-r-2xl group-hover:border-[#1E40FF]/50 transition-colors"></div>
@@ -219,6 +219,8 @@ const BookSpotlight: React.FC = () => {
             >
               <img
                 src="https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/turnio_dev.png"
+                loading="lazy"
+                decoding="async"
                 onError={(e) => {
                   e.currentTarget.src = domLogo;
                 }}
@@ -292,7 +294,7 @@ const BookSpotlight: React.FC = () => {
                               <img
                                 src={sheet.front}
                                 alt={`Front ${index}`}
-                                className="w-full h-full object-contain"
+                                className="w-full h-full object-contain" loading="lazy" decoding="async"
                               />
                               <div className="absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-slate-900/15 to-transparent pointer-events-none"></div>
                             </div>
@@ -339,7 +341,7 @@ const BookSpotlight: React.FC = () => {
                                   <img
                                     src={sheet.back}
                                     alt={`Back ${index}`}
-                                    className="w-full h-full object-contain"
+                                    className="w-full h-full object-contain" loading="lazy" decoding="async"
                                   />
                                   <div className="absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-slate-900/15 to-transparent pointer-events-none"></div>
                                 </>

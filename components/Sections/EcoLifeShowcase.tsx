@@ -112,13 +112,13 @@ const EcoLifeShowcase: React.FC<EcoLifeShowcaseProps> = ({ onOpenDetail }) => {
                 <img
                   src="/assets/partners/logo_ecolife_ngang.webp"
                   alt="EcoLife Signature"
-                  className="h-9 w-auto object-contain"
+                  className="h-9 w-auto object-contain" loading="lazy" decoding="async"
                 />
                 <span className="text-[#E6DEC8]">|</span>
                 <img
                   src="/assets/partners/logo_capital_house.webp"
                   alt="Capital House"
-                  className="h-7 w-auto object-contain"
+                  className="h-7 w-auto object-contain" loading="lazy" decoding="async"
                 />
               </div>
 
@@ -174,7 +174,7 @@ const EcoLifeShowcase: React.FC<EcoLifeShowcaseProps> = ({ onOpenDetail }) => {
                         src={item.image}
                         alt={item.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
+                        loading="lazy" decoding="async"
                       />
                     </div>
                     <div className="p-2.5 bg-white border-t border-[#E6DEC8]">

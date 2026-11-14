@@ -146,6 +146,7 @@ const OutsourceHighlights: React.FC = () => {
                           loading="lazy"
                           decoding="async"
                           className="w-full h-full object-contain"
+                        
                         />
                       </div>
                     ) : (
@@ -256,7 +257,7 @@ const OutsourceHighlights: React.FC = () => {
                       src={game.image}
                       alt={game.title}
                       loading="lazy"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover" decoding="async"
                     />
                   </div>
                   <div className="text-left min-w-0">
@@ -291,7 +292,7 @@ const OutsourceHighlights: React.FC = () => {
                     <img
                       src={selectedCampaign.logo}
                       alt={selectedCampaign.company}
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-contain" loading="lazy" decoding="async"
                     />
                   </div>
                 ) : (
@@ -371,7 +372,7 @@ const OutsourceHighlights: React.FC = () => {
                     rel="noreferrer"
                     className="h-10 px-3.5 rounded-xl bg-white border border-slate-200 hover:border-[#1E40FF] flex items-center justify-center shadow-xs transition-colors"
                   >
-                    <img src={l.src} alt="Brand logo" className="h-5 w-auto object-contain" />
+                    <img src={l.src} alt="Brand logo" className="h-5 w-auto object-contain" loading="lazy" decoding="async" />
                   </a>
                 ))}
               </div>
@@ -406,7 +407,7 @@ const OutsourceHighlights: React.FC = () => {
             <img
               src={activeGameImage.image}
               alt={activeGameImage.title}
-              className="w-full h-auto max-h-[70vh] object-contain rounded-xl"
+              className="w-full h-auto max-h-[70vh] object-contain rounded-xl" loading="lazy" decoding="async"
             />
           </div>
         )}

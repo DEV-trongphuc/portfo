@@ -79,6 +79,7 @@ const TechBento: React.FC = () => {
                           loading="lazy"
                           decoding="async"
                           className="w-5 h-5 object-contain"
+                        
                         />
                       </div>
                     ))}
@@ -214,7 +215,7 @@ const TechBento: React.FC = () => {
                     <img
                       src={logo.url}
                       alt={logo.name}
-                      className="w-6 h-6 object-contain group-hover/logo:scale-110 transition-transform"
+                      className="w-6 h-6 object-contain group-hover/logo:scale-110 transition-transform" loading="lazy" decoding="async"
                     />
                   </div>
                 ))}

@@ -235,7 +235,7 @@ const EcosystemShowcase: React.FC<EcosystemShowcaseProps> = ({ onOpenDomation })
                   <img
                     src={currentSlide.src}
                     alt={currentSlide.title}
-                    className="w-full h-full object-contain bg-[#FAF8F3] transition-transform duration-500 group-hover:scale-[1.015]"
+                    className="w-full h-full object-contain bg-[#FAF8F3] transition-transform duration-500 group-hover:scale-[1.015]" loading="lazy" decoding="async"
                   />
                 )}
                 <button
@@ -295,7 +295,7 @@ const EcosystemShowcase: React.FC<EcosystemShowcaseProps> = ({ onOpenDomation })
                         src={sl.src}
                         alt={sl.title}
                         className="w-full h-full object-cover object-top"
-                        loading="lazy"
+                        loading="lazy" decoding="async"
                       />
                       <span
                         className={`absolute bottom-1.5 right-1.5 px-2 py-0.5 rounded-md text-[10px] font-bold ${
@@ -365,7 +365,7 @@ const EcosystemShowcase: React.FC<EcosystemShowcaseProps> = ({ onOpenDomation })
               <img
                 src={zoomSlide.src}
                 alt={zoomSlide.title}
-                className="w-full h-auto max-h-[70vh] object-contain"
+                className="w-full h-auto max-h-[70vh] object-contain" loading="lazy" decoding="async"
               />
             </div>
             <p className="text-xs sm:text-sm text-[#555B62] leading-relaxed">{zoomSlide.desc}</p>

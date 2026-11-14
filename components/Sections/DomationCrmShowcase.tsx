@@ -129,6 +129,7 @@ const DomationCrmShowcase: React.FC = () => {
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                    
                     />
                     <span className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/95 text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow">
                       <Maximize2 size={12} />
@@ -154,7 +155,7 @@ const DomationCrmShowcase: React.FC = () => {
               <img
                 src="/assets/partners/logo_capital_house.webp"
                 alt="Capital House"
-                className="h-5 w-auto object-contain"
+                className="h-5 w-auto object-contain" loading="lazy" decoding="async"
               />
               <span className="text-xs font-semibold text-slate-700">Tập đoàn Capital House</span>
             </div>
@@ -162,7 +163,7 @@ const DomationCrmShowcase: React.FC = () => {
               <img
                 src="/assets/partners/logo_ecolife_ngang.webp"
                 alt="EcoLife Signature"
-                className="h-5 w-auto object-contain"
+                className="h-5 w-auto object-contain" loading="lazy" decoding="async"
               />
               <span className="text-xs font-semibold text-slate-700">EcoLife Signature Đà Nẵng</span>
             </div>
@@ -181,7 +182,7 @@ const DomationCrmShowcase: React.FC = () => {
             <img
               src={zoomImage.src}
               alt={zoomImage.title}
-              className="w-full max-h-[75vh] object-contain mx-auto rounded-xl"
+              className="w-full max-h-[75vh] object-contain mx-auto rounded-xl" loading="lazy" decoding="async"
             />
           </div>
         )}

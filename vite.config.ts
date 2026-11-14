@@ -18,14 +18,16 @@ export default defineConfig(({ mode }) => {
       },
       build: {
         sourcemap: false,
+        cssMinify: true,
         chunkSizeWarningLimit: 1000,
         rollupOptions: {
           output: {
             manualChunks(id) {
               if (id.includes('node_modules')) {
+                if (id.includes('lucide-react') || id.includes('lucide')) return 'vendor-lucide';
+                if (id.includes('embla-carousel')) return 'vendor-embla';
+                if (id.includes('framer-motion') || id.includes('motion-')) return 'vendor-framer';
                 if (id.includes('react')) return 'vendor-react';
-                if (id.includes('framer-motion')) return 'vendor-framer';
-                if (id.includes('lucide')) return 'vendor-lucide';
                 return 'vendor';
               }
             }

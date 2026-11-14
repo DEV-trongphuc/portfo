@@ -270,7 +270,7 @@ const DomationDetailView: React.FC<DomationDetailViewProps> = ({ onBack, onOpenE
                   <img
                     src={currentV2.image}
                     alt={currentV2.title}
-                    className="w-full h-auto object-cover"
+                    className="w-full h-auto object-cover" loading="lazy" decoding="async"
                   />
                 </div>
                 <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -352,7 +352,7 @@ const DomationDetailView: React.FC<DomationDetailViewProps> = ({ onBack, onOpenE
                       src={screen.image}
                       alt={screen.title}
                       className="w-full h-full object-cover object-top"
-                      loading="lazy"
+                      loading="lazy" decoding="async"
                     />
                   </div>
 
@@ -384,7 +384,7 @@ const DomationDetailView: React.FC<DomationDetailViewProps> = ({ onBack, onOpenE
                 className="rounded-2xl bg-white border border-[#E2E8F0] p-4 flex items-center gap-4"
               >
                 <div className="w-16 h-16 rounded-xl bg-white/40 border border-[#E2E8F0] p-2 flex items-center justify-center shrink-0">
-                  <img src={ag.logo} alt={ag.name} className="max-h-full max-w-full object-contain" />
+                  <img src={ag.logo} alt={ag.name} className="max-h-full max-w-full object-contain" loading="lazy" decoding="async" />
                 </div>
                 <div className="min-w-0">
                   <div className="text-[10px] font-bold uppercase tracking-wider text-[#1E40FF]">
@@ -482,7 +482,7 @@ const DomationDetailView: React.FC<DomationDetailViewProps> = ({ onBack, onOpenE
                       <img
                         src={currentStudioSlide.src}
                         alt={currentStudioSlide.title}
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-contain" loading="lazy" decoding="async"
                       />
                       <span className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-white/95 border border-[#E2E8F0] text-[11px] font-bold text-[#1E40FF] flex items-center gap-1">
                         <ZoomIn size={13} /> Phóng to
@@ -516,7 +516,7 @@ const DomationDetailView: React.FC<DomationDetailViewProps> = ({ onBack, onOpenE
                     }`}
                   >
                     <div className="w-20 h-14 rounded-lg overflow-hidden bg-white border border-[#E2E8F0] shrink-0">
-                      <img src={sl.src} alt={sl.title} className="w-full h-full object-cover" loading="lazy" />
+                      <img src={sl.src} alt={sl.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                     </div>
                     <div className="min-w-0">
                       <div className="text-[9.5px] font-bold uppercase text-[#1E40FF]">
@@ -617,7 +617,7 @@ const DomationDetailView: React.FC<DomationDetailViewProps> = ({ onBack, onOpenE
                         src={site.img}
                         alt={site.name}
                         className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
+                        loading="lazy" decoding="async"
                       />
                     </div>
                     <div className="p-5 space-y-2">
@@ -816,7 +816,7 @@ const DomationDetailView: React.FC<DomationDetailViewProps> = ({ onBack, onOpenE
               <img
                 src={zoomMedia.src}
                 alt={zoomMedia.title}
-                className="w-full h-auto max-h-[72vh] object-contain"
+                className="w-full h-auto max-h-[72vh] object-contain" loading="lazy" decoding="async"
               />
             </div>
             {zoomMedia.desc && (

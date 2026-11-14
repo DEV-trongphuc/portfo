@@ -5,10 +5,11 @@ import Navbar from './components/Layout/Navbar';
 import Background from './components/UI/Background';
 import ScrollProgress from './components/UI/ScrollProgress';
 import SectionQuickDock from './components/UI/SectionQuickDock';
-import CommandPalette from './components/UI/CommandPalette';
 import { StudioDrawerModal } from './components/UI/StudioDrawerModal';
 import { subscribeToast } from './utils/toast';
 import Hero from './components/Sections/Hero';
+
+const CommandPalette = React.lazy(() => import('./components/UI/CommandPalette'));
 
 // Below-the-fold lazy code splitting for fast initial mobile, tablet & desktop TTI
 const Experience = React.lazy(() => import('./components/Sections/Experience'));
@@ -117,29 +118,21 @@ export default function App() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const warmupChunks = () => {
+    const navConn = (
+      navigator as unknown as {
+        connection?: { saveData?: boolean; effectiveType?: string };
+      }
+    ).connection;
+    if (navConn?.saveData || navConn?.effectiveType === '2g' || navConn?.effectiveType === 'slow-2g') {
+      return;
+    }
+
+    // Warm up only the top immediate sections when the browser is idle to avoid network stampedes
+    const warmupTopSections = () => {
       void import('./components/Sections/Experience');
-      void import('./components/Sections/SkillsMatrix');
       void import('./components/Sections/InkicaPodShowcase');
       void import('./components/Sections/RealEstateShowcase');
       void import('./components/Sections/TheBridge');
-      void import('./components/Sections/DomationDataShowcase');
-      void import('./components/Sections/ErpShowcase');
-      void import('./components/Sections/DomationCrmShowcase');
-      void import('./components/Sections/AutoFlowPro');
-      void import('./components/Sections/CrmShowcase');
-      void import('./components/Sections/MetaAdReportShowcase');
-      void import('./components/Sections/ZaloMiniAppShowcase');
-      void import('./components/Sections/LmsShowcase');
-      void import('./components/Sections/TarotShowcase');
-      void import('./components/Sections/OutsourceHighlights');
-      void import('./components/Sections/BookSpotlight');
-      void import('./components/Sections/Certifications');
-      void import('./components/Sections/DomMarketing');
-      void import('./components/Sections/TechBento');
-      void import('./components/Sections/Partners');
-      void import('./components/Layout/Footer');
-      void import('./components/UI/AiPortfolioChatbot');
     };
     const ric = (
       globalThis as unknown as {
@@ -148,7 +141,7 @@ export default function App() {
       }
     ).requestIdleCallback;
     if (ric) {
-      const id = ric(warmupChunks, { timeout: 2200 });
+      const id = ric(warmupTopSections, { timeout: 3500 });
       return () => {
         const cic = (
           globalThis as unknown as { cancelIdleCallback?: (id: number) => void }
@@ -156,7 +149,7 @@ export default function App() {
         cic?.(id);
       };
     }
-    const timer = globalThis.setTimeout(warmupChunks, 1200);
+    const timer = globalThis.setTimeout(warmupTopSections, 2200);
     return () => globalThis.clearTimeout(timer);
   }, []);
 
@@ -367,13 +360,17 @@ export default function App() {
         <AiPortfolioChatbot onNavigateSection={jumpToSection} />
       </Suspense>
 
-      <CommandPalette
-        isOpen={commandOpen}
-        onClose={() => setCommandOpen(false)}
-        onNavigate={jumpToSection}
-        onOpenEcoLife={() => setDrawer('ecolife')}
-        onOpenDomation={() => setDrawer('domation')}
-      />
+      {commandOpen && (
+        <Suspense fallback={null}>
+          <CommandPalette
+            isOpen={commandOpen}
+            onClose={() => setCommandOpen(false)}
+            onNavigate={jumpToSection}
+            onOpenEcoLife={() => setDrawer('ecolife')}
+            onOpenDomation={() => setDrawer('domation')}
+          />
+        </Suspense>
+      )}
 
       <AnimatePresence>
         {toastMsg && (

@@ -164,7 +164,7 @@ const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onOpenEcoLifeMo
                         src={u.image}
                         alt={u.code}
                         loading="lazy"
-                        className="w-full aspect-[4/3] object-contain group-hover:scale-105 transition-transform"
+                        className="w-full aspect-[4/3] object-contain group-hover:scale-105 transition-transform" decoding="async"
                       />
                       <span className="block text-[10px] font-bold text-[#0F172A] mt-1 whitespace-nowrap">
                         {u.code} • {u.area}
@@ -233,7 +233,7 @@ const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onOpenEcoLifeMo
                         <img
                           src={item.logo}
                           alt={item.company}
-                          className="w-11 h-11 rounded-xl object-contain bg-white/40 border border-[#E2E8F0] p-1 shrink-0"
+                          className="w-11 h-11 rounded-xl object-contain bg-white/40 border border-[#E2E8F0] p-1 shrink-0" loading="lazy" decoding="async"
                         />
                       ) : (
                         <div className="w-11 h-11 rounded-xl bg-[#FFFBEB] border border-[#E2E8F0] flex items-center justify-center font-display font-bold text-sm text-[#B45309] shrink-0">

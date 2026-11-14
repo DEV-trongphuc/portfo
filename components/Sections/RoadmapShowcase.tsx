@@ -828,7 +828,7 @@ export const MajorCaseStudies: React.FC = () => {
                     <img
                       src={currentCase.logo}
                       alt={currentCase.client}
-                      className="w-10 h-10 rounded-xl object-contain bg-white/5 p-1 border border-white/10"
+                      className="w-10 h-10 rounded-xl object-contain bg-white/5 p-1 border border-white/10" loading="lazy" decoding="async"
                     />
                   )}
                   <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white">

@@ -101,7 +101,7 @@ const AutoFlowPro: React.FC = () => {
                   <img
                     src={domLogo}
                     alt="DOMATION Logo"
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain" loading="lazy" decoding="async"
                   />
                 </div>
               </div>
@@ -180,6 +180,7 @@ const AutoFlowPro: React.FC = () => {
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                    
                     />
                     <span className="absolute top-2 right-2 w-7 h-7 rounded-lg bg-white/95 border border-slate-200 text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
                       <Maximize2 size={13} />
@@ -211,7 +212,7 @@ const AutoFlowPro: React.FC = () => {
             <img
               src={previewImage}
               alt="Fullscreen Preview"
-              className="max-w-full max-h-[75vh] object-contain rounded-xl"
+              className="max-w-full max-h-[75vh] object-contain rounded-xl" loading="lazy" decoding="async"
             />
           </div>
         )}

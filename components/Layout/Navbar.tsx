@@ -83,7 +83,7 @@ const Navbar: React.FC<NavbarProps> = ({
           className="flex items-center gap-3 shrink-0 group"
         >
           <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-blue-600/30 shadow-sm bg-white p-0.5 shrink-0">
-            <img src={meAvatar} alt="Huỳnh Trọng Phúc" className="w-full h-full object-cover rounded-full" />
+            <img src={meAvatar} alt="Huỳnh Trọng Phúc" width={36} height={36} decoding="async" className="w-full h-full object-cover rounded-full" />
           </div>
           <div className="leading-tight">
             <span className="font-display font-extrabold text-sm text-slate-950 block whitespace-nowrap group-hover:text-blue-700 transition-colors">

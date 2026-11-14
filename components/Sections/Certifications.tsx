@@ -152,7 +152,7 @@ const Certifications: React.FC = () => {
                       <img
                         src={cert.image}
                         alt={cert.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async"
                       />
 
                       <div className="absolute top-2.5 right-2.5 bg-white/95 border border-blue-200 px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
@@ -288,7 +288,7 @@ const Certifications: React.FC = () => {
               <img
                 src={selectedCert.image}
                 alt={selectedCert.name}
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain" loading="lazy" decoding="async"
               />
             </div>
 

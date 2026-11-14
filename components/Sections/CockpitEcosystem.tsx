@@ -839,7 +839,7 @@ export const CockpitEcosystem: React.FC = () => {
                             : 'border-white/10 opacity-60 hover:opacity-100'
                         }`}
                       >
-                        <img src={img.src} alt="" className="w-full h-full object-cover" />
+                        <img src={img.src} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                       </button>
                     );
                   })}
@@ -912,7 +912,7 @@ export const CockpitEcosystem: React.FC = () => {
           className="max-w-5xl bg-[#050505] border-white/20"
         >
           <div className="p-2 sm:p-4 bg-black flex items-center justify-center">
-            <img src={zoomImage} alt="System Zoom" className="w-full max-h-[80vh] object-contain rounded-xl" />
+            <img src={zoomImage} alt="System Zoom" className="w-full max-h-[80vh] object-contain rounded-xl" loading="lazy" decoding="async" />
           </div>
         </Modal>
       )}

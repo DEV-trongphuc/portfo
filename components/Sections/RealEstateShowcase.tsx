@@ -198,12 +198,11 @@ const RealEstateShowcase: React.FC<RealEstateShowcaseProps> = ({
                     key="video-3d"
                     src="/assets/ecolife/ecolife_3d_preview.mp4"
                     poster="/assets/ecolife/FACADE_HUONG_CHINH_03.webp"
-                    autoPlay
                     muted
                     loop
                     controls
                     playsInline
-                    preload="metadata"
+                    preload="none"
                     className="w-full h-full object-cover"
                   />
                 ) : (
@@ -259,6 +258,7 @@ const RealEstateShowcase: React.FC<RealEstateShowcaseProps> = ({
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  
                   />
                 </div>
                 <div className="flex items-center justify-between gap-1 px-1 pb-0.5">
@@ -291,7 +291,7 @@ const RealEstateShowcase: React.FC<RealEstateShowcaseProps> = ({
                   src={logo.src}
                   alt={logo.alt}
                   loading="lazy"
-                  className="h-5 sm:h-6 w-auto object-contain"
+                  className="h-5 sm:h-6 w-auto object-contain" decoding="async"
                 />
                 <span className="text-[10px] font-semibold text-slate-500 hidden sm:inline">
                   {logo.role}
@@ -309,7 +309,7 @@ const RealEstateShowcase: React.FC<RealEstateShowcaseProps> = ({
                   src={logo.src}
                   alt={logo.alt}
                   loading="lazy"
-                  className="h-5 sm:h-6 w-auto object-contain"
+                  className="h-5 sm:h-6 w-auto object-contain" decoding="async"
                 />
                 <span className="text-[10px] font-semibold text-slate-500 hidden sm:inline">
                   {logo.role}
@@ -331,7 +331,7 @@ const RealEstateShowcase: React.FC<RealEstateShowcaseProps> = ({
             <img
               src={zoomImg.src}
               alt={zoomImg.title}
-              className="w-full max-h-[78vh] object-contain rounded-xl"
+              className="w-full max-h-[78vh] object-contain rounded-xl" loading="lazy" decoding="async"
             />
           </div>
         )}

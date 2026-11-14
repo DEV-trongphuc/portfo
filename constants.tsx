@@ -1,4 +1,5 @@
-import { Experience, Project, Certification, Partner, OutsourceHighlight } from './types';
+import { Experience, Project, Certification, OutsourceHighlight } from './types';
+export { PARTNERS } from './constants/partners';
 import { 
   Megaphone, 
   Code, 
@@ -41,7 +42,6 @@ import cert6 from './imgs/cert_6.webp';
 import cert7 from './imgs/cert_7.webp';
 import cert8 from './imgs/cert_8.webp';
 
-// Partners logos
 import partnerPhucloctho from './imgs/partner_phucloctho.webp';
 import partnerDuyenmai from './imgs/partner_duyenmai.webp';
 import partnerCowboysteak from './imgs/partner_cowboysteak.webp';
@@ -184,33 +184,6 @@ export const OUTSOURCE_HIGHLIGHTS: OutsourceHighlight[] = [
     description: 'Chiến dịch Web Order vận hành có lợi nhuận ổn định nhưng gặp rào cản khi scale-up ngân sách. Nguyên nhân cốt lõi là sự thua thiệt về tính tiện lợi trong thanh toán mở rộng so với các siêu ứng dụng (GrabFood, ShopeeFood) và thiếu hụt các chương trình Promo mang tính mồi câu mạnh mẽ. Case study đúc kết ra bài học quan trọng về việc xây dựng lợi thế độc quyền (Exclusive Offers) để có thể thay đổi thói quen đặt hàng của user trên kênh Social.',
     status: 'success'
   },
-];
-
-export const PARTNERS: Partner[] = [
-  { name: 'Phúc Lộc Thọ', image: partnerPhucloctho, website: 'https://phucloctho.vn', industry: 'FNB / Franchise' },
-  { name: 'Duyên Mai', image: partnerDuyenmai, website: 'https://duyenmai.vn', industry: 'Fashion / Retail' },
-  { name: 'Cowboy Steak', image: partnerCowboysteak, website: 'https://www.facebook.com/CowboySteakhouseVietnam/', industry: 'FNB / Restaurant' },
-  { name: 'En Group', image: partnerEngroup, website: 'https://engroup.vn', industry: 'FNB / Holdings' },
-  { name: 'Abiru-EN', image: partnerAbiruen, website: 'https://ka-en.com.vn/', industry: 'FNB / Restaurant' },
-  { name: 'KA-EN', image: partnerKaen, website: 'https://ka-en.com.vn/', industry: 'FNB / Restaurant' },
-  { name: 'Haagen Dazs', image: partnerHaagendazs, website: 'https://haagendazs.com.vn/', industry: 'FNB / Dessert' },
-  { name: 'BEAN', image: partnerBean, website: 'https://therunningbean.com.vn/', industry: 'FNB / Cafe' },
-  { name: 'The Running Bean', image: partnerTherunningbean, website: 'https://therunningbean.com.vn/', industry: 'FNB / Cafe' },
-  { name: 'Esta Saigon', image: partnerEstasaigon, website: 'https://esta-saigon.com/', industry: 'FNB / Restaurant' },
-  { name: 'Le Petit', image: partnerLepetit, website: 'https://lepetit.vn/', industry: 'FNB / Bistro' },
-  { name: 'Snowee', image: partnerSnowee, website: 'https://snoweegelato.com/', industry: 'FNB / Dessert' },
-  { name: 'An Ninh Tiên Hoàng', image: partnerAnninhtienhoang, website: 'http://anninhtienhoang.com/', industry: 'Security Service' },
-  { name: 'Ascencia', image: partnerAscencia, website: 'https://www.ascencia-business-school.com/', industry: 'Education / Finance' },
-  { name: 'VTCI Edu', image: partnerVtciedu, website: 'https://vtc.edu.vn/', industry: 'Education / Training' },
-  { name: 'College de Paris', image: partnerCollegedeparis, website: 'https://collegedeparis.vn/', industry: 'Education / University' },
-  { name: 'Swiss UMEF', image: partnerSwissumef, website: 'https://www.umef.ch/', industry: 'Education / University' },
-  { name: 'IDEAS Institute', image: partnerIdeasinstitute, website: 'https://ideas.edu.vn/', industry: 'Education / Research' },
-  { name: 'Navastore', image: partnerNavastore, website: 'https://navastore.vn/', industry: 'Retail / Ecommerce' },
-  { name: 'Nha khoa Flora', image: partnerFlora, website: 'https://nhakhoaflora.com', industry: 'Dental / Clinic' },
-  { name: 'Brandson', image: partnerBrandson, website: 'https://brandson.vn', industry: 'Branding / Agency' },
-  { name: 'Ampersand', image: partnerAmpersand, website: 'https://www.ampersand.vn/', industry: 'FNB / Management' },
-  { name: 'Implantswiss', image: partnerImplantswiss, website: 'https://implantswiss.vn/', industry: 'Dental / Implant' },
-  { name: 'Richland', image: partnerRichland, website: 'https://rich-land.vercel.app/', industry: 'Real Estate / PropTech' }
 ];
 
 export const EXPERIENCES: Experience[] = [

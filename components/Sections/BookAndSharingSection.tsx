@@ -152,7 +152,7 @@ const BookAndSharingSection: React.FC = () => {
                             <img
                               src={sheet.front}
                               alt="Facebook Ads Book Page"
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-cover" loading="lazy" decoding="async"
                             />
                             {/* Book Spine Crease */}
                             <div className="absolute inset-y-0 left-0 w-4 bg-gradient-to-r from-black/25 to-transparent pointer-events-none" />
@@ -190,7 +190,7 @@ const BookAndSharingSection: React.FC = () => {
                               <img
                                 src={sheet.back}
                                 alt="Facebook Ads Sample Page"
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover" loading="lazy" decoding="async"
                               />
                             )}
                           </div>
@@ -408,7 +408,7 @@ const BookAndSharingSection: React.FC = () => {
               <img
                 src={BOOK_PAGES[readerPageIdx].src}
                 alt={BOOK_PAGES[readerPageIdx].label}
-                className="max-h-[65vh] w-auto object-contain rounded-lg shadow-md"
+                className="max-h-[65vh] w-auto object-contain rounded-lg shadow-md" loading="lazy" decoding="async"
               />
               <button
                 type="button"
@@ -441,7 +441,7 @@ const BookAndSharingSection: React.FC = () => {
                       readerPageIdx === i ? 'border-[#D97706]' : 'border-[#E2E8F0] opacity-60'
                     }`}
                   >
-                    <img src={pg.src} alt={pg.label} className="w-full h-full object-cover" />
+                    <img src={pg.src} alt={pg.label} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                   </button>
                 ))}
               </div>

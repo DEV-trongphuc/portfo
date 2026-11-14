@@ -66,13 +66,13 @@ export const EcoLifeDetailView: React.FC<EcoLifeDetailViewProps> = ({
               <img
                 src="/assets/partners/logo_capital_house.webp"
                 alt="Capital House"
-                className="h-4 w-auto object-contain"
+                className="h-4 w-auto object-contain" loading="lazy" decoding="async"
               />
               <span className="text-slate-300">×</span>
               <img
                 src="/assets/partners/logo_ecolife_ngang.webp"
                 alt="EcoLife Signature"
-                className="h-4 w-auto object-contain"
+                className="h-4 w-auto object-contain" loading="lazy" decoding="async"
               />
             </div>
           </div>
@@ -316,7 +316,7 @@ export const EcoLifeDetailView: React.FC<EcoLifeDetailViewProps> = ({
                       src={item.image}
                       alt={item.title}
                       loading="lazy"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" decoding="async"
                     />
                     <span className="absolute top-1.5 right-1.5 w-6 h-6 rounded-md bg-white/95 border border-slate-200 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                       <Maximize2 size={11} className="text-slate-700" />
@@ -346,7 +346,7 @@ export const EcoLifeDetailView: React.FC<EcoLifeDetailViewProps> = ({
               <img
                 src={zoomItem.src}
                 alt={zoomItem.title}
-                className="w-full h-auto max-h-[75vh] object-contain"
+                className="w-full h-auto max-h-[75vh] object-contain" loading="lazy" decoding="async"
               />
             </div>
             {zoomItem.subtitle && (

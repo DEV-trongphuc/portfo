@@ -179,7 +179,7 @@ const LandingShowcaseSection: React.FC<LandingShowcaseSectionProps> = ({
                     src={site.image}
                     alt={site.name}
                     loading="lazy"
-                    className="w-full h-full object-cover object-top group-hover:scale-[1.04] transition-transform duration-500"
+                    className="w-full h-full object-cover object-top group-hover:scale-[1.04] transition-transform duration-500" decoding="async"
                   />
                   <span className="absolute bottom-2.5 right-2.5 px-2.5 py-0.5 rounded-full bg-[#212529]/85 text-white text-[9.5px] font-bold whitespace-nowrap">
                     {site.metric}
@@ -246,7 +246,7 @@ const LandingShowcaseSection: React.FC<LandingShowcaseSectionProps> = ({
             <img
               src={zoomSite.image}
               alt={zoomSite.name}
-              className="w-full max-h-[72vh] object-contain rounded-xl border border-[#E6DEC8] bg-white"
+              className="w-full max-h-[72vh] object-contain rounded-xl border border-[#E6DEC8] bg-white" loading="lazy" decoding="async"
             />
             <div className="flex flex-wrap items-center justify-between gap-3">
               <p className="text-xs sm:text-sm text-[#555B62]">{zoomSite.hook}</p>

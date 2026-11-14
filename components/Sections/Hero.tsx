@@ -1,11 +1,254 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { SOCIALS } from '../../constants';
-import { MoveRight, Zap, PlayCircle, MousePointer2, Linkedin } from 'lucide-react';
+import { ArrowRight, Box, Building2, Layers, Linkedin, Sparkles } from 'lucide-react';
+import { PARTNERS } from '../../constants';
+import domLogo from '../../imgs/dom_logo.webp';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  onOpenDomationModal: () => void;
+  onOpenEcoLifeModal: () => void;
+  onJumpSection: (id: string) => void;
+}
+
+interface SphereBrandNode {
+  name: string;
+  logo: string;
+  sub: string;
+  target?: string;
+  url?: string;
+}
+
+const SPHERE_NODES: SphereBrandNode[] = [
+  {
+    name: 'Capital House Group',
+    logo: '/assets/partners/logo_capital_house.webp',
+    sub: 'WebGL 3D & CRM Auto CAPI',
+    target: 'real-estate',
+  },
+  {
+    name: 'EcoLife Signature',
+    logo: '/assets/partners/logo_ecolife_ngang.webp',
+    sub: '3D Interactive & AI Portal',
+    target: 'real-estate',
+  },
+  {
+    name: 'DOMATION Ecosystem',
+    logo: domLogo,
+    sub: 'ERP 5.0 & Marketing Automation',
+    target: 'erp-showcase',
+  },
+  {
+    name: 'Tùng Long',
+    logo: '/assets/partners/logo_tung_long.webp',
+    sub: 'Auto Chia Data < 5s',
+    target: 'domation-data',
+  },
+  {
+    name: 'Hợp Nhất',
+    logo: '/assets/partners/logo_hop_nhat.webp',
+    sub: 'Auto Routing & CRM Sync',
+    target: 'domation-data',
+  },
+  {
+    name: 'IHD Group',
+    logo: '/assets/partners/logo_ihd_group.webp',
+    sub: 'Meta CAPI Dataset Sync',
+    target: 'domation-data',
+  },
+  ...PARTNERS.map((p) => ({
+    name: p.name,
+    logo: p.image,
+    sub: 'Enterprise Partner',
+    url: p.website,
+  })),
+];
+
+const InteractiveBrandSphere: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const rotRef = useRef({ yaw: 0.4, pitch: 0.2, vx: 0.0036, vy: 0.001 });
+  const hoveredRef = useRef<number | null>(null);
+  const [, setTick] = useState(0);
+
+  useEffect(() => {
+    hoveredRef.current = hoveredIdx;
+  }, [hoveredIdx]);
+
+  const basePoints = useMemo(() => {
+    const count = SPHERE_NODES.length;
+    const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+    return SPHERE_NODES.map((_, i) => {
+      const y = 1 - (i / (count - 1)) * 2;
+      const r = Math.sqrt(Math.max(0, 1 - y * y));
+      const theta = goldenAngle * i;
+      return {
+        x: Math.cos(theta) * r,
+        y,
+        z: Math.sin(theta) * r,
+      };
+    });
+  }, []);
+
+  useEffect(() => {
+    let rafId = 0;
+    let lastTime = performance.now();
+
+    const animate = (now: number) => {
+      const dt = Math.min(32, now - lastTime) / 16.67;
+      lastTime = now;
+
+      if (hoveredRef.current === null) {
+        rotRef.current.yaw += rotRef.current.vx * dt;
+        rotRef.current.pitch += rotRef.current.vy * dt;
+      }
+      setTick((t) => (t + 1) % 10000);
+      rafId = requestAnimationFrame(animate);
+    };
+
+    rafId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafId);
+  }, []);
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+    const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+    rotRef.current.vx = nx * 0.013;
+    rotRef.current.vy = -ny * 0.01;
+  };
+
+  const handlePointerLeave = () => {
+    setHoveredIdx(null);
+    rotRef.current.vx = 0.0036;
+    rotRef.current.vy = 0.001;
+  };
+
+  const radius = 205;
+  const { yaw, pitch } = rotRef.current;
+  const cosY = Math.cos(yaw);
+  const sinY = Math.sin(yaw);
+  const cosP = Math.cos(pitch);
+  const sinP = Math.sin(pitch);
+
+  const projected = basePoints.map((pt, idx) => {
+    const x1 = pt.x * cosY - pt.z * sinY;
+    const z1 = pt.x * sinY + pt.z * cosY;
+    const y2 = pt.y * cosP - z1 * sinP;
+    const z2 = pt.y * sinP + z1 * cosP;
+
+    const depth = (z2 + 1) / 2;
+    const scale = 0.62 + depth * 0.48;
+    const opacity = 0.48 + depth * 0.52;
+
+    return {
+      idx,
+      node: SPHERE_NODES[idx],
+      x: x1 * radius,
+      y: y2 * radius,
+      scale,
+      opacity,
+      zIndex: Math.round(depth * 100),
+    };
+  });
+
+  const hoveredItem = hoveredIdx !== null ? SPHERE_NODES[hoveredIdx] : null;
+
+  return (
+    <div
+      ref={containerRef}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      className="relative w-full h-[450px] sm:h-[490px] flex items-center justify-center select-none"
+    >
+      {/* Subtle 3D Sphere Orbital Rings */}
+      <div className="pointer-events-none absolute w-[390px] h-[390px] sm:w-[420px] sm:h-[420px] rounded-full border border-blue-200/45" />
+      <div className="pointer-events-none absolute w-[280px] h-[280px] rounded-full border border-dashed border-sky-300/35" />
+
+      {/* Soft Pastel Energy Core Aura in Sphere Center (zIndex 50 -> Translucent, never dark) */}
+      <div
+        className="pointer-events-none absolute inset-0 flex items-center justify-center"
+        style={{ zIndex: 50 }}
+      >
+        <motion.div
+          animate={{ scale: [1, 1.38, 1], opacity: [0.38, 0.1, 0.38] }}
+          transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute w-36 h-36 rounded-full border border-sky-300/35 bg-sky-200/15 blur-[2px]"
+        />
+        <motion.div
+          animate={{ scale: [1, 1.22, 1], opacity: [0.45, 0.14, 0.45] }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+          className="absolute w-24 h-24 rounded-full border border-blue-300/35 bg-blue-200/20 blur-[1px]"
+        />
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 9, repeat: Infinity, ease: 'linear' }}
+          className="absolute w-20 h-20 rounded-full border border-transparent border-t-blue-400/50 border-r-sky-300/55"
+        />
+        <motion.div
+          animate={{ rotate: -360 }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+          className="absolute w-14 h-14 rounded-full border border-dashed border-sky-300/60 border-b-blue-300/45"
+        />
+        <motion.div
+          animate={{ scale: [0.92, 1.12, 0.92], opacity: [0.75, 0.95, 0.75] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+          className="relative w-11 h-11 rounded-full bg-gradient-to-br from-sky-200/75 via-blue-300/50 to-indigo-200/45 ring-4 ring-sky-100/50 backdrop-blur-sm flex items-center justify-center"
+        >
+          <div className="w-4 h-4 rounded-full bg-white/95 blur-[0.5px]" />
+        </motion.div>
+      </div>
+
+      {/* Logo-only 3D Orbiting Nodes — wider spacing, no text labels unless hovered */}
+      {projected.map((p) => {
+        const isHovered = hoveredIdx === p.idx;
+        return (
+          <div
+            key={`${p.node.name}-${p.idx}`}
+            onMouseEnter={() => setHoveredIdx(p.idx)}
+            onMouseLeave={() => setHoveredIdx(null)}
+            style={{
+              transform: `translate3d(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px, 0) scale(${
+                isHovered ? 1.28 : p.scale.toFixed(3)
+              })`,
+              opacity: isHovered ? 1 : p.opacity,
+              zIndex: isHovered ? 200 : p.zIndex,
+            }}
+            aria-label={p.node.name}
+            className={`absolute w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/95 backdrop-blur-sm border p-2 flex items-center justify-center transition-shadow select-none cursor-default ${
+              isHovered
+                ? 'border-[#1E40FF] ring-4 ring-blue-100/80'
+                : 'border-slate-200/90'
+            }`}
+          >
+            <img
+              src={p.node.logo}
+              alt={p.node.name}
+              className="w-full h-full object-contain pointer-events-none"
+            />
+          </div>
+        );
+      })}
+
+      {/* Floating Hovered Brand Name Only (Hover Only, No Idle Hint, No Click) */}
+      {hoveredItem && (
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-40 pointer-events-none">
+          <div className="px-4 py-1.5 rounded-full bg-slate-900 text-white text-xs font-bold whitespace-nowrap flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
+            <span>{hoveredItem.name}</span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const Hero: React.FC<HeroProps> = ({
+  onOpenDomationModal,
+  onOpenEcoLifeModal,
+  onJumpSection,
+}) => {
   const [text, setText] = useState('');
-  const fullText = "TURNIO.";
+  const fullText = 'TURNIO.';
 
   useEffect(() => {
     let i = 0;
@@ -13,107 +256,98 @@ const Hero: React.FC = () => {
       setText(fullText.slice(0, i));
       i++;
       if (i > fullText.length) clearInterval(interval);
-    }, 150);
+    }, 110);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-      {/* Background Decor - Animated Paths */}
-      <svg className="absolute inset-0 w-full h-full opacity-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-        <motion.path
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 3, repeat: Infinity, repeatType: "loop" }}
-          d="M-100 200 Q 400 50, 900 300 T 1600 100"
-          fill="none"
-          stroke="#EAB308"
-          strokeWidth="1"
-        />
-        <motion.circle
-          animate={{ x: [0, 1600], y: [200, 100] }}
-          transition={{ duration: 10, repeat: Infinity }}
-          r="2" fill="#EAB308"
-        />
-      </svg>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12">
-
+    <section
+      id="hero"
+      className="relative pt-24 pb-14 sm:pt-32 sm:pb-20 overflow-hidden border-b border-slate-200/70"
+    >
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          {/* Left Column: Crisp Identity & 1-Row Quick Actions */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="w-full lg:w-3/5 text-center lg:text-left"
+            transition={{ duration: 0.45 }}
+            className="lg:col-span-6"
           >
-            <div className="inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full glass-card border-gold-500/20">
-              <span className="text-xs font-bold uppercase tracking-[0.3em] text-gold-500">Huynh Trong Phuc • Portfolio 2026</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50/90 border border-blue-200/80 mb-6">
+              <Sparkles size={12} className="text-[#1E40FF]" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#1E40FF]">
+                Fullstack Developer - AI Automation
+              </span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-9xl font-black leading-tight text-white mb-8">
-              HELLO! I'M <br />
-              <span className="text-gradient-gold cursor-blink">{text}</span>
+            <h1 className="text-3xl sm:text-5xl lg:text-[3.4rem] font-extrabold tracking-tight leading-[1.15] text-slate-950 mb-6">
+              Hello, I&apos;m <span className="text-[#1E40FF]">{text || 'TURNIO.'}</span>
             </h1>
 
-            <p className="text-xl text-gray-400 mb-12 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
-              <span className="text-white font-bold">Chuyển đổi số toàn diện</span> cho doanh nghiệp vừa và nhỏ.
+            <p className="text-sm sm:text-base text-slate-600 leading-[1.75] max-w-xl mb-8">
+              Thiết kế hệ thống <strong className="text-slate-900 font-semibold">Flow - Automation</strong>, tối ưu quy trình vận hành và xây dựng giải pháp{' '}
+              <strong className="text-slate-900 font-semibold">chuyển đổi số toàn diện</strong> cho doanh nghiệp.
             </p>
 
-            <div className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 sm:gap-6">
-              <a href="https://domation.vercel.app/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto group relative px-6 lg:px-8 py-3 bg-[#0a0a0a] border border-white/10 rounded-full hover:border-orange-500/50 hover:shadow-[0_0_30px_rgba(249,115,22,0.2)] transition-all duration-500 flex items-center justify-center gap-4 overflow-hidden backdrop-blur-md">
-                <div className="relative z-10 w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center shadow-[0_0_15px_rgba(249,115,22,0.5)] group-hover:shadow-[0_0_25px_rgba(249,115,22,0.8)] transition-shadow">
-                  <img src="https://domation.net/imgs/ICON.webp" alt="DOMATION" className="w-7 h-7 object-contain relative z-10 group-hover:scale-110 transition-transform duration-500" />
+            {/* 3 Inline Compact Stats */}
+            <div className="grid grid-cols-3 gap-3.5 max-w-xl mb-8">
+              <div className="rounded-2xl inkica-glass-card px-4 py-3.5">
+                <div className="text-lg sm:text-2xl font-black text-[#1E40FF] leading-tight mb-1">
+                  15+
                 </div>
-                <span className="relative z-10 font-black uppercase text-xl tracking-[0.1em] text-transparent bg-clip-text bg-gradient-to-r from-[#FF8A00] to-[#E52E71]">
-                  DOMATION
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              </a>
-
-              <a href="https://www.tiktok.com/@turnio.dev" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-8 lg:px-10 py-5 glass-card text-white font-black uppercase text-xs tracking-[0.2em] rounded-full hover:border-white/40 hover:bg-white/5 transition-all flex items-center justify-center gap-3">
-                <svg viewBox="0 0 448 512" width="18" height="18" fill="currentColor" className="text-gold-500 shrink-0">
-                  <path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/>
-                </svg>
-                TikTok
-              </a>
-
-              <a href="https://www.linkedin.com/in/turnio-dev/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-8 lg:px-10 py-5 glass-card text-white font-black uppercase text-xs tracking-[0.2em] rounded-full hover:border-white/40 hover:bg-white/5 transition-all flex items-center justify-center gap-3">
-                <Linkedin size={18} className="text-blue-500 shrink-0" />
-                LinkedIn
-              </a>
-            </div>
-          </motion.div>
-
-          {/* Interactive Abstract Element instead of Photo */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2 }}
-            className="w-full lg:w-2/5 flex justify-center relative"
-          >
-            <div className="relative w-80 h-80 md:w-[500px] md:h-[500px]">
-              {/* Orbital Rings */}
-              <div className="absolute inset-0 border border-white/5 rounded-full animate-spin-slow"></div>
-              <div className="absolute inset-4 border border-gold-500/10 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
-              <div className="absolute inset-12 border border-blue-500/10 rounded-full animate-[spin_20s_linear_infinite]"></div>
-
-              {/* Central "Core" */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-32 h-32 md:w-48 md:h-48 glass-card rounded-3xl rotate-12 flex items-center justify-center animate-pulse-glow shadow-[0_0_50px_rgba(234,179,8,0.2)]">
-                  <Zap size={60} className="text-gold-500" />
-                </div>
+                <div className="text-[11px] font-bold text-slate-800">Apps &amp; AI Systems</div>
               </div>
+              <div className="rounded-2xl inkica-glass-card px-4 py-3.5">
+                <div className="text-lg sm:text-2xl font-black text-slate-950 leading-tight mb-1">
+                  30+
+                </div>
+                <div className="text-[11px] font-bold text-slate-800">Doanh Nghiệp Hợp Tác</div>
+              </div>
+              <div className="rounded-2xl inkica-glass-card px-4 py-3.5">
+                <div className="text-lg sm:text-2xl font-black text-emerald-600 leading-tight mb-1">
+                  7+ Năm
+                </div>
+                <div className="text-[11px] font-bold text-slate-800">Growth &amp; Engineering</div>
+              </div>
+            </div>
 
-              {/* Data Points - Floating Icons */}
-              <motion.div animate={{ y: [0, -20, 0] }} transition={{ duration: 4, repeat: Infinity }} className="absolute top-10 right-10 p-4 glass-card rounded-2xl">
-                <div className="text-[10px] font-bold text-blue-400">FB_ADS_API</div>
-              </motion.div>
-              <motion.div animate={{ y: [0, 20, 0] }} transition={{ duration: 5, repeat: Infinity }} className="absolute bottom-10 left-10 p-4 glass-card rounded-2xl">
-                <div className="text-[10px] font-bold text-green-400">CRM_HOOK</div>
-              </motion.div>
+            {/* Single-row Clean 3 Action Buttons */}
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              <button
+                type="button"
+                onClick={() => onJumpSection('inkica-pod')}
+                className="btn-inkica-primary px-4 sm:px-5 py-2.5 text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer"
+              >
+                <Box size={14} />
+                <span>Khám Phá Hệ Sinh Thái</span>
+                <ArrowRight size={13} />
+              </button>
+
+              <button
+                type="button"
+                onClick={onOpenEcoLifeModal}
+                className="ql-btn-outline px-4 py-2.5 rounded-full text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer"
+              >
+                <Building2 size={14} className="text-[#1E40FF]" />
+                <span>Case Study Tiêu Biểu</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={onOpenDomationModal}
+                className="ql-btn-outline px-4 py-2.5 rounded-full text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer"
+              >
+                <Layers size={14} className="text-[#1E40FF]" />
+                <span>Kiến Trúc Hệ Thống</span>
+              </button>
             </div>
           </motion.div>
 
+          {/* Right Column: Interactive 3D Rotating Brand Sphere (Logos Only) */}
+          <div className="lg:col-span-6">
+            <InteractiveBrandSphere />
+          </div>
         </div>
       </div>
     </section>

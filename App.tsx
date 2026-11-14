@@ -1,153 +1,208 @@
+import React, { Suspense, useEffect, useState } from 'react';
+import { ArrowUp } from 'lucide-react';
+import Navbar from './components/Layout/Navbar';
+import Footer from './components/Layout/Footer';
+import Background from './components/UI/Background';
+import ScrollProgress from './components/UI/ScrollProgress';
+import { StudioDrawerModal } from './components/UI/StudioDrawerModal';
 
-import React, { useEffect, lazy, Suspense } from 'react';
-// Lazy load layout components to prevent code execution/downloads in AI mode
-const Navbar = lazy(() => import('./components/Layout/Navbar'));
-const Hero = lazy(() => import('./components/Sections/Hero'));
-const Background = lazy(() => import('./components/UI/Background'));
-const Footer = lazy(() => import('./components/Layout/Footer'));
-const ScrollProgress = lazy(() => import('./components/UI/ScrollProgress'));
+import Hero from './components/Sections/Hero';
+import InkicaPodShowcase from './components/Sections/InkicaPodShowcase';
+import RealEstateShowcase from './components/Sections/RealEstateShowcase';
+import OutsourceHighlights from './components/Sections/OutsourceHighlights';
+import Experience from './components/Sections/Experience';
+import TheBridge from './components/Sections/TheBridge';
+import DomationDataShowcase from './components/Sections/DomationDataShowcase';
+import ErpShowcase from './components/Sections/ErpShowcase';
+import DomationCrmShowcase from './components/Sections/DomationCrmShowcase';
+import CrmShowcase from './components/Sections/CrmShowcase';
+import AutoFlowPro from './components/Sections/AutoFlowPro';
+import MetaAdReportShowcase from './components/Sections/MetaAdReportShowcase';
+import ZaloMiniAppShowcase from './components/Sections/ZaloMiniAppShowcase';
+import LmsShowcase from './components/Sections/LmsShowcase';
+import TarotShowcase from './components/Sections/TarotShowcase';
+import BookSpotlight from './components/Sections/BookSpotlight';
+import Certifications from './components/Sections/Certifications';
+import DomMarketing from './components/Sections/DomMarketing';
+import TechBento from './components/Sections/TechBento';
+import Partners from './components/Sections/Partners';
 
-// Lazy load below-the-fold components
-const TechBento = lazy(() => import('./components/Sections/TechBento'));
-const TheBridge = lazy(() => import('./components/Sections/TheBridge'));
-const SkillsShowcase = lazy(() => import('./components/Sections/SkillsShowcase'));
-const Experience = lazy(() => import('./components/Sections/Experience'));
-const Partners = lazy(() => import('./components/Sections/Partners'));
-const DomMarketing = lazy(() => import('./components/Sections/DomMarketing'));
-const BookSpotlight = lazy(() => import('./components/Sections/BookSpotlight'));
-const OutsourceHighlights = lazy(() => import('./components/Sections/OutsourceHighlights'));
-const Projects = lazy(() => import('./components/Sections/Projects'));
-const Certifications = lazy(() => import('./components/Sections/Certifications'));
-const DataPhilosophy = lazy(() => import('./components/Sections/DataPhilosophy'));
-const ZaloMiniAppShowcase = lazy(() => import('./components/Sections/ZaloMiniAppShowcase'));
-const TarotShowcase = lazy(() => import('./components/Sections/TarotShowcase'));
-const LmsShowcase = lazy(() => import('./components/Sections/LmsShowcase'));
-const CrmShowcase = lazy(() => import('./components/Sections/CrmShowcase'));
-const ErpShowcase = lazy(() => import('./components/Sections/ErpShowcase'));
-const DomationCrmShowcase = lazy(() => import('./components/Sections/DomationCrmShowcase'));
-const DomationDataShowcase = lazy(() => import('./components/Sections/DomationDataShowcase'));
-const AutoFlowPro = lazy(() => import('./components/Sections/AutoFlowPro'));
-const MetaAdReportShowcase = lazy(() => import('./components/Sections/MetaAdReportShowcase'));
-const CutePortfolio = lazy(() => import('./components/CutePortfolio/CutePortfolio'));
+const EcoLifeDetailView = React.lazy(() => import('./components/Sections/EcoLifeDetailView'));
+const DomationDetailView = React.lazy(() => import('./components/Sections/DomationDetailView'));
 
-const App: React.FC = () => {
-  const [portfolioMode, setPortfolioMode] = React.useState<'classic' | 'ai'>('ai');
+type DrawerMode = 'none' | 'ecolife' | 'domation';
+
+export default function App() {
+  const [drawer, setDrawer] = useState<DrawerMode>(() => {
+    if (typeof window === 'undefined') return 'none';
+    const p = window.location.pathname.toLowerCase();
+    if (p.includes('/ecolife')) return 'ecolife';
+    if (p.includes('/domation')) return 'domation';
+    return 'none';
+  });
+
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
-    const adjustZoom = () => {
-      const root = document.getElementById('root');
-      if (!root) return;
-      const width = window.innerWidth;
-      if (width >= 1024 && width < 1440) {
-        root.style.zoom = String(width / 1440);
-      } else {
-        root.style.zoom = '1';
-      }
+    const onScroll = () => {
+      setShowScrollTop(window.scrollY > 100);
     };
-    
-    adjustZoom();
-    window.addEventListener('resize', adjustZoom);
-    window.addEventListener('load', adjustZoom);
-    
-    return () => {
-      window.removeEventListener('resize', adjustZoom);
-      window.removeEventListener('load', adjustZoom);
-    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => {
-    document.documentElement.style.scrollBehavior = 'smooth';
-    if (portfolioMode === 'classic') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    return () => {
-      document.documentElement.style.scrollBehavior = 'auto';
+    const onPopState = () => {
+      const p = window.location.pathname.toLowerCase();
+      if (p.includes('/ecolife')) setDrawer('ecolife');
+      else if (p.includes('/domation')) setDrawer('domation');
+      else setDrawer('none');
     };
-  }, [portfolioMode]);
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
 
-  if (portfolioMode === 'ai') {
-    return (
-      <Suspense fallback={
-        <div className="h-screen w-screen flex flex-col items-center justify-center bg-[#030014] text-white font-sans relative overflow-hidden">
-          {/* Ambient background glows */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-purple-600/10 rounded-full blur-[100px] pointer-events-none" />
-          
-          <div className="flex flex-col items-center gap-6 relative z-10">
-            {/* Spinning/pulsing glowing loading circle */}
-            <div className="relative w-16 h-16 flex items-center justify-center">
-              <div className="absolute inset-0 rounded-full border-4 border-purple-500/10 border-t-purple-500 animate-spin" />
-              <div className="w-10 h-10 rounded-full bg-purple-950/60 border border-purple-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(168,85,247,0.3)]">
-                <span className="w-2.5 h-2.5 rounded-full bg-purple-400 animate-ping" />
-              </div>
-            </div>
-            
-            {/* Pulsing loading text */}
-            <div className="flex flex-col items-center gap-1.5 text-center">
-              <span className="text-xs font-black uppercase tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-amber-300 animate-pulse">
-                Loading AI Control Center
-              </span>
-              <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest">
-                Initializing System Modules...
-              </span>
-            </div>
-          </div>
-        </div>
-      }>
-        <CutePortfolio onToggleClassic={() => setPortfolioMode('classic')} />
-      </Suspense>
-    );
-  }
+  const jumpToSection = (sectionId: string) => {
+    setDrawer('none');
+    if (window.location.pathname !== '/') {
+      window.history.pushState({}, '', '/');
+    }
+    setTimeout(() => {
+      if (sectionId === 'hero') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      const el = document.getElementById(sectionId);
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }, 40);
+  };
 
   return (
-    <Suspense fallback={
-      <div className="h-screen w-screen flex flex-col items-center justify-center bg-[#030014] text-white font-sans relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-purple-600/10 rounded-full blur-[100px] pointer-events-none" />
-        <div className="flex flex-col items-center gap-6 relative z-10">
-          <div className="relative w-16 h-16 flex items-center justify-center">
-            <div className="absolute inset-0 rounded-full border-4 border-purple-500/10 border-t-purple-500 animate-spin" />
-          </div>
-          <span className="text-xs font-black uppercase tracking-[0.25em] text-purple-400 animate-pulse">
-            Loading Classic View...
-          </span>
-        </div>
-      </div>
-    }>
-      <div className="min-h-screen text-white bg-dark-bg selection:bg-gold-500 selection:text-black overflow-hidden font-sans">
-        <ScrollProgress />
-        <Background />
-        <Navbar activeMode={portfolioMode} onToggleMode={(mode) => setPortfolioMode(mode)} />
-        
-        <main className="relative z-10">
-          <Hero />
-          
+    <div className="min-h-screen bg-[#F8F9FA] text-[#0F172A] font-sans relative selection:bg-blue-100 selection:text-[#1E40FF]">
+      <Background />
+      <ScrollProgress />
+
+      <div className="relative z-10 flex flex-col min-h-screen">
+        <Navbar
+          onNavigate={jumpToSection}
+          onOpenDomation={() => setDrawer('domation')}
+          onOpenEcoLife={() => setDrawer('ecolife')}
+        />
+
+        <main className="flex-grow">
+          <Hero
+            onOpenDomationModal={() => setDrawer('domation')}
+            onOpenEcoLifeModal={() => setDrawer('ecolife')}
+            onJumpSection={jumpToSection}
+          />
+
           <Experience />
+
+          <InkicaPodShowcase />
+
+          <RealEstateShowcase onOpenEcoLifeModal={() => setDrawer('ecolife')} />
+
           <TheBridge />
-          <SkillsShowcase />
-          <OutsourceHighlights />
-          <BookSpotlight />
-          <ZaloMiniAppShowcase />
-          <TarotShowcase />
-          <LmsShowcase />
-          <CrmShowcase />
-          <ErpShowcase />
-          <DomationCrmShowcase />
+
           <DomationDataShowcase />
+
+          <ErpShowcase />
+
+          <DomationCrmShowcase />
+
           <AutoFlowPro />
+
+          <CrmShowcase />
+
           <MetaAdReportShowcase />
-          {/* <Projects /> */}
+
+          <ZaloMiniAppShowcase />
+
+          <LmsShowcase />
+
+          <TarotShowcase />
+
+          <OutsourceHighlights />
+
+          <BookSpotlight />
+
           <Certifications />
-          <DomMarketing /> {/* DOM Marketing section */}
-          {/* <DataPhilosophy /> */}
+
+          <DomMarketing />
+
           <TechBento />
+
           <Partners />
         </main>
 
-        <Footer />
+        <Footer
+          onOpenDomation={() => setDrawer('domation')}
+          onOpenEcoLife={() => setDrawer('ecolife')}
+          onNavigateProfile={jumpToSection}
+        />
       </div>
-    </Suspense>
-  );
-};
 
-export default App;
+      {/* Floating Scroll to Top Button (Centered when scrollY > 100px) */}
+      {showScrollTop && drawer === 'none' && (
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          aria-label="Lên đầu trang"
+          className="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 px-5 py-2.5 rounded-full bg-white/95 backdrop-blur-md border border-blue-200 hover:border-[#1E40FF] text-[#1E40FF] hover:bg-blue-50 text-xs font-extrabold inline-flex items-center gap-1.5 transition-all cursor-pointer"
+        >
+          <span>Lên đầu trang</span>
+          <ArrowUp size={14} />
+        </button>
+      )}
+
+      {/* Portal Studio Drawers */}
+      <StudioDrawerModal
+        isOpen={drawer === 'ecolife'}
+        onClose={() => setDrawer('none')}
+        badge="REAL ESTATE • CAPITAL HOUSE FLAGSHIP"
+        title="EcoLife Signature Đà Nẵng — Media 3D, Web Portal & AI Sales"
+        liveUrl="https://ai.ecolifesignature.vn/"
+        liveLabel="Mở Portal ai.ecolifesignature.vn"
+      >
+        <Suspense
+          fallback={
+            <div className="py-24 text-center text-sm font-bold text-[#1E40FF]">
+              Đang tải hồ sơ EcoLife Signature 3D...
+            </div>
+          }
+        >
+          <EcoLifeDetailView
+            onBack={() => setDrawer('none')}
+            onOpenDomation={() => setDrawer('domation')}
+          />
+        </Suspense>
+      </StudioDrawerModal>
+
+      <StudioDrawerModal
+        isOpen={drawer === 'domation'}
+        onClose={() => setDrawer('none')}
+        badge="DOMATION ECOSYSTEM • MARTECH & ERP 5.0"
+        title="DOMATION Studio — ERP 5.0, CRM Chia Data ZaloBot & Meta CAPI"
+        liveUrl="https://domation.net/"
+        liveLabel="Mở Domation.net"
+      >
+        <Suspense
+          fallback={
+            <div className="py-24 text-center text-sm font-bold text-[#1E40FF]">
+              Đang tải DOMATION Ecosystem...
+            </div>
+          }
+        >
+          <DomationDetailView
+            onBack={() => setDrawer('none')}
+            onOpenEcoLife={() => setDrawer('ecolife')}
+          />
+        </Suspense>
+      </StudioDrawerModal>
+    </div>
+  );
+}

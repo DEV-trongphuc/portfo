@@ -1,342 +1,202 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import {
-  Zap,
-  Bot,
-  Network,
-  ShieldCheck,
-  Users,
-  BarChart3,
-  ExternalLink,
-  ChevronRight,
-  Sparkles,
-  Maximize2,
-  CheckCircle2,
-  Clock,
-  ArrowRight
-} from 'lucide-react';
+import { Activity, Bot, CheckCircle2, Maximize2, Radio, ShieldCheck, XCircle } from 'lucide-react';
+import { DOMATION_V2_CAPI_SHOWCASE } from '../../constants';
 import Modal from '../UI/Modal';
 
-const DOMATION_DATA_IMAGES = {
-  hero: 'https://domation.net/CHIA%20DATA/chia_data%20(8).png',
-  routing: 'https://domation.net/CHIA%20DATA/chia_data%20(18).png',
-  zalo: 'https://domation.net/CHIA%20DATA/chia_data%20(16).png',
-  gallery: [
-    'https://domation.net/CHIA%20DATA/chia_data%20(14).png',
-    'https://domation.net/CHIA%20DATA/chia_data%20(15).png',
-    'https://domation.net/CHIA%20DATA/chia_data%20(9).png',
-    'https://domation.net/CHIA%20DATA/chia_data%20(20).png',
-    'https://domation.net/CHIA%20DATA/chia_data%20(21).png',
-    'https://domation.net/CHIA%20DATA/chia_data%20(22).png',
-    'https://domation.net/CHIA%20DATA/chia_data%20(6).png'
-  ]
-};
+const FEATURES = [
+  {
+    title: 'Lọc Trùng 6 Tháng Tự Động',
+    desc: 'Quét trùng đa chiến dịch ngay khi lead vừa đổ về Meta / Website.',
+    icon: <ShieldCheck size={17} />,
+  },
+  {
+    title: 'Chia Vòng 3 Sàn F1 (< 5s)',
+    desc: 'Phân bổ công bằng qua ZaloBot kèm cơ chế tự bù ticket khi lỗi số.',
+    icon: <Bot size={17} />,
+  },
+  {
+    title: 'Auto Đánh Giá Độ Nét Lead',
+    desc: 'Chấm điểm chất lượng lead theo sàn và theo từng mẫu quảng cáo.',
+    icon: <Activity size={17} />,
+  },
+  {
+    title: 'Cải Thiện Meta CAPI Đại Lý',
+    desc: 'Tự bắn ngược tín hiệu Thiện chí / Notlead HTTP 200 dạy lại AI Meta.',
+    icon: <Radio size={17} />,
+  },
+];
+
+const SIMULATOR_EVENTS = [
+  { id: 'qualified', label: 'Khách Thiện Chí', eventName: 'Lead (Qualified) • 200 OK', color: 'text-emerald-700 bg-emerald-50 border-emerald-200' },
+  { id: 'booked', label: 'Đã Hẹn / Cọc', eventName: 'Schedule High-Value • 200 OK', color: 'text-[#1E40FF] bg-blue-50 border-blue-200' },
+  { id: 'notlead', label: 'Sai Số / Notlead', eventName: 'DisqualifiedLead • Exclude AI', color: 'text-rose-700 bg-rose-50 border-rose-200' },
+];
+
+const OWNER_LOGOS = [
+  { src: '/assets/partners/logo_capital_house.webp', name: 'Capital House' },
+  { src: '/assets/partners/logo_ecolife_ngang.webp', name: 'EcoLife Signature' },
+];
+
+const F1_AGENCY_LOGOS = [
+  { src: '/assets/partners/logo_tung_long.webp', name: 'Tùng Long' },
+  { src: '/assets/partners/logo_hop_nhat.webp', name: 'Hợp Nhất Land' },
+  { src: '/assets/partners/logo_ihd_group.webp', name: 'IHD Group' },
+];
 
 const DomationDataShowcase: React.FC = () => {
-  const [activeImage, setActiveImage] = useState<string | null>(null);
-
-  const features = [
-    {
-      title: "Đồng Bộ Realtime Không Trễ",
-      desc: "Dữ liệu từ Landing Page, Facebook Ads, Zalo Form hay Google Sheets đổ thẳng về hệ thống ngay lập tức để xử lý tức thì.",
-      icon: <Zap className="text-fuchsia-400" />
-    },
-    {
-      title: "Zalo Bot & Email Cảnh Báo",
-      desc: "Tự động gửi thông tin chi tiết của Lead qua Zalo Bot riêng của tư vấn viên và gửi cảnh báo qua Email cho quản lý.",
-      icon: <Bot className="text-indigo-400" />
-    },
-    {
-      title: "Phân Phối Round-Robin & Routing",
-      desc: "Phân chia Data công bằng cho các Sale theo cơ chế xoay vòng, hoặc tự động định tuyến dựa trên nguồn khách, UTM Campaign.",
-      icon: <Network className="text-purple-400" />
-    },
-    {
-      title: "Báo Lỗi & Đền Bù Số Tự Động",
-      desc: "Sale báo cáo số trùng, sai số trực tiếp. Admin chỉ cần duyệt, hệ thống sẽ tự động chia bù data mới trong lượt sau.",
-      icon: <ShieldCheck className="text-emerald-400" />
-    },
-    {
-      title: "Nhận Diện Trạng Thái Nghỉ Phép",
-      desc: "Tự động nhận biết trạng thái trực tuyến/nghỉ phép của Sale để tạm ngưng chia số, đảm bảo data không bị tồn đọng, nguội đi.",
-      icon: <Users className="text-amber-400" />
-    },
-    {
-      title: "Zalo Bot Báo Cáo Cuối Ngày",
-      desc: "Zalo Bot tự động gửi báo cáo tổng kết chi tiết hiệu suất: Số lượng data nhận, tỷ lệ xử lý, tỷ lệ báo lỗi của từng Sale.",
-      icon: <BarChart3 className="text-rose-400" />
-    }
-  ];
+  const [simIndex, setSimIndex] = useState(0);
+  const [zoomScreen, setZoomScreen] = useState<{ src: string; title: string } | null>(null);
+  const sim = SIMULATOR_EVENTS[simIndex];
 
   return (
-    <section className="py-24 relative overflow-hidden bg-[#030303] border-t border-white/5" id="domation-data">
-      {/* Background Lights */}
-      <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-purple-600/5 rounded-full blur-[140px] -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-fuchsia-600/5 rounded-full blur-[120px] -translate-x-1/3 pointer-events-none" />
-
-      <div className="container mx-auto px-6 relative z-10 max-w-6xl">
-        
-        {/* Main Content Info */}
-        <div className="flex flex-col lg:flex-row gap-16 items-center mb-32">
-          
-          <div className="lg:w-1/2">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="flex items-center gap-3 mb-6"
-            >
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-bold uppercase tracking-wider">
-                <Sparkles size={12} className="text-purple-400 animate-pulse" />
-                Data Routing Solution
+    <section id="domation-data" className="py-16 lg:py-22 relative z-10 border-t border-slate-200/80">
+      <div className="mx-auto px-4 sm:px-8 max-w-[1440px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Left: MINTH-style Clean Header + 2x2 Feature Cards + Compact CAPI Toggle */}
+          <motion.div
+            initial={{ opacity: 1, x: -12 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.05 }}
+            className="lg:col-span-5 space-y-5"
+          >
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#1E40FF] text-[11px] font-bold uppercase tracking-wider mb-3">
+                <Radio size={13} />
+                <span>Auto Data Routing &amp; Meta CAPI</span>
               </div>
-            </motion.div>
 
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-8 leading-[1.05] tracking-tighter"
-            >
-              DOMATION DATA<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-fuchsia-500 to-indigo-500 italic">AUTOMATIC ROUTING.</span>
-            </motion.h2>
+              <h2 className="text-2xl sm:text-3xl lg:text-[2.1rem] font-extrabold text-slate-950 leading-[1.36] mb-2.5">
+                Chia Data Đa Đại Lý &amp;{' '}
+                <span className="font-editorial text-gradient-inkica">Cải Thiện Meta CAPI.</span>
+              </h2>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-gray-400 text-lg leading-relaxed max-w-xl font-light mb-10"
-            >
-              Giải pháp tối ưu hóa việc phân chia và điều phối luồng Data tự động. Giúp đội ngũ Sale nắm bắt 
-              <span className="text-white font-semibold"> "Thời Điểm Vàng" </span> 
-              để tiếp cận khách hàng ngay khi nhu cầu phát sinh, loại bỏ hoàn toàn việc phân chia thủ công rời rạc.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="flex flex-wrap gap-4"
-            >
-              <a
-                href="https://ideas-data.vercel.app/demo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-4 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white font-black rounded-2xl hover:opacity-90 transition-all flex items-center gap-2 group shadow-[0_0_30px_rgba(168,85,247,0.3)]"
-              >
-                XEM DEMO LIVE
-                <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </a>
-              <div className="px-6 py-4 glass-card rounded-2xl flex items-center gap-2 text-white/70">
-                <Clock size={18} className="text-fuchsia-400 animate-spin" style={{ animationDuration: '4s' }} />
-                <span className="text-xs font-bold uppercase tracking-wider">Real-time Notification</span>
-              </div>
-            </motion.div>
-          </div>
-
-          <div className="lg:w-1/2 w-full">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="relative group cursor-pointer"
-              onClick={() => setActiveImage(DOMATION_DATA_IMAGES.hero)}
-            >
-              <div className="absolute -inset-1 bg-gradient-to-tr from-purple-500 to-fuchsia-500 rounded-[2.5rem] blur opacity-25 group-hover:opacity-40 transition-opacity duration-500" />
-              <div className="relative glass-card p-3 rounded-[2.5rem] overflow-hidden border-white/10 shadow-2xl">
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10 rounded-[1.8rem]">
-                  <div className="bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 flex items-center gap-2 text-white font-bold text-sm">
-                    <Maximize2 size={16} /> Phóng to hình ảnh
-                  </div>
-                </div>
-                <img
-                  src={DOMATION_DATA_IMAGES.hero}
-                  alt="DOMATION DATA Hero"
-                  className="w-full h-auto rounded-[1.8rem] shadow-inner transition-transform duration-700 group-hover:scale-[1.02]"
-                />
-              </div>
-            </motion.div>
-          </div>
-
-        </div>
-
-        {/* Feature Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
-          {features.map((feature, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.05 * idx }}
-              className="glass-card p-8 rounded-[2rem] group hover:bg-white/[0.03] hover:border-purple-500/20 transition-all duration-500 flex flex-col h-full"
-            >
-              <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-purple-500/10 transition-all duration-500">
-                {React.cloneElement(feature.icon, { size: 28 })}
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors leading-tight">
-                {feature.title}
-              </h3>
-              <p className="text-gray-500 text-sm leading-relaxed font-light flex-grow">
-                {feature.desc}
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Tự động hóa trọn vẹn từ lúc khách điền form, chia xoay vòng qua ZaloBot đến tự đánh
+                giá &amp; gửi tín hiệu chuyển đổi ngược về quảng cáo.
               </p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Multi-Image and Split Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
-          
-          <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold uppercase tracking-wider">
-              <CheckCircle2 size={12} />
-              Báo cáo & Đền bù tự động
             </div>
-            
-            <h3 className="text-3xl md:text-4xl font-black text-white leading-tight">
-              Phân Phối Thông Minh,<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Minh Bạch & Công Bằng.</span>
-            </h3>
-            
-            <p className="text-gray-400 leading-relaxed font-light">
-              Mọi dữ liệu khách hàng đều được xử lý chính xác theo cấu hình vòng chia số. Sale thoải mái phản hồi thông tin rác, trùng số mà không sợ thiệt thòi nhờ chính sách tự động bù data.
-            </p>
 
-            <div className="space-y-4 pt-4">
-              <div className="flex gap-4 items-start">
-                <div className="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center shrink-0 mt-1">
-                  <span className="text-xs font-bold text-emerald-400">1</span>
-                </div>
-                <div>
-                  <h4 className="text-white font-bold text-base mb-1">Cân bằng tải Round-Robin</h4>
-                  <p className="text-gray-500 text-sm">Hệ thống xoay vòng chia đều cho các Sale đang trong ca làm việc thực tế.</p>
-                </div>
-              </div>
-              <div className="flex gap-4 items-start">
-                <div className="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center shrink-0 mt-1">
-                  <span className="text-xs font-bold text-emerald-400">2</span>
-                </div>
-                <div>
-                  <h4 className="text-white font-bold text-base mb-1">Đền bù số chuẩn chỉ</h4>
-                  <p className="text-gray-500 text-sm">Sau khi được quản lý duyệt báo cáo lỗi (sai số, trùng), hệ thống tự động cộng bù data trong lượt tiếp theo.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="relative group cursor-pointer" onClick={() => setActiveImage(DOMATION_DATA_IMAGES.routing)}>
-            <div className="absolute -inset-1 bg-gradient-to-tr from-indigo-500 to-purple-500 rounded-[2rem] blur opacity-20 group-hover:opacity-35 transition-opacity" />
-            <div className="relative glass-card p-2 rounded-[2rem] overflow-hidden border-white/10 shadow-2xl">
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10 rounded-[1.8rem]">
-                <div className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 flex items-center gap-2 text-white font-bold text-xs">
-                  <Maximize2 size={14} /> Xem sơ đồ phân bổ
-                </div>
-              </div>
-              <img
-                src={DOMATION_DATA_IMAGES.routing}
-                alt="Sơ đồ định tuyến"
-                className="w-full h-auto rounded-[1.8rem] object-cover transition-transform duration-700 group-hover:scale-102"
-              />
-            </div>
-          </div>
-
-        </div>
-
-        {/* Dynamic Gallery Screenshots */}
-        <div>
-          <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
-            <div className="max-w-xl">
-              <h3 className="text-3xl font-black text-white mb-3">GIAO DIỆN HỆ THỐNG</h3>
-              <p className="text-gray-500">Chi tiết bảng điều khiển định tuyến data, quản lý danh sách Sale và cấu hình đền bù.</p>
-            </div>
-            <div className="flex gap-4">
-              <div className="px-5 py-2 glass-pill text-xs font-bold text-gray-400 uppercase tracking-widest">Routing</div>
-              <div className="px-5 py-2 glass-pill text-xs font-bold text-gray-400 uppercase tracking-widest">Automation</div>
-              <div className="px-5 py-2 glass-pill text-xs font-bold text-gray-400 uppercase tracking-widest">Realtime</div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            
-            <motion.div
-              className="col-span-2 row-span-2 relative rounded-[2rem] overflow-hidden border border-white/10 group cursor-pointer aspect-[4/3] md:aspect-auto"
-              onClick={() => setActiveImage(DOMATION_DATA_IMAGES.zalo)}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex flex-col justify-end p-8 z-10">
-                <span className="text-fuchsia-400 font-black text-xs uppercase tracking-widest mb-2">Zalo Notification Bot</span>
-                <h4 className="text-white text-xl md:text-2xl font-black">Thông báo data tức thì về Zalo cá nhân</h4>
-              </div>
-              <img 
-                src={DOMATION_DATA_IMAGES.zalo} 
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
-                alt="Zalo Notification Bot"
-              />
-            </motion.div>
-
-            {DOMATION_DATA_IMAGES.gallery.slice(0, 4).map((img, idx) => (
-              <motion.div
-                key={idx}
-                onClick={() => setActiveImage(img)}
-                className="relative aspect-video md:aspect-square rounded-2xl overflow-hidden border border-white/5 cursor-pointer group"
-              >
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10">
-                  <Maximize2 size={16} className="text-white" />
-                </div>
-                <img 
-                  src={img} 
-                  className="w-full h-full object-cover transition-all duration-75 group-hover:scale-105" 
-                  alt={`Screenshot ${idx + 1}`}
-                />
-              </motion.div>
-            ))}
-
-            <div className="col-span-2 grid grid-cols-2 gap-4">
-              {DOMATION_DATA_IMAGES.gallery.slice(4, 6).map((img, idx) => (
-                <motion.div
-                  key={idx}
-                  onClick={() => setActiveImage(img)}
-                  className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 group cursor-pointer"
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {FEATURES.map((f) => (
+                <div
+                  key={f.title}
+                  className="bg-white/95 border border-slate-200/90 hover:border-[#1E40FF]/40 p-3.5 rounded-2xl shadow-xs transition-all group"
                 >
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10">
-                    <Maximize2 size={16} className="text-white" />
+                  <div className="w-8 h-8 rounded-xl bg-blue-50 text-[#1E40FF] flex items-center justify-center mb-2 group-hover:bg-[#1E40FF] group-hover:text-white [&_svg]:group-hover:text-white transition-colors">
+                    {f.icon}
                   </div>
-                  <img 
-                    src={img} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" 
-                    alt={`Screenshot ${idx + 5}`}
-                  />
-                </motion.div>
+                  <h3 className="text-xs sm:text-sm font-bold text-slate-950 mb-1 leading-snug">
+                    {f.title}
+                  </h3>
+                  <p className="text-[11px] text-slate-600 leading-relaxed">{f.desc}</p>
+                </div>
               ))}
             </div>
 
+            {/* Compact 1-Line Interactive CAPI Signal Switch */}
+            <div className="bg-white/90 border border-slate-200/90 rounded-2xl p-3.5 space-y-2.5">
+              <div className="flex flex-wrap items-center gap-1.5">
+                {SIMULATOR_EVENTS.map((ev, i) => (
+                  <button
+                    key={ev.id}
+                    type="button"
+                    onClick={() => setSimIndex(i)}
+                    className={`px-2.5 py-1 rounded-full text-[11px] font-bold border transition-all cursor-pointer inline-flex items-center gap-1 ${
+                      simIndex === i
+                        ? 'bg-[#1E40FF] text-white border-[#1E40FF]'
+                        : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-blue-300'
+                    }`}
+                  >
+                    {ev.id === 'notlead' ? <XCircle size={11} /> : <CheckCircle2 size={11} />}
+                    {ev.label}
+                  </button>
+                ))}
+              </div>
+              <div className={`px-3 py-1.5 rounded-xl border text-[11px] font-mono font-bold ${sim.color}`}>
+                Signal → {sim.eventName}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right: Clean 2x2 Floating Screenshot Grid (MINTH Reference Style) */}
+          <motion.div
+            initial={{ opacity: 1, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.05 }}
+            className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5"
+          >
+            {DOMATION_V2_CAPI_SHOWCASE.map((screen) => (
+              <div
+                key={screen.id}
+                onClick={() => setZoomScreen({ src: screen.image, title: screen.title })}
+                className="group relative rounded-2xl overflow-hidden border border-slate-200/90 bg-white p-1.5 shadow-sm hover:border-[#1E40FF]/45 hover:shadow-md transition-all cursor-zoom-in"
+              >
+                <div className="aspect-[16/10] rounded-xl overflow-hidden bg-slate-50 relative">
+                  <img
+                    src={screen.image}
+                    alt={screen.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                  />
+                  <span className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/95 text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow">
+                    <Maximize2 size={12} />
+                  </span>
+                </div>
+                <div className="px-2 pt-2 pb-1 flex items-center justify-between gap-2">
+                  <span className="text-xs font-bold text-slate-900 truncate">{screen.title}</span>
+                  <span className="text-[10px] font-semibold text-[#1E40FF] shrink-0">HD ↗</span>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Sub-logos row below */}
+        <div className="mt-8 pt-4 border-t border-slate-200/70 flex flex-wrap items-center justify-between gap-3">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+            Hệ Thống Đang Kết Nối &amp; Chia Lead Tự Động
+          </span>
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+            {OWNER_LOGOS.map((ag) => (
+              <div
+                key={ag.name}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/95 border border-slate-200/80"
+              >
+                <img src={ag.src} alt={ag.name} loading="lazy" className="h-5 w-auto object-contain" />
+                <span className="text-[11px] font-semibold text-slate-700">{ag.name}</span>
+              </div>
+            ))}
+            <span className="hidden sm:inline-block h-6 w-px bg-slate-300 mx-1.5" aria-hidden="true" />
+            {F1_AGENCY_LOGOS.map((ag) => (
+              <div
+                key={ag.name}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/95 border border-slate-200/80"
+              >
+                <img src={ag.src} alt={ag.name} loading="lazy" className="h-5 w-auto object-contain" />
+                <span className="text-[11px] font-semibold text-slate-700">{ag.name}</span>
+              </div>
+            ))}
           </div>
         </div>
-
       </div>
 
-      {/* Screenshot Modal */}
       <Modal
-        isOpen={activeImage !== null}
-        onClose={() => setActiveImage(null)}
-        title="Domation Data Routing Gallery"
-        className="max-w-6xl w-[95vw]"
+        isOpen={!!zoomScreen}
+        onClose={() => setZoomScreen(null)}
+        title={zoomScreen?.title || 'Meta CAPI & Chia Data'}
+        className="max-w-5xl"
       >
-        <div className="p-4 bg-[#050505] flex justify-center items-center">
-          {activeImage && (
-            <img 
-              src={activeImage} 
-              alt="Detail Preview" 
-              className="max-w-full max-h-[80vh] object-contain rounded-xl"
+        {zoomScreen && (
+          <div className="rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 p-2">
+            <img
+              src={zoomScreen.src}
+              alt={zoomScreen.title}
+              className="w-full max-h-[75vh] object-contain mx-auto rounded-xl"
             />
-          )}
-        </div>
+          </div>
+        )}
       </Modal>
-
     </section>
   );
 };

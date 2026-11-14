@@ -1,162 +1,147 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap, BookOpen, Video, Award, BarChartHorizontal, CheckCircle2 } from 'lucide-react';
+import { Award, BarChartHorizontal, CheckCircle2, GraduationCap, Maximize2, Video } from 'lucide-react';
 import Modal from '../UI/Modal';
 
-// @ts-ignore
 import lms1 from '../../imgs/lms (1).webp';
-// @ts-ignore
 import lms2 from '../../imgs/lms (2).webp';
-// @ts-ignore
 import lms3 from '../../imgs/lms (3).webp';
-// @ts-ignore
 import lms4 from '../../imgs/lms (4).webp';
 
+const LMS_SCREENS = [
+  { src: lms1, title: 'Cổng Học Trực Tuyến & Lộ Trình' },
+  { src: lms2, title: 'Ngân Hàng Đề Thi & Sát Hạch' },
+  { src: lms3, title: 'Báo Cáo Tiến Độ & Chuyên Cần' },
+  { src: lms4, title: 'Quản Trị Khóa Học & Chứng Chỉ' },
+];
+
+const LMS_FEATURES = [
+  {
+    icon: <Video size={18} />,
+    title: 'Streaming Video Chống Tua',
+    desc: 'Bảo vệ bản quyền nội dung với xác thực phiên học & theo dõi tỷ lệ hoàn thành.',
+  },
+  {
+    icon: <CheckCircle2 size={18} />,
+    title: 'Hệ Thống Đánh Giá & Thi Cử',
+    desc: 'Ngân hàng câu hỏi đa dạng, chấm điểm tự động và ghi nhận bài luận trực tuyến.',
+  },
+  {
+    icon: <BarChartHorizontal size={18} />,
+    title: 'Theo Dõi Tiến Độ Real-time',
+    desc: 'Thống kê thời gian học, tỷ lệ đậu từng module và cảnh báo học viên chậm.',
+  },
+  {
+    icon: <Award size={18} />,
+    title: 'Cấp Chứng Chỉ Số Tự Động',
+    desc: 'Tự động sinh chứng nhận hoàn thành kèm mã xác thực ngay khi đạt KPI.',
+  },
+];
+
 const LmsShowcase: React.FC = () => {
-    const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
 
-    const features = [
-        {
-            title: "Hệ thống Bài giảng Video",
-            desc: "Streaming mượt mà, phân loại Course rõ ràng, giao diện thân thiện với mọi thiết bị.",
-            icon: <Video size={20} />
-        },
-        {
-            title: "Trắc nghiệm & Chấm điểm tự động",
-            desc: "Đa dạng dạng câu hỏi, tính giờ và trả kết quả tức thời sau bài test.",
-            icon: <CheckCircle2 size={20} />
-        },
-        {
-            title: "Cấp Chứng chỉ Điện tử",
-            desc: "Tự động cấp chứng chỉ PDF chuẩn khi hoàn thành khóa học đạt điểm yêu cầu.",
-            icon: <Award size={20} />
-        },
-        {
-            title: "Theo dõi Tiến độ Học tập",
-            desc: "Học viên nắm rõ %. hoàn thành bài học, admin tracking được chi tiết mọi user.",
-            icon: <BarChartHorizontal size={20} />
-        }
-    ];
-
-    return (
-        <section className="py-24 relative overflow-hidden bg-[#0a0502] z-10 border-t border-white/5">
-            {/* Background Accents (Edu-Tech Vibe) */}
-            <div className="absolute inset-0 bg-orange-900/5 pointer-events-none"></div>
-            <div className="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-orange-500/10 rounded-full -[120px] pointer-events-none"></div>
-            <div className="absolute bottom-[10%] right-[-10%] w-[500px] h-[500px] bg-amber-500/10 rounded-full -[120px] pointer-events-none"></div>
-
-            <div className="container mx-auto px-6 max-w-7xl relative z-10">
-                <div className="flex flex-col lg:flex-row gap-10 items-center">
-                    
-                    {/* Left side: Content */}
-                    <div className="lg:w-[40%] space-y-8">
-                        <div>
-                            <motion.div 
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 mb-6"
-                            >
-                                <GraduationCap size={16} />
-                                <span className="text-sm font-bold tracking-widest uppercase">Edu-Tech Solution</span>
-                            </motion.div>
-                            
-                            <motion.h2 
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white tracking-tight leading-tight"
-                            >
-                                LMS <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">E-LEARNING.</span>
-                            </motion.h2>
-                            
-                            <motion.p 
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.1 }}
-                                className="text-gray-400 font-light text-lg leading-relaxed max-w-xl"
-                            >
-                                Nền tảng quản lý học tập (LMS) hoàn chỉnh. Sở hữu toàn bộ các tính năng cốt lõi của một hệ thống giáo dục trực tuyến chuyên nghiệp nhất, đáp ứng việc học tập với quy mô lớn.
-                            </motion.p>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {features.map((item, idx) => (
-                                <motion.div 
-                                    key={idx}
-                                    initial={{ opacity: 0, scale: 0.95 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.1 * idx }}
-                                    className="bg-white/[0.02] border border-white/5 p-6 rounded-3xl group hover:border-orange-500/30 hover:bg-orange-500/5 transition-all"
-                                >
-                                    <div className="w-10 h-10 bg-orange-500/10 rounded-full flex items-center justify-center text-orange-400 mb-4 group-hover:bg-orange-500 group-hover:text-white transition-colors">
-                                        {item.icon}
-                                    </div>
-                                    <h4 className="text-white font-bold mb-2 group-hover:text-orange-300 transition-colors">{item.title}</h4>
-                                    <p className="text-gray-500 text-xs font-light leading-relaxed">{item.desc}</p>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Right side: Image Collage */}
-                    <div className="lg:w-[60%] w-full">
-                        <div className="grid grid-cols-2 gap-4">
-                            <motion.div 
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                className="space-y-4 pt-8"
-                            >
-                                <div className="rounded-3xl overflow-hidden border border-white/10 cursor-pointer shadow-lg hover:border-orange-500/50 hover:shadow-orange-500/20 transition-all duration-300 group" onClick={() => setPreviewImage(lms1)}>
-                                    <img src={lms1} alt="LMS Interface 1" className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
-                                </div>
-                                <div className="rounded-3xl overflow-hidden border border-white/10 cursor-pointer shadow-lg hover:border-orange-500/50 hover:shadow-orange-500/20 transition-all duration-300 group" onClick={() => setPreviewImage(lms2)}>
-                                    <img src={lms2} alt="LMS Interface 2" className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
-                                </div>
-                            </motion.div>
-                            <motion.div 
-                                initial={{ opacity: 0, y: -20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.2 }}
-                                className="space-y-4"
-                            >
-                                <div className="rounded-3xl overflow-hidden border border-white/10 cursor-pointer shadow-lg hover:border-amber-500/50 hover:shadow-amber-500/20 transition-all duration-300 group" onClick={() => setPreviewImage(lms3)}>
-                                    <img src={lms3} alt="LMS Interface 3" className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
-                                </div>
-                                <div className="rounded-3xl overflow-hidden border border-white/10 cursor-pointer shadow-lg hover:border-amber-500/50 hover:shadow-amber-500/20 transition-all duration-300 group" onClick={() => setPreviewImage(lms4)}>
-                                    <img src={lms4} alt="LMS Interface 4" className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
-                                </div>
-                            </motion.div>
-                        </div>
-                    </div>
-
-                </div>
+  return (
+    <section
+      id="lms-showcase"
+      className="py-16 sm:py-20 border-b border-slate-200/80 relative overflow-hidden"
+    >
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          {/* Left Column: Clean 2x2 Visual Showcase */}
+          <div className="lg:col-span-7 order-2 lg:order-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              {LMS_SCREENS.map((screen, idx) => (
+                <button
+                  type="button"
+                  key={idx}
+                  onClick={() => setPreviewImage(screen.src)}
+                  className="group relative text-left rounded-2xl overflow-hidden bg-white border border-slate-200/90 hover:border-[#1E40FF]/45 shadow-sm hover:shadow-xl transition-all cursor-pointer p-2"
+                >
+                  <div className="relative rounded-xl overflow-hidden bg-slate-50 aspect-[16/10]">
+                    <img
+                      src={screen.src}
+                      alt={screen.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                    />
+                    <span className="absolute top-2 right-2 w-7 h-7 rounded-lg bg-white/95 border border-slate-200 text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
+                      <Maximize2 size={13} />
+                    </span>
+                  </div>
+                  <div className="px-2 pt-2.5 pb-1 flex items-center justify-between gap-2">
+                    <span className="text-xs font-bold text-slate-800 group-hover:text-[#1E40FF] transition-colors truncate">
+                      {screen.title}
+                    </span>
+                    <span className="text-[10px] font-mono text-slate-400 shrink-0">0{idx + 1}</span>
+                  </div>
+                </button>
+              ))}
             </div>
+          </div>
 
-            {/* Fullscreen Image Preview */}
-            <Modal
-                isOpen={!!previewImage}
-                onClose={() => setPreviewImage(null)}
-                title="LMS Screenshot"
-                className="max-w-6xl w-[90vw] max-h-[90vh]"
+          {/* Right Column: Clean Title + 2x2 Compact Bento */}
+          <div className="lg:col-span-5 order-1 lg:order-2">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
             >
-                {previewImage && (
-                    <div className="flex justify-center items-center h-full w-full bg-black/50 p-4">
-                        <img
-                            src={previewImage}
-                            alt="Fullscreen Preview"
-                            className="max-w-full max-h-[75vh] object-contain rounded-xl shadow-2xl"
-                        />
-                    </div>
-                )}
-            </Modal>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-[#1E40FF] text-[10.5px] font-bold uppercase tracking-[0.16em] mb-4">
+                <GraduationCap size={13} />
+                <span>Education Platform</span>
+              </div>
 
-        </section>
-    );
+              <h2 className="text-2xl sm:text-3xl lg:text-[2.15rem] font-extrabold text-slate-900 leading-[1.35] mb-3.5">
+                Đào tạo đội ngũ &amp; học viên{' '}
+                <span className="font-editorial text-gradient-inkica">bài bản, tinh gọn.</span>
+              </h2>
+
+              <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                Hệ thống LMS chuyên biệt cho học viện &amp; đào tạo nội bộ: học video bảo mật,
+                thi sát hạch và cấp chứng chỉ trực tuyến.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {LMS_FEATURES.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="group p-4 rounded-2xl bg-white border border-slate-200/80 hover:border-[#1E40FF]/35 hover:shadow-md transition-all"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-200/70 text-[#1E40FF] flex items-center justify-center mb-2.5 transition-colors group-hover:bg-[#1E40FF] group-hover:border-[#1E40FF] group-hover:text-white [&_svg]:group-hover:text-white">
+                      {item.icon}
+                    </div>
+                    <h3 className="text-sm font-bold text-slate-900 mb-1 leading-snug">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      <Modal
+        isOpen={!!previewImage}
+        onClose={() => setPreviewImage(null)}
+        title="LMS E-Learning Interface"
+        className="max-w-5xl"
+      >
+        {previewImage && (
+          <div className="flex justify-center items-center w-full bg-slate-50 rounded-2xl p-2 border border-slate-200">
+            <img
+              src={previewImage}
+              alt="Fullscreen Preview"
+              className="max-w-full max-h-[75vh] object-contain rounded-xl"
+            />
+          </div>
+        )}
+      </Modal>
+    </section>
+  );
 };
 
 export default LmsShowcase;

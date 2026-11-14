@@ -1,78 +1,226 @@
-
-import React from 'react';
-import { PARTNERS } from '../../constants';
-import { ExternalLink, Handshake } from 'lucide-react';
-import { Partner } from '../../types'; // Import Partner type
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import {
+  Building2,
+  ExternalLink,
+  Handshake,
+  Layers,
+  Sparkles,
+} from 'lucide-react';
+import {
+  F1_AGENCY_PARTNERS,
+  FEATURED_FLAGSHIP_PARTNERS,
+  PARTNERS,
+} from '../../constants';
 
 const Partners: React.FC = () => {
+  const [selectedIndustry, setSelectedIndustry] = useState<string>('ALL');
+
+  const industries = ['ALL', 'FNB', 'Education', 'Dental', 'Real Estate', 'Tech & Retail'];
+
+  const filteredBrands = PARTNERS.filter((p) => {
+    if (selectedIndustry === 'ALL') return true;
+    const ind = p.industry.toLowerCase();
+    if (selectedIndustry === 'FNB') return ind.includes('fnb');
+    if (selectedIndustry === 'Education') return ind.includes('education');
+    if (selectedIndustry === 'Dental') return ind.includes('dental');
+    if (selectedIndustry === 'Real Estate') return ind.includes('real estate');
+    return !ind.includes('fnb') && !ind.includes('education') && !ind.includes('dental') && !ind.includes('real estate');
+  });
+
+  const marqueeBrands = [...PARTNERS, ...PARTNERS];
+
   return (
-    <section className="pb-32 pt-10 relative z-10 overflow-hidden">
-       {/* --- DECOR: NETWORK MESH BACKGROUND --- */}
-       <div className="absolute inset-0 pointer-events-none -z-10">
-            <svg className="absolute w-full h-full opacity-[0.05]" viewBox="0 0 100 100" preserveAspectRatio="none">
-                {/* Random connecting lines representing network */}
-                <path d="M0 100 Q 20 80 40 100 T 80 100" stroke="white" fill="none" vectorEffect="non-scaling-stroke"/>
-                <path d="M10 0 Q 30 50 60 0" stroke="white" fill="none" vectorEffect="non-scaling-stroke"/>
-                <circle cx="20" cy="80" r="1" fill="white"/>
-                <circle cx="80" cy="20" r="1" fill="white"/>
-                <circle cx="50" cy="50" r="1" fill="white"/>
-            </svg>
-            
-            {/* Ambient Glows */}
-            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full -[120px]"></div>
-       </div>
-       
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6 border-t border-white/5 pt-16">
-             <div>
-                <span className="text-gold-500 font-black tracking-[0.4em] uppercase text-[10px] block mb-2 flex items-center gap-2">
-                    <Handshake size={14} /> Strategic Network
-                </span>
-                {/* Changed heading text */}
-                <p className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight">DOM CUSTOMER / OUTSOURCE</p>
-             </div>
-             <p className="text-gray-500 text-sm max-w-sm text-right">
-                Đồng hành cùng các thương hiệu hàng đầu để tạo ra giá trị bền vững và tăng trưởng vượt bậc.
-             </p>
+    <section
+      id="partners"
+      className="py-16 sm:py-20 border-b border-slate-200/80 relative overflow-hidden"
+    >
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 relative z-10">
+        {/* Clean Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center max-w-2xl mx-auto mb-10"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-[#1E40FF] text-[10.5px] font-bold uppercase tracking-[0.16em] mb-3">
+            <Handshake size={13} />
+            <span>Ecosystem &amp; Trusted Clients</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl lg:text-[2.2rem] font-extrabold text-slate-900 leading-[1.35] mb-2.5">
+            Đối Tác &amp; Hệ Sinh Thái{' '}
+            <span className="font-editorial text-gradient-inkica">Đồng Hành.</span>
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Từ Capital House • EcoLife Signature, các đại lý phân phối đến 30+ thương hiệu và
+            Doanh nghiệp đồng hành triển khai tăng trưởng.
+          </p>
+        </motion.div>
+
+        {/* TOP TIER: CAPITAL HOUSE & ECOLIFE SIGNATURE */}
+        <div className="mb-10">
+          <div className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#1E40FF] mb-3.5">
+            <Building2 size={14} />
+            <span>Đối Tác Trọng Điểm (Chủ Đầu Tư &amp; Dự Án Flagship)</span>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {FEATURED_FLAGSHIP_PARTNERS.map((partner) => (
+              <div
+                key={partner.id}
+                className="inkica-glass-card rounded-3xl p-5 sm:p-6 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-3 pb-3.5 mb-3.5 border-b border-slate-100">
+                    <div className="h-11 px-3.5 rounded-xl bg-white border border-slate-200/80 flex items-center justify-center">
+                      <img
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="h-7 w-auto object-contain"
+                      />
+                    </div>
+                    {partner.url && (
+                      <a
+                        href={partner.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 text-xs font-extrabold text-[#1E40FF] hover:underline shrink-0"
+                      >
+                        <span>Truy cập</span>
+                        <ExternalLink size={12} />
+                      </a>
+                    )}
+                  </div>
+
+                  <div className="text-[10.5px] font-extrabold uppercase tracking-wider text-[#1E40FF] mb-1">
+                    {partner.role}
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-extrabold text-slate-950 mb-1.5">
+                    {partner.name}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {partner.subtitle}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      
-        <div className="grid grid-cols-5 md:grid-cols-5 lg:grid-cols-8 gap-2 md:gap-6">
-          {PARTNERS.map((partner: Partner, index) => ( // Use Partner type
-            <a 
-              href={partner.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              key={index}
-              className="group relative flex flex-col items-center justify-center bg-[#0C0C0C] border border-white/5 rounded-2xl hover:border-gold-500/30 transition-all duration-500 p-2 md:p-4 overflow-hidden"
-            >
-               {/* Hover Gradient */}
-               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-               
-               {/* Content */}
-               <div className="w-10 h-10 md:w-20 md:h-20 rounded-full overflow-hidden bg-white/5 border border-white/10 group-hover:scale-110 transition-transform duration-500 shadow-2xl flex items-center justify-center mb-1 md:mb-3">
-                   <img 
-                     src={partner.image} 
-                     alt={partner.name} 
-                     className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0"
-                   />
-               </div>
-               
-               <div className="text-center w-full px-1">
-                 <span className="text-[7px] md:text-sm font-black uppercase tracking-wider md:tracking-widest text-gray-500 group-hover:text-white transition-colors block truncate w-full">
-                     {partner.name}
-                 </span>
-                 <p className="hidden md:block text-[10px] font-medium text-gray-600 group-hover:text-gray-400 transition-colors uppercase tracking-wider truncate w-full mt-1">
-                     {partner.industry}
-                 </p>
-                 <div className="hidden md:block h-[2px] w-0 bg-gold-500 mx-auto group-hover:w-1/2 transition-all duration-500 mt-2"></div>
-               </div>
-               
-               <div className="hidden md:block absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
-                   <ExternalLink size={14} className="text-gold-500" />
-               </div>
-            </a>
-          ))}
+
+        {/* BOTTOM TIER 1: 3 F1 AGENCY PARTNERS */}
+        <div className="mb-8">
+          <div className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.14em] text-slate-600 mb-3">
+            <Sparkles size={13} className="text-[#1E40FF]" />
+            <span>3 Đại Lý F1 Triển Khai Auto Routing &amp; Meta CAPI</span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+            {F1_AGENCY_PARTNERS.map((agency) => (
+              <div
+                key={agency.id}
+                className="inkica-glass-card rounded-2xl p-4 flex items-center gap-3.5"
+              >
+                <div className="w-14 h-12 rounded-xl bg-slate-50 border border-slate-200 p-1.5 flex items-center justify-center shrink-0">
+                  <img
+                    src={agency.logo}
+                    alt={agency.name}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div className="min-w-0">
+                  <div className="text-sm font-extrabold text-slate-900 truncate">{agency.name}</div>
+                  <div className="text-[10.5px] font-bold text-[#1E40FF] truncate">
+                    {agency.routeMetric}
+                  </div>
+                  <div className="text-[11px] text-slate-500 truncate mt-0.5">{agency.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* BOTTOM TIER 2: HORIZONTAL MARQUEE + FULL 24-BRAND SPREAD GRID */}
+        <div className="inkica-glass-card rounded-3xl p-5 sm:p-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+            <div className="flex items-center gap-2">
+              <Layers size={15} className="text-[#1E40FF]" />
+              <h3 className="text-sm sm:text-base font-extrabold text-slate-900">
+                30+ Thương Hiệu &amp; Doanh Nghiệp Đồng Hành
+              </h3>
+            </div>
+
+            <div className="flex flex-wrap gap-1.5">
+              {industries.map((ind) => (
+                <button
+                  type="button"
+                  key={ind}
+                  onClick={() => setSelectedIndustry(ind)}
+                  className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer ${
+                    selectedIndustry === ind
+                      ? 'bg-[#1E40FF] text-white'
+                      : 'bg-slate-100 text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  {ind}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Horizontal Marquee Row */}
+          <div className="overflow-hidden border-y border-slate-200/60 py-3.5 mb-6">
+            <div className="animate-marquee items-center gap-4">
+              {marqueeBrands.map((brand, idx) => (
+                <a
+                  key={`${brand.name}-marq-${idx}`}
+                  href={brand.website}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white/75 backdrop-blur-md border border-white/90 ring-1 ring-slate-200/70 hover:border-[#1E40FF]/45 shrink-0 transition-all"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 p-1.5 flex items-center justify-center shrink-0">
+                    <img
+                      src={brand.image}
+                      alt={brand.name}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <span className="text-[13px] font-bold text-slate-800 whitespace-nowrap">
+                    {brand.name}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Spacious 4-Column Frosted Glass Brand Directory */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {filteredBrands.map((partner) => (
+              <a
+                key={partner.name}
+                href={partner.website}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center gap-4 p-4 rounded-2xl bg-white/70 backdrop-blur-md border border-white/90 ring-1 ring-slate-200/75 hover:bg-white/95 hover:border-[#1E40FF]/45 hover:shadow-md transition-all"
+              >
+                <div className="w-14 h-14 rounded-xl bg-white border border-slate-200/90 p-2 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+                  <img
+                    src={partner.image}
+                    alt={partner.name}
+                    loading="lazy"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div className="min-w-0">
+                  <div className="text-sm sm:text-[15px] font-extrabold text-slate-900 group-hover:text-[#1E40FF] truncate transition-colors">
+                    {partner.name}
+                  </div>
+                  <div className="text-xs font-medium text-slate-500 truncate mt-0.5">
+                    {partner.industry}
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>

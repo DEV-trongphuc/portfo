@@ -1,82 +1,119 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { EXPERIENCES } from '../../constants';
-import { Briefcase, Building2, Calendar, MapPin } from 'lucide-react';
+import { Briefcase, Building2, Calendar } from 'lucide-react';
 
 const Experience: React.FC = () => {
   return (
-    <section id="experience" className="py-32 relative z-10">
-      {/* Seamless Transition: Using transparent background instead of solid colors */}
-      <div className="container mx-auto px-6 max-w-6xl relative">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-6 border-b border-white/5 pb-8">
-            <div>
-                <motion.div 
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    className="flex items-center gap-3 mb-2"
-                >
-                    <div className="w-8 h-[2px] bg-gold-500"></div>
-                    <span className="text-gold-500 font-bold tracking-[0.3em] uppercase text-xs">Professional Journey</span>
-                </motion.div>
-                <h2 className="text-4xl md:text-6xl font-black text-white mt-3">WORK EXPERIENCE.</h2>
-            </div>
-            <div className="text-right hidden md:block">
-                <p className="text-xs font-mono text-gray-500 mb-1">CURRENT STATUS</p>
-                <div className="flex items-center justify-end gap-2">
-                    <span className="relative flex h-3 w-3">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                    </span>
-                    <span className="text-white font-bold">Open to Collaboration</span>
-                </div>
-            </div>
+    <section
+      id="experience"
+      className="py-16 sm:py-20 border-b border-slate-200/70 relative z-10"
+    >
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 relative">
+        {/* Clean Header (No CURRENT STATUS badge) */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4 border-b border-slate-200/80 pb-6">
+          <div>
+            <motion.div
+              initial={{ opacity: 0, x: -16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-[#1E40FF] text-[10.5px] font-bold uppercase tracking-[0.16em] mb-3"
+            >
+              <Briefcase size={13} />
+              <span>Professional Journey</span>
+            </motion.div>
+
+            <h2 className="text-2xl sm:text-3xl lg:text-[2.2rem] font-extrabold text-slate-900 leading-[1.35]">
+              Hành Trình{' '}
+              <span className="font-editorial text-gradient-inkica">Kinh Nghiệm Thực Chiến.</span>
+            </h2>
+          </div>
+
+          <p className="text-xs sm:text-sm text-slate-500 max-w-md md:text-right">
+            Các cột mốc từ Digital Performance đến Fullstack Engineering &amp; Kiến trúc hệ sinh
+            thái AI Automation cho Doanh nghiệp.
+          </p>
         </div>
 
+        {/* Classic Alternating Vertical Spine Timeline (Widened Full Container) */}
         <div className="relative">
-          {/* Central Line */}
-          <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/10 to-transparent transform md:-translate-x-1/2"></div>
+          {/* Central Spine Line */}
+          <div className="absolute left-[22px] md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-200 via-[#1E40FF]/40 to-blue-200 md:-translate-x-1/2" />
 
           {EXPERIENCES.map((item, index) => {
             const isEven = index % 2 === 0;
+            const isCurrent = index <= 2;
+
             return (
-                <motion.div 
-                    key={index}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className={`relative flex items-center justify-between md:justify-normal mb-20 last:mb-0 ${isEven ? 'md:flex-row-reverse' : ''}`}
+              <motion.div
+                key={item.id || index}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className={`relative flex items-center justify-between md:justify-normal mb-10 last:mb-0 ${
+                  isEven ? 'md:flex-row-reverse' : ''
+                }`}
+              >
+                {/* Timeline Center Node */}
+                <div
+                  className={`absolute left-[22px] md:left-1/2 w-7 h-7 rounded-full flex items-center justify-center z-10 -translate-x-1/2 border-2 transition-colors ${
+                    isCurrent
+                      ? 'bg-[#1E40FF] border-white ring-2 ring-[#1E40FF]/25'
+                      : 'bg-white border-[#1E40FF]/50'
+                  }`}
                 >
-                    {/* Timeline Node */}
-                    <div className="absolute left-[14px] md:left-1/2 w-8 h-8 rounded-full bg-[#050505] border-2 border-white/10 ring-1 ring-gold-500 flex items-center justify-center z-10 transform -translate-x-1/2 md:-translate-x-1/2 shadow-[0_0_20px_rgba(234,179,8,0.2)]">
-                        <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                  <div
+                    className={`w-2 h-2 rounded-full ${
+                      isCurrent ? 'bg-white' : 'bg-[#1E40FF]'
+                    }`}
+                  />
+                </div>
+
+                {/* Desktop Opposite Spacer */}
+                <div className="hidden md:block w-1/2" />
+
+                {/* Card Container */}
+                <div
+                  className={`w-[calc(100%-56px)] md:w-[46%] ml-auto md:ml-0 ${
+                    isEven ? 'md:pr-10' : 'md:pl-10'
+                  }`}
+                >
+                  <div
+                    className={`relative inkica-glass-card rounded-2xl p-5 sm:p-6 group ${
+                      isCurrent
+                        ? 'ring-1 ring-blue-200/70'
+                        : 'ring-1 ring-slate-200/60'
+                    }`}
+                  >
+                    {/* Floating Period Badge */}
+                    <div
+                      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10.5px] font-mono font-bold mb-3 backdrop-blur-md ${
+                        isCurrent
+                          ? 'bg-blue-50/75 text-[#1E40FF] border border-blue-200/80'
+                          : 'bg-white/65 text-slate-600 border border-slate-200/80'
+                      }`}
+                    >
+                      <Calendar size={11} />
+                      <span>{item.period}</span>
                     </div>
 
-                    <div className="hidden md:block w-1/2"></div>
-
-                    <div className={`w-[calc(100%-80px)] md:w-[45%] ml-auto md:ml-0 ${isEven ? 'md:pr-16' : 'md:pl-16'}`}>
-                        <div className="relative bg-white/[0.02]  border border-white/5 p-8 rounded-3xl hover:bg-white/[0.04] hover:border-gold-500/20 transition-all duration-300 group">
-                            <div className="absolute -top-4 right-8 bg-black/60  border border-white/10 px-4 py-1 rounded-full">
-                                <span className="text-[10px] font-bold text-gold-500 font-mono">{item.period}</span>
-                            </div>
-
-                            <div className="mb-4">
-                                <h3 className="text-2xl font-bold text-white group-hover:text-gold-500 transition-colors">
-                                    {item.role}
-                                </h3>
-                                <div className="flex items-center gap-2 text-blue-400 text-[10px] font-black uppercase tracking-widest mt-1">
-                                    <Building2 size={12} />
-                                    {item.company}
-                                </div>
-                            </div>
-
-                            <p className="text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4 font-light">
-                                {item.description}
-                            </p>
-                        </div>
+                    <div className="mb-3">
+                      <h3 className="text-base sm:text-lg font-extrabold text-slate-900 group-hover:text-[#1E40FF] transition-colors leading-snug">
+                        {item.role}
+                      </h3>
+                      <div className="flex items-center gap-1.5 text-[#1E40FF] text-[11px] font-bold uppercase tracking-wider mt-1">
+                        <Building2 size={12} className="shrink-0" />
+                        <span>{item.company}</span>
+                      </div>
                     </div>
-                </motion.div>
+
+                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-200/60 pt-3">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
             );
           })}
         </div>

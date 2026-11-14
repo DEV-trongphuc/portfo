@@ -1,190 +1,233 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Bot, Zap, LineChart, MailPlus, MessageSquareCode, BrainCircuit, ExternalLink } from 'lucide-react';
+import {
+  ArrowUpRight,
+  Bot,
+  BrainCircuit,
+  ChevronDown,
+  ChevronUp,
+  LineChart,
+  MailPlus,
+  Maximize2,
+  MessageSquareCode,
+  Sparkles,
+  Zap,
+} from 'lucide-react';
 import Modal from '../UI/Modal';
-import MobileSlider from '../UI/MobileSlider';
 
-// @ts-ignore
+import domLogo from '../../imgs/dom_logo.webp';
 import auto1 from '../../imgs/automation (1).webp';
-// @ts-ignore
 import auto2 from '../../imgs/automation (2).webp';
-// @ts-ignore
 import auto3 from '../../imgs/automation (3).webp';
-// @ts-ignore
 import auto4 from '../../imgs/automation (4).webp';
-// @ts-ignore
 import auto5 from '../../imgs/automation (5).webp';
-// @ts-ignore
 import auto6 from '../../imgs/automation (6).webp';
-// @ts-ignore
 import auto7 from '../../imgs/automation (7).webp';
-// @ts-ignore
 import auto8 from '../../imgs/automation (8).webp';
-// @ts-ignore
 import aiTrain1 from '../../imgs/ai_tu_train (1).webp';
-// @ts-ignore
 import aiTrain2 from '../../imgs/ai_tu_train (2).webp';
-// @ts-ignore
 import aiTrain3 from '../../imgs/ai_tu_train (3).webp';
 
+const WORKFLOW_IMAGES = [
+  { src: auto4, label: 'Visual Flow Builder — Nhánh Điều Kiện' },
+  { src: auto5, label: 'Kịch Bản Tự Động Đa Nhánh (IF/ELSE)' },
+  { src: auto6, label: 'Kho Action & Bước Tiếp Theo Workflow' },
+  { src: auto7, label: 'Thư Viện Mẫu Kịch Bản Tự Động' },
+  { src: auto1, label: 'Chi Tiết Hồ Sơ & Hành Vi Khách Hàng' },
+  { src: auto2, label: 'Bảng Quản Trị Đối Tượng & Phân Nhóm' },
+  { src: aiTrain1, label: 'Huấn Luyện AI Tri Thức Nội Bộ' },
+  { src: auto3, label: 'Chuỗi Email & Zalo ZNS Tự Động' },
+  { src: auto8, label: 'Báo Cáo Chuyển Đổi Real-time' },
+  { src: aiTrain2, label: 'RAG Knowledge Vault (PDF/Docs)' },
+  { src: aiTrain3, label: 'Trợ Lý AI Phòng Ban' },
+];
+
+const DOMATION_FEATURES = [
+  {
+    icon: <Bot size={18} />,
+    title: 'AI Agent Tự Động',
+    desc: 'Trợ lý chăm sóc & chốt lịch 24/7 trên Zalo OA, Messenger và Website.',
+  },
+  {
+    icon: <Zap size={18} />,
+    title: 'Visual Workflow Engine',
+    desc: 'Thiết kế kịch bản rẽ nhánh IF/ELSE tự động từ hành vi khách hàng.',
+  },
+  {
+    icon: <MailPlus size={18} />,
+    title: 'Email & Zalo ZNS Engine',
+    desc: 'Gửi thông báo xác nhận, tài liệu và nhắc lịch tức thì theo ngữ cảnh.',
+  },
+  {
+    icon: <MessageSquareCode size={18} />,
+    title: 'AI Script & Content Gen',
+    desc: 'Sinh kịch bản phản hồi cá nhân hóa theo từng nhóm khách hàng mục tiêu.',
+  },
+  {
+    icon: <LineChart size={18} />,
+    title: 'Theo Dõi Phễu Live',
+    desc: 'Đo tỷ lệ mở, lượt click và điểm chuyển đổi ngay trên giao diện trực quan.',
+  },
+  {
+    icon: <BrainCircuit size={18} />,
+    title: 'Huấn Luyện AI Riêng',
+    desc: 'Nạp PDF, bảng giá và quy trình nội bộ để AI trả lời chuẩn xác theo hãng.',
+  },
+];
+
 const AutoFlowPro: React.FC = () => {
-    const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [showAll, setShowAll] = useState(false);
 
-    const features = [
-        {
-            title: "Đồng bộ Trợ lý AI",
-            desc: "Tự động đồng bộ tương tác trên Web, Messenger, Zalo",
-            icon: <Bot size={24} />
-        },
-        {
-            title: "Automation Flow",
-            desc: "Tự động hóa quy trình chăm sóc đa kênh liền mạch",
-            icon: <Zap size={24} />
-        },
-        {
-            title: "Kéo thả Email",
-            desc: "Ứng dụng thiết kế Email Marketing kéo thả trực quan",
-            icon: <MailPlus size={24} />
-        },
-        {
-            title: "Training Chatbot",
-            desc: "Huấn luyện AI Chatbot chuyên biệt cho từng doanh nghiệp",
-            icon: <MessageSquareCode size={24} />
-        },
-        {
-            title: "Phân tích 360°",
-            desc: "Connect CRM phân tích theo dõi hành trình khách hàng",
-            icon: <LineChart size={24} />
-        },
-        {
-            title: "AI Knowledge Base",
-            desc: "Hệ thống AI học từ cơ sở kiến thức riêng của doanh nghiệp",
-            icon: <BrainCircuit size={24} />
-        }
-    ];
+  const visibleImages = showAll ? WORKFLOW_IMAGES : WORKFLOW_IMAGES.slice(0, 4);
 
-    const images = [auto1, auto2, auto3, auto4, auto5, auto6, auto7, auto8, aiTrain1, aiTrain2, aiTrain3];
-
-    return (
-        <section className="py-24 relative overflow-hidden z-10">
-            {/* Background Decor aligned with the global app background */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] opacity-10 pointer-events-none"></div>
-
-            <div className="container mx-auto px-6 relative z-10 max-w-6xl">
-                <div className="flex flex-col items-center text-center mb-16">
-                    {/* Badge */}
-                    <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-500 mb-6"
-                    >
-                        <Sparkles size={14} />
-                        <span className="text-[10px] font-black uppercase tracking-widest">Project Thực Tế - Tự Phát Triển</span>
-                    </motion.div>
-
-                    {/* Title */}
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="text-5xl md:text-6xl font-black mb-4 text-white uppercase tracking-tight flex items-center justify-center gap-4"
-                    >
-                        <img src="https://automation.ideas.edu.vn/imgs/ICON.webp" alt="DOMATION Logo" className="w-12 h-12 md:w-16 md:h-16 object-contain rounded-2xl" />
-                        <span>DOMA<span className="text-gradient-gold">TION.</span></span>
-                    </motion.h2>
-
-                    {/* Subtitle */}
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="text-gray-400 text-lg max-w-2xl font-light"
-                    >
-                        Nền tảng tự động hóa marketing thông minh, giúp doanh nghiệp tăng trưởng vượt bậc
-                    </motion.p>
-
-                    {/* CTA Button */}
-                    <motion.a
-                        href="https://domation.net/"
-                        target="_blank"
-                        rel="noreferrer"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
-                        className="mt-6 inline-flex items-center gap-2 px-7 py-3 rounded-full border border-gold-500/50 text-gold-500 text-[11px] font-black uppercase tracking-widest hover:bg-gold-500 hover:text-black hover:border-gold-500 transition-all duration-300 group"
-                    >
-                        Khám phá DOMATION
-                        <ExternalLink size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
-                    </motion.a>
+  return (
+    <section
+      id="autoflow-pro"
+      className="py-16 sm:py-20 border-b border-slate-200/80 relative overflow-hidden"
+    >
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+          {/* Right (Desktop): Features & Specs */}
+          <div className="lg:col-span-5 order-1 lg:order-2">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="flex flex-wrap items-center gap-2.5 mb-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-[#1E40FF] text-[10.5px] font-bold uppercase tracking-[0.16em]">
+                  <Sparkles size={13} />
+                  <span>Marketing Automation Platform</span>
                 </div>
-
-                {/* Compact Feature Grid */}
-                <MobileSlider desktopGridClasses="md:grid-cols-3 lg:grid-cols-3 gap-3 mb-10">
-                    {features.map((feature, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.07 * idx }}
-                            className="bg-[#0a0a0a]/80 border border-white/5 rounded-2xl p-4 group hover:border-gold-500/30 hover:bg-white/[0.04] transition-all duration-300"
-                        >
-                            <div className="flex items-center gap-3">
-                                <div className="bg-white/5 text-gold-500 p-2 rounded-xl group-hover:bg-gold-500 group-hover:text-black transition-colors duration-300 flex-shrink-0">
-                                    {feature.icon}
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                    <h3 className="text-sm font-bold text-white mb-0.5 group-hover:text-gold-500 transition-colors leading-tight">{feature.title}</h3>
-                                    <p className="text-xs text-gray-500 font-light leading-snug line-clamp-2">{feature.desc}</p>
-                                </div>
-                            </div>
-                        </motion.div>
-                    ))}
-                </MobileSlider>
-
-                {/* Image Gallery */}
-                <div className="mt-20">
-                    <MobileSlider desktopGridClasses="md:grid-cols-4 gap-4">
-                        {images.map((img, idx) => (
-                            <motion.div
-                                key={idx}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.05 * idx }}
-                                className="rounded-2xl overflow-hidden border border-white/10 cursor-pointer hover:border-gold-500/50 hover:shadow-[0_0_20px_rgba(255,215,0,0.15)] transition-all duration-300 group"
-                                onClick={() => setPreviewImage(img)}
-                            >
-                                <img src={img} alt={`Automation Example ${idx + 1}`} className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
-                            </motion.div>
-                        ))}
-                    </MobileSlider>
+                <div className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-200 p-1 flex items-center justify-center">
+                  <img
+                    src={domLogo}
+                    alt="DOMATION Logo"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl lg:text-[2.15rem] font-extrabold text-slate-900 leading-[1.35] mb-3">
+                DOMATION{' '}
+                <span className="font-editorial text-gradient-inkica">Automation Flow.</span>
+              </h2>
+
+              <p className="text-slate-600 text-sm leading-relaxed mb-5">
+                Nền tảng tự động hóa kịch bản chăm sóc đa kênh, kéo thả Workflow và AI Agent tự
+                huấn luyện trên tri thức riêng của doanh nghiệp.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
+                {DOMATION_FEATURES.map((feature, idx) => (
+                  <div
+                    key={idx}
+                    className="group p-3.5 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:bg-white hover:border-[#1E40FF]/35 hover:shadow-md transition-all"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-200/70 text-[#1E40FF] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#1E40FF] group-hover:border-[#1E40FF] group-hover:text-white [&_svg]:group-hover:text-white">
+                        {feature.icon}
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="text-xs sm:text-sm font-bold text-slate-900 mb-0.5 leading-snug">
+                          {feature.title}
+                        </h3>
+                        <p className="text-[11.5px] text-slate-600 leading-relaxed line-clamp-2">
+                          {feature.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="https://domation.net"
+                target="_blank"
+                rel="noreferrer"
+                className="btn-inkica-primary px-5 py-2.5 text-xs font-bold inline-flex items-center gap-2"
+              >
+                <span>Khám Phá Hệ Sinh Thái DOMATION</span>
+                <ArrowUpRight size={14} />
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Left (Desktop): Clean 2x2 Flow Gallery First */}
+          <div className="lg:col-span-7 order-2 lg:order-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              {visibleImages.map((item, idx) => (
+                <button
+                  type="button"
+                  key={idx}
+                  onClick={() => setPreviewImage(item.src)}
+                  className="group relative text-left rounded-2xl overflow-hidden bg-slate-50/70 border border-slate-200/90 hover:border-[#1E40FF]/45 shadow-sm hover:shadow-xl transition-all cursor-pointer p-2"
+                >
+                  <div className="relative rounded-xl overflow-hidden bg-white aspect-[16/10]">
+                    <img
+                      src={item.src}
+                      alt={item.label}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                    />
+                    <span className="absolute top-2 right-2 w-7 h-7 rounded-lg bg-white/95 border border-slate-200 text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
+                      <Maximize2 size={13} />
+                    </span>
+                  </div>
+                  <div className="px-2 pt-2.5 pb-1 flex items-center justify-between gap-2">
+                    <span className="text-xs font-bold text-slate-800 group-hover:text-[#1E40FF] transition-colors truncate">
+                      {item.label}
+                    </span>
+                    <span className="text-[10px] font-mono text-slate-400 shrink-0">
+                      {String(idx + 1).padStart(2, '0')}
+                    </span>
+                  </div>
+                </button>
+              ))}
             </div>
 
-            {/* Global Image Previewer */}
-            <Modal
-                isOpen={!!previewImage}
-                onClose={() => setPreviewImage(null)}
-                title="System Interface Preview"
-                className="max-w-6xl w-[90vw] max-h-[90vh]"
-            >
-                {previewImage && (
-                    <div className="flex justify-center items-center h-full w-full bg-black/50 p-4">
-                        <img
-                            src={previewImage}
-                            alt="Preview Fullscreen"
-                            className="max-w-full max-h-[80vh] object-contain rounded-xl shadow-2xl"
-                        />
-                    </div>
+            <div className="mt-4 flex justify-end">
+              <button
+                type="button"
+                onClick={() => setShowAll((v) => !v)}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-50 border border-slate-200 hover:border-[#1E40FF]/40 text-xs font-bold text-slate-700 hover:text-[#1E40FF] transition-all cursor-pointer"
+              >
+                {showAll ? (
+                  <>
+                    <ChevronUp size={14} /> Thu gọn bớt giao diện
+                  </>
+                ) : (
+                  <>
+                    <ChevronDown size={14} /> Xem thêm {WORKFLOW_IMAGES.length - 4} màn hình Flow &amp;
+                    AI Train
+                  </>
                 )}
-            </Modal>
-        </section>
-    );
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Modal
+        isOpen={!!previewImage}
+        onClose={() => setPreviewImage(null)}
+        title="DOMATION Automation & AI Preview"
+        className="max-w-5xl"
+      >
+        {previewImage && (
+          <div className="flex justify-center items-center w-full bg-slate-50 rounded-2xl p-2 border border-slate-200">
+            <img
+              src={previewImage}
+              alt="Fullscreen Preview"
+              className="max-w-full max-h-[75vh] object-contain rounded-xl"
+            />
+          </div>
+        )}
+      </Modal>
+    </section>
+  );
 };
 
 export default AutoFlowPro;

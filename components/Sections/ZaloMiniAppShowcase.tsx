@@ -1,174 +1,178 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MonitorSmartphone, QrCode, ExternalLink, Code2, Shield, MousePointerClick, ArrowLeft, RefreshCcw } from 'lucide-react';
+import {
+  ArrowLeft,
+  Code2,
+  ExternalLink,
+  MonitorSmartphone,
+  MousePointerClick,
+  QrCode,
+  RefreshCcw,
+  Shield,
+} from 'lucide-react';
+import Modal from '../UI/Modal';
 
 const ZaloMiniAppShowcase: React.FC = () => {
+  const [showQrModal, setShowQrModal] = useState(false);
+
   return (
-    <section className="py-32 relative overflow-hidden">
-      {/* Background Grids */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#0a0a0a] to-black opacity-0"></div> {/* Hidden gradient to show global bg */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:64px_64px] opacity-10"></div>
+    <section
+      id="zalo-mini-app"
+      className="py-16 sm:py-20 border-b border-slate-200/80 relative overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 relative z-10">
+        {/* Compact Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center max-w-2xl mx-auto mb-10"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-[#1E40FF] text-[10.5px] font-bold uppercase tracking-[0.16em] mb-3.5">
+            <MonitorSmartphone size={13} />
+            <span>Interactive Mobile Experience</span>
+          </div>
 
-      {/* Ambient Spotlight */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-blue-900/10 rounded-full -[150px] pointer-events-none"></div>
+          <h2 className="text-2xl sm:text-3xl lg:text-[2.15rem] font-extrabold text-slate-900 leading-[1.35] mb-3">
+            Zalo Mini App{' '}
+            <span className="font-editorial text-gradient-inkica">for Business.</span>
+          </h2>
 
-      {/* Floating Decor */}
-      <div className="absolute top-20 left-10 opacity-20 pointer-events-none">
-        <svg width="200" height="200" viewBox="0 0 100 100">
-            <rect x="20" y="20" width="60" height="60" rx="10" stroke="white" strokeWidth="0.5" fill="none" />
-            <circle cx="50" cy="85" r="3" fill="white" />
-        </svg>
-      </div>
+          <p className="text-slate-600 text-sm leading-relaxed">
+            Ứng dụng tương tác tích hợp trực tiếp trong Zalo giúp học viên, khách hàng theo dõi
+            lịch trình, tích điểm và đồng bộ dữ liệu về CRM tức thì.
+          </p>
+        </motion.div>
 
-      {/* Container widened */}
-      <div className="container mx-auto px-4 md:px-8 max-w-[1600px] relative z-10">
-        <div className="text-center mb-24">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 mb-6"
-            >
-                <MonitorSmartphone size={14} />
-                <span className="text-[10px] font-black uppercase tracking-[0.2em]">Zalo Ecosystem Expert</span>
-            </motion.div>
-            
-            <div className="flex items-center justify-center gap-4 mb-6">
-                {/* Zalo Logo Added Here */}
-                <motion.img 
-                    initial={{ scale: 0, rotate: -180 }}
-                    whileInView={{ scale: 1, rotate: 0 }}
-                    src="https://stc-zlogin.zdn.vn/images/favicon.png" 
-                    alt="Zalo Logo" 
-                    className="w-10 h-10 md:w-16 md:h-16 rounded-xl md:rounded-2xl shadow-lg"
-                />
-                <h2 className="text-4xl md:text-7xl font-black text-white">MINI APPS.</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Right (Desktop): Widened Phone Frame Iframe Simulator */}
+          <div className="lg:col-span-6 order-2 flex justify-center">
+            <div className="relative pt-4">
+              <div className="w-full max-w-[395px] sm:w-[405px] h-[660px] sm:h-[700px] bg-slate-900 rounded-[2.5rem] border-[5px] border-slate-800 overflow-hidden relative flex flex-col">
+                <div className="h-6 bg-slate-900 w-full flex items-center justify-center relative z-20 shrink-0">
+                  <div className="w-20 h-3 bg-slate-800 rounded-full" />
+                </div>
+
+                <div className="relative flex-grow bg-white w-full overflow-hidden">
+                  <iframe
+                    src="https://turniodev.github.io/zala_ideas"
+                    title="IDEAS Institute Zalo Mini App"
+                    className="w-full h-full border-0"
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                  />
+                </div>
+
+                <div className="h-4 bg-slate-900 w-full flex items-center justify-center shrink-0">
+                  <div className="w-24 h-1 bg-slate-700 rounded-full" />
+                </div>
+              </div>
+
+              <div className="hidden sm:flex absolute -top-3 left-1/2 -translate-x-1/2 z-20 bg-blue-50 px-3.5 py-1 rounded-full border border-blue-200/90">
+                <p className="text-[11px] font-bold flex items-center gap-1.5 text-[#1E40FF] whitespace-nowrap">
+                  <MousePointerClick size={13} /> Thao tác trực tiếp
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Left (Desktop): 3 Compact Technical Feature Cards */}
+          <div className="lg:col-span-6 order-1 space-y-3.5">
+            <div className="group p-4 sm:p-5 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:bg-white hover:border-[#1E40FF]/35 hover:shadow-md transition-all">
+              <div className="flex items-start gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200/70 text-[#1E40FF] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#1E40FF] group-hover:border-[#1E40FF] group-hover:text-white [&_svg]:group-hover:text-white">
+                  <Code2 size={18} />
+                </div>
+                <div>
+                  <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-1">
+                    Kiến trúc React &amp; ZaUI (IDEAS App)
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Xây dựng trên ReactJS &amp; Zalo Mini App SDK theo chuẩn UI Native Zalo với tốc
+                    độ tải tức thì và trải nghiệm mượt mà.
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto font-light mb-8">
-                Biến 74 triệu người dùng Zalo thành khách hàng của bạn. 
-                <span className="text-white block font-medium mt-2">Custom-coded with React & TypeScript.</span>
-            </p>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
-            
-            {/* Live Phone Demo - Direct View */}
-            <div className="relative flex flex-col items-center justify-center">
-                
-                {/* Animated Arrow */}
-                <motion.div 
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.5, duration: 0.8 }}
-                    className="absolute -right-4 md:-right-20 top-1/4 z-30 flex items-center gap-3 pointer-events-none hidden lg:flex"
-                >
-                     <motion.div 
-                        animate={{ x: [0, -10, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                        className="flex items-center gap-2"
-                     >
-                        <ArrowLeft size={32} className="text-gold-500" />
-                        <div className="glass-card px-4 py-2 rounded-xl border-gold-500/30">
-                            <span className="text-gold-500 font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                                <MousePointerClick size={14} /> Click to Interact
-                            </span>
-                        </div>
-                     </motion.div>
-                </motion.div>
-
-                {/* The Phone Frame - Widened width, reduced height */}
-                <motion.div 
-                    initial={{ y: 50, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.8 }}
-                    className="relative z-20 w-[350px] md:w-[440px] h-[600px] md:h-[750px] bg-black border-[10px] border-[#1a1a1a] rounded-[3.5rem] shadow-[0_0_60px_-15px_rgba(255,255,255,0.1)] ring-4 ring-white/5 overflow-hidden"
-                >
-                     {/* Dynamic Island */}
-                     <div className="absolute top-0 left-1/2 -translate-x-1/2 h-7 w-28 bg-black rounded-b-2xl z-30 flex justify-center items-center pointer-events-none">
-                        <div className="w-16 h-2 bg-[#111] rounded-full"></div>
-                     </div>
-
-                     {/* Live Iframe */}
-                     <iframe 
-                        src="https://turniodev.github.io/zala_ideas" 
-                        title="Zalo Mini App Demo"
-                        className="w-full h-full bg-white border-0"
-                        sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-                     />
-                     
-                     {/* Glossy Overlay */}
-                     <div className="absolute inset-0 rounded-[2.5rem] pointer-events-none shadow-[inset_0_0_20px_rgba(0,0,0,0.5)] z-20"></div>
-                </motion.div>
-
-                {/* Reflection/Shadow under phone */}
-                <div className="w-[300px] h-10 bg-black/50  rounded-[100%] mt-[-20px] z-10"></div>
+            <div className="group p-4 sm:p-5 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:bg-white hover:border-emerald-300 hover:shadow-md transition-all">
+              <div className="flex items-start gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200/70 text-emerald-600 flex items-center justify-center shrink-0 transition-colors group-hover:bg-emerald-600 group-hover:border-emerald-600 group-hover:text-white [&_svg]:group-hover:text-white">
+                  <Shield size={18} />
+                </div>
+                <div>
+                  <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-1">
+                    Loyalty &amp; Tích Điểm Tự Động
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Xác thực tài khoản qua Zalo Phone Number không cần mật khẩu, kích hoạt voucher
+                    và theo dõi tiến độ trực tiếp.
+                  </p>
+                </div>
+              </div>
             </div>
 
-            {/* Features List */}
-            <div className="space-y-12">
-                 <div className="group">
-                    <div className="flex items-center gap-4 mb-2 md:mb-4">
-                        <div className="p-3 md:p-4 bg-blue-600/10 rounded-2xl text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-colors border border-blue-500/20">
-                            <Code2 size={24} className="md:w-7 md:h-7" />
-                        </div>
-                        <div>
-                            <h3 className="text-xl md:text-3xl font-black text-white">React & TypeScript</h3>
-                            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Tech Core</p>
-                        </div>
-                    </div>
-                    <p className="text-gray-400 pl-0 md:pl-[84px] text-base md:text-lg font-light leading-relaxed">
-                        Không dùng nền tảng kéo thả (No-code). Tôi code tay 100% để đảm bảo <span className="text-white font-bold">tốc độ tải dưới 1s</span> và khả năng tùy biến giao diện vô hạn theo Brand Guideline.
-                    </p>
-                 </div>
-
-                 <div className="group">
-                    <div className="flex items-center gap-4 mb-2 md:mb-4">
-                        <div className="p-3 md:p-4 bg-green-600/10 rounded-2xl text-green-500 group-hover:bg-green-600 group-hover:text-white transition-colors border border-green-500/20">
-                            <Shield size={24} className="md:w-7 md:h-7" />
-                        </div>
-                        <div>
-                            <h3 className="text-xl md:text-3xl font-black text-white">Loyalty System</h3>
-                            <p className="text-[10px] md:text-sm text-gray-500 font-bold uppercase tracking-wider">Automation</p>
-                        </div>
-                    </div>
-                    <p className="text-gray-400 pl-0 md:pl-[84px] text-base md:text-lg font-light leading-relaxed">
-                        Hệ thống tự động thăng hạng thành viên (Silver, Gold, Diamond). Tích hợp <span className="text-white font-bold">QR Code định danh</span> để tích điểm tại quầy trong 3 giây.
-                    </p>
-                 </div>
-                 
-                 <div className="group">
-                    <div className="flex items-center gap-4 mb-2 md:mb-4">
-                        <div className="p-3 md:p-4 bg-purple-600/10 rounded-2xl text-purple-500 group-hover:bg-purple-600 group-hover:text-white transition-colors border border-purple-500/20">
-                            <RefreshCcw size={24} className="md:w-7 md:h-7" />
-                        </div>
-                        <div>
-                            <h3 className="text-xl md:text-3xl font-black text-white">Data Synchronization</h3>
-                            <p className="text-[10px] md:text-sm text-gray-500 font-bold uppercase tracking-wider">Ecosystem</p>
-                        </div>
-                    </div>
-                    <p className="text-gray-400 pl-0 md:pl-[84px] text-base md:text-lg font-light leading-relaxed">
-                        Các chức năng tích điểm, lên hạng tự động đồng bộ với Zalo app của người dùng một cách liền mạch.
-                    </p>
-                 </div>
-
-                 <div className="pl-0 md:pl-[84px] pt-4 flex flex-col md:flex-row gap-4">
-                     <a 
-                        href="https://turniodev.github.io/zala_ideas" 
-                        target="_blank"
-                        rel="noreferrer"
-                        className="w-full md:w-auto justify-center px-8 py-4 bg-white text-black font-black uppercase text-xs tracking-widest hover:bg-blue-600 hover:text-white transition-all rounded-full hover:scale-105 active:scale-95 duration-200 flex items-center gap-2 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
-                     >
-                         <ExternalLink size={16} /> Open Fullscreen
-                     </a>
-                     <button className="w-full md:w-auto justify-center px-8 py-4 border border-white/10 text-white font-black uppercase text-xs tracking-widest hover:bg-white/10 transition-all rounded-full flex items-center gap-2">
-                         <QrCode size={16} /> Scan QR
-                     </button>
-                 </div>
+            <div className="group p-4 sm:p-5 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:bg-white hover:border-sky-300 hover:shadow-md transition-all">
+              <div className="flex items-start gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-sky-50 border border-sky-200/70 text-[#0284C7] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#0284C7] group-hover:border-[#0284C7] group-hover:text-white [&_svg]:group-hover:text-white">
+                  <RefreshCcw size={18} />
+                </div>
+                <div>
+                  <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-1">
+                    Đồng Bộ CRM &amp; ZaloBot
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Đẩy hành vi &amp; trạng thái học viên về CRM doanh nghiệp, kích hoạt nhắc lịch
+                    qua Zalo OA ZNS tự động.
+                  </p>
+                </div>
+              </div>
             </div>
 
+            <div className="flex flex-wrap gap-3 pt-2">
+              <a
+                href="https://turniodev.github.io/zala_ideas"
+                target="_blank"
+                rel="noreferrer"
+                className="btn-inkica-primary px-5 py-2.5 text-xs font-bold inline-flex items-center gap-2"
+              >
+                <ExternalLink size={14} /> Mở Toàn Màn Hình
+              </a>
+              <button
+                type="button"
+                onClick={() => setShowQrModal(true)}
+                className="btn-inkica-secondary px-5 py-2.5 text-xs font-bold inline-flex items-center gap-2 cursor-pointer"
+              >
+                <QrCode size={14} /> Demo Link &amp; QR
+              </button>
+            </div>
+          </div>
         </div>
       </div>
+
+      <Modal
+        isOpen={showQrModal}
+        onClose={() => setShowQrModal(false)}
+        title="Trải Nghiệm Zalo Mini App"
+        className="max-w-md"
+      >
+        <div className="text-center space-y-4">
+          <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-200 text-[#1E40FF] flex items-center justify-center mx-auto">
+            <QrCode size={28} />
+          </div>
+          <p className="text-sm text-slate-600 leading-relaxed">
+            Mở trực tiếp bản Web Simulator của Zalo Mini App IDEAS trong tab mới để trải nghiệm toàn
+            màn hình.
+          </p>
+          <a
+            href="https://turniodev.github.io/zala_ideas"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-inkica-primary w-full py-3 text-xs font-bold inline-flex items-center justify-center gap-2"
+          >
+            <ExternalLink size={15} /> Truy cập turniodev.github.io/zala_ideas
+          </a>
+        </div>
+      </Modal>
     </section>
   );
 };

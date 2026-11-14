@@ -16,94 +16,55 @@ import {
 } from 'lucide-react';
 import React from 'react';
 
-// Brand logo
-// @ts-ignore
+// Brand & DOM project images
 import domLogo from './imgs/dom_logo.webp';
+import domProject1 from './imgs/dom_project_1.webp';
+import domProject2 from './imgs/dom_project_2.webp';
 
 // Projects images
-// @ts-ignore
 import project1 from './imgs/project_1.webp';
-// @ts-ignore
 import project2 from './imgs/project_2.webp';
-// @ts-ignore
 import project3 from './imgs/project_3.webp';
-// @ts-ignore
 import project4 from './imgs/project_4.webp';
-// @ts-ignore
 import project5 from './imgs/project_5.webp';
-// @ts-ignore
 import project6 from './imgs/project_6.webp';
-// @ts-ignore
 import project7 from './imgs/project_7.webp';
-// @ts-ignore
 import project8 from './imgs/project_8.webp';
 
 // Certifications images
-// @ts-ignore
 import cert1 from './imgs/cert_1.webp';
-// @ts-ignore
 import cert2 from './imgs/cert_2.webp';
-// @ts-ignore
 import cert3 from './imgs/cert_3.webp';
-// @ts-ignore
 import cert4 from './imgs/cert_4.webp';
-// @ts-ignore
 import cert5 from './imgs/cert_5.webp';
-// @ts-ignore
 import cert6 from './imgs/cert_6.webp';
-// @ts-ignore
 import cert7 from './imgs/cert_7.webp';
-// @ts-ignore
 import cert8 from './imgs/cert_8.webp';
 
 // Partners logos
-// @ts-ignore
 import partnerPhucloctho from './imgs/partner_phucloctho.webp';
-// @ts-ignore
 import partnerDuyenmai from './imgs/partner_duyenmai.webp';
-// @ts-ignore
 import partnerCowboysteak from './imgs/partner_cowboysteak.webp';
-// @ts-ignore
 import partnerEngroup from './imgs/partner_engroup.webp';
-// @ts-ignore
 import partnerAbiruen from './imgs/partner_abiruen.webp';
-// @ts-ignore
 import partnerKaen from './imgs/partner_kaen.webp';
-// @ts-ignore
 import partnerHaagendazs from './imgs/partner_haagendazs.webp';
-// @ts-ignore
 import partnerBean from './imgs/partner_bean.webp';
-// @ts-ignore
 import partnerTherunningbean from './imgs/partner_therunningbean.webp';
-// @ts-ignore
 import partnerEstasaigon from './imgs/partner_estasaigon.webp';
-// @ts-ignore
 import partnerLepetit from './imgs/partner_lepetit.webp';
-// @ts-ignore
 import partnerSnowee from './imgs/partner_snowee.webp';
-// @ts-ignore
 import partnerAnninhtienhoang from './imgs/partner_anninhtienhoang.webp';
-// @ts-ignore
 import partnerAscencia from './imgs/partner_ascencia.webp';
-// @ts-ignore
 import partnerVtciedu from './imgs/partner_vtciedu.webp';
-// @ts-ignore
 import partnerCollegedeparis from './imgs/partner_collegedeparis.webp';
-// @ts-ignore
 import partnerSwissumef from './imgs/partner_swissumef.webp';
-// @ts-ignore
 import partnerIdeasinstitute from './imgs/partner_ideasinstitute.webp';
-// @ts-ignore
 import partnerNavastore from './imgs/partner_navastore.webp';
-// @ts-ignore
 import partnerFlora from './imgs/partner_flora.webp';
-// @ts-ignore
 import partnerBrandson from './imgs/partner_brandson.webp';
-// @ts-ignore
 import partnerAmpersand from './imgs/ampersand logo.jpg';
-// @ts-ignore
 import partnerImplantswiss from './imgs/partner_implantswiss.png';
-// @ts-ignore
 import partnerRichland from './imgs/partner_richland.webp';
 
 // LOGO URL CONSTANT
@@ -142,19 +103,19 @@ export const BRIDGE_CARDS = [
     step: '01', 
     title: 'Ads Acquisition', 
     desc: 'Tối ưu Meta & Google Ads với tư duy Marketing bền vững, tập trung vào Lead chất lượng cao.',
-    icon: <Megaphone className="text-slate-500" />
+    icon: <Megaphone className="text-blue-600" />
   },
   { 
     step: '02', 
     title: 'Data Automation', 
-    desc: 'Dùng Google Apps Script & API tự động đẩy Leads về CRM (MISA, Salesforce) trong < 5s.',
-    icon: <Zap className="text-slate-500" />
+    desc: 'Dùng API & ZaloBot tự động chia vòng Lead và đẩy về CRM (MISA, ERP 5.0) trong < 5s.',
+    icon: <Zap className="text-blue-600" />
   },
   { 
     step: '03', 
-    title: 'Real-time Report', 
-    desc: 'Xây dựng Dashboard theo dõi ROAS, CAC, và tỷ lệ chốt của Sale ngay lập tức.',
-    icon: <Layers className="text-slate-500" />
+    title: 'Real-time Report & CAPI', 
+    desc: 'Dashboard theo dõi ROAS/CAC tức thì & bắn ngược Meta CAPI HTTP 200 tối ưu tệp khách mua thật.',
+    icon: <Layers className="text-blue-600" />
   }
 ];
 
@@ -162,18 +123,16 @@ export const DOM_PROJECTS = [
   { 
     title: 'Realtime Meta Insights', 
     desc: 'Hệ thống tự động quét dữ liệu từ Facebook Ads Manager và hiển thị báo cáo chi tiết cho khách hàng.', 
-    image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(21).jpg'
+    image: domProject1
   },
   { 
     title: 'Report - CRM Connector', 
     desc: 'Kết nối đa kênh (Zalo, FB, Web) về hệ thống MISA, giúp quản lý 100% phễu khách hàng.', 
-    image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(20).jpg'
+    image: domProject2
   },
 ];
 
-// @ts-ignore
 import logoIdeas from './imgs/logo_ideas.webp';
-// @ts-ignore
 import logoPhucloctho from './imgs/logo_phucloctho.webp';
 
 export const OUTSOURCE_HIGHLIGHTS: OutsourceHighlight[] = [
@@ -199,6 +158,7 @@ export const OUTSOURCE_HIGHLIGHTS: OutsourceHighlight[] = [
   },
   {
     company: 'Ampersand Group',
+    logo: partnerAmpersand,
     result: '6 Brands',
     cost: 'Social Mng.',
     impact: 'Brand Awareness',
@@ -206,16 +166,17 @@ export const OUTSOURCE_HIGHLIGHTS: OutsourceHighlight[] = [
     description: 'Quản lý ngân sách và chạy quảng cáo cho 6 thương hiệu F&B, tăng cường nhận diện thương hiệu và tương tác khách hàng.',
     status: 'success',
     logos: [
-        { src: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(3).jpg', link: 'https://www.facebook.com/Haagendazs.com.vn' },
-        { src: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(4).jpg' },
-        { src: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(6).jpg', link: 'https://www.facebook.com/therunningbeansg' },
-        { src: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(14).jpg', link: 'https://www.facebook.com/esta.saigon' },
-        { src: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(7).jpg' },
-        { src: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(8).jpg', link: 'https://www.facebook.com/snoweesg' }
+        { src: partnerHaagendazs, link: 'https://www.facebook.com/Haagendazs.com.vn' },
+        { src: partnerBean },
+        { src: partnerTherunningbean, link: 'https://www.facebook.com/therunningbeansg' },
+        { src: partnerEstasaigon, link: 'https://www.facebook.com/esta.saigon' },
+        { src: partnerLepetit },
+        { src: partnerSnowee, link: 'https://www.facebook.com/snoweesg' }
     ]
   },
   {
     company: 'Web Order',
+    logo: logoPhucloctho,
     result: 'ROAS 5+',
     cost: '5-7M Ads - 100M R/Month',
     impact: 'Phúc Lộc Thọ',
@@ -223,38 +184,52 @@ export const OUTSOURCE_HIGHLIGHTS: OutsourceHighlight[] = [
     description: 'Chiến dịch Web Order vận hành có lợi nhuận ổn định nhưng gặp rào cản khi scale-up ngân sách. Nguyên nhân cốt lõi là sự thua thiệt về tính tiện lợi trong thanh toán mở rộng so với các siêu ứng dụng (GrabFood, ShopeeFood) và thiếu hụt các chương trình Promo mang tính mồi câu mạnh mẽ. Case study đúc kết ra bài học quan trọng về việc xây dựng lợi thế độc quyền (Exclusive Offers) để có thể thay đổi thói quen đặt hàng của user trên kênh Social.',
     status: 'success'
   },
-
-
 ];
 
 export const PARTNERS: Partner[] = [
-  { name: 'Phúc Lộc Thọ', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(5).jpg', website: 'https://phucloctho.vn', industry: 'FNB / Franchise' },
-  { name: 'Duyên Mai', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed.jpg', website: 'https://duyenmai.vn', industry: 'Fashion / Retail' },
-  { name: 'Cowboy Steak', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed.png', website: 'https://www.facebook.com/CowboySteakhouseVietnam/', industry: 'FNB / Restaurant' },
-  { name: 'En Group', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(1).jpg', website: 'https://engroup.vn', industry: 'FNB / Holdings' },
-  { name: 'Abiru-EN', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(13).jpg', website: 'https://ka-en.com.vn/', industry: 'FNB / Restaurant' },
-  { name: 'KA-EN', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(2).jpg', website: 'https://ka-en.com.vn/', industry: 'FNB / Restaurant' },
-  { name: 'Haagen Dazs', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(3).jpg', website: 'https://haagendazs.com.vn/', industry: 'FNB / Dessert' },
-  { name: 'BEAN', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(4).jpg', website: 'https://therunningbean.com.vn/', industry: 'FNB / Cafe' },
-  { name: 'The Running Bean', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(6).jpg', website: 'https://therunningbean.com.vn/', industry: 'FNB / Cafe' },
-  { name: 'Esta Saigon', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(14).jpg', website: 'https://esta-saigon.com/', industry: 'FNB / Restaurant' },
-  { name: 'Le Petit', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(7).jpg', website: 'https://lepetit.vn/', industry: 'FNB / Bistro' },
-  { name: 'Snowee', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(8).jpg', website: 'https://snoweegelato.com/', industry: 'FNB / Dessert' },
-  { name: 'An Ninh Tiên Hoàng', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(9).jpg', website: 'http://anninhtienhoang.com/', industry: 'Security Service' },
-  { name: 'Ascencia', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(1).png', website: 'https://www.ascencia-business-school.com/', industry: 'Education / Finance' },
-  { name: 'VTCI Edu', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(11).jpg', website: 'https://vtc.edu.vn/', industry: 'Education / Training' },
-  { name: 'College de Paris', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(12).jpg', website: 'https://collegedeparis.vn/', industry: 'Education / University' },
-  { name: 'Swiss UMEF', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(15).jpg', website: 'https://www.umef.ch/', industry: 'Education / University' },
-  { name: 'IDEAS Institute', image: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed%20(10).jpg', website: 'https://ideas.edu.vn/', industry: 'Education / Research' },
-  { name: 'Navastore', image: 'https://bizweb.dktcdn.net/100/543/817/themes/1000289/assets/logo.png?1775454528082', website: 'https://navastore.vn/', industry: 'Retail / Ecommerce' },
-  { name: 'Nha khoa Flora', image: 'https://nhakhoaflora.com/wp-content/uploads/2022/05/cropped-LOGO-FLORA1-3-192x192.png', website: 'https://nhakhoaflora.com', industry: 'Dental / Clinic' },
-  { name: 'Brandson', image: 'https://brandson.vn/wp-content/uploads/2025/11/logo2.png', website: 'https://brandson.vn', industry: 'Branding / Agency' },
+  { name: 'Phúc Lộc Thọ', image: partnerPhucloctho, website: 'https://phucloctho.vn', industry: 'FNB / Franchise' },
+  { name: 'Duyên Mai', image: partnerDuyenmai, website: 'https://duyenmai.vn', industry: 'Fashion / Retail' },
+  { name: 'Cowboy Steak', image: partnerCowboysteak, website: 'https://www.facebook.com/CowboySteakhouseVietnam/', industry: 'FNB / Restaurant' },
+  { name: 'En Group', image: partnerEngroup, website: 'https://engroup.vn', industry: 'FNB / Holdings' },
+  { name: 'Abiru-EN', image: partnerAbiruen, website: 'https://ka-en.com.vn/', industry: 'FNB / Restaurant' },
+  { name: 'KA-EN', image: partnerKaen, website: 'https://ka-en.com.vn/', industry: 'FNB / Restaurant' },
+  { name: 'Haagen Dazs', image: partnerHaagendazs, website: 'https://haagendazs.com.vn/', industry: 'FNB / Dessert' },
+  { name: 'BEAN', image: partnerBean, website: 'https://therunningbean.com.vn/', industry: 'FNB / Cafe' },
+  { name: 'The Running Bean', image: partnerTherunningbean, website: 'https://therunningbean.com.vn/', industry: 'FNB / Cafe' },
+  { name: 'Esta Saigon', image: partnerEstasaigon, website: 'https://esta-saigon.com/', industry: 'FNB / Restaurant' },
+  { name: 'Le Petit', image: partnerLepetit, website: 'https://lepetit.vn/', industry: 'FNB / Bistro' },
+  { name: 'Snowee', image: partnerSnowee, website: 'https://snoweegelato.com/', industry: 'FNB / Dessert' },
+  { name: 'An Ninh Tiên Hoàng', image: partnerAnninhtienhoang, website: 'http://anninhtienhoang.com/', industry: 'Security Service' },
+  { name: 'Ascencia', image: partnerAscencia, website: 'https://www.ascencia-business-school.com/', industry: 'Education / Finance' },
+  { name: 'VTCI Edu', image: partnerVtciedu, website: 'https://vtc.edu.vn/', industry: 'Education / Training' },
+  { name: 'College de Paris', image: partnerCollegedeparis, website: 'https://collegedeparis.vn/', industry: 'Education / University' },
+  { name: 'Swiss UMEF', image: partnerSwissumef, website: 'https://www.umef.ch/', industry: 'Education / University' },
+  { name: 'IDEAS Institute', image: partnerIdeasinstitute, website: 'https://ideas.edu.vn/', industry: 'Education / Research' },
+  { name: 'Navastore', image: partnerNavastore, website: 'https://navastore.vn/', industry: 'Retail / Ecommerce' },
+  { name: 'Nha khoa Flora', image: partnerFlora, website: 'https://nhakhoaflora.com', industry: 'Dental / Clinic' },
+  { name: 'Brandson', image: partnerBrandson, website: 'https://brandson.vn', industry: 'Branding / Agency' },
   { name: 'Ampersand', image: partnerAmpersand, website: 'https://www.ampersand.vn/', industry: 'FNB / Management' },
   { name: 'Implantswiss', image: partnerImplantswiss, website: 'https://implantswiss.vn/', industry: 'Dental / Implant' },
   { name: 'Richland', image: partnerRichland, website: 'https://rich-land.vercel.app/', industry: 'Real Estate / PropTech' }
 ];
 
 export const EXPERIENCES: Experience[] = [
+  {
+    id: '0a',
+    role: 'Digital Marketing & AI Automation',
+    company: 'Tập đoàn Capital House • Dự án EcoLife Signature',
+    period: '09/2026 - NOW',
+    description: 'Phụ trách chiến lược Digital Marketing & AI Automation toàn trình cho dự án EcoLife Signature Đà Nẵng: Website 3D bóc mái WebGL, Trợ lý AI Sales Portal (ai.ecolifesignature.vn), Phim 4K, 25 ấn phẩm Offline/OOH và hệ thống Auto Chia Số 3 Đại lý F1 (< 5s) đồng bộ Meta CAPI.',
+    type: 'work'
+  },
+  {
+    id: '0b',
+    role: 'Fullstack Developer — AI POD Studio',
+    company: 'INKICA AI Tools (ai.inkica.com)',
+    period: '2025 - NOW',
+    description: 'Kiến trúc & phát triển nền tảng AI Prepress ngành Print-on-Demand: 300 DPI Graphic Extract (SAM 3 + DIS5K + ViTMatte), AOP 3D Pattern Studio 208 SKU / 88 Canonical Models (0 px overlap), bóc rập .PSD CAD Cubic Bezier, Embroidery (.DST), Halftone LPI & Live Multi-Color Garment Mockup (Next.js, Three.js WebGL, NestJS, PostgreSQL, BullMQ).',
+    type: 'work'
+  },
   { 
     id: '0', 
     role: 'CEO Founder', 
@@ -265,10 +240,10 @@ export const EXPERIENCES: Experience[] = [
   },
   { 
     id: '1', 
-    role: 'Digital Marketing & Fullstack Deverloper', 
+    role: 'Digital Marketing & Fullstack Developer', 
     company: 'IDEAS Institute', 
     period: '2023 - 2024', 
-    description: 'Lập trình Web, Zalo App, minigame theo chiến dịch, tối ưu Website & SEO. Vận hành Google/FB Ads kèm hệ thống Báo cáo tự động Real-time. Tăng trưởng số lượng tuyển sinh Thạc sĩ MBA x3 so với năm 2022, giảm chi phí trên mỗi học viên từ 18tr -> 12-14 triệu', 
+    description: 'Lập trình Web, Zalo App, minigame theo chiến dịch, tối ưu Website & SEO. Vận hành Google/FB Ads kèm hệ thống Báo cáo tự động Real-time. Tăng trưởng số lượng tuyển sinh Thạc sĩ MBA x3 so với năm 2022, giảm chi phí trên mỗi học viên từ 18tr -> 12-14 triệu.', 
     type: 'work' 
   },
   { 
@@ -284,7 +259,7 @@ export const EXPERIENCES: Experience[] = [
     role: 'Quản trị kinh doanh - Marketing', 
     company: 'Banking University HCMC', 
     period: '2019 - 2023', 
-    description: 'Digital Marketing, học thêm các khóa học lập trình Fullstack tại Fullstack.edu.vn - F8', 
+    description: 'Digital Marketing, học thêm các khóa học lập trình Fullstack tại Fullstack.edu.vn - F8.', 
     type: 'education' 
   }
 ];
@@ -505,7 +480,7 @@ export const SHORT_CAMPAIGNS: OutsourceHighlight[] = [
   },
   {
     company: 'Duyên Mai',
-    logo: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed.jpg',
+    logo: partnerDuyenmai,
     result: 'Duy trì Reach',
     cost: 'Social Mng.',
     impact: 'Fashion Awareness',
@@ -515,7 +490,7 @@ export const SHORT_CAMPAIGNS: OutsourceHighlight[] = [
   },
   {
     company: 'Cowboy Steak',
-    logo: 'https://raw.githubusercontent.com/turniodev/TurnioSave/refs/heads/main/DEV_ASSET/brand/unnamed.png',
+    logo: partnerCowboysteak,
     result: 'Duy trì Reach',
     cost: 'Social Mng.',
     impact: 'Steakhouse Awareness',
@@ -536,6 +511,15 @@ export interface ErpGalleryItem {
 }
 
 export const ERP_GALLERY: ErpGalleryItem[] = [
+  {
+    id: 'nav_menu_1',
+    src: '/ERP-Product/1788856691047_2141578413905312186_2310722037673454867_2dacee1206b6e8f836cdea82018d556e.jpg',
+    title: 'Hệ thống Menu Điều hướng Nhanh (Phần 1)',
+    category: 'Hệ thống & Cài đặt',
+    tag: 'Navigation System',
+    description: 'Điều hướng đa phân hệ: Lead một cửa, Databank, Giỏ hàng dự án, Đối tác liên kết, HRM, Phê duyệt và Cấu hình hệ thống.',
+    highlight: 'Giao diện tối ưu công thái học UX/UI'
+  },
   {
     id: 'splash',
     src: '/ERP-Product/1788856522396_2141578413905312186_2310722037673454867_637ed02e6f5c0e0560d1bcac82cf9a19.jpg',
@@ -654,15 +638,6 @@ export const ERP_GALLERY: ErpGalleryItem[] = [
     highlight: 'Linh hoạt tùy biến 100% nghiệp vụ'
   },
   {
-    id: 'nav_menu_1',
-    src: '/ERP-Product/1788856691047_2141578413905312186_2310722037673454867_2dacee1206b6e8f836cdea82018d556e.jpg',
-    title: 'Hệ thống Menu Điều hướng Nhanh (Phần 1)',
-    category: 'Hệ thống & Cài đặt',
-    tag: 'Navigation System',
-    description: 'Điều hướng đa phân hệ: Lead một cửa, Databank, Giỏ hàng dự án, Đối tác liên kết, HRM, Phê duyệt và Cấu hình hệ thống.',
-    highlight: 'Giao diện tối ưu công thái học UX/UI'
-  },
-  {
     id: 'nav_menu_2',
     src: '/ERP-Product/1788856705546_2141578413905312186_2310722037673454867_91d3fd439a4e7f45eee7ae77dc8c20a1.jpg',
     title: 'Hệ sinh thái Phân hệ Mở rộng (Phần 2)',
@@ -741,3 +716,553 @@ export const ERP_MODULES = [
     tag: "Security & RLS"
   }
 ];
+
+/* ============================================================================
+   QUIET LUXURY PARTNERS: FLAGSHIP CHỦ ĐẦU TƯ, DỰ ÁN & 3 ĐẠI LÝ F1
+   ============================================================================ */
+
+export interface FlagshipPartnerItem {
+  id: string;
+  name: string;
+  role: string;
+  subtitle: string;
+  logo: string;
+  url?: string;
+  metrics: string[];
+  badge: string;
+}
+
+export const FEATURED_FLAGSHIP_PARTNERS: FlagshipPartnerItem[] = [
+  {
+    id: "capital-house",
+    name: "Capital House Group",
+    role: "CHỦ ĐẦU TƯ CHIẾN LƯỢC",
+    subtitle:
+      "Tập đoàn tiên phong kiến tạo Bất động sản Xanh chuẩn quốc tế IFC EDGE tại Việt Nam. Hợp tác nghiệm thu toàn diện hệ sinh thái Media 3D, Web Portal & CRM chia số.",
+    logo: "/assets/partners/logo_capital_house.webp",
+    url: "https://chgroup.vn",
+    badge: "BBNT 0511/2026 • CĐT",
+    metrics: ["2 Hợp đồng Nghiệm thu 2026", "Hệ thống CRM & CAPI Độc quyền", "Chiến dịch Media & OOH Tổng thể"]
+  },
+  {
+    id: "ecolife-signature",
+    name: "EcoLife Signature Đà Nẵng",
+    role: "DỰ ÁN TRỌNG ĐIỂM • TOÀN DIỆN MARTECH",
+    subtitle:
+      "Tổ hợp căn hộ Xanh chuẩn EDGE đẳng cấp bên Vịnh biển Đà Nẵng. Trực tiếp kiến trúc Website WordPress Quiet Luxury, WebGL 3D, Trợ lý AI Sales & Auto Routing 3 Đại lý F1.",
+    logo: "/assets/partners/logo_ecolife_ngang.webp",
+    url: "https://ai.ecolifesignature.vn/",
+    badge: "AI.ECOLIFESIGNATURE.VN",
+    metrics: ["Website WordPress + 3D Bóc Mái", "Trợ lý AI Sales & Knowledge Vault", "Auto Chia Data 3 Đại lý F1 < 5s"]
+  }
+];
+
+export interface F1AgencyItem {
+  id: string;
+  name: string;
+  shortName: string;
+  role: string;
+  logo: string;
+  routeMetric: string;
+  note: string;
+}
+
+export const F1_AGENCY_PARTNERS: F1AgencyItem[] = [
+  {
+    id: "tung-long",
+    name: "Địa Ốc Tùng Long",
+    shortName: "TÙNG LONG PROPERTY",
+    role: "Đại lý F1 Phân phối Chính thức",
+    logo: "/assets/partners/logo_tung_long.webp",
+    routeMetric: "Ratio: 1 • ZaloBot < 5s",
+    note: "Nhận data tự động Round-Robin công bằng từ Meta Form & Website, đối soát ticket real-time."
+  },
+  {
+    id: "hop-nhat",
+    name: "Bất Động Sản Hợp Nhất",
+    shortName: "HỢP NHẤT LAND",
+    role: "Đại lý F1 Phân phối Chính thức",
+    logo: "/assets/partners/logo_hop_nhat.webp",
+    routeMetric: "Ratio: 1 • Auto Bù Ticket",
+    note: "Tích hợp webhook giao data trực tiếp về đội ngũ kinh doanh cá nhân và quản lý giỏ hàng F1."
+  },
+  {
+    id: "ihd-group",
+    name: "Tập Đoàn IHD",
+    shortName: "IHD GROUP",
+    role: "Đại lý F1 Phân phối Chính thức",
+    logo: "/assets/partners/logo_ihd_group.webp",
+    routeMetric: "Ratio: 1 • CAPI Sync",
+    note: "Đồng bộ trạng thái chăm sóc khách hàng (Thiện chí, Hẹn gặp, Booking) phản hồi về Dataset Meta."
+  }
+];
+
+/* ============================================================================
+   DOMATION 2026: AUTO DATA ROUTING (ZALOBOT) & AUTO META CAPI
+   ============================================================================ */
+
+export interface DomationV2Screen {
+  id: string;
+  badge: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  highlights: string[];
+}
+
+export const DOMATION_V2_CAPI_SHOWCASE: DomationV2Screen[] = [
+  {
+    id: "overview",
+    badge: "01 • AUTO CHIA DATA ĐẠI LÝ & ZALOBOT",
+    title: "Phân Bổ Data Real-Time Qua ZaloBot & SalePortal",
+    subtitle:
+      "Tự động thu lead từ Meta Instant Form & Website, lọc trùng 6 tháng, loại trừ blacklist/spam rồi chia vòng công bằng cho 3 Đại lý F1 (Tùng Long, Hợp Nhất, IHD) và từng Sale cá nhân qua ZaloBot dưới 5 giây.",
+    image: "/assets/domation/data_v2_overview.webp",
+    highlights: [
+      "Tự động chia vòng 91%+ tỷ lệ sạch, bù ticket minh bạch",
+      "Gửi thông báo trực tiếp tới Sale cá nhân & Leader qua ZaloBot",
+      "Theo dõi lưu lượng data theo ngày / theo giờ / heatmap"
+    ]
+  },
+  {
+    id: "capi-log",
+    badge: "02 • AUTO BẮN CONVERSION API META (HTTP 200)",
+    title: "Tự Động Bắn CAPI Về Meta Khi Đánh Giá Thiện Chí & Notlead",
+    subtitle:
+      "Khi Sale hoặc AI Pre-screener chấm trạng thái Lead trên portal (Thiện chí -> Lead/Qualified, Hẹn gặp -> Schedule/Booked, Sai số/Không nhu cầu -> DisqualifiedLead/Notlead), hệ thống tự động hash ph/em/fn/ln/fbc bắn CAPI trực tiếp về Facebook Dataset.",
+    image: "/assets/domation/data_v2_capi_masked.webp",
+    highlights: [
+      "Bắn cả tín hiệu Chất lượng (Lead / Schedule) và Tín hiệu Loại (DisqualifiedLead / Notlead)",
+      "Dạy thuật toán Meta ngừng phân phối vào tệp rác, tập trung người mua ở thật",
+      "Thông tin SĐT khách hàng đã được ẩn bảo mật trên bản trình diễn"
+    ]
+  },
+  {
+    id: "ads-pipeline",
+    badge: "03 • ĐO LƯỜNG HIỆU SUẤT AD TỚI TỪNG LEAD",
+    title: "Pipeline Tracking Từng Mẫu Quảng Cáo Đến Booking & Đặt Cọc",
+    subtitle:
+      "Kết nối chi phí Meta Ads API với phễu đánh giá thực tế của Sale theo 8 nấc: Thiện chí, Hẹn gặp, Booking, Đặt cọc, Đã chốt, Hẹn gọi lại, KNM/Thuê bao, Notlead để ra quyết định Scale hay Tắt Ad chính xác bằng dữ liệu thật.",
+    image: "/assets/domation/data_v2_ads_pipeline.webp",
+    highlights: [
+      "Nhìn thấu tỷ lệ Notlead / Thiện chí trên từng mẫu Carousel, Video, Lead Form",
+      "Tính chính xác CPL thực & Chi phí trên mỗi Lead Thiện chí",
+      "Cảnh báo Ad đang đốt tiền hoặc tiềm năng Scale"
+    ]
+  },
+  {
+    id: "fair-audit",
+    badge: "04 • ĐỐI SOÁT CÔNG BẰNG ĐẠI LÝ",
+    title: "Bảng Thống Kê Độ Lệch & Bù Data Minh Bạch Giữa 3 Đại Lý F1",
+    subtitle:
+      "Loại bỏ hoàn toàn tranh cãi chia số không đều giữa các sàn F1: Công thức Thành công = Đã chia + Bù (không tính trùng/ticket hợp lệ), tự động cân bằng độ lệch gần 0% giữa Tùng Long, Hợp Nhất và IHD.",
+    image: "/assets/domation/data_v2_fair_audit.webp",
+    highlights: [
+      "Biểu đồ đối soát theo nguồn Meta Form vs Website",
+      "Quy trình duyệt Ticket lỗi & hoàn bù tự động",
+      "Công thức minh bạch cho Chủ đầu tư & Giám đốc Sàn"
+    ]
+  }
+];
+
+/* ============================================================================
+   DOMATION LANDING PAGE DATASET (IMPORTED FROM D:\GITHUB_SPACE\DOMATION_LANDINGPAGE)
+   ============================================================================ */
+
+export const ERP_16_EXTRA: ErpGalleryItem = {
+  id: "16",
+  src: "/assets/domation/erp_16.webp",
+  category: "Vận hành & Lead",
+  tag: "Vận hành Độc quyền",
+  title: "Báo Cáo Vận Hành & Tồn Quỹ Phòng Học Real-Time",
+  description:
+    "Theo dõi công suất phòng học, lịch giảng dạy giảng viên và tình trạng vận hành đa cơ sở theo thời gian thực.",
+  highlight: "Realtime Operations Matrix"
+};
+
+export const DOMATION_CRM_IMAGES = [
+  { id: 1, src: "/assets/domation/crm_1.webp", title: "Dashboard Tổng Quan Doanh Thu & Pipeline" },
+  { id: 2, src: "/assets/domation/crm_2.webp", title: "Phân Bổ Lead Đa Kênh Round-Robin" },
+  { id: 3, src: "/assets/domation/crm_3.webp", title: "Quản Lý Hồ Sơ Khách Hàng 360 Độ" },
+  { id: 4, src: "/assets/domation/crm_4.webp", title: "Tự Động Chăm Sóc ZaloBot & ZNS" },
+  { id: 5, src: "/assets/domation/crm_5.webp", title: "Báo Cáo Hiệu Suất Sale & KPI Chốt Đơn" },
+  { id: 6, src: "/assets/domation/crm_6.webp", title: "Theo Dõi Lịch Hẹn, Booking & Đặt Cọc" },
+  { id: 7, src: "/assets/domation/crm_7.webp", title: "Lọc Trùng Số Điện Thoại Đa Chiến Dịch" },
+  { id: 8, src: "/assets/domation/crm_8.webp", title: "Đồng Bộ Webhook Hai Chiều CRM <-> Meta" },
+  { id: 9, src: "/assets/domation/crm_9.webp", title: "Quản Trị Giỏ Hàng & Chính Sách Bán Hàng" },
+  { id: 10, src: "/assets/domation/crm_10.webp", title: "Lịch Sử Tương Tác & Ghi Chú Tư Vấn" },
+];
+
+export const DOMATION_AUTO_FEATURES = [
+  { id: "home", tab: "Tổng quan Automation", title: "Bảng Điều Khiển Chiến Dịch & Tỷ Lệ Chuyển Đổi", desc: "Theo dõi lưu lượng email, Zalo ZNS, kịch bản tự động và tỷ lệ mở / click theo thời gian thực.", src: "/assets/domation/auto_home.webp" },
+  { id: "flow", tab: "Visual Flow Builder", title: "Trình Tạo Kịch Bản Kéo Thả Đa Nhánh (IF/ELSE)", desc: "Thiết kế phễu nuôi dưỡng tự động dựa trên hành vi mở mail, click link, xem trang giá hoặc trạng thái CRM.", src: "/assets/domation/auto_flow.webp" },
+  { id: "email", tab: "Email Design", title: "Thiết Kế Email Chuyên Nghiệp Kéo Thả", desc: "Thư viện template chuẩn Quiet Luxury & doanh nghiệp B2B/BĐS, tối ưu hiển thị trên mọi thiết bị.", src: "/assets/domation/auto_email.webp" },
+  { id: "tracking", tab: "Web Tracking", title: "Gắn Pixel Tracking Hành Vi Khách Hàng Ẩn Danh", desc: "Ghi nhận chính xác từng lượt xem trang, thời gian ở lại và gắn nhãn tự động về hồ sơ khách hàng.", src: "/assets/domation/auto_tracking.webp" },
+  { id: "ai-group", tab: "AI Phòng Ban", title: "Hệ Thống AI Agent Phân Quyền Từng Bộ Phận", desc: "Xây dựng các Trợ lý AI chuyên biệt cho Marketing, Sale, CSKH với bộ tài liệu tri thức nội bộ riêng.", src: "/assets/domation/auto_ai_group.webp" },
+  { id: "chatbot", tab: "AI Chatbot 24/7", title: "Trợ Lý AI Tư Vấn Đa Kênh Zalo & Messenger", desc: "Tự động chào hỏi, trả lời thông số sản phẩm, bảng giá và đặt lịch hẹn khách hàng ngay trong khung chat.", src: "/assets/domation/auto_ai_chatbot.webp" },
+  { id: "voucher", tab: "Voucher Hub", title: "Phát Hành & Kiểm Soát Mã Ưu Đãi Tự Động", desc: "Tạo hàng loạt mã giảm giá/booking duy nhất gắn với từng khách hàng và theo dõi tỷ lệ sử dụng.", src: "/assets/domation/auto_voucher.webp" },
+  { id: "qr", tab: "QR Tracking", title: "Đo Lường Hiệu Quả Marketing Offline Qua QR Động", desc: "Theo dõi lượt quét từ Standee, Tờ gập, Hoarding công trình để gán nguồn khách hàng chính xác.", src: "/assets/domation/auto_qr.webp" },
+  { id: "survey", tab: "Survey Builder", title: "Khảo Sát Nhu Cầu & Chấm Điểm Lead Tự Động", desc: "Thu thập insight khách hàng, tự động phân nhóm (Segment) và kích hoạt chuỗi chăm sóc tương ứng.", src: "/assets/domation/auto_survey.webp" },
+];
+
+export const DOMATION_META_REPORT_IMAGES = [
+  { src: "/assets/domation/meta_rp_1.webp", title: "Tổng quan Chỉ số Meta Ads Real-Time (Spend, ROAS, CPA)" },
+  { src: "/assets/domation/meta_rp_2.webp", title: "Phân tích Phễu Video Hook Rate & Hold Rate" },
+  { src: "/assets/domation/meta_rp_3.webp", title: "Đối chiếu Chi phí Ads với Doanh thu CRM Thực tế" },
+  { src: "/assets/domation/meta_rp_4.webp", title: "Báo cáo Hiệu suất Creative & Độ bão hòa Tệp" },
+  { src: "/assets/domation/meta_rp_5.webp", title: "Ma trận Tối ưu Ngân sách Campaign / Adset" },
+  { src: "/assets/domation/meta_rp_6.webp", title: "Nhật ký Đồng bộ Token & Dataset CAPI" },
+];
+
+export interface DomationModuleItem {
+  id: string;
+  name: string;
+  tag: string;
+  desc: string;
+}
+
+export const DOMATION_ALL_MODULES: DomationModuleItem[] = [
+  { id: "chia-data", name: "Hệ Thống Phân Bổ Data V2", tag: "Data Routing", desc: "Chia số Round-Robin qua ZaloBot dưới 5 giây cho Đại lý F1 & Sale cá nhân." },
+  { id: "meta-capi", name: "Auto Bắn Meta CAPI", tag: "Ads Signal", desc: "Tự động bắn Qualified / Notlead / Booked về Facebook Dataset theo đánh giá Sale." },
+  { id: "campaigns", name: "Campaigns Đa Kênh", tag: "Email & ZNS", desc: "Điều phối chiến dịch Email & Zalo ZNS hàng loạt với tốc độ gửi tối ưu." },
+  { id: "automation", name: "Visual Automation Flow", tag: "Kịch bản", desc: "Xây dựng luồng chăm sóc rẽ nhánh theo hành vi mở link, gắn tag CRM." },
+  { id: "email-design", name: "Email Builder Kéo Thả", tag: "Template", desc: "Tạo email thẩm mỹ cao mà không cần viết HTML thủ công." },
+  { id: "ai-training", name: "AI Knowledge Training", tag: "RAG Vector", desc: "Huấn luyện AI từ PDF bảng giá, chính sách bán hàng và kịch bản tư vấn." },
+  { id: "ai-space", name: "AI Space Đa Phòng Ban", tag: "Trợ lý AI", desc: "Không gian AI riêng biệt cho Marketing, Sale, Học vụ và Ban Giám Đốc." },
+  { id: "voucher-hub", name: "Voucher Hub Real-Time", tag: "Khuyến mãi", desc: "Phát hành mã ưu đãi duy nhất gắn với từng Lead để kích thích chốt cọc." },
+  { id: "survey-builder", name: "Survey Builder & Lead Score", tag: "Khảo sát", desc: "Thu thập nhu cầu tài chính và tự động cộng/trừ điểm tiềm năng." },
+  { id: "qr-tracking", name: "QR Code Offline Tracking", tag: "O2O Bridge", desc: "Gắn QR thông minh lên Standee, Tờ gập, Phướn để đo lượng quét về Web." },
+  { id: "zalo-connect", name: "Zalo OA & ZaloBot Connect", tag: "Nhắn tin", desc: "Tích hợp ZNS, cảnh báo đơn mới và phân công chăm sóc tự động trên Zalo." },
+  { id: "meta-api", name: "Meta Ads API Reporting", tag: "Dashboard", desc: "Kéo dữ liệu quảng cáo trực tiếp từ Graph API phục vụ báo cáo minh bạch." },
+  { id: "web-tracking", name: "Website Behavior Tracking", tag: "Pixel", desc: "Ghi nhận hành trình người dùng xem căn hộ, bảng giá, sơ đồ 3D." },
+  { id: "audiences", name: "Smart Audience Segments", tag: "Tệp khách", desc: "Phân loại tệp khách tự động theo hành vi, nguồn Ads và lịch sử mua." },
+  { id: "analytics", name: "Executive BI Analytics", tag: "Phân tích", desc: "Báo cáo tổng thể từ Spend -> Lead -> Thiện chí -> Booking -> Doanh thu." },
+  { id: "api-triggers", name: "Webhook & API Triggers", tag: "Kết nối", desc: "Mở cổng Webhook kết nối mượt mà Google Sheets, WordPress, Pancake, Kiốt." },
+  { id: "web-design", name: "Thiết Kế Web & 3D Landing", tag: "Production", desc: "Xây dựng website thương hiệu Quiet Luxury, tối ưu Core Web Vitals & SEO." },
+  { id: "erp-suite", name: "DOMATION ERP 5.0 Suite", tag: "Vận hành", desc: "12 phân hệ quản trị hợp đồng, chấm công GPS AI Selfie & tính lương tự động." }
+];
+
+export interface DomationClientSite {
+  name: string;
+  url: string;
+  desc: string;
+  img: string;
+  tag: string;
+}
+
+export const DOMATION_CLIENT_SITES: DomationClientSite[] = [
+  { name: "EcoLife Signature AI & Web", url: "https://ai.ecolifesignature.vn/", desc: "Trợ lý AI Sales Portal + Landing Page chuẩn Quiet Luxury & 3D Bóc mái căn hộ.", img: "/assets/ecolife/TO_GAP_2_MAT_ONLINE_WEBSITE_BO_TRI_HOP_LY.webp", tag: "BĐS • Quiet Luxury & AI" },
+  { name: "Nava Store E-Commerce", url: "https://navastore.vn/", desc: "Nền tảng thương mại điện tử tối ưu tỷ lệ chuyển đổi, tích hợp Tracking hành vi & giỏ hàng nhanh.", img: "/assets/domation/clients/nava.webp", tag: "E-Commerce • Retail" },
+  { name: "IDEAS MBA Executive", url: "https://ideas.edu.vn/mba", desc: "Landing Page tuyển sinh chương trình Thạc sĩ Quản trị Kinh doanh Quốc tế chuẩn châu Âu.", img: "/assets/domation/clients/ideasmba.webp", tag: "Giáo dục • MBA Quốc tế" },
+  { name: "Brandson Agency", url: "https://domation.net", desc: "Website giới thiệu năng lực sáng tạo thương hiệu & chuyển đổi số tối giản hiện đại.", img: "/assets/domation/clients/brandson.webp", tag: "Branding & Creative" },
+  { name: "Flora Botanical", url: "https://domation.net", desc: "Trải nghiệm mua sắm lifestyle tinh tế với bảng màu organic và cấu trúc kể chuyện sản phẩm.", img: "/assets/domation/clients/flora.webp", tag: "Lifestyle & Beauty" },
+  { name: "Portfolio & Case Archive", url: "https://portfo-turnio.vercel.app/", desc: "Hệ thống lưu trữ hồ sơ năng lực, trực quan hóa số liệu tăng trưởng và dự án thực chiến.", img: "/assets/domation/clients/portfolio.webp", tag: "Executive Profile" },
+];
+
+export const DOMATION_SAAS_PLANS = [
+  {
+    name: "Starter",
+    badge: "KHỞI ĐỘNG TỰ ĐỘNG HÓA",
+    monthly: "2.990.000₫",
+    yearly: "30.498.000₫",
+    desc: "Phù hợp doanh nghiệp SME, đội nhóm Marketing cần hệ thống Email, Tracking & AI trực Zalo cơ bản.",
+    popular: false,
+    features: [
+      "100.000 Email / tháng + Template Pro",
+      "AI Phân tích chỉ số chiến dịch",
+      "Flow Automation (5 Kịch bản chủ lực)",
+      "Website Behavior Tracking Tiêu Chuẩn",
+      "AI trực Zalo ZNS & Messenger 24/7"
+    ]
+  },
+  {
+    name: "Growth",
+    badge: "PHỔ BIẾN NHẤT • DOANH NGHIỆP",
+    monthly: "4.990.000₫",
+    yearly: "50.898.000₫",
+    desc: "Giải pháp hoàn chỉnh cho Chủ đầu tư BĐS, Sàn F1, Chuỗi Giáo dục với Auto Chia Data & AI Lead Score.",
+    popular: true,
+    features: [
+      "500.000 Email / tháng + SMTP Riêng",
+      "AI Chatbot Tư Động 24/7 Huấn Luyện PDF",
+      "AI Lead Score & Auto Chia Data ZaloBot",
+      "Trình Tạo Flow Trực Quan Không Giới Hạn",
+      "Bản Đồ Tracking Heatmap Website",
+      "100+ Template Kéo Thả Cao Cấp"
+    ]
+  },
+  {
+    name: "Enterprise",
+    badge: "MAY ĐO THEO TẬP ĐOÀN",
+    monthly: "Liên hệ",
+    yearly: "Triển khai Độc quyền",
+    desc: "Dành cho Tập đoàn đa chi nhánh cần toàn bộ ERP 5.0, CRM Chia số CAPI & Server riêng.",
+    popular: false,
+    features: [
+      "Email & Lưu lượng Chia Data Không Giới Hạn",
+      "AI Phòng Ban Không Giới Hạn (RAG + Voice)",
+      "Auto Meta CAPI + API Sâu & Webhook 2 Chiều",
+      "Private Server, Row-Level Security & SLA 99.9%"
+    ]
+  }
+];
+
+export const DOMATION_WEB_MODULES = [
+  { id: "uiux", name: "Thiết kế UI/UX Độc quyền (Desktop & Mobile)", price: 2500000 },
+  { id: "home", name: "Trang Chủ Chuẩn Storytelling & Brand Motion", price: 1500000 },
+  { id: "about", name: "Trang Giới Thiệu Tập Đoàn / Hồ Sơ Năng Lực", price: 1000000 },
+  { id: "products", name: "Trang Sản Phẩm / Bảng Hàng / Bộ Sưu Tập", price: 2500000 },
+  { id: "branches", name: "Trang Điểm Bán / Sàn Phân Phối / Bản Đồ", price: 1500000 },
+  { id: "news", name: "Trang Cẩm Nang, Tin Tức & Tuyển Dụng", price: 1000000 },
+  { id: "cta", name: "Module Tương Tác, Form Booking & Chuyển Đổi", price: 500000 },
+  { id: "seo", name: "Quản Trị WordPress/NextJS + SEO Kỹ Thuật + Hosting", price: 1500000 },
+];
+
+export const DOMATION_WEB_ADDONS = [
+  { id: "sales", name: "Bán hàng, Giỏ hàng & Đặt cọc Online", price: 3500000, desc: "Quản lý sản phẩm, giỏ hàng, tracking đơn hàng chi tiết." },
+  { id: "payment", name: "Cổng Thanh Toán Tự Động (VNPay / Momo / VietQR)", price: 2000000, desc: "Đối soát giao dịch và gạch nợ tự động tức thì." },
+  { id: "users", name: "Hệ thống Thành viên / Đại lý / Cộng tác viên", price: 2500000, desc: "Phân quyền đăng nhập, cấp bậc tài khoản và lịch sử." },
+  { id: "crmErp", name: "Tích hợp DOMATION CRM & Auto Chia Data ZaloBot", price: 10000000, desc: "Đồng bộ Form về CRM, chia đại lý F1 & bắn Meta CAPI." },
+  { id: "multilingual", name: "Hệ thống Đa ngôn ngữ Quốc tế (VI / EN / KR / JP)", price: 18623610, desc: "Chuyển đổi ngôn ngữ mượt mà với cấu trúc URL chuẩn SEO." },
+  { id: "automation", name: "Chuỗi Email / Zalo ZNS Nuôi Dưỡng Tự Động", price: 8911600, desc: "Gửi tài liệu, voucher và kịch bản bám đuổi khách xem web." },
+  { id: "elearning", name: "Hệ thống Đào Tạo Sale & E-Learning Nội Bộ", price: 4344610, desc: "Quản lý học phần, bài thi sát hạch sản phẩm cho Sale." },
+];
+
+/* ============================================================================
+   ECOLIFE SIGNATURE: 3D BÓC MÁI (8 CĂN) & BỘ ẤN PHẨM OFFLINE / OOH ĐÃ NÉN
+   ============================================================================ */
+
+export interface EcoLife3DUnitItem {
+  code: string;
+  area: string;
+  spec: string;
+  highlight: string;
+  image: string;
+  url: string;
+}
+
+export const ECOLIFE_3D_UNITS: EcoLife3DUnitItem[] = [
+  { code: "Căn A1", area: "66,0 m²", spec: "2PN • 2WC", highlight: "Căn 2PN Điển Hình • Bàn Ăn Tròn Japandi", image: "/assets/ecolife/bocmai/bocmai_3d_a1.webp", url: "https://ecolifesignature.vn/3d/" },
+  { code: "Căn A2", area: "68,9 m²", spec: "2PN • 2WC", highlight: "Căn 2PN Tối Ưu • Bếp Đá Calacatta", image: "/assets/ecolife/bocmai/bocmai_3d_a2.webp", url: "https://ecolifesignature.vn/3d/" },
+  { code: "Căn B1", area: "77,8 m²", spec: "2PN+ • 2WC", highlight: "Căn Góc Đầu Hồi • Đảo Bếp Vát Góc", image: "/assets/ecolife/bocmai/bocmai_3d_b1.webp", url: "https://ecolifesignature.vn/3d/" },
+  { code: "Căn B2", area: "87,3 m²", spec: "3PN • 2WC", highlight: "Căn Góc Panorama • Lô Gia Đôi", image: "/assets/ecolife/bocmai/bocmai_3d_b2.webp", url: "https://ecolifesignature.vn/3d/" },
+  { code: "Căn B6", area: "87,1 m²", spec: "3PN • 3WC", highlight: "Căn Góc Xanh Dual Key • Tối Đa Ánh Sáng", image: "/assets/ecolife/bocmai/bocmai_3d_b6.webp", url: "https://ecolifesignature.vn/3d/" },
+  { code: "Căn B3", area: "88,8 m²", spec: "3PN • 2WC", highlight: "Căn Góc Đa Giác Độc Bản • View Vịnh", image: "/assets/ecolife/bocmai/bocmai_3d_b3.webp", url: "https://ecolifesignature.vn/3d/" },
+  { code: "Căn B5", area: "99,4 m²", spec: "3PN • 2WC", highlight: "Biên Độ Không Gian Rộng • Phòng Khách Lớn", image: "/assets/ecolife/bocmai/bocmai_3d_b5.webp", url: "https://ecolifesignature.vn/3d/" },
+  { code: "Căn B4", area: "101,8 m²", spec: "3PN • 2WC", highlight: "Đại Căn Hộ 3 Mặt Thoáng Chuẩn Dinh Thự", image: "/assets/ecolife/bocmai/bocmai_3d_b4.webp", url: "https://ecolifesignature.vn/3d/" },
+];
+
+export type OfflinePrintCategory = 'all' | 'togap-toroi' | 'catalog-noithat' | 'phuon-standee' | 'hoarding';
+
+export interface OfflineDeliverableItem {
+  id: string;
+  category: Exclude<OfflinePrintCategory, 'all'>;
+  categoryLabel: string;
+  title: string;
+  spec: string;
+  image: string;
+}
+
+export const ECOLIFE_OFFLINE_PRINT_OOH: OfflineDeliverableItem[] = [
+  {
+    id: "og-1",
+    category: "togap-toroi",
+    categoryLabel: "Tờ gập 7×7 & Tờ rời",
+    title: "Mockup 3D Tờ Gập Accordion A5 (Bản In Thực Tế)",
+    spec: "14×21cm gập Z-Fold • Cán mờ mỹ thuật",
+    image: "/assets/ecolife/offline/to_gap_mockup_3d.webp"
+  },
+  {
+    id: "og-2",
+    category: "togap-toroi",
+    categoryLabel: "Tờ gập 7×7 & Tờ rời",
+    title: "Tờ Gập 7 Cánh Mặt Trước — Tổng Quan & Vịnh Biển",
+    spec: "Layout ngang 98×21cm • In 4 màu CMYK",
+    image: "/assets/ecolife/offline/to_gap_7x7_mat_truoc.webp"
+  },
+  {
+    id: "og-3",
+    category: "togap-toroi",
+    categoryLabel: "Tờ gập 7×7 & Tờ rời",
+    title: "Tờ Gập 7 Cánh Mặt Sau — Trọn Bộ 9 Mặt Bằng 3D",
+    spec: "Đồng bộ mặt bằng tầng & căn hộ bóc mái",
+    image: "/assets/ecolife/offline/to_gap_7x7_mat_sau.webp"
+  },
+  {
+    id: "og-4",
+    category: "togap-toroi",
+    categoryLabel: "Tờ gập 7×7 & Tờ rời",
+    title: "Tờ Rời A5 Chính Chủ Đầu Tư (Mặt Trước)",
+    spec: "Khổ A5 phát sự kiện & sa bàn",
+    image: "/assets/ecolife/offline/to_roi_a5_mat_truoc.webp"
+  },
+  {
+    id: "og-5",
+    category: "togap-toroi",
+    categoryLabel: "Tờ gập 7×7 & Tờ rời",
+    title: "Tờ Rời A5 Chính Chủ Đầu Tư (Mặt Sau Chính Sách)",
+    spec: "QR Code dẫn về AI Assistant & Web 3D",
+    image: "/assets/ecolife/offline/to_roi_a5_mat_sau.webp"
+  },
+  {
+    id: "cat-1",
+    category: "catalog-noithat",
+    categoryLabel: "Catalog Nội thất & Brochure",
+    title: "Bìa Bộ Sưu Tập Căn Hộ & Tiêu Chuẩn Nội Thất",
+    spec: "Quiet Luxury Japandi & Emerald Edition",
+    image: "/assets/ecolife/offline/catalog_noithat_bia.webp"
+  },
+  {
+    id: "cat-2",
+    category: "catalog-noithat",
+    categoryLabel: "Catalog Nội thất & Brochure",
+    title: "Brochure 16 Trang — Bìa Đầu EcoLife Signature",
+    spec: "Bìa cứng ép kim vàng Champagne",
+    image: "/assets/ecolife/offline/brochure_bia_dau.webp"
+  },
+  {
+    id: "cat-3",
+    category: "catalog-noithat",
+    categoryLabel: "Catalog Nội thất & Brochure",
+    title: "Catalog Căn Hộ 2PN CH-A1 (66,0 m²)",
+    spec: "Phối cảnh phòng khách, phòng ngủ & thông số",
+    image: "/assets/ecolife/offline/catalog_can_a1_66m2.webp"
+  },
+  {
+    id: "cat-4",
+    category: "catalog-noithat",
+    categoryLabel: "Catalog Nội thất & Brochure",
+    title: "Catalog Căn Góc CH-B1 (77,8 m²) & CH-B2 (87,3 m²)",
+    spec: "Hệ bếp chữ L & lô gia đón gió Vịnh",
+    image: "/assets/ecolife/offline/catalog_can_b1_77m2.webp"
+  },
+  {
+    id: "cat-5",
+    category: "catalog-noithat",
+    categoryLabel: "Catalog Nội thất & Brochure",
+    title: "Catalog Căn Góc Đa Giác CH-B3 (88,8 m²)",
+    spec: "Thiết kế góc panorama không gian mở",
+    image: "/assets/ecolife/offline/catalog_can_b3_88m2.webp"
+  },
+  {
+    id: "cat-6",
+    category: "catalog-noithat",
+    categoryLabel: "Catalog Nội thất & Brochure",
+    title: "Catalog Dinh Thự Penthouse Duplex (Tầng 16–17)",
+    spec: "Sản phẩm giới hạn dành riêng cho giới tinh hoa",
+    image: "/assets/ecolife/offline/catalog_penthouse_16_17.webp"
+  },
+  {
+    id: "cat-7",
+    category: "catalog-noithat",
+    categoryLabel: "Catalog Nội thất & Brochure",
+    title: "Catalog Nội Thất Chuyên Sâu (Trang 1 — Material Board)",
+    spec: "Bảng vật liệu bàn giao đá Marble & gỗ Japandi",
+    image: "/assets/ecolife/offline/brochure_noithat_p1.webp"
+  },
+  {
+    id: "cat-8",
+    category: "catalog-noithat",
+    categoryLabel: "Catalog Nội thất & Brochure",
+    title: "Catalog Nội Thất Chuyên Sâu (Trang 2 — Living & Kitchen)",
+    spec: "Không gian sinh hoạt chuẩn Quiet Luxury",
+    image: "/assets/ecolife/offline/brochure_noithat_p2.webp"
+  },
+  {
+    id: "ooh-1",
+    category: "phuon-standee",
+    categoryLabel: "Phướn & Standee",
+    title: "Phướn Dọc Nền Xanh Emerald — Logo Vàng Kim",
+    spec: "Khổ 0.8×2.0m • Treo trục đường Đà Nẵng",
+    image: "/assets/ecolife/offline/phuon_nen_xanh_gold.webp"
+  },
+  {
+    id: "ooh-2",
+    category: "phuon-standee",
+    categoryLabel: "Phướn & Standee",
+    title: "Phướn Dọc Nền Sáng Ngọc Trai — Quiet Luxury",
+    spec: "Khổ 0.8×2.0m • Phiên bản ánh sáng ban ngày",
+    image: "/assets/ecolife/offline/phuon_ngoc_trai.webp"
+  },
+  {
+    id: "ooh-3",
+    category: "phuon-standee",
+    categoryLabel: "Phướn & Standee",
+    title: "Standee 1A — Tổng Quan Chứng Chỉ Xanh EDGE Quốc Tế",
+    spec: "Khổ 0.8×1.8m • Đặt tại Sales Gallery & Sàn F1",
+    image: "/assets/ecolife/offline/standee_1a_edge.webp"
+  },
+  {
+    id: "ooh-4",
+    category: "phuon-standee",
+    categoryLabel: "Phướn & Standee",
+    title: "Standee 1B — Chính Sách Bán Hàng & 5 Ngân Hàng",
+    spec: "Khổ 0.8×1.8m • Cập nhật chính sách đợt 1",
+    image: "/assets/ecolife/offline/standee_1b_chinhsach.webp"
+  },
+  {
+    id: "hr-0",
+    category: "hoarding",
+    categoryLabel: "Hoarding Hàng Rào Công Trình",
+    title: "Toàn Cảnh Dải Panorama Hoarding Bản Cũ (36m × 2.2m — 6 Module)",
+    spec: "Phiên bản liên hoàn 6 tấm 6×2.2m tại công trường",
+    image: "/assets/ecolife/offline/hoarding_cu_36x22_panorama.webp"
+  },
+  {
+    id: "hr-1",
+    category: "hoarding",
+    categoryLabel: "Hoarding Hàng Rào Công Trình",
+    title: "Hoarding Bản Cũ — Module 01: Bình Minh Vịnh Biển (6×2.2m)",
+    spec: "Khổ bạt in thực tế 600×220cm 300DPI",
+    image: "/assets/ecolife/offline/hoarding_cu_m1.webp"
+  },
+  {
+    id: "hr-2",
+    category: "hoarding",
+    categoryLabel: "Hoarding Hàng Rào Công Trình",
+    title: "Hoarding Bản Cũ — Module 02: Chuẩn Xanh Quốc Tế EDGE (6×2.2m)",
+    spec: "Nhấn mạnh giá trị tiết kiệm năng lượng IFC EDGE",
+    image: "/assets/ecolife/offline/hoarding_cu_m2.webp"
+  },
+  {
+    id: "hr-3",
+    category: "hoarding",
+    categoryLabel: "Hoarding Hàng Rào Công Trình",
+    title: "Hoarding Bản Cũ — Module 03: 220m Tới Hồ Sinh Thái (6×2.2m)",
+    spec: "Kết nối vị trí kim cương & cảnh quan Bàu Tràm",
+    image: "/assets/ecolife/offline/hoarding_cu_m3.webp"
+  },
+  {
+    id: "hr-4",
+    category: "hoarding",
+    categoryLabel: "Hoarding Hàng Rào Công Trình",
+    title: "Hoarding Bản Cũ — Module 04: Đặc Quyền Sống Xanh (6×2.2m)",
+    spec: "Công bố chính sách & đặc quyền cư dân",
+    image: "/assets/ecolife/offline/hoarding_cu_m4.webp"
+  },
+  {
+    id: "hr-5",
+    category: "hoarding",
+    categoryLabel: "Hoarding Hàng Rào Công Trình",
+    title: "Hoarding Bản Cũ — Module 05: 8 Mẫu Bóc Mái 3D & Công Thái Học",
+    spec: "Trưng bày hệ căn hộ tối ưu công năng",
+    image: "/assets/ecolife/offline/hoarding_cu_m5.webp"
+  },
+  {
+    id: "hr-6",
+    category: "hoarding",
+    categoryLabel: "Hoarding Hàng Rào Công Trình",
+    title: "Hoarding Bản Cũ — Module 06: CĐT Capital House & An Cư Bền Vững",
+    spec: "Tòa tháp ban ngày & hệ đối tác tài chính",
+    image: "/assets/ecolife/offline/hoarding_cu_m6.webp"
+  },
+  {
+    id: "hr-new",
+    category: "hoarding",
+    categoryLabel: "Hoarding Hàng Rào Công Trình",
+    title: "Hoarding Nâng Cấp — Tổng Thể 5 Module (30m × 2.5m)",
+    spec: "Bản chuẩn hóa 5 tấm lớn kèm Logo CĐT & 3 Đại lý F1",
+    image: "/assets/ecolife/offline/hoarding_moi_5_module.webp"
+  }
+];
+

@@ -1,147 +1,177 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sparkles } from 'lucide-react';
+import { Menu, X, ArrowUpRight, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+// @ts-ignore
+import meAvatar from '../../me.webp';
 
-interface NavbarProps {
+export interface NavbarProps {
   activeMode?: 'classic' | 'ai';
   onToggleMode?: (mode: 'classic' | 'ai') => void;
+  onNavigate?: (sectionId: string) => void;
+  activeSection?: string;
+  activeView?: 'profile' | 'ecolife' | 'domation';
+  onOpenDomation?: () => void;
+  onOpenEcoLife?: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ activeMode, onToggleMode }) => {
+const Navbar: React.FC<NavbarProps> = ({
+  onNavigate,
+  activeSection,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [selectedNav, setSelectedNav] = useState<string>(activeSection || 'hero');
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 18);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'unset';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
-    const element = document.querySelector(id);
+    setIsOpen(false);
+    const cleanId = id.replace(/^#/, '') || 'hero';
+    setSelectedNav(cleanId);
+    if (onNavigate) onNavigate(cleanId);
+
+    const element = document.getElementById(cleanId);
     if (element) {
-      setIsOpen(false);
-      const yOffset = -80; // Navbar height offset
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      const y = element.getBoundingClientRect().top + window.pageYOffset - 84;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
   const navLinks = [
-    { name: 'Kỹ Năng', href: '#skills' },
-    { name: 'Outsource', href: '#outsource' },
-    { name: 'DOM Agency', href: '#dom-agency' },
-    { name: 'Kinh Nghiệm', href: '#experience' },
+    { name: 'INKICA AI POD', href: '#inkica-pod', id: 'inkica-pod' },
+    { name: 'Dự Án 3D & AI', href: '#real-estate', id: 'real-estate' },
+    { name: 'Hệ Sinh Thái', href: '#domation-data', id: 'domation-data' },
+    { name: 'Kinh Nghiệm', href: '#experience', id: 'experience' },
+    { name: 'Digital Thực Chiến', href: '#outsource', id: 'outsource' },
+    { name: 'Đối Tác', href: '#partners', id: 'partners' },
   ];
 
   return (
-    <nav 
-        className={`
-            fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b
-            ${scrolled 
-                ? 'bg-black/80  border-white/10 py-4 shadow-lg' 
-                : 'bg-transparent border-transparent py-6'
-            }
-        `}
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-white/88 backdrop-blur-xl border-b border-slate-200/90 shadow-[0_8px_30px_rgba(15,23,42,0.06)] py-2.5'
+          : 'bg-white/65 backdrop-blur-md border-b border-slate-200/40 py-3.5'
+      }`}
     >
-      <div className="container mx-auto px-6 h-12 flex items-center justify-center md:justify-center relative">
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-2 bg-black/40 backdrop-blur-md border border-white/10 rounded-full px-6 py-2 shadow-2xl">
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href}
-              onClick={(e) => scrollToSection(e, link.href)}
-              className="px-4 py-2 text-xs font-bold text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 uppercase tracking-wider group"
-            >
-              {link.name}
-            </a>
-          ))}
-          {onToggleMode && activeMode === 'classic' && (
-            <>
-              <div className="w-[1px] h-6 bg-white/20 mx-2"></div>
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => onToggleMode('ai')}
-                className="px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-black text-[10px] uppercase tracking-widest rounded-full hover:shadow-[0_0_15px_rgba(147,51,234,0.5)] transition-all flex items-center gap-1.5"
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
+        {/* Brand Monogram */}
+        <a
+          href="#hero"
+          onClick={(e) => scrollToSection(e, '#hero')}
+          className="flex items-center gap-3 shrink-0 group"
+        >
+          <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-blue-600/30 shadow-sm bg-white p-0.5 shrink-0">
+            <img src={meAvatar} alt="Huỳnh Trọng Phúc" className="w-full h-full object-cover rounded-full" />
+          </div>
+          <div className="leading-tight">
+            <span className="font-display font-extrabold text-sm text-slate-950 block whitespace-nowrap group-hover:text-blue-700 transition-colors">
+              Huỳnh Trọng Phúc
+            </span>
+            <span className="text-[10px] font-bold tracking-[0.04em] text-blue-600 block whitespace-nowrap">
+              Fullstack Developer - AI Automation
+            </span>
+          </div>
+        </a>
+
+        {/* Desktop Nav Links */}
+        <nav className="hidden lg:flex items-center gap-1 bg-slate-100/80 border border-slate-200/80 rounded-full px-2 py-1">
+          {navLinks.map((link) => {
+            const active = selectedNav === link.id;
+            return (
+              <a
+                key={link.id}
+                href={link.href}
+                onClick={(e) => scrollToSection(e, link.href)}
+                className={`px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
+                  active
+                    ? 'bg-white text-blue-700 shadow-sm'
+                    : 'text-slate-600 hover:text-slate-950 hover:bg-white/70'
+                }`}
               >
-                <Sparkles size={10} className="animate-pulse" /> AI Workspace
-              </motion.button>
-            </>
-          )}
-          <div className="w-[1px] h-6 bg-white/20 mx-2"></div>
-          <motion.a 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            href="https://www.linkedin.com/in/turnio-dev/"
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="px-6 py-2 bg-white text-black font-black text-[10px] uppercase tracking-widest rounded-full hover:bg-gold-500 transition-colors"
+                {link.name}
+              </a>
+            );
+          })}
+        </nav>
+
+        {/* Action Button: Direct Zalo Contact */}
+        <div className="hidden md:flex items-center shrink-0">
+          <a
+            href="https://zalo.me/0378859736"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-inkica-primary px-5 py-2 text-xs whitespace-nowrap"
           >
-            Liên Hệ
-          </motion.a>
+            <MessageCircle size={14} className="shrink-0" />
+            <span>Contact</span>
+            <ArrowUpRight size={14} className="shrink-0" />
+          </a>
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden absolute right-6 text-white" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Mở menu điều hướng"
+          className="lg:hidden w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-900 shadow-sm"
+        >
+          {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: '100vh' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="absolute top-full left-0 right-0 bg-black/95 border-t border-white/10 overflow-hidden  h-screen"
+          <motion.div
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.2 }}
+            className="lg:hidden absolute top-full left-0 right-0 bg-white/98 backdrop-blur-xl border-b border-slate-200 shadow-2xl px-5 py-6 space-y-4"
           >
-            <div className="flex flex-col p-8 gap-8 items-center justify-center h-full pb-32">
-              {onToggleMode && activeMode === 'classic' && (
-                <motion.button 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  onClick={() => {
-                    onToggleMode('ai');
-                    setIsOpen(false);
-                  }}
-                  className="px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-black text-xs uppercase tracking-widest rounded-full flex items-center gap-2"
-                >
-                  <Sparkles size={14} className="animate-pulse" /> Try AI Workspace
-                </motion.button>
-              )}
-              {navLinks.map((link, i) => (
-                <motion.a 
-                  key={link.name} 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.05 }}
+            <div className="grid grid-cols-2 gap-2.5">
+              {navLinks.map((link) => (
+                <a
+                  key={link.id}
                   href={link.href}
-                  className="text-white font-black text-2xl uppercase tracking-widest hover:text-gold-500"
                   onClick={(e) => scrollToSection(e, link.href)}
+                  className="px-4 py-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs font-bold text-slate-900 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-200 text-center"
                 >
                   {link.name}
-                </motion.a>
+                </a>
               ))}
-              <motion.a 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: navLinks.length * 0.05 }}
-                href="https://www.linkedin.com/in/turnio-dev/"
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="mt-4 px-8 py-4 bg-gold-500 text-black font-black text-xl uppercase tracking-widest rounded-full hover:bg-white transition-colors"
+            </div>
+
+            <div className="pt-2 border-t border-slate-200">
+              <a
+                href="https://zalo.me/0378859736"
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="btn-inkica-primary w-full h-11 text-xs inline-flex items-center justify-center gap-2"
               >
-                Liên Hệ
-              </motion.a>
+                <MessageCircle size={14} />
+                <span>Contact • Zalo 0378.859.736</span>
+                <ArrowUpRight size={14} />
+              </a>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </header>
   );
 };
 

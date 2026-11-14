@@ -1,325 +1,540 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useMemo, useState } from 'react';
+import { motion } from 'framer-motion';
 import {
+  Bot,
+  Brain,
   Building2,
-  ShieldCheck,
-  Zap,
-  Users,
-  Clock,
   CheckCircle2,
-  ExternalLink,
-  ChevronRight,
   ChevronLeft,
-  Maximize2,
-  Sparkles,
-  MapPin,
-  Camera,
-  CalendarCheck,
-  FileSpreadsheet,
-  TrendingUp,
-  CreditCard,
-  Briefcase,
+  ChevronRight,
+  Database,
   Layers,
-  Lock,
-  Compass,
-  ArrowRight
+  Maximize2,
+  MessageSquare,
+  Server,
+  ShieldCheck,
+  Smile,
+  Sparkles,
+  Zap,
 } from 'lucide-react';
+import { ERP_16_EXTRA, ERP_GALLERY, ERP_MODULES, ErpGalleryItem } from '../../constants';
 import Modal from '../UI/Modal';
-import { ERP_GALLERY, ERP_MODULES, ErpGalleryItem } from '../../constants';
+import logoIdeas from '../../imgs/logo_ideas.webp';
+import partnerRichland from '../../imgs/partner_richland.webp';
+
+const ALL_ERP_SCREENS: ErpGalleryItem[] = [...ERP_GALLERY, ERP_16_EXTRA];
 
 const CATEGORIES = [
-  'Tất Cả',
+  'Tất cả',
   'Vận hành & Lead',
   'CRM & Khách hàng',
   'Nhân sự & Chấm công',
   'Lương & Tài chính',
-  'Hệ thống & Cài đặt'
-] as const;
+  'Hệ thống & Cài đặt',
+];
 
 const ErpShowcase: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<string>('Tất Cả');
-  const [activeImageIndex, setActiveImageIndex] = useState<number>(2); // Default to Executive Dashboard
-  const [zoomImage, setZoomImage] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>('Tất cả');
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [zoomItem, setZoomItem] = useState<ErpGalleryItem | null>(null);
+  const [showModules, setShowModules] = useState<boolean>(false);
 
-  const filteredGallery = activeCategory === 'Tất Cả'
-    ? ERP_GALLERY
-    : ERP_GALLERY.filter(item => item.category === activeCategory);
+  const filteredScreens = useMemo(() => {
+    if (selectedCategory === 'Tất cả') return ALL_ERP_SCREENS;
+    return ALL_ERP_SCREENS.filter((s) => s.category === selectedCategory);
+  }, [selectedCategory]);
 
-  const currentItem = filteredGallery[activeImageIndex] || filteredGallery[0] || ERP_GALLERY[0];
+  const currentItem = filteredScreens[activeIndex] || filteredScreens[0];
 
-  const handlePrev = () => {
-    setActiveImageIndex(prev => (prev - 1 + filteredGallery.length) % filteredGallery.length);
+  const handleSelectCategory = (cat: string) => {
+    setSelectedCategory(cat);
+    setActiveIndex(0);
   };
 
   const handleNext = () => {
-    setActiveImageIndex(prev => (prev + 1) % filteredGallery.length);
+    setActiveIndex((prev) => (prev + 1) % filteredScreens.length);
+  };
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev - 1 + filteredScreens.length) % filteredScreens.length);
   };
 
   return (
-    <section id="erp" className="py-24 relative overflow-hidden bg-[#070512]">
-      {/* Ambient background glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-r from-red-600/10 via-purple-600/10 to-rose-600/10 rounded-full blur-[140px] pointer-events-none -z-10" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-red-600/5 rounded-full blur-[100px] pointer-events-none -z-10" />
-
-      <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">
-        {/* SECTION HEADER */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 pb-12 border-b border-purple-900/30">
-          <div className="space-y-4 max-w-3xl text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/60 border border-red-500/30 text-red-300 text-[10px] sm:text-xs font-bold uppercase tracking-wider">
-              <Building2 size={13} className="text-red-400" />
-              <span>Enterprise ERP Solution</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
-              Hệ Thống <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-300 to-amber-200">ERP Doanh Nghiệp</span> Toàn Diện
-            </h2>
-
-            <p className="text-slate-300 text-xs sm:text-sm md:text-base leading-relaxed font-light text-justify">
-              Nền tảng hoạch định nguồn lực và tự động hóa vận hành 100% dành cho doanh nghiệp SME & Enterprise. 
-              Tích hợp trọn vẹn 11 phân hệ: Tiếp nhận Lead một cửa, Phân bổ data tự động 5 cổng với van chống ôm (SLA 2m), 
-              Quản trị nhân sự & Chấm công định vị GPS kèm AI Selfie, Bảng tính lương Payroll tự động và đồng bộ ngược Meta CAPI.
-            </p>
-          </div>
-
-          <div className="shrink-0 flex flex-wrap items-center gap-3">
-            <a
-              href="https://domation.net/erp"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 bg-gradient-to-r from-red-600 via-rose-600 to-purple-600 hover:from-red-500 hover:via-rose-500 hover:to-purple-500 text-white font-bold text-xs uppercase tracking-widest rounded-full shadow-[0_0_20px_rgba(225,29,72,0.35)] hover:shadow-[0_0_30px_rgba(225,29,72,0.55)] flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
-            >
-              <span>Xem Trực Tuyến</span>
-              <ExternalLink size={13} />
-            </a>
-          </div>
-        </div>
-
-        {/* INTERACTIVE GALLERY */}
-        <div className="mt-12 bg-[#0c081e] border border-purple-900/40 rounded-3xl p-4 sm:p-8 shadow-2xl space-y-6">
-          {/* Category Filter Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-            {CATEGORIES.map(category => (
-              <button
-                key={category}
-                onClick={() => {
-                  setActiveCategory(category);
-                  setActiveImageIndex(0);
-                }}
-                className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all duration-200 ${
-                  activeCategory === category
-                    ? 'bg-gradient-to-r from-red-600 to-purple-600 text-white shadow-md'
-                    : 'bg-[#150f33] text-slate-400 hover:text-white hover:bg-[#1f164d] border border-purple-900/30'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-
-          {/* Main Screenshot Viewport */}
-          <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-purple-900/50 bg-[#140f2f] shadow-inner group">
-            <img
-              src={currentItem.src}
-              alt={currentItem.title}
-              className="w-full h-full object-cover select-none"
-            />
-
-            {/* Hover Zoom Overlay */}
-            <div
-              onClick={() => setZoomImage(currentItem.src)}
-              className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-10"
-            >
-              <span className="px-4 py-2 bg-[#0f0b24]/90 border border-purple-500/40 rounded-full text-xs font-bold text-white shadow-lg flex items-center gap-2">
-                <Maximize2 size={14} /> Phóng To Ảnh HD
-              </span>
-            </div>
-
-            {/* Prev / Next Arrows */}
-            <button
-              onClick={handlePrev}
-              className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 sm:p-3.5 bg-[#0f0b24]/80 hover:bg-[#0f0b24] border border-purple-900/50 rounded-full shadow-lg text-white transition-all z-20 backdrop-blur-md"
-              aria-label="Previous"
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <button
-              onClick={handleNext}
-              className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 sm:p-3.5 bg-[#0f0b24]/80 hover:bg-[#0f0b24] border border-purple-900/50 rounded-full shadow-lg text-white transition-all z-20 backdrop-blur-md"
-              aria-label="Next"
-            >
-              <ChevronRight size={20} />
-            </button>
-
-            {/* Top Indicator */}
-            <div className="absolute top-3 right-3 px-3 py-1 bg-black/70 backdrop-blur-md rounded-full border border-white/10 text-[11px] font-bold text-slate-300 z-20">
-              {activeImageIndex + 1} / {filteredGallery.length}
-            </div>
-          </div>
-
-          {/* Screenshot Caption & Tag */}
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 p-4 bg-[#140e32] border border-purple-900/30 rounded-2xl text-left">
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] font-black uppercase tracking-wider text-rose-300 bg-red-950/70 border border-red-500/30 px-2 py-0.5 rounded">
-                  {currentItem.tag}
-                </span>
-                <span className="text-[10px] text-slate-400 font-medium">
-                  {currentItem.category}
-                </span>
-              </div>
-              <h3 className="text-base sm:text-lg font-bold text-white">
-                {currentItem.title}
-              </h3>
-              <p className="text-xs text-slate-300 font-light leading-relaxed">
-                {currentItem.description}
-              </p>
-            </div>
-            <div className="shrink-0">
-              <span className="px-3 py-1 bg-purple-950/60 border border-purple-500/30 text-purple-300 text-[11px] font-medium rounded-full">
-                ✨ {currentItem.highlight}
-              </span>
-            </div>
-          </div>
-
-          {/* Thumbnails Scroll Strip */}
-          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
-            {filteredGallery.map((item, idx) => (
-              <button
-                key={item.id}
-                onClick={() => setActiveImageIndex(idx)}
-                className={`w-24 sm:w-28 aspect-video rounded-lg overflow-hidden border-2 shrink-0 transition-all ${
-                  activeImageIndex === idx
-                    ? 'border-red-500 scale-105 shadow-[0_0_10px_rgba(239,68,68,0.4)]'
-                    : 'border-purple-900/30 hover:border-purple-400/60 opacity-60 hover:opacity-100'
-                }`}
-              >
-                <img src={item.src} alt={item.title} className="w-full h-full object-cover" />
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* INNOVATION HIGHLIGHT BENTO */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-          <div className="bg-gradient-to-br from-[#150d2e] to-[#0c081e] border border-red-900/40 rounded-3xl p-6 sm:p-8 space-y-4 relative overflow-hidden">
-            <div className="w-12 h-12 rounded-2xl bg-red-500/10 border border-red-500/30 text-red-400 flex items-center justify-center">
-              <Camera size={24} />
-            </div>
-            <h3 className="text-lg font-bold text-white">Chấm Công GPS & Selfie AI</h3>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light text-justify">
-              Xác thực tọa độ vệ tinh GPS bán kính văn phòng chuẩn xác từng mét. Nhân sự vào ca bắt buộc chụp ảnh selfie, AI nhận diện khuôn mặt chống gian lận chấm công hộ và giả mạo vị trí.
-            </p>
-            <div className="flex items-center gap-2 text-[11px] font-bold text-red-400">
-              <MapPin size={13} />
-              <span>Chống Fake GPS & Thay Ca Gian Lận</span>
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-[#150d2e] to-[#0c081e] border border-purple-900/40 rounded-3xl p-6 sm:p-8 space-y-4 relative overflow-hidden">
-            <div className="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/30 text-purple-400 flex items-center justify-center">
-              <FileSpreadsheet size={24} />
-            </div>
-            <h3 className="text-lg font-bold text-white">Bảng Tính Lương Tự Động (Payroll)</h3>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light text-justify">
-              Tự động tổng hợp ngày công, phụ cấp, OT, hoa hồng deal và trừ tiền đi trễ. Tự động tính thuế TNCN theo biểu lũy tiến và trích nộp BHXH, xuất phiếu lương PDF cá nhân hóa ký số trực tuyến.
-            </p>
-            <div className="flex items-center gap-2 text-[11px] font-bold text-purple-400">
-              <CreditCard size={13} />
-              <span>Chuẩn Xác 100% Thuế & BHXH</span>
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-[#150d2e] to-[#0c081e] border border-rose-900/40 rounded-3xl p-6 sm:p-8 space-y-4 relative overflow-hidden">
-            <div className="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-400 flex items-center justify-center">
-              <Zap size={24} />
-            </div>
-            <h3 className="text-lg font-bold text-white">Chia Lead 5 Cổng & Van Chống Ôm</h3>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light text-justify">
-              Lead đổ về được bóc tách chống trùng lặp theo Person vs Lead. Thuật toán Round-Robin phân bổ theo năng lực, áp dụng cơ chế Backpressure thu hồi sau 2 phút nếu Sale không tương tác.
-            </p>
-            <div className="flex items-center gap-2 text-[11px] font-bold text-rose-400">
-              <Clock size={13} />
-              <span>SLA Xử Lý Lead &lt; 2 Phút</span>
-            </div>
-          </div>
-        </div>
-
-        {/* 11 CORE ENTERPRISE MODULES */}
-        <div className="mt-20 space-y-8 text-left">
+    <section
+      id="erp-showcase"
+      className="py-24 lg:py-32 relative z-10 border-y border-slate-200/80"
+    >
+      <div className="mx-auto px-4 sm:px-8 max-w-[1440px]">
+        {/* Header */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
           <div>
-            <span className="text-[10px] font-black uppercase tracking-widest text-red-400 bg-red-950/60 border border-red-500/30 px-3 py-1 rounded-full">
-              Enterprise Architecture
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-black text-white mt-3">
-              11 Phân Hệ Nghiệp Vụ Chuẩn Enterprise
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-400 font-light mt-1">
-              Hệ sinh thái phân hệ độc lập nhưng đồng bộ dữ liệu thời gian thực trên toàn bộ vòng đời kinh doanh.
+            <motion.div
+              initial={{ opacity: 1, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.05 }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/80 text-[#1E40FF] text-[11px] font-bold uppercase tracking-widest mb-4"
+            >
+              <Server size={13} />
+              <span>Enterprise Architecture • Tự Code 100%</span>
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 1, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.05 }}
+              className="text-2xl sm:text-3xl lg:text-[2.2rem] font-extrabold text-slate-900 leading-[1.35]"
+            >
+              DOMATION{' '}
+              <span className="font-editorial text-gradient-inkica">ERP 5.0 System.</span>
+            </motion.h2>
+
+            <p className="text-slate-600 text-base max-w-2xl mt-3 leading-relaxed">
+              Kiến trúc 12 phân hệ quản trị doanh nghiệp khép kín: Lead Một Cửa, Giỏ hàng dự án,
+              Chấm công GPS + AI Selfie, Payroll xuất PDF &amp; Meta CAPI.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {ERP_MODULES.map((mod, i) => (
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setShowModules((v) => !v)}
+              className="ql-btn-outline px-4 py-2.5 text-xs font-bold inline-flex items-center gap-2 cursor-pointer"
+            >
+              <Layers size={14} className="text-[#1E40FF]" />
+              <span>{showModules ? 'Ẩn Kiến Trúc 11 Phân Hệ' : 'Xem Kiến Trúc 11 Phân Hệ'}</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Client Deployment Strip: IDEAS & RichLandVn */}
+        <motion.div
+          initial={{ opacity: 1, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.05 }}
+          className="mb-10 p-5 md:p-6 rounded-3xl bg-white/95 border border-blue-200/70 shadow-[0_14px_38px_-20px_rgba(30,64,255,0.2)] flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#1E40FF] to-[#0284C7] text-white flex items-center justify-center shadow-sm shrink-0">
+              <ShieldCheck size={18} />
+            </div>
+            <div>
+              <div className="text-[11px] font-extrabold uppercase tracking-wider text-[#1E40FF]">
+                Đã Triển Khai Production Thực Tế Cho
+              </div>
+              <div className="text-sm font-bold text-slate-900">
+                Hệ sinh thái Doanh nghiệp &amp; Đối tác Triển khai
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-4 w-full md:w-auto">
+            <a
+              href="https://ideas.edu.vn/mba"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-slate-50 hover:bg-blue-50/70 border border-slate-200 hover:border-[#1E40FF]/35 transition-all group"
+            >
+              <div className="h-9 px-2 rounded-xl bg-white border border-slate-100 flex items-center justify-center overflow-hidden">
+                <img
+                  src="https://ideas.edu.vn/wp-content/uploads/2026/06/Logo_IDEAS_Slg-optimized.webp"
+                  alt="Viện Quản Trị & Kinh Doanh IDEAS"
+                  onError={(e) => {
+                    e.currentTarget.src = logoIdeas;
+                  }}
+                  className="h-7 w-auto object-contain"
+                />
+              </div>
+              <div>
+                <div className="text-xs font-extrabold text-slate-900 group-hover:text-[#1E40FF] transition-colors">
+                  IDEAS Institute
+                </div>
+                <div className="text-[11px] text-slate-500">ERP Đào Tạo MBA &amp; Vận Hành</div>
+              </div>
+            </a>
+
+            <div className="flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-slate-50 border border-slate-200">
+              <div className="h-9 px-2 rounded-xl bg-white border border-slate-100 flex items-center justify-center overflow-hidden">
+                <img
+                  src={partnerRichland}
+                  alt="RichLandVn"
+                  className="h-6 w-auto object-contain"
+                />
+              </div>
+              <div>
+                <div className="text-xs font-extrabold text-slate-900 flex items-center gap-1.5">
+                  <Building2 size={12} className="text-[#1E40FF]" />
+                  <span>RichLandVn</span>
+                </div>
+                <div className="text-[11px] text-slate-500">Hệ Thống ERP &amp; Quản Lý Lead</div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Optional Expandable 11 Modules Matrix */}
+        {showModules && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            className="mb-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4"
+          >
+            {ERP_MODULES.map((m) => (
               <div
-                key={i}
-                className="bg-[#0c081e] border border-purple-900/30 rounded-2xl p-6 hover:border-red-500/40 transition-all duration-300 hover:-translate-y-1 space-y-3 relative group"
+                key={m.num}
+                className="p-5 rounded-2xl bg-white/95 border border-slate-200/90 hover:border-[#1E40FF]/35 transition-all"
               >
-                <div className="flex items-center justify-between">
-                  <span className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-rose-400">
-                    {mod.num}
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-mono font-bold text-[#1E40FF]">
+                    MODULE {m.num}
                   </span>
-                  <span className="text-[9px] font-black uppercase tracking-wider text-slate-400 bg-[#161033] px-2.5 py-0.5 rounded border border-purple-900/40">
-                    {mod.tag}
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-blue-50 text-[#1E40FF] border border-blue-200/70">
+                    {m.tag}
                   </span>
                 </div>
-                <h4 className="text-sm font-bold text-white group-hover:text-red-300 transition-colors">
-                  {mod.title}
-                </h4>
-                <p className="text-xs text-slate-300 leading-relaxed font-light text-justify">
-                  {mod.desc}
-                </p>
+                <h4 className="text-sm font-bold text-slate-900 mb-1.5">{m.title}</h4>
+                <p className="text-xs text-slate-600 leading-relaxed">{m.desc}</p>
               </div>
             ))}
+          </motion.div>
+        )}
+
+        {/* Category Filter Tabs */}
+        <div className="flex flex-wrap items-center justify-center gap-2 py-2 px-1 mb-6">
+          {CATEGORIES.map((cat) => {
+            const count =
+              cat === 'Tất cả'
+                ? ALL_ERP_SCREENS.length
+                : ALL_ERP_SCREENS.filter((s) => s.category === cat).length;
+            const active = selectedCategory === cat;
+            return (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => handleSelectCategory(cat)}
+                className={`shrink-0 px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                  active ? 'ql-pill-tab-active' : 'ql-pill-tab'
+                }`}
+              >
+                {cat} ({count})
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Main Interactive Gallery Stage */}
+        <div className="grid lg:grid-cols-12 gap-8 items-start bg-white/95 border border-slate-200/90 rounded-3xl p-6 md:p-8 shadow-[0_22px_54px_-24px_rgba(15,23,42,0.12)]">
+          {/* Right (Desktop): Details & Screen Switcher */}
+          <div className="lg:col-span-5 order-1 lg:order-2 flex flex-col justify-between space-y-6">
+            <div>
+              <div className="flex items-center justify-between gap-3 mb-3">
+                <span className="px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-[#1E40FF] text-[11px] font-bold uppercase tracking-wider">
+                  {currentItem.tag}
+                </span>
+                <span className="text-xs font-mono font-bold text-slate-400 tabular-nums">
+                  {String(activeIndex + 1).padStart(2, '0')} /{' '}
+                  {String(filteredScreens.length).padStart(2, '0')}
+                </span>
+              </div>
+
+              <h3 className="text-2xl md:text-3xl font-black text-slate-900 leading-snug mb-3">
+                {currentItem.title}
+              </h3>
+
+              <p className="text-slate-600 text-sm leading-relaxed mb-5">
+                {currentItem.description}
+              </p>
+
+              <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold">
+                <CheckCircle2 size={15} />
+                <span>{currentItem.highlight}</span>
+              </div>
+            </div>
+
+            {/* Thumbnail List */}
+            <div>
+              <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2.5">
+                Chọn nhanh phân hệ ({filteredScreens.length})
+              </div>
+              <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-4 gap-2 max-h-48 overflow-y-auto pr-1">
+                {filteredScreens.map((screen, idx) => {
+                  const isActive = idx === activeIndex;
+                  return (
+                    <button
+                      key={screen.id}
+                      type="button"
+                      onClick={() => setActiveIndex(idx)}
+                      title={screen.title}
+                      className={`group relative aspect-video rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
+                        isActive
+                          ? 'border-[#1E40FF] ring-2 ring-blue-500/20 scale-[1.02]'
+                          : 'border-slate-200 opacity-75 hover:opacity-100 hover:border-blue-300'
+                      }`}
+                    >
+                      <img
+                        src={screen.src}
+                        alt={screen.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Controls */}
+            <div className="flex items-center gap-3 pt-2 border-t border-slate-100">
+              <button
+                type="button"
+                onClick={handlePrev}
+                className="p-2.5 rounded-full bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-[#1E40FF] transition-colors cursor-pointer"
+                aria-label="Màn hình trước"
+              >
+                <ChevronLeft size={18} />
+              </button>
+              <button
+                type="button"
+                onClick={handleNext}
+                className="p-2.5 rounded-full bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-[#1E40FF] transition-colors cursor-pointer"
+                aria-label="Màn hình tiếp theo"
+              >
+                <ChevronRight size={18} />
+              </button>
+              <button
+                type="button"
+                onClick={() => setZoomItem(currentItem)}
+                className="ml-auto inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1E40FF] hover:bg-blue-700 text-white text-xs font-bold shadow-sm transition-colors cursor-pointer"
+              >
+                <Maximize2 size={14} />
+                <span>Phóng to HD</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Left (Desktop): Browser Preview */}
+          <div className="lg:col-span-7 order-2 lg:order-1">
+            <div
+              onClick={() => setZoomItem(currentItem)}
+              className="group relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 shadow-inner cursor-zoom-in"
+            >
+              <div className="bg-slate-100/90 border-b border-slate-200 px-4 py-2.5 flex items-center justify-between">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                </div>
+                <span className="text-[11px] font-mono text-slate-500">
+                  erp.domation.net • {currentItem.id}
+                </span>
+                <span className="text-[11px] font-bold text-[#1E40FF] flex items-center gap-1">
+                  <Maximize2 size={12} /> HD
+                </span>
+              </div>
+
+              <div className="relative aspect-[16/10] bg-white overflow-hidden">
+                <img
+                  key={currentItem.src}
+                  src={currentItem.src}
+                  alt={currentItem.title}
+                  className="w-full h-full object-contain bg-slate-50 transition-transform duration-500 group-hover:scale-[1.015]"
+                />
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* CTA BOTTOM BANNER */}
-        <div className="mt-16 p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-red-950/40 via-purple-950/40 to-slate-950/40 border border-red-500/30 text-center space-y-6">
-          <h3 className="text-2xl sm:text-3xl font-black text-white">
-            Sẵn Sàng Số Hóa & Tự Động Hóa Doanh Nghiệp Của Bạn?
-          </h3>
-          <p className="text-slate-300 text-xs sm:text-sm max-w-2xl mx-auto font-light leading-relaxed">
-            Hệ thống ERP linh hoạt cấu hình theo từng mô hình: Giáo dục đào tạo, Bất động sản, Dịch vụ chuỗi và Bán lẻ. Không hardcode, triển khai nhanh và bảo mật tuyệt đối.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <a
-              href="https://domation.net/erp"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3.5 bg-gradient-to-r from-red-600 via-rose-600 to-purple-600 hover:from-red-500 hover:via-rose-500 hover:to-purple-500 text-white font-bold text-xs uppercase tracking-widest rounded-full shadow-[0_0_20px_rgba(225,29,72,0.4)] hover:shadow-[0_0_30px_rgba(225,29,72,0.6)] flex items-center gap-2 transition-all duration-300"
-            >
-              <span>Trải Nghiệm Live Demo ERP</span>
-              <ExternalLink size={14} />
-            </a>
+        {/* 2 BREAKTHROUGH ERP MODULES: SI IDEAS WORKCHAT (11 AI AGENTS) & WORKCHAT ENTERPRISE */}
+        <div className="mt-10 pt-10 border-t border-slate-200/80">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-[#1E40FF] text-[10.5px] font-bold uppercase tracking-[0.16em] mb-2">
+                <Sparkles size={12} />
+                <span>2 Tính Năng Đột Phá Mới • MYERP Enterprise</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 leading-snug">
+                SI IDEAS WorkChat —{' '}
+                <span className="font-editorial text-gradient-inkica">
+                  11 Siêu Agent AI &amp; Gắn Kết Dữ Liệu ERP.
+                </span>
+              </h3>
+            </div>
+            <span className="text-xs font-semibold text-slate-500">
+              Real-time MySQL Ground Truth • Training Realtime RAG • Thẻ ERP 1 Chạm
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Module 1: SI IDEAS WorkChat 11 AI Agents */}
+            <div className="inkica-glass-card rounded-3xl p-5 flex flex-col justify-between gap-4">
+              <div>
+                <div
+                  onClick={() =>
+                    setZoomItem({
+                      id: 'si-workchat-11',
+                      src: '/assets/erp/workchat_11_agents.webp',
+                      title: 'SI IDEAS WorkChat — Trung Tâm Điều Hành 11 Siêu Agent AI Trên 1 Màn Hình',
+                      tag: '11 MULTI-AGENT AI',
+                      category: 'Hệ thống & Cài đặt',
+                      description:
+                        'Kết nối trực tiếp CSDL MySQL thời gian thực, Training Realtime RAG và hiển thị Bảng Markdown + Thẻ ERP 1 chạm ngay trong khung chat.',
+                      highlight: 'Direct MySQL + 11 AI Agents',
+                    })
+                  }
+                  className="group relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 mb-4 cursor-zoom-in"
+                >
+                  <img
+                    src="/assets/erp/workchat_11_agents.webp"
+                    alt="SI IDEAS WorkChat 11 Agent AI"
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                  />
+                  <span className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-white/95 border border-slate-200 text-[11px] font-bold text-slate-800 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Maximize2 size={11} /> Phóng to
+                  </span>
+                </div>
+
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <span className="inline-flex items-center gap-1.5 text-[10.5px] font-extrabold uppercase tracking-wider text-[#1E40FF]">
+                    <Bot size={13} /> Feature 01 • Super Intelligent Multi-Agent
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10.5px] font-bold">
+                    Real-time MySQL Ground Truth
+                  </span>
+                </div>
+
+                <h4 className="text-base sm:text-lg font-extrabold text-slate-950 mb-3 leading-snug">
+                  SI IDEAS WorkChat: 11 Siêu Agent AI Trên 1 Màn Hình
+                </h4>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 mb-1">
+                      <Database size={13} className="text-[#1E40FF]" /> Kết Nối MySQL Trực Tiếp
+                    </div>
+                    <p className="text-[11px] text-slate-600 leading-relaxed">
+                      Truy vấn 360° hồ sơ, công nợ, đặt cọc, PO/SO &amp; hợp đồng bằng tiếng Việt tức thì.
+                    </p>
+                  </div>
+
+                  <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 mb-1">
+                      <Bot size={13} className="text-[#1E40FF]" /> 11 Agent Phối Hợp Đa Nhiệm
+                    </div>
+                    <p className="text-[11px] text-slate-600 leading-relaxed">
+                      Chỉ Huy, CRM 360, Kế Toán, Học Vụ, Pháp Lý, Kho &amp; Tài Sản, Nhân Sự...
+                    </p>
+                  </div>
+
+                  <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 mb-1">
+                      <Brain size={13} className="text-[#1E40FF]" /> Training Realtime RAG
+                    </div>
+                    <p className="text-[11px] text-slate-600 leading-relaxed">
+                      Học liên tục từ quy chế, hồ sơ và biểu mẫu mới nhất cho câu trả lời chuẩn xác.
+                    </p>
+                  </div>
+
+                  <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 mb-1">
+                      <Zap size={13} className="text-[#1E40FF]" /> Thẻ Điều Khiển ERP 1 Chạm
+                    </div>
+                    <p className="text-[11px] text-slate-600 leading-relaxed">
+                      Hiển thị Bảng Markdown sắc nét &amp; mở Drawer chi tiết ngay trong khung chat.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Module 2: IDEAS WorkChat Enterprise */}
+            <div className="inkica-glass-card rounded-3xl p-5 flex flex-col justify-between gap-4">
+              <div>
+                <div
+                  onClick={() =>
+                    setZoomItem({
+                      id: 'ideas-workchat-enterprise',
+                      src: '/assets/erp/workchat_enterprise.webp',
+                      title: 'IDEAS WorkChat Enterprise — Gắn Kết Dữ Liệu ERP Trên Bàn Làm Việc MYERP',
+                      tag: 'ERP ENTERPRISE CHAT',
+                      category: 'Hệ thống & Cài đặt',
+                      description:
+                        'Đính kèm trực tiếp Khách hàng, Thẻ công việc & Phê duyệt phiếu đề xuất ngay trong luồng chat cùng bộ Sticker Mascot IDEAS.',
+                      highlight: 'CRM + Task + Approval in Chat',
+                    })
+                  }
+                  className="group relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 mb-4 cursor-zoom-in"
+                >
+                  <img
+                    src="/assets/erp/workchat_enterprise.webp"
+                    alt="IDEAS WorkChat Enterprise"
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                  />
+                  <span className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-white/95 border border-slate-200 text-[11px] font-bold text-slate-800 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Maximize2 size={11} /> Phóng to
+                  </span>
+                </div>
+
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <span className="inline-flex items-center gap-1.5 text-[10.5px] font-extrabold uppercase tracking-wider text-[#1E40FF]">
+                    <MessageSquare size={13} /> Feature 02 • Enterprise Workspace Chat
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-[#1E40FF] text-[10.5px] font-bold">
+                    Zero Context Switching
+                  </span>
+                </div>
+
+                <h4 className="text-base sm:text-lg font-extrabold text-slate-950 mb-3 leading-snug">
+                  IDEAS WorkChat Enterprise: Gắn Kết Dữ Liệu ERP Trong Luồng Chat
+                </h4>
+
+                <div className="space-y-2.5">
+                  <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 mb-1">
+                      <Layers size={13} className="text-[#1E40FF]" /> Gắn Kết Khách Hàng, Công Việc &amp; Phê Duyệt 1 Chạm
+                    </div>
+                    <p className="text-[11px] text-slate-600 leading-relaxed">
+                      Đính kèm trực tiếp hồ sơ Khách hàng, Thẻ công việc và Phiếu đề xuất thanh toán để duyệt ngay trong cuộc hội thoại phòng ban.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-2xl bg-slate-50/75 border border-slate-200/80">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 mb-1">
+                      <Smile size={13} className="text-[#1E40FF]" /> Bộ Sticker Mascot Văn Hóa Doanh Nghiệp
+                    </div>
+                    <p className="text-[11px] text-slate-600 leading-relaxed">
+                      Bộ sưu tập nhãn dán Mascot độc quyền giúp giao tiếp vận hành hàng ngày trên MYERP trở nên gần gũi, năng động và gắn kết đội ngũ.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* LIGHTBOX MODAL */}
+      {/* Portal Modal */}
       <Modal
-        isOpen={Boolean(zoomImage)}
-        onClose={() => setZoomImage(null)}
-        title="Giao Diện Thực Tế Hệ Thống ERP"
-        className="max-w-6xl"
+        isOpen={!!zoomItem}
+        onClose={() => setZoomItem(null)}
+        title={zoomItem?.title || 'DOMATION ERP 5.0 Preview'}
+        className="max-w-5xl"
       >
-        {zoomImage && (
-          <div className="p-2 sm:p-4 bg-black flex items-center justify-center">
-            <img
-              src={zoomImage}
-              alt="ERP HD Preview"
-              className="w-full max-h-[80vh] object-contain rounded-xl"
-            />
+        {zoomItem && (
+          <div className="space-y-4">
+            <div className="rounded-2xl overflow-hidden border border-slate-200 bg-slate-50">
+              <img
+                src={zoomItem.src}
+                alt={zoomItem.title}
+                className="w-full max-h-[70vh] object-contain mx-auto"
+              />
+            </div>
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p className="text-sm text-slate-600">{zoomItem.description}</p>
+              <span className="px-3 py-1 rounded-full bg-blue-50 text-[#1E40FF] text-xs font-bold border border-blue-200/80">
+                {zoomItem.highlight}
+              </span>
+            </div>
           </div>
         )}
       </Modal>

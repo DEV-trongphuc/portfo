@@ -1,121 +1,315 @@
-
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useCallback, useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import {
+  Award,
+  BadgeCheck,
+  Calendar,
+  CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+  Maximize2,
+  ShieldCheck,
+} from 'lucide-react';
 import { CERTIFICATIONS } from '../../constants';
-import { ShieldCheck, Award, ExternalLink, Plus, BadgeCheck } from 'lucide-react';
-import MobileSlider from '../UI/MobileSlider';
+import { Certification } from '../../types';
+import Modal from '../UI/Modal';
+
+const CERT_TAGS: Record<string, string[]> = {
+  c1: ['Frontend Architecture', 'SPA Libraries', 'UI Engineering'],
+  c2: ['Responsive UI', 'Mobile-First', 'Accessibility WCAG'],
+  c4: ['JavaScript Advanced', 'Async Engine', 'Memory Optimization'],
+  c5: ['JavaScript Core', 'ES6+ Syntax', 'DOM Manipulation'],
+  c6: ['ReactJS Ecosystem', 'Hooks & State', 'Component Architecture'],
+  c7: ['Semantic HTML5', 'Modern CSS3', 'Cross-Browser Layout'],
+  c8: ['Technical SEO', 'Schema Structured Data', 'Core Web Vitals'],
+  c3: ['Top 20% Percentile', 'Algorithm Optimization', 'Problem Solving'],
+};
 
 const Certifications: React.FC = () => {
-  const [showAll, setShowAll] = useState(false);
-  const displayedCerts = showAll ? CERTIFICATIONS : CERTIFICATIONS.slice(0, 8);
+  const [activePage, setActivePage] = useState(0);
+  const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
+  const [cardsPerPage, setCardsPerPage] = useState(3);
+
+  useEffect(() => {
+    const updateCardsPerPage = () => {
+      if (window.innerWidth >= 1024) setCardsPerPage(3);
+      else if (window.innerWidth >= 640) setCardsPerPage(2);
+      else setCardsPerPage(1);
+    };
+    updateCardsPerPage();
+    window.addEventListener('resize', updateCardsPerPage);
+    return () => window.removeEventListener('resize', updateCardsPerPage);
+  }, []);
+
+  const totalPages = Math.ceil(CERTIFICATIONS.length / cardsPerPage);
+
+  useEffect(() => {
+    if (activePage >= totalPages) {
+      setActivePage(Math.max(0, totalPages - 1));
+    }
+  }, [totalPages, activePage]);
+
+  const handlePrev = useCallback(() => {
+    setActivePage((prev) => (prev > 0 ? prev - 1 : totalPages - 1));
+  }, [totalPages]);
+
+  const handleNext = useCallback(() => {
+    setActivePage((prev) => (prev < totalPages - 1 ? prev + 1 : 0));
+  }, [totalPages]);
+
+  const visibleCerts = CERTIFICATIONS.slice(
+    activePage * cardsPerPage,
+    activePage * cardsPerPage + cardsPerPage
+  );
 
   return (
-    <section id="achievements" className="py-24 relative z-10 overflow-hidden">
-      {/* Remove solid background to let global background shine through */}
-      
-      {/* Floating SVG Decor Background */}
-      <div className="absolute top-20 right-0 opacity-10 pointer-events-none">
-         <motion.svg 
-            width="400" height="400" viewBox="0 0 200 200"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-         >
-            <path d="M100 0 L130 70 L200 100 L130 130 L100 200 L70 130 L0 100 L70 70 Z" fill="none" stroke="#EAB308" strokeWidth="1" />
-         </motion.svg>
-      </div>
+    <section id="certifications" className="py-24 lg:py-28 relative z-10 overflow-hidden">
+      <div id="achievements" className="absolute -top-20 pointer-events-none" />
 
-      <div className="container mx-auto px-6 relative">
-        <div className="text-center mb-16">
-            <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-                <span className="text-gold-500 font-black tracking-[0.4em] uppercase text-[10px] flex items-center justify-center gap-2">
-                    <ShieldCheck size={14} /> Professional Verified
-                </span>
-                <h2 className="text-5xl font-black text-white mt-4">CHỨNG CHỈ QUỐC TẾ.</h2>
-            </motion.div>
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 relative">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6 border-b border-slate-200/80 pb-8">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-[#1E40FF] text-[11px] font-bold uppercase tracking-widest mb-3">
+              <ShieldCheck size={14} />
+              <span>Verified Credentials &amp; Mastery</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-[2.2rem] font-extrabold text-slate-900 leading-[1.35]">
+              Chứng Chỉ <span className="font-editorial text-gradient-inkica">Nghề Nghiệp.</span>
+            </h2>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <p className="text-slate-600 text-xs sm:text-sm max-w-md leading-relaxed">
+              Hệ thống chứng chỉ chuyên môn xác thực năng lực Frontend Architecture,
+              JavaScript nâng cao và Technical SEO.
+            </p>
+            <div className="hidden sm:flex items-center gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={handlePrev}
+                aria-label="Trang trước"
+                className="w-10 h-10 rounded-xl border border-slate-200 hover:border-[#1E40FF] bg-white hover:bg-blue-50 text-slate-700 hover:text-[#1E40FF] flex items-center justify-center transition-all cursor-pointer"
+              >
+                <ChevronLeft size={18} />
+              </button>
+              <button
+                type="button"
+                onClick={handleNext}
+                aria-label="Trang tiếp theo"
+                className="w-10 h-10 rounded-xl border border-slate-200 hover:border-[#1E40FF] bg-white hover:bg-blue-50 text-slate-700 hover:text-[#1E40FF] flex items-center justify-center transition-all cursor-pointer"
+              >
+                <ChevronRight size={18} />
+              </button>
+            </div>
+          </div>
         </div>
-        
-        <MobileSlider desktopGridClasses="md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {displayedCerts.map((cert, index) => (
-                <motion.div
-                key={cert.id}
-                initial={{ opacity: 0, scale: 0.9, y: 30 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ 
-                    type: "spring", 
-                    stiffness: 200, 
-                    damping: 15,
-                    delay: index * 0.1 
-                }}
-                whileHover={{ 
-                    y: -8, 
-                    transition: { duration: 0.3, ease: "easeOut" } 
-                }}
-                className="group relative h-full"
-                >
-                    <div className="bg-white/[0.02]  border border-white/5 rounded-2xl p-4 h-full flex flex-col relative overflow-hidden transition-all duration-500 group-hover:border-gold-500/40 group-hover:bg-white/[0.04] group-hover:shadow-[0_10px_30px_-10px_rgba(234,179,8,0.15)]">
-                        
-                        {/* Certificate Image Frame */}
-                        <div className="aspect-[4/3] overflow-hidden rounded-lg mb-4 relative bg-black/40 border border-white/5">
-                            <motion.img 
-                                whileHover={{ scale: 1.05 }}
-                                transition={{ duration: 0.6 }}
-                                src={cert.image} 
-                                alt={cert.name} 
-                                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 grayscale group-hover:grayscale-0" 
-                            />
-                            
-                            {/* Overlay Badge */}
-                            <div className="absolute top-2 right-2 bg-black/80  border border-gold-500/30 px-2 py-1 rounded flex items-center gap-1 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <BadgeCheck size={10} className="text-gold-500" />
-                                <span className="text-[8px] font-black uppercase text-gold-500 tracking-wider">Verified</span>
-                            </div>
-                        </div>
 
-                        <div className="flex-grow">
-                            <h3 className="text-sm font-bold text-white leading-snug group-hover:text-gold-500 transition-colors mb-2 line-clamp-2 min-h-[2.5em]">{cert.name}</h3>
-                            <div className="flex items-center gap-2 text-xs text-gray-500 border-t border-white/5 pt-3 mt-1">
-                                <Award size={14} className="text-gold-600" />
-                                <span className="truncate">{cert.issuer}</span>
-                            </div>
-                        </div>
-
-                        {cert.link && (
-                            <a 
-                                href={cert.link} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="mt-4 w-full py-2.5 bg-white/5 border border-white/5 rounded-lg flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:bg-gold-500 hover:text-black hover:border-gold-500 transition-all relative overflow-hidden"
-                            >
-                                <span className="relative z-10 flex items-center gap-2">Verify ID <ExternalLink size={10} /></span>
-                            </a>
-                        )}
-                    </div>
-                </motion.div>
-            ))}
-        </MobileSlider>
-        
-        {CERTIFICATIONS.length > 8 && (
-             <motion.div 
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                className="mt-12 text-center"
+        {/* Multi-Card Carousel */}
+        <div className="relative min-h-[420px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activePage}
+              initial={{ opacity: 1, x: 16 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -16 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              className={`grid gap-6 ${
+                cardsPerPage === 3
+                  ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+                  : cardsPerPage === 2
+                  ? 'grid-cols-1 sm:grid-cols-2'
+                  : 'grid-cols-1'
+              }`}
             >
-                <button 
-                    onClick={() => setShowAll(!showAll)}
-                    className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-white transition-colors hover:scale-105 active:scale-95 duration-200"
-                >
-                    {showAll ? "Thu gọn" : "Xem toàn bộ"} <Plus size={14} className={`transition-transform duration-300 ${showAll ? "rotate-45" : ""}`} />
-                </button>
-            </motion.div>
-        )}
+              {visibleCerts.map((cert) => {
+                const tags = CERT_TAGS[cert.id] || ['Software Engineering'];
+                return (
+                  <div
+                    key={cert.id}
+                    className="p-5 flex flex-col h-full group bg-white/95 border border-slate-200/90 hover:border-[#1E40FF]/35 rounded-3xl shadow-sm hover:shadow-[0_18px_40px_-18px_rgba(30,64,255,0.18)] transition-all"
+                  >
+                    <div
+                      onClick={() => setSelectedCert(cert)}
+                      className="aspect-[16/10] rounded-2xl overflow-hidden mb-4 relative bg-slate-100 border border-slate-200 cursor-zoom-in"
+                    >
+                      <img
+                        src={cert.image}
+                        alt={cert.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
 
+                      <div className="absolute top-2.5 right-2.5 bg-white/95 border border-blue-200 px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+                        <BadgeCheck size={12} className="text-[#1E40FF]" />
+                        <span className="text-[10px] font-bold uppercase text-[#1E40FF] tracking-wider">
+                          Verified
+                        </span>
+                      </div>
+
+                      <div className="absolute inset-0 bg-slate-900/35 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span className="text-xs font-bold text-slate-900 flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white shadow-lg">
+                          <Maximize2 size={12} className="text-[#1E40FF]" />
+                          Xem Chứng Chỉ
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="flex-grow flex flex-col justify-between">
+                      <div>
+                        <div className="flex items-center justify-between gap-2 mb-2">
+                          <span className="text-xs font-mono font-bold text-[#1E40FF] flex items-center gap-1.5">
+                            <Award size={13} />
+                            {cert.issuer}
+                          </span>
+                          <span className="text-[11px] font-mono text-slate-400">
+                            {cert.year}
+                          </span>
+                        </div>
+
+                        <h3 className="text-base font-bold text-slate-900 group-hover:text-[#1E40FF] transition-colors line-clamp-2 mb-3">
+                          {cert.name}
+                        </h3>
+
+                        <div className="flex flex-wrap gap-1.5 mb-4">
+                          {tags.slice(0, 2).map((tag, tIdx) => (
+                            <span
+                              key={tIdx}
+                              className="px-2.5 py-0.5 rounded-md text-[10px] font-semibold bg-slate-50 border border-slate-200 text-slate-600"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-2 pt-3 border-t border-slate-100">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedCert(cert)}
+                          className="py-2 px-3 rounded-xl bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 text-[11px] font-bold text-slate-700 hover:text-[#1E40FF] transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                        >
+                          <Maximize2 size={12} />
+                          <span>Chi Tiết</span>
+                        </button>
+
+                        {cert.link ? (
+                          <a
+                            href={cert.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="py-2 px-3 rounded-xl bg-[#1E40FF] hover:bg-blue-700 text-white text-[11px] font-bold transition-all flex items-center justify-center gap-1.5"
+                          >
+                            <span>Verify ID</span>
+                            <ExternalLink size={12} />
+                          </a>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => setSelectedCert(cert)}
+                            className="py-2 px-3 rounded-xl bg-slate-50 border border-slate-200 text-[11px] font-bold text-slate-600 flex items-center justify-center gap-1.5 cursor-pointer"
+                          >
+                            <span>Xem Thêm</span>
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Pagination Dots */}
+        <div className="mt-10 flex flex-col items-center justify-center gap-3">
+          <div className="flex items-center gap-2">
+            {Array.from({ length: totalPages }).map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setActivePage(idx)}
+                aria-label={`Trang ${idx + 1}`}
+                className={`h-2.5 rounded-full transition-all cursor-pointer ${
+                  idx === activePage ? 'w-8 bg-[#1E40FF]' : 'w-2.5 bg-slate-300 hover:bg-blue-300'
+                }`}
+              />
+            ))}
+          </div>
+          <span className="text-[11px] font-mono text-slate-500">
+            Trang {activePage + 1} / {totalPages} • {CERTIFICATIONS.length} Chứng Chỉ Quốc Tế
+          </span>
+        </div>
       </div>
+
+      {/* Portal Modal */}
+      <Modal
+        isOpen={!!selectedCert}
+        onClose={() => setSelectedCert(null)}
+        title={selectedCert?.name || 'Verified Credential'}
+        className="max-w-3xl"
+      >
+        {selectedCert && (
+          <div className="space-y-5">
+            <div className="rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 aspect-[16/10] flex items-center justify-center">
+              <img
+                src={selectedCert.image}
+                alt={selectedCert.name}
+                className="w-full h-full object-contain"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5">
+                <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider block">
+                  Tổ Chức Cấp &amp; Năm
+                </span>
+                <div className="flex items-center gap-2 text-slate-900 font-bold text-sm">
+                  <Award size={14} className="text-[#1E40FF]" />
+                  <span>{selectedCert.issuer}</span>
+                  <span className="text-slate-400">•</span>
+                  <span className="flex items-center gap-1 text-slate-500 text-xs font-mono">
+                    <Calendar size={12} /> {selectedCert.year}
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-xl bg-emerald-50/70 border border-emerald-200 space-y-1.5">
+                <span className="text-[10px] uppercase font-bold text-emerald-700 tracking-wider block">
+                  Trạng Thái Xác Thực
+                </span>
+                <div className="flex items-center gap-2 text-emerald-700 font-bold text-sm">
+                  <CheckCircle2 size={14} />
+                  <span>Verified Credential</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {(CERT_TAGS[selectedCert.id] || ['Software Engineering']).map((tag, idx) => (
+                <span
+                  key={idx}
+                  className="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 border border-blue-200 text-[#1E40FF]"
+                >
+                  #{tag}
+                </span>
+              ))}
+            </div>
+
+            {selectedCert.link && (
+              <a
+                href={selectedCert.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-inkica-primary w-full py-3.5 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2"
+              >
+                <span>Truy Cập Chứng Chỉ Gốc (Official ID)</span>
+                <ExternalLink size={14} />
+              </a>
+            )}
+          </div>
+        )}
+      </Modal>
     </section>
   );
 };

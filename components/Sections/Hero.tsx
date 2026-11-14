@@ -446,18 +446,18 @@ const Hero: React.FC<HeroProps> = ({
               Hello, I&apos;m <span className="text-[#1E40FF]">{text || 'TURNIO.'}</span>
             </h1>
 
-            <div className="relative rounded-2xl inkica-glass-card border-l-4 border-l-[#1E40FF] px-4 py-3.5 sm:px-5 sm:py-4 max-w-xl mb-7 overflow-hidden">
+            <div className="relative rounded-2xl inkica-glass-card px-4 py-3.5 sm:px-5 sm:py-4 max-w-xl mb-7 overflow-hidden">
               <p className="text-sm sm:text-[15.5px] text-slate-700 leading-[1.7] font-medium">
                 Thiết kế hệ thống{' '}
                 <span className="font-extrabold text-[#1E40FF]">
                   Flow – AI Automation – Tools App
                 </span>
                 , tối ưu quy trình vận hành và xây dựng giải pháp{' '}
-                <span className="font-extrabold text-slate-950 underline decoration-[#0284C7]/45 decoration-2 underline-offset-4">
+                <span className="font-extrabold text-slate-950">
                   chuyển đổi số toàn diện
                 </span>{' '}
                 cho doanh nghiệp trong{' '}
-                <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-blue-50 border border-blue-200/80 text-[#1E40FF] font-extrabold text-[13px] sm:text-sm">
+                <span className="font-extrabold text-gradient-inkica">
                   thời đại AI
                 </span>
                 .

@@ -102,7 +102,9 @@ const LmsShowcase: React.FC = () => {
 
               <h2 className="text-2xl sm:text-3xl lg:text-[2.15rem] font-extrabold text-slate-900 leading-[1.35] mb-3.5">
                 Đào tạo đội ngũ &amp; học viên{' '}
-                <span className="font-editorial text-gradient-inkica">bài bản, tinh gọn.</span>
+                <span className="block sm:inline font-editorial text-gradient-inkica">
+                  bài bản, tinh gọn.
+                </span>
               </h2>
 
               <p className="text-slate-600 text-sm leading-relaxed mb-6">

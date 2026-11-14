@@ -51,7 +51,9 @@ const Partners: React.FC = () => {
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-[2.2rem] font-extrabold text-slate-900 leading-[1.35] mb-2.5">
             Đối Tác &amp; Hệ Sinh Thái{' '}
-            <span className="font-editorial text-gradient-inkica">Đồng Hành.</span>
+            <span className="block sm:inline font-editorial text-gradient-inkica">
+              Đồng Hành.
+            </span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
             Từ Capital House • EcoLife Signature, các đại lý phân phối đến 30+ thương hiệu và

@@ -57,7 +57,7 @@ export const HairlineCard: React.FC<HairlineCardProps> = ({
 }) => {
   const variantBg = {
     obsidian: 'bg-white/95 backdrop-blur-xl border border-slate-200/90',
-    card: 'bg-white/92 backdrop-blur-xl border border-slate-200/90',
+    card: 'bg-white/95 backdrop-blur-xl border border-slate-200/90',
     ghost: 'bg-slate-50/90 backdrop-blur-lg border border-slate-200/80',
   }[variant];
 

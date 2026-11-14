@@ -76,7 +76,10 @@ const Certifications: React.FC = () => {
               <span>Verified Credentials &amp; Mastery</span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-[2.2rem] font-extrabold text-slate-900 leading-[1.35]">
-              Chứng Chỉ <span className="font-editorial text-gradient-inkica">Nghề Nghiệp.</span>
+              Chứng Chỉ{' '}
+              <span className="block sm:inline font-editorial text-gradient-inkica">
+                Nghề Nghiệp.
+              </span>
             </h2>
           </div>
 

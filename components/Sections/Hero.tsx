@@ -486,24 +486,24 @@ const Hero: React.FC<HeroProps> = ({
               </div>
             </div>
 
-            {/* Clean Action Buttons: Strictly 2 buttons on Mobile, 3 on Desktop/Tablet */}
-            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-1">
+            {/* Clean Action Buttons: Strictly 2 buttons on 1 single row on Mobile, 3 on Desktop/Tablet */}
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 sm:gap-3 pt-1">
               <button
                 type="button"
                 onClick={() => onJumpSection('inkica-pod')}
-                className="btn-inkica-primary px-4 sm:px-5 py-2.5 text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer"
+                className="btn-inkica-primary justify-center px-2.5 sm:px-5 py-2.5 text-[11px] sm:text-xs font-bold inline-flex items-center gap-1 sm:gap-1.5 whitespace-nowrap cursor-pointer"
               >
-                <Box size={14} />
+                <Box size={13} className="shrink-0" />
                 <span>Khám Phá Hệ Sinh Thái</span>
-                <ArrowRight size={13} />
+                <ArrowRight size={12} className="hidden sm:inline shrink-0" />
               </button>
 
               <button
                 type="button"
                 onClick={onOpenEcoLifeModal}
-                className="ql-btn-outline px-4 py-2.5 rounded-full text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer"
+                className="ql-btn-outline justify-center px-2.5 sm:px-4 py-2.5 rounded-full text-[11px] sm:text-xs font-bold inline-flex items-center gap-1 sm:gap-1.5 whitespace-nowrap cursor-pointer"
               >
-                <Building2 size={14} className="text-[#1E40FF]" />
+                <Building2 size={13} className="text-[#1E40FF] shrink-0" />
                 <span>Case Study Tiêu Biểu</span>
               </button>
 

@@ -51,8 +51,9 @@ const TheBridge: React.FC = () => {
                 className="text-2xl sm:text-3xl lg:text-[2.1rem] font-extrabold text-slate-950 leading-[1.35] mb-3"
               >
                 Từ 1 click quảng cáo thành{' '}
-                <br className="hidden sm:inline" />
-                <span className="font-editorial text-gradient-inkica">lịch hẹn trong 4 giây.</span>
+                <span className="block font-editorial text-gradient-inkica">
+                  lịch hẹn trong 4 giây.
+                </span>
               </motion.h2>
 
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-xl">

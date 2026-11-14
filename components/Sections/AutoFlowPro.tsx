@@ -108,7 +108,9 @@ const AutoFlowPro: React.FC = () => {
 
               <h2 className="text-2xl sm:text-3xl lg:text-[2.15rem] font-extrabold text-slate-900 leading-[1.35] mb-3">
                 DOMATION{' '}
-                <span className="font-editorial text-gradient-inkica">Automation Flow.</span>
+                <span className="block sm:inline font-editorial text-gradient-inkica">
+                  Automation Flow.
+                </span>
               </h2>
 
               <p className="text-slate-600 text-sm leading-relaxed mb-5">

@@ -19,6 +19,7 @@ export interface Experience {
   company: string;
   period: string;
   description: string;
+  highlights?: string[];
   type: 'work' | 'education';
 }
 

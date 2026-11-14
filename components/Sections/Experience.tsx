@@ -1,8 +1,64 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { EXPERIENCES } from '../../constants';
+import { Experience as ExperienceItem } from '../../types';
 import { Briefcase, Building2, Calendar } from 'lucide-react';
 import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
+
+/** Shared card body rendering experience header and crisp bullet-point highlights. */
+const ExperienceCard: React.FC<{ item: ExperienceItem; isCurrent: boolean }> = ({
+  item,
+  isCurrent,
+}) => {
+  const bullets =
+    item.highlights && item.highlights.length > 0 ? item.highlights : [item.description];
+
+  return (
+    <div
+      className={`relative inkica-glass-card rounded-2xl p-5 sm:p-6 group h-full ${
+        isCurrent ? 'ring-1 ring-blue-200/70' : 'ring-1 ring-slate-200/60'
+      }`}
+    >
+      <div
+        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10.5px] font-mono font-bold mb-3 backdrop-blur-md ${
+          isCurrent
+            ? 'bg-blue-50/75 text-[#1E40FF] border border-blue-200/80'
+            : 'bg-white/65 text-slate-600 border border-slate-200/80'
+        }`}
+      >
+        <Calendar size={11} />
+        <span>{item.period}</span>
+      </div>
+
+      <div className="mb-3">
+        <h3 className="text-base sm:text-lg font-extrabold text-slate-900 group-hover:text-[#1E40FF] transition-colors leading-snug">
+          {item.role}
+        </h3>
+        <div className="flex items-center gap-1.5 text-[#1E40FF] text-[11px] font-bold uppercase tracking-wider mt-1">
+          <Building2 size={12} className="shrink-0" />
+          <span>{item.company}</span>
+        </div>
+      </div>
+
+      <ul className="space-y-2 border-t border-slate-200/60 pt-3">
+        {bullets.map((line, i) => (
+          <li
+            key={i}
+            className="flex items-start gap-2.5 text-slate-600 text-xs sm:text-[13px] leading-relaxed"
+          >
+            <span
+              aria-hidden="true"
+              className={`mt-[7px] w-1.5 h-1.5 rounded-full shrink-0 ${
+                isCurrent ? 'bg-[#1E40FF]' : 'bg-slate-400'
+              }`}
+            />
+            <span>{line}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 const Experience: React.FC = () => {
   return (
@@ -26,7 +82,9 @@ const Experience: React.FC = () => {
 
             <h2 className="text-2xl sm:text-3xl lg:text-[2.2rem] font-extrabold text-slate-900 leading-[1.35]">
               Hành Trình{' '}
-              <span className="font-editorial text-gradient-inkica">Kinh Nghiệm Thực Chiến.</span>
+              <span className="block sm:inline font-editorial text-gradient-inkica">
+                Kinh Nghiệm Thực Chiến.
+              </span>
             </h2>
           </div>
 
@@ -46,41 +104,9 @@ const Experience: React.FC = () => {
           tabletPerPage={2}
           gapClass="gap-4"
           ariaLabel="Hành trình kinh nghiệm"
-          renderItem={(item, index) => {
-            const isCurrent = index <= 2;
-            return (
-              <div
-                className={`relative inkica-glass-card rounded-2xl p-5 sm:p-6 group h-full ${
-                  isCurrent ? 'ring-1 ring-blue-200/70' : 'ring-1 ring-slate-200/60'
-                }`}
-              >
-                <div
-                  className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10.5px] font-mono font-bold mb-3 backdrop-blur-md ${
-                    isCurrent
-                      ? 'bg-blue-50/75 text-[#1E40FF] border border-blue-200/80'
-                      : 'bg-white/65 text-slate-600 border border-slate-200/80'
-                  }`}
-                >
-                  <Calendar size={11} />
-                  <span>{item.period}</span>
-                </div>
-
-                <div className="mb-3">
-                  <h3 className="text-base sm:text-lg font-extrabold text-slate-900 group-hover:text-[#1E40FF] transition-colors leading-snug">
-                    {item.role}
-                  </h3>
-                  <div className="flex items-center gap-1.5 text-[#1E40FF] text-[11px] font-bold uppercase tracking-wider mt-1">
-                    <Building2 size={12} className="shrink-0" />
-                    <span>{item.company}</span>
-                  </div>
-                </div>
-
-                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-200/60 pt-3">
-                  {item.description}
-                </p>
-              </div>
-            );
-          }}
+          renderItem={(item, index) => (
+            <ExperienceCard item={item} isCurrent={index <= 2} />
+          )}
         />
 
         {/* Desktop Classic Alternating Vertical Spine Timeline */}
@@ -127,39 +153,7 @@ const Experience: React.FC = () => {
                     isEven ? 'md:pr-10' : 'md:pl-10'
                   }`}
                 >
-                  <div
-                    className={`relative inkica-glass-card rounded-2xl p-5 sm:p-6 group ${
-                      isCurrent
-                        ? 'ring-1 ring-blue-200/70'
-                        : 'ring-1 ring-slate-200/60'
-                    }`}
-                  >
-                    {/* Floating Period Badge */}
-                    <div
-                      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10.5px] font-mono font-bold mb-3 backdrop-blur-md ${
-                        isCurrent
-                          ? 'bg-blue-50/75 text-[#1E40FF] border border-blue-200/80'
-                          : 'bg-white/65 text-slate-600 border border-slate-200/80'
-                      }`}
-                    >
-                      <Calendar size={11} />
-                      <span>{item.period}</span>
-                    </div>
-
-                    <div className="mb-3">
-                      <h3 className="text-base sm:text-lg font-extrabold text-slate-900 group-hover:text-[#1E40FF] transition-colors leading-snug">
-                        {item.role}
-                      </h3>
-                      <div className="flex items-center gap-1.5 text-[#1E40FF] text-[11px] font-bold uppercase tracking-wider mt-1">
-                        <Building2 size={12} className="shrink-0" />
-                        <span>{item.company}</span>
-                      </div>
-                    </div>
-
-                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-200/60 pt-3">
-                      {item.description}
-                    </p>
-                  </div>
+                  <ExperienceCard item={item} isCurrent={isCurrent} />
                 </div>
               </motion.div>
             );

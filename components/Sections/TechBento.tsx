@@ -38,7 +38,10 @@ const TechBento: React.FC = () => {
             </span>
           </motion.div>
           <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] font-extrabold text-slate-900 leading-[1.35]">
-            Hệ Sinh Thái <span className="font-editorial text-gradient-inkica">Công Nghệ.</span>
+            Hệ Sinh Thái{' '}
+            <span className="block sm:inline font-editorial text-gradient-inkica">
+              Công Nghệ.
+            </span>
           </h2>
           <p className="text-slate-600 text-base md:text-lg mt-5 max-w-2xl mx-auto leading-relaxed">
             Một hệ sinh thái khép kín nơi{' '}

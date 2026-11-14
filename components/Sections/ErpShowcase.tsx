@@ -86,7 +86,9 @@ const ErpShowcase: React.FC = () => {
               className="text-2xl sm:text-3xl lg:text-[2.2rem] font-extrabold text-slate-900 leading-[1.35]"
             >
               DOMATION{' '}
-              <span className="font-editorial text-gradient-inkica">ERP 5.0 System.</span>
+              <span className="block sm:inline font-editorial text-gradient-inkica">
+                ERP 5.0 System.
+              </span>
             </motion.h2>
 
             <p className="text-slate-600 text-base max-w-2xl mt-3 leading-relaxed">

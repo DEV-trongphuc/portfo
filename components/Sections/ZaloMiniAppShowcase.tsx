@@ -1,17 +1,92 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
-  ArrowLeft,
+  BellRing,
   Code2,
+  Cpu,
   ExternalLink,
   MonitorSmartphone,
   MousePointerClick,
   QrCode,
   RefreshCcw,
   Shield,
+  Webhook,
 } from 'lucide-react';
 import Modal from '../UI/Modal';
 import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
+
+/** Compact icon/logo badge items for the Zalo Mini App core stack. */
+const ZALO_CORE_TECH = [
+  {
+    name: 'ReactJS 18',
+    icon: (
+      <div className="w-6 h-6 rounded-lg bg-[#E0F7FA] border border-[#06B6D4]/25 flex items-center justify-center shrink-0">
+        <svg viewBox="0 0 24 24" className="w-4 h-4 text-[#0284C7]" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="2.1" fill="currentColor" />
+          <ellipse cx="12" cy="12" rx="10" ry="4.2" stroke="currentColor" strokeWidth="1.5" />
+          <ellipse
+            cx="12"
+            cy="12"
+            rx="10"
+            ry="4.2"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            transform="rotate(60 12 12)"
+          />
+          <ellipse
+            cx="12"
+            cy="12"
+            rx="10"
+            ry="4.2"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            transform="rotate(120 12 12)"
+          />
+        </svg>
+      </div>
+    ),
+  },
+  {
+    name: 'Zalo ZaUI',
+    icon: (
+      <span className="w-6 h-6 rounded-lg bg-[#0068FF] text-white font-black text-[10px] tracking-tighter flex items-center justify-center shrink-0 shadow-xs">
+        Z
+      </span>
+    ),
+  },
+  {
+    name: 'ZMP SDK',
+    icon: (
+      <span className="w-6 h-6 rounded-lg bg-[#1E40FF] text-white font-black text-[8.5px] tracking-tight flex items-center justify-center shrink-0 shadow-xs">
+        SDK
+      </span>
+    ),
+  },
+  {
+    name: 'TypeScript',
+    icon: (
+      <span className="w-6 h-6 rounded-lg bg-[#3178C6] text-white font-black text-[9.5px] tracking-tighter flex items-center justify-center shrink-0 shadow-xs">
+        TS
+      </span>
+    ),
+  },
+  {
+    name: 'Zalo OA / ZNS',
+    icon: (
+      <div className="w-6 h-6 rounded-lg bg-[#0284C7] text-white flex items-center justify-center shrink-0 shadow-xs">
+        <BellRing size={13} strokeWidth={2.3} />
+      </div>
+    ),
+  },
+  {
+    name: 'CRM Webhook',
+    icon: (
+      <div className="w-6 h-6 rounded-lg bg-[#10B981] text-white flex items-center justify-center shrink-0 shadow-xs">
+        <Webhook size={13} strokeWidth={2.3} />
+      </div>
+    ),
+  },
+];
 
 const ZALO_FEATURES = [
   {
@@ -66,7 +141,9 @@ const ZaloMiniAppShowcase: React.FC = () => {
 
           <h2 className="text-2xl sm:text-3xl lg:text-[2.15rem] font-extrabold text-slate-900 leading-[1.35] mb-3">
             Zalo Mini App{' '}
-            <span className="font-editorial text-gradient-inkica">for Business.</span>
+            <span className="block sm:inline font-editorial text-gradient-inkica">
+              for Business.
+            </span>
           </h2>
 
           <p className="text-slate-600 text-sm leading-relaxed">
@@ -139,7 +216,28 @@ const ZaloMiniAppShowcase: React.FC = () => {
               )}
             />
 
-            <div className="flex flex-wrap gap-3 pt-2">
+            {/* Compact Core Tech Icon & Logo Strip */}
+            <div className="p-4 rounded-2xl inkica-glass-card">
+              <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-[#1E40FF] mb-2.5">
+                <Cpu size={12} />
+                <span>Core Tech Stack</span>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {ZALO_CORE_TECH.map((tech) => (
+                  <div
+                    key={tech.name}
+                    className="flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white/95 border border-slate-200/80 shadow-[0_1px_2px_rgba(15,23,42,0.03)] hover:border-[#1E40FF]/35 transition-colors"
+                  >
+                    {tech.icon}
+                    <span className="text-[11.5px] font-bold text-slate-800 truncate">
+                      {tech.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-3 pt-1">
               <a
                 href="https://turniodev.github.io/zala_ideas"
                 target="_blank"
@@ -151,9 +249,9 @@ const ZaloMiniAppShowcase: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setShowQrModal(true)}
-                className="btn-inkica-secondary px-5 py-2.5 text-xs font-bold inline-flex items-center gap-2 cursor-pointer"
+                className="ql-btn-outline px-5 py-2.5 text-xs font-bold inline-flex items-center gap-2 cursor-pointer"
               >
-                <QrCode size={14} /> Demo Link &amp; QR
+                <QrCode size={14} className="text-[#1E40FF]" /> Demo Link &amp; QR
               </button>
             </div>
           </div>

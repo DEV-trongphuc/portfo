@@ -204,8 +204,8 @@ const InkicaPodShowcase: React.FC = () => {
             </div>
 
             <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] font-extrabold text-slate-900 leading-[1.35] mb-2">
-              INKICA AI Studio —{' '}
-              <span className="font-editorial text-gradient-inkica">
+              INKICA AI Studio<span className="hidden sm:inline"> —</span>{' '}
+              <span className="block sm:inline font-editorial text-gradient-inkica">
                 Prepress &amp; 3D Garment POD.
               </span>
             </h2>

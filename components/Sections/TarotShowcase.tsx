@@ -72,7 +72,10 @@ const TarotShowcase: React.FC = () => {
             viewport={{ once: true, amount: 0.05 }}
             className="text-2xl sm:text-3xl lg:text-[2.2rem] font-extrabold mb-3 text-slate-900 leading-[1.35]"
           >
-            Mystery <span className="font-editorial text-gradient-inkica">Tarot App.</span>
+            Mystery{' '}
+            <span className="block sm:inline font-editorial text-gradient-inkica">
+              Tarot App.
+            </span>
           </motion.h2>
         </div>
 

@@ -74,7 +74,7 @@ const RealEstateShowcase: React.FC<RealEstateShowcaseProps> = ({
               className="text-2xl sm:text-3xl lg:text-[2.1rem] font-extrabold text-slate-950 leading-[1.35]"
             >
               Dự Án Triển Khai:{' '}
-              <span className="font-editorial text-gradient-inkica">
+              <span className="block sm:inline font-editorial text-gradient-inkica">
                 EcoLife 3D × Capital House.
               </span>
             </motion.h2>

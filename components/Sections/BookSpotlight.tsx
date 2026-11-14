@@ -130,7 +130,7 @@ const BookSpotlight: React.FC = () => {
               className="text-2xl sm:text-3xl lg:text-[2.2rem] font-extrabold text-slate-900 leading-[1.35] mb-4"
             >
               Facebook Ads{' '}
-              <span className="font-editorial text-gradient-inkica">
+              <span className="block sm:inline font-editorial text-gradient-inkica">
                 <GradientTypewriter text="AI Chạy Không Được." />
               </span>
             </motion.h2>

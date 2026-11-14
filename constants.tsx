@@ -220,6 +220,12 @@ export const EXPERIENCES: Experience[] = [
     company: 'Tập đoàn Capital House • Dự án EcoLife Signature',
     period: '09/2026 - NOW',
     description: 'Phụ trách chiến lược Digital Marketing & AI Automation toàn trình cho dự án EcoLife Signature Đà Nẵng: Website 3D bóc mái WebGL, Trợ lý AI Sales Portal (ai.ecolifesignature.vn), Phim 4K, 25 ấn phẩm Offline/OOH và hệ thống Auto Chia Số 3 Đại lý F1 (< 5s) đồng bộ Meta CAPI.',
+    highlights: [
+      'Chiến lược Digital Marketing & AI Automation toàn trình cho EcoLife Signature Đà Nẵng.',
+      'Website 3D bóc mái WebGL & Trợ lý AI Sales Portal (ai.ecolifesignature.vn).',
+      'Sản xuất Phim 4K cùng 25 ấn phẩm Offline / OOH đồng bộ thương hiệu.',
+      'Hệ thống Auto Chia Số 3 Đại lý F1 (< 5 giây) đồng bộ Meta CAPI HTTP 200.',
+    ],
     type: 'work'
   },
   {
@@ -228,6 +234,12 @@ export const EXPERIENCES: Experience[] = [
     company: 'INKICA AI Tools (ai.inkica.com)',
     period: '2025 - NOW',
     description: 'Kiến trúc & phát triển nền tảng AI Prepress ngành Print-on-Demand: 300 DPI Graphic Extract (SAM 3 + DIS5K + ViTMatte), AOP 3D Pattern Studio 208 SKU / 88 Canonical Models (0 px overlap), bóc rập .PSD CAD Cubic Bezier, Embroidery (.DST), Halftone LPI & Live Multi-Color Garment Mockup (Next.js, Three.js WebGL, NestJS, PostgreSQL, BullMQ).',
+    highlights: [
+      '300 DPI Graphic Extract (SAM 3 + DIS5K + ViTMatte) chuẩn in ấn Print-on-Demand.',
+      'AOP 3D Pattern Studio 208 SKU / 88 Canonical Models (0 px overlap) & bóc rập .PSD CAD.',
+      'Xử lý Embroidery (.DST), Halftone LPI & Live Multi-Color Garment Mockup.',
+      'Stack: Next.js, Three.js WebGL, NestJS, PostgreSQL & BullMQ.',
+    ],
     type: 'work'
   },
   { 
@@ -236,6 +248,11 @@ export const EXPERIENCES: Experience[] = [
     company: 'DOMARKETING (DOMATION)', 
     period: '2024 - NOW', 
     description: 'Hệ thống Automation đa thông điệp đã sẵn sàng. Trải nghiệm sức mạnh tự động hóa vượt trội từ Email, Zalo, Meta & AI — Chạm đúng người, đúng thời điểm.', 
+    highlights: [
+      'Kiến trúc hệ thống AI Automation đa kênh Email, Zalo, Meta & CRM Webhook.',
+      'Điều phối & phân luồng Lead real-time (< 5s) — chạm đúng người, đúng thời điểm.',
+      'Phát triển hệ sinh thái App, Web & Growth Ads cho 30+ doanh nghiệp.',
+    ],
     type: 'work' 
   },
   { 
@@ -244,6 +261,11 @@ export const EXPERIENCES: Experience[] = [
     company: 'IDEAS Institute', 
     period: '2023 - 2024', 
     description: 'Lập trình Web, Zalo App, minigame theo chiến dịch, tối ưu Website & SEO. Vận hành Google/FB Ads kèm hệ thống Báo cáo tự động Real-time. Tăng trưởng số lượng tuyển sinh Thạc sĩ MBA x3 so với năm 2022, giảm chi phí trên mỗi học viên từ 18tr -> 12-14 triệu.', 
+    highlights: [
+      'Lập trình Web, Zalo Mini App, minigame chiến dịch & tối ưu Technical SEO.',
+      'Vận hành Google / Meta Ads kèm hệ thống Báo cáo tự động Real-time.',
+      'Tăng trưởng tuyển sinh MBA x3 so với 2022; giảm CPA từ 18tr còn 12–14 triệu.',
+    ],
     type: 'work' 
   },
   { 
@@ -252,6 +274,10 @@ export const EXPERIENCES: Experience[] = [
     company: 'Le Gia ICT', 
     period: '2022 - 2023', 
     description: 'Chạy Ads Performance. Xây dựng hệ thống PBN, backlink kỹ thuật SEO năm 2022.', 
+    highlights: [
+      'Triển khai & tối ưu chiến dịch Performance Ads đa kênh.',
+      'Xây dựng hệ thống PBN, backlink & hạ tầng Technical SEO.',
+    ],
     type: 'work' 
   },
   { 
@@ -260,6 +286,10 @@ export const EXPERIENCES: Experience[] = [
     company: 'Banking University HCMC', 
     period: '2019 - 2023', 
     description: 'Digital Marketing, học thêm các khóa học lập trình Fullstack tại Fullstack.edu.vn - F8.', 
+    highlights: [
+      'Chuyên ngành Quản trị kinh doanh – Digital Marketing (HUB).',
+      'Hoàn thành lộ trình lập trình Fullstack Web tại Fullstack.edu.vn (F8).',
+    ],
     type: 'education' 
   }
 ];

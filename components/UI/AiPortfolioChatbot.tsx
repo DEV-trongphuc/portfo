@@ -569,7 +569,7 @@ export const AiPortfolioChatbot: React.FC<AiPortfolioChatbotProps> = ({
         <aside
           aria-label="Trợ lý AI cá nhân của Turnio"
           data-testid="ai-chatbot-panel"
-          className="fixed inset-0 sm:inset-auto sm:bottom-5 sm:right-5 z-[70] flex flex-col w-full h-[100dvh] sm:w-[490px] md:w-[530px] lg:w-[560px] sm:max-w-[calc(100vw-2.5rem)] sm:h-[min(680px,calc(100dvh-2.5rem))] sm:max-h-[calc(100dvh-2.5rem)] rounded-none sm:rounded-[24px] bg-white/98 sm:bg-white/95 backdrop-blur-2xl border-0 sm:border sm:border-slate-200/90 shadow-[0_28px_72px_-12px_rgba(30,64,255,0.22),0_10px_28px_-6px_rgba(15,23,42,0.12)] overflow-hidden"
+          className="fixed inset-0 sm:inset-auto sm:bottom-5 sm:right-5 z-[70] flex flex-col w-full h-[100dvh] sm:w-[490px] md:w-[530px] lg:w-[560px] sm:max-w-[calc(100vw-2.5rem)] sm:h-[min(680px,calc(100dvh-2.5rem))] sm:max-h-[calc(100dvh-2.5rem)] rounded-none sm:rounded-[24px] bg-white sm:bg-white/95 backdrop-blur-2xl border-0 sm:border sm:border-slate-200/90 shadow-[0_28px_72px_-12px_rgba(30,64,255,0.22),0_10px_28px_-6px_rgba(15,23,42,0.12)] overflow-hidden"
         >
           {/* High-contrast Personal Header (avoids global h2 color cascade) */}
           <header className="shrink-0 flex items-center justify-between gap-3 px-4 sm:px-5 pt-[max(0.9rem,env(safe-area-inset-top))] pb-3.5 bg-gradient-to-r from-[#0F172A] via-[#172554] to-[#1E40FF] border-b border-white/10">

@@ -61,7 +61,9 @@ const DomationCrmShowcase: React.FC = () => {
 
               <h2 className="text-2xl sm:text-3xl lg:text-[2.1rem] font-extrabold text-slate-950 leading-[1.36] mb-2.5">
                 Capital House{' '}
-                <span className="font-editorial text-gradient-inkica">CRM System.</span>
+                <span className="block sm:inline font-editorial text-gradient-inkica">
+                  CRM System.
+                </span>
               </h2>
 
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">

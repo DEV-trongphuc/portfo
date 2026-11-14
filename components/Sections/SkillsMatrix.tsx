@@ -271,7 +271,7 @@ const SkillsMatrix: React.FC = () => {
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-[2.1rem] font-extrabold text-slate-900 leading-[1.3]">
               Hệ Kỹ Năng{' '}
-              <span className="font-editorial text-gradient-inkica">
+              <span className="block sm:inline font-editorial text-gradient-inkica">
                 Dev, AI &amp; Marketing.
               </span>
             </h2>

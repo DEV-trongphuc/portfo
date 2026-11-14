@@ -61,9 +61,11 @@ const Navbar: React.FC<NavbarProps> = ({
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/88 backdrop-blur-xl border-b border-slate-200/90 shadow-[0_8px_30px_rgba(15,23,42,0.06)] py-2.5'
-          : 'bg-white/65 backdrop-blur-md border-b border-slate-200/40 py-3.5'
+        isOpen
+          ? 'bg-white border-b border-slate-200 py-3'
+          : scrolled
+            ? 'bg-white/95 backdrop-blur-xl border-b border-slate-200/90 shadow-[0_8px_30px_rgba(15,23,42,0.06)] py-2.5'
+            : 'bg-white/75 backdrop-blur-md border-b border-slate-200/40 py-3.5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
@@ -140,7 +142,7 @@ const Navbar: React.FC<NavbarProps> = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden absolute top-full left-0 right-0 bg-white/98 backdrop-blur-xl border-b border-slate-200 shadow-2xl px-5 py-6 space-y-4"
+            className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-200 shadow-2xl px-5 py-6 space-y-4 z-50"
           >
             <div className="grid grid-cols-2 gap-2.5">
               {navLinks.map((link) => (

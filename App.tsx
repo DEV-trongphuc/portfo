@@ -166,10 +166,6 @@ export default function App() {
           </SectionShell>
 
           <SectionShell>
-            <SkillsMatrix />
-          </SectionShell>
-
-          <SectionShell>
             <InkicaPodShowcase />
           </SectionShell>
 
@@ -223,6 +219,10 @@ export default function App() {
 
           <SectionShell>
             <BookSpotlight />
+          </SectionShell>
+
+          <SectionShell>
+            <SkillsMatrix />
           </SectionShell>
 
           <SectionShell>

@@ -468,9 +468,9 @@ const Hero: React.FC<HeroProps> = ({
             <div className="grid grid-cols-3 gap-3.5 max-w-xl mb-8">
               <div className="rounded-2xl inkica-glass-card px-4 py-3.5">
                 <div className="text-lg sm:text-2xl font-black text-[#1E40FF] leading-tight mb-1">
-                  15+
+                  35+
                 </div>
-                <div className="text-[11px] font-bold text-slate-800">Apps &amp; AI Systems</div>
+                <div className="text-[11px] font-bold text-slate-800">App, Web &amp; AI</div>
               </div>
               <div className="rounded-2xl inkica-glass-card px-4 py-3.5">
                 <div className="text-lg sm:text-2xl font-black text-slate-950 leading-tight mb-1">

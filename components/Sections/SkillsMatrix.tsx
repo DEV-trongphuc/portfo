@@ -1,213 +1,282 @@
 import React, { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
+  BarChart3,
   Bot,
+  Cloud,
   Code2,
   Cpu,
+  Database,
+  FileSearch,
+  Film,
+  GitBranch,
+  Globe,
   Layers,
+  Mail,
   Megaphone,
+  Network,
   Palette,
+  PenTool,
+  Scissors,
   Search,
+  Share2,
+  ShieldCheck,
+  Smartphone,
   Sparkles,
   Terminal,
-  Video,
+  Workflow,
   Wrench,
+  Zap,
 } from 'lucide-react';
 import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
 
 type SkillDomainId = 'all' | 'dev' | 'antigravity' | 'marketing' | 'creative' | 'tools';
 
+interface SkillTile {
+  name: string;
+  badge: React.ReactNode;
+}
+
 interface SkillGroup {
   id: string;
   domain: Exclude<SkillDomainId, 'all'>;
-  badge: string;
+  category: string;
   title: string;
-  subtitle: string;
   icon: React.ReactNode;
   accentBg: string;
   accentText: string;
-  skills: { name: string; tag?: string }[];
+  skills: SkillTile[];
 }
 
+const MonoLogo = ({
+  label,
+  bg,
+  fg = '#FFFFFF',
+}: {
+  label: string;
+  bg: string;
+  fg?: string;
+}) => (
+  <span
+    className="w-6 h-6 rounded-lg flex items-center justify-center shrink-0 text-[9.5px] font-black tracking-tighter shadow-2xs select-none"
+    style={{ backgroundColor: bg, color: fg }}
+    aria-hidden="true"
+  >
+    {label}
+  </span>
+);
+
+const IconBadge = ({
+  icon,
+  bg,
+  fg,
+}: {
+  icon: React.ReactNode;
+  bg: string;
+  fg: string;
+}) => (
+  <span
+    className="w-6 h-6 rounded-lg flex items-center justify-center shrink-0 border border-black/5"
+    style={{ backgroundColor: bg, color: fg }}
+    aria-hidden="true"
+  >
+    {icon}
+  </span>
+);
+
 const DOMAIN_TABS: { id: SkillDomainId; label: string }[] = [
-  { id: 'all', label: 'Tất Cả Kỹ Năng' },
+  { id: 'all', label: 'Tất Cả' },
   { id: 'dev', label: 'Dev & Ngôn Ngữ' },
   { id: 'antigravity', label: 'Antigravity & AI' },
   { id: 'marketing', label: 'Marketing & SEO' },
-  { id: 'creative', label: 'Design & Edit Video' },
-  { id: 'tools', label: 'Tools, Cloud & App' },
+  { id: 'creative', label: 'Design & Video' },
+  { id: 'tools', label: 'Tools & Cloud' },
 ];
 
 const SKILL_GROUPS: SkillGroup[] = [
   {
     id: 'languages-core',
     domain: 'dev',
-    badge: 'Core Programming',
-    title: 'Ngôn Ngữ Lập Trình & Database',
-    subtitle: 'Từ Frontend UI phản hồi <100ms đến Backend chịu tải cao & xử lý dữ liệu SQL.',
-    icon: <Code2 size={18} />,
+    category: 'Programming',
+    title: 'Ngôn Ngữ & Database',
+    icon: <Code2 size={17} />,
     accentBg: 'bg-blue-50 border-blue-200/80',
     accentText: 'text-[#1E40FF]',
     skills: [
-      { name: 'TypeScript', tag: 'Strict' },
-      { name: 'JavaScript (ES6+)' },
-      { name: 'Python', tag: 'AI / Data' },
-      { name: 'SQL / PostgreSQL' },
-      { name: 'HTML5 / CSS3' },
-      { name: 'PHP / Laravel' },
-      { name: 'Google Apps Script' },
-      { name: 'Bash / PowerShell' },
+      { name: 'TypeScript', badge: <MonoLogo label="TS" bg="#3178C6" /> },
+      { name: 'JavaScript', badge: <MonoLogo label="JS" bg="#F7DF1E" fg="#0F172A" /> },
+      { name: 'Python', badge: <MonoLogo label="Py" bg="#3776AB" fg="#FFD43B" /> },
+      { name: 'PostgreSQL', badge: <IconBadge icon={<Database size={13} />} bg="#336791" fg="#FFFFFF" /> },
+      { name: 'HTML5 / CSS3', badge: <MonoLogo label="<>" bg="#E34F26" /> },
+      { name: 'PHP / Laravel', badge: <MonoLogo label="PHP" bg="#777BB4" /> },
+      { name: 'Apps Script', badge: <IconBadge icon={<Terminal size={13} />} bg="#0F9D58" fg="#FFFFFF" /> },
+      { name: 'Bash / PS', badge: <MonoLogo label="$_" bg="#0F172A" /> },
     ],
   },
   {
     id: 'fullstack-app',
     domain: 'dev',
-    badge: 'Web, 3D & App Architecture',
-    title: 'Framework, Web 3D & Mobile/Mini App',
-    subtitle: 'Xây dựng ERP, SaaS đa người dùng, WebGL 3D tương tác & Zalo Mini App.',
-    icon: <Layers size={18} />,
+    category: 'Web & App',
+    title: 'Framework, 3D & App',
+    icon: <Layers size={17} />,
     accentBg: 'bg-sky-50 border-sky-200/80',
     accentText: 'text-[#0284C7]',
     skills: [
-      { name: 'React 19', tag: 'Hooks' },
-      { name: 'Next.js App Router' },
-      { name: 'Node.js / NestJS' },
-      { name: 'Three.js / WebGL 3D', tag: '3D' },
-      { name: 'Tailwind CSS' },
-      { name: 'Prisma / Supabase' },
-      { name: 'Zalo Mini App (ZMP)' },
-      { name: 'PWA / REST & Webhook' },
+      {
+        name: 'React 19',
+        badge: (
+          <IconBadge
+            icon={
+              <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none">
+                <circle cx="12" cy="12" r="2.2" fill="#0EA5E9" />
+                <ellipse cx="12" cy="12" rx="9" ry="3.5" stroke="#0EA5E9" strokeWidth="1.6" />
+                <ellipse
+                  cx="12"
+                  cy="12"
+                  rx="9"
+                  ry="3.5"
+                  stroke="#0EA5E9"
+                  strokeWidth="1.6"
+                  transform="rotate(60 12 12)"
+                />
+                <ellipse
+                  cx="12"
+                  cy="12"
+                  rx="9"
+                  ry="3.5"
+                  stroke="#0EA5E9"
+                  strokeWidth="1.6"
+                  transform="rotate(120 12 12)"
+                />
+              </svg>
+            }
+            bg="#E0F2FE"
+            fg="#0284C7"
+          />
+        ),
+      },
+      { name: 'Next.js', badge: <MonoLogo label="N" bg="#0F172A" /> },
+      { name: 'Node / NestJS', badge: <MonoLogo label="Nj" bg="#339933" /> },
+      { name: 'Three.js 3D', badge: <IconBadge icon={<Cpu size={13} />} bg="#1E293B" fg="#38BDF8" /> },
+      { name: 'Tailwind CSS', badge: <MonoLogo label="TW" bg="#06B6D4" /> },
+      { name: 'Supabase / ORM', badge: <IconBadge icon={<Zap size={13} />} bg="#3ECF8E" fg="#0F172A" /> },
+      { name: 'Zalo Mini App', badge: <IconBadge icon={<Smartphone size={13} />} bg="#0068FF" fg="#FFFFFF" /> },
+      { name: 'PWA / Webhook', badge: <IconBadge icon={<Zap size={13} />} bg="#4F46E5" fg="#FFFFFF" /> },
     ],
   },
   {
     id: 'antigravity-ai',
     domain: 'antigravity',
-    badge: 'Antigravity & Agentic AI',
-    title: 'Antigravity IDE, AI Agents & RAG',
-    subtitle: 'Điều phối Multi-Agent Workflow, Custom Skills, MCP Server & Vector RAG thực chiến.',
-    icon: <Sparkles size={18} />,
+    category: 'Agentic AI',
+    title: 'Antigravity & AI Agents',
+    icon: <Sparkles size={17} />,
     accentBg: 'bg-indigo-50 border-indigo-200/80',
     accentText: 'text-[#1E40FF]',
     skills: [
-      { name: 'Antigravity IDE (AGY)', tag: 'Core' },
-      { name: 'Multi-Agent Swarm' },
-      { name: 'Custom Skills & Rules' },
-      { name: 'MCP Server Integration' },
-      { name: 'Vector RAG (768d)', tag: 'Live' },
-      { name: 'Gemini API / Live / Veo' },
-      { name: 'ONNX Runtime (SAM 3)' },
-      { name: 'Prompt & Context Eng' },
+      { name: 'Antigravity IDE', badge: <MonoLogo label="AGY" bg="#1E40FF" /> },
+      { name: 'Multi-Agent Swarm', badge: <IconBadge icon={<Network size={13} />} bg="#4338CA" fg="#FFFFFF" /> },
+      { name: 'Custom Skills', badge: <IconBadge icon={<Sparkles size={13} />} bg="#2563EB" fg="#FFFFFF" /> },
+      { name: 'MCP Servers', badge: <MonoLogo label="MCP" bg="#0F172A" fg="#38BDF8" /> },
+      { name: 'Vector RAG 768d', badge: <IconBadge icon={<FileSearch size={13} />} bg="#0284C7" fg="#FFFFFF" /> },
+      { name: 'Gemini / Live AI', badge: <MonoLogo label="✦" bg="#1D4ED8" /> },
+      { name: 'ONNX (SAM 3)', badge: <MonoLogo label="AI" bg="#0E7490" /> },
+      { name: 'n8n / ZaloBot', badge: <IconBadge icon={<Bot size={13} />} bg="#EA4B71" fg="#FFFFFF" /> },
     ],
   },
   {
     id: 'marketing-seo',
     domain: 'marketing',
-    badge: 'Growth, Ads & Search',
-    title: 'Performance Ads, Content SEO & Funnel',
-    subtitle: 'Kết hợp Tracking chuẩn xác, Meta CAPI HTTP 200, SEO bền vững & tối ưu chuyển đổi.',
-    icon: <Megaphone size={18} />,
+    category: 'Growth & Search',
+    title: 'Marketing & Content SEO',
+    icon: <Megaphone size={17} />,
     accentBg: 'bg-cyan-50 border-cyan-200/80',
     accentText: 'text-[#0284C7]',
     skills: [
-      { name: 'Meta Ads & CAPI', tag: 'ROAS' },
-      { name: 'Google Search & Display' },
-      { name: 'TikTok Ads Manager' },
-      { name: 'Technical & On-Page SEO', tag: 'SEO' },
-      { name: 'Content SEO / Pillar' },
-      { name: 'GA4 & GTM Server-Side' },
-      { name: 'CRO & Copywriting' },
-      { name: 'Email & CRM Nurture' },
+      { name: 'Meta Ads & CAPI', badge: <MonoLogo label="∞" bg="#0668E1" /> },
+      { name: 'Google Ads', badge: <MonoLogo label="G" bg="#4285F4" /> },
+      { name: 'TikTok Ads', badge: <MonoLogo label="TT" bg="#0F172A" fg="#25F4EE" /> },
+      { name: 'Technical SEO', badge: <IconBadge icon={<Search size={13} />} bg="#059669" fg="#FFFFFF" /> },
+      { name: 'Content SEO', badge: <IconBadge icon={<PenTool size={13} />} bg="#0284C7" fg="#FFFFFF" /> },
+      { name: 'GA4 & GTM', badge: <IconBadge icon={<BarChart3 size={13} />} bg="#F97316" fg="#FFFFFF" /> },
+      { name: 'CRO Funnel', badge: <IconBadge icon={<Share2 size={13} />} bg="#1E40FF" fg="#FFFFFF" /> },
+      { name: 'Email & CRM', badge: <IconBadge icon={<Mail size={13} />} bg="#0EA5E9" fg="#FFFFFF" /> },
     ],
   },
   {
     id: 'design-video',
     domain: 'creative',
-    badge: 'Design & Video Production',
-    title: 'UI/UX Design, Print POD & Edit Video',
-    subtitle: 'Thiết kế hệ thống UI Figma, ấn phẩm OOH/Print-on-Demand, dựng phim & motion 4K.',
-    icon: <Palette size={18} />,
+    category: 'Creative Studio',
+    title: 'Design, POD & Edit Video',
+    icon: <Palette size={17} />,
     accentBg: 'bg-blue-50 border-blue-200/80',
     accentText: 'text-[#1E40FF]',
     skills: [
-      { name: 'Figma UI/UX System', tag: 'Design' },
-      { name: 'Adobe Premiere Pro', tag: 'Video' },
-      { name: 'After Effects Motion' },
-      { name: 'CapCut Pro & Reels' },
-      { name: 'Photoshop & Illustrator' },
-      { name: 'Canva Pro & Brand Kit' },
-      { name: 'AOP 3D CAD / .PSD / .DST' },
-      { name: 'AI Image & Video Gen' },
+      { name: 'Figma UI/UX', badge: <MonoLogo label="Fg" bg="#1E1E1E" fg="#0ACF83" /> },
+      { name: 'Premiere Pro', badge: <MonoLogo label="Pr" bg="#00005B" fg="#9999FF" /> },
+      { name: 'After Effects', badge: <MonoLogo label="Ae" bg="#00005B" fg="#9999FF" /> },
+      { name: 'CapCut Pro', badge: <IconBadge icon={<Scissors size={13} />} bg="#0F172A" fg="#FFFFFF" /> },
+      { name: 'Photoshop', badge: <MonoLogo label="Ps" bg="#001E36" fg="#31A8FF" /> },
+      { name: 'Illustrator', badge: <MonoLogo label="Ai" bg="#330000" fg="#FF9A00" /> },
+      { name: 'Canva Pro', badge: <MonoLogo label="C" bg="#00C4CC" /> },
+      { name: '4K AI Video', badge: <IconBadge icon={<Film size={13} />} bg="#1E40FF" fg="#FFFFFF" /> },
     ],
   },
   {
     id: 'tools-cloud',
     domain: 'tools',
-    badge: 'DevOps, Automation & SaaS',
-    title: 'Tools, Cloud Infra & Vận Hành Doanh Nghiệp',
-    subtitle: 'Triển khai CI/CD, Worker hàng đợi, trình duyệt kiểm thử & đồng bộ ERP/MISA.',
-    icon: <Wrench size={18} />,
+    category: 'Infra & Ops',
+    title: 'Tools, Cloud & ERP',
+    icon: <Wrench size={17} />,
     accentBg: 'bg-sky-50 border-sky-200/80',
     accentText: 'text-[#0284C7]',
     skills: [
-      { name: 'Git / GitHub Actions' },
-      { name: 'Docker / BullMQ / Redis' },
-      { name: 'Cloudflare Workers / DNS' },
-      { name: 'Vercel / Railway / Netlify' },
-      { name: 'Playwright E2E Audit', tag: 'QA' },
-      { name: 'n8n / Make / ZaloBot' },
-      { name: 'Larksuite / Notion / Jira' },
-      { name: 'MISA AMIS / KiotViet' },
+      { name: 'Git / GitHub', badge: <IconBadge icon={<GitBranch size={13} />} bg="#181717" fg="#FFFFFF" /> },
+      { name: 'Docker / Redis', badge: <MonoLogo label="Dk" bg="#2496ED" /> },
+      { name: 'Cloudflare', badge: <IconBadge icon={<Cloud size={13} />} bg="#F38020" fg="#FFFFFF" /> },
+      { name: 'Vercel / Railway', badge: <MonoLogo label="▲" bg="#0F172A" /> },
+      { name: 'Playwright QA', badge: <IconBadge icon={<ShieldCheck size={13} />} bg="#2EAD33" fg="#FFFFFF" /> },
+      { name: 'Lark / Notion', badge: <IconBadge icon={<Workflow size={13} />} bg="#00D6B9" fg="#0F172A" /> },
+      { name: 'MISA / KiotViet', badge: <MonoLogo label="ERP" bg="#1E40FF" /> },
+      { name: 'Meta CAPI Proxy', badge: <IconBadge icon={<Globe size={13} />} bg="#0284C7" fg="#FFFFFF" /> },
     ],
   },
-];
-
-const ANTIGRAVITY_PILLARS = [
-  { icon: <Terminal size={14} />, label: 'AGY Custom Skills & Workflows' },
-  { icon: <Cpu size={14} />, label: 'MCP Servers & Browser E2E' },
-  { icon: <Bot size={14} />, label: 'Gemini RAG & Agentic Coding' },
-  { icon: <Search size={14} />, label: 'Technical SEO + Growth Ops' },
-  { icon: <Video size={14} />, label: '4K Edit Video & UI Motion' },
 ];
 
 const SkillsMatrix: React.FC = () => {
   const [activeDomain, setActiveDomain] = useState<SkillDomainId>('all');
 
   const visibleGroups = useMemo(() => {
-    if (activeDomain === 'all') return SKILL_GROUPS;
-    return SKILL_GROUPS.filter((g) => g.domain === activeDomain);
+    return activeDomain === 'all'
+      ? SKILL_GROUPS
+      : SKILL_GROUPS.filter((g) => g.domain === activeDomain);
   }, [activeDomain]);
 
   return (
     <section
       id="skills-mastery"
-      className="py-14 sm:py-20 border-b border-slate-200/80 relative overflow-hidden"
+      className="py-12 sm:py-16 border-b border-slate-200/80 relative overflow-hidden"
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 relative z-10">
-        {/* Section Header */}
+        {/* Compact Header */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-8"
+          className="flex flex-col xl:flex-row xl:items-end justify-between gap-4 mb-7"
         >
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-[#1E40FF] text-[10.5px] font-bold uppercase tracking-[0.16em] mb-3">
-              <Sparkles size={13} />
-              <span>Fullstack • Antigravity • Creative • Growth Skills</span>
+          <div className="max-w-xl">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-[#1E40FF] text-[10px] font-bold uppercase tracking-[0.16em] mb-2.5">
+              <Sparkles size={12} />
+              <span>Dev • Antigravity • Growth • Creative Stack</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-[2.2rem] font-extrabold text-slate-900 leading-[1.35]">
-              Bản Đồ Kỹ Năng{' '}
+            <h2 className="text-2xl sm:text-3xl lg:text-[2.1rem] font-extrabold text-slate-900 leading-[1.3]">
+              Hệ Kỹ Năng{' '}
               <span className="font-editorial text-gradient-inkica">
-                Dev, AI &amp; Marketing Toàn Diện.
+                Dev, AI &amp; Marketing.
               </span>
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mt-2">
-              Hợp nhất ngôn ngữ lập trình, hệ sinh thái Agentic AI (Antigravity, MCP, RAG),
-              Performance Ads, Content SEO, Design UI/UX, Edit Video và công cụ vận hành App/Cloud.
-            </p>
           </div>
 
-          {/* Domain Filter Pills */}
           <div className="flex flex-wrap gap-1.5">
             {DOMAIN_TABS.map((tab) => (
               <button
@@ -216,7 +285,7 @@ const SkillsMatrix: React.FC = () => {
                 onClick={() => setActiveDomain(tab.id)}
                 className={`px-3 py-1.5 rounded-full text-[11px] font-bold transition-all cursor-pointer ${
                   activeDomain === tab.id
-                    ? 'bg-[#1E40FF] text-white shadow-sm'
+                    ? 'bg-[#1E40FF] text-white shadow-xs'
                     : 'bg-white/85 border border-slate-200/90 text-slate-600 hover:border-[#1E40FF]/40 hover:text-slate-900'
                 }`}
               >
@@ -226,7 +295,7 @@ const SkillsMatrix: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Responsive SlideDeck (1/slide Mobile, 2/slide Tablet, 3-col Grid Desktop) */}
+        {/* Compact Icon/Logo Matrix Deck (1/slide Mobile, 2/slide Tablet, 3-col Grid Desktop) */}
         <ResponsiveSlideDeck<SkillGroup>
           items={visibleGroups}
           keyExtractor={(group) => group.id}
@@ -234,72 +303,49 @@ const SkillsMatrix: React.FC = () => {
           desktopMode="grid"
           desktopGridClass={
             visibleGroups.length === 1
-              ? 'lg:grid-cols-1 max-w-3xl mx-auto'
+              ? 'lg:grid-cols-1 max-w-2xl mx-auto'
               : visibleGroups.length === 2
               ? 'lg:grid-cols-2'
               : 'lg:grid-cols-3'
           }
           gapClass="gap-4"
-          ariaLabel="Kỹ năng chuyên môn toàn diện"
+          ariaLabel="Kỹ năng chuyên môn theo nhóm"
           renderItem={(group) => (
-            <div className="inkica-glass-card rounded-3xl p-5 sm:p-6 h-full flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between gap-3 mb-4">
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div
-                      className={`w-10 h-10 rounded-xl border flex items-center justify-center shrink-0 ${group.accentBg} ${group.accentText}`}
-                    >
-                      {group.icon}
-                    </div>
-                    <div className="min-w-0">
-                      <div
-                        className={`text-[10px] font-extrabold uppercase tracking-wider truncate ${group.accentText}`}
-                      >
-                        {group.badge}
-                      </div>
-                      <h3 className="text-sm sm:text-base font-extrabold text-slate-900 leading-snug">
-                        {group.title}
-                      </h3>
-                    </div>
+            <div className="inkica-glass-card rounded-3xl p-4 sm:p-5 h-full">
+              <div className="flex items-center gap-3 pb-3 mb-3.5 border-b border-slate-200/70">
+                <div
+                  className={`w-9 h-9 rounded-xl border flex items-center justify-center shrink-0 ${group.accentBg} ${group.accentText}`}
+                >
+                  {group.icon}
+                </div>
+                <div className="min-w-0">
+                  <div
+                    className={`text-[9.5px] font-extrabold uppercase tracking-wider truncate ${group.accentText}`}
+                  >
+                    {group.category}
                   </div>
+                  <h3 className="text-sm sm:text-[15px] font-extrabold text-slate-900 leading-snug truncate">
+                    {group.title}
+                  </h3>
                 </div>
+              </div>
 
-                <p className="text-xs text-slate-600 leading-relaxed mb-4 pb-3 border-b border-slate-200/70">
-                  {group.subtitle}
-                </p>
-
-                <div className="flex flex-wrap gap-1.5">
-                  {group.skills.map((skill) => (
-                    <span
-                      key={skill.name}
-                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-white/90 border border-slate-200/85 text-[11.5px] font-semibold text-slate-800 hover:border-[#1E40FF]/40 hover:text-[#1E40FF] transition-colors"
-                    >
-                      <span>{skill.name}</span>
-                      {skill.tag && (
-                        <span className="text-[9px] font-mono font-extrabold uppercase px-1.5 py-0.5 rounded-md bg-blue-50 text-[#1E40FF]">
-                          {skill.tag}
-                        </span>
-                      )}
+              <div className="grid grid-cols-2 gap-2">
+                {group.skills.map((skill) => (
+                  <div
+                    key={skill.name}
+                    className="flex items-center gap-2.5 p-2 rounded-xl bg-white/90 border border-slate-200/80 hover:border-[#1E40FF]/40 transition-colors min-w-0"
+                  >
+                    {skill.badge}
+                    <span className="text-[11.5px] sm:text-xs font-bold text-slate-800 truncate">
+                      {skill.name}
                     </span>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
           )}
         />
-
-        {/* Compact Capability Strip */}
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-          {ANTIGRAVITY_PILLARS.map((pillar) => (
-            <div
-              key={pillar.label}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-sm border border-slate-200/80 text-[11px] font-bold text-slate-700"
-            >
-              <span className="text-[#1E40FF]">{pillar.icon}</span>
-              <span>{pillar.label}</span>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );

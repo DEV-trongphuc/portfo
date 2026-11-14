@@ -81,7 +81,7 @@ const Partners: React.FC = () => {
                   <div className="flex items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-100">
                     <div className="h-16 px-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-center">
                       {partner.id === 'inkica' ? (
-                        <InkicaBrandLogo darkText className="scale-110 origin-center" />
+                        <InkicaBrandLogo className="scale-110 origin-center" />
                       ) : (
                         <img
                           src={partner.logo}

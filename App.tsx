@@ -23,6 +23,7 @@ const TheBridge = React.lazy(() => import('./components/Sections/TheBridge'));
 const DomationDataShowcase = React.lazy(() => import('./components/Sections/DomationDataShowcase'));
 const ErpShowcase = React.lazy(() => import('./components/Sections/ErpShowcase'));
 const DomationCrmShowcase = React.lazy(() => import('./components/Sections/DomationCrmShowcase'));
+const FloraAffiliateShowcase = React.lazy(() => import('./components/Sections/FloraAffiliateShowcase'));
 const CrmShowcase = React.lazy(() => import('./components/Sections/CrmShowcase'));
 const AutoFlowPro = React.lazy(() => import('./components/Sections/AutoFlowPro'));
 const MetaAdReportShowcase = React.lazy(() => import('./components/Sections/MetaAdReportShowcase'));
@@ -322,6 +323,10 @@ export default function App() {
 
           <SectionShell>
             <DomationCrmShowcase />
+          </SectionShell>
+
+          <SectionShell>
+            <FloraAffiliateShowcase />
           </SectionShell>
 
           <SectionShell>

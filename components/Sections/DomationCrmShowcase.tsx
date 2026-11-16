@@ -60,7 +60,7 @@ const DomationCrmShowcase: React.FC = () => {
               </div>
 
               <h2 className="text-2xl sm:text-3xl lg:text-[2.1rem] font-extrabold text-slate-950 leading-[1.36] mb-2.5">
-                Capital House{' '}
+                360{' '}
                 <span className="block sm:inline font-editorial text-gradient-inkica">
                   CRM System.
                 </span>
@@ -78,7 +78,7 @@ const DomationCrmShowcase: React.FC = () => {
               desktopMode="grid"
               desktopGridClass="lg:grid-cols-2"
               gapClass="gap-3"
-              ariaLabel="Tính năng Capital House CRM"
+              ariaLabel="Tính năng 360 CRM"
               renderItem={(item) => (
                 <div className="bg-white/95 border border-slate-200/90 hover:border-[#1E40FF]/40 p-3.5 rounded-2xl shadow-xs transition-all group h-full">
                   <div className="w-8 h-8 rounded-xl bg-sky-50 text-[#0284C7] flex items-center justify-center mb-2 group-hover:bg-[#1E40FF] group-hover:text-white [&_svg]:group-hover:text-white transition-colors">
@@ -116,7 +116,7 @@ const DomationCrmShowcase: React.FC = () => {
               desktopPerPage={4}
               desktopGridClass="lg:grid-cols-2"
               gapClass="gap-3.5"
-              ariaLabel="Giao diện Capital House CRM"
+              ariaLabel="Giao diện 360 CRM"
               renderItem={(img) => (
                 <div
                   onClick={() => setZoomImage(img)}
@@ -173,7 +173,7 @@ const DomationCrmShowcase: React.FC = () => {
       <Modal
         isOpen={!!zoomImage}
         onClose={() => setZoomImage(null)}
-        title={zoomImage?.title || 'Capital House CRM Preview'}
+        title={zoomImage?.title || '360 CRM Preview'}
         className="max-w-5xl"
       >
         {zoomImage && (

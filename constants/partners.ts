@@ -43,6 +43,8 @@ export const PARTNERS: Partner[] = [
   { name: 'Ascencia', image: partnerAscencia, website: 'https://www.ascencia-business-school.com/', industry: 'Education / Finance' },
   { name: 'VTCI Edu', image: partnerVtciedu, website: 'https://vtc.edu.vn/', industry: 'Education / Training' },
   { name: 'College de Paris', image: partnerCollegedeparis, website: 'https://collegedeparis.vn/', industry: 'Education / University' },
+  { name: 'ESTIAM Paris', image: '/assets/partners/logo_estiam.webp', website: 'https://www.estiam.education/', industry: 'Education / University' },
+  { name: 'ISTEC Paris', image: '/assets/partners/logo_istec.webp', website: 'https://www.istec.fr/', industry: 'Education / University' },
   { name: 'Swiss UMEF', image: partnerSwissumef, website: 'https://www.umef.ch/', industry: 'Education / University' },
   { name: 'IDEAS Institute', image: partnerIdeasinstitute, website: 'https://ideas.edu.vn/', industry: 'Education / Research' },
   { name: 'Navastore', image: partnerNavastore, website: 'https://navastore.vn/', industry: 'Retail / Ecommerce' },

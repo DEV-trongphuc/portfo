@@ -51,5 +51,6 @@ export const PARTNERS: Partner[] = [
   { name: 'Ampersand', image: partnerAmpersand, website: 'https://www.ampersand.vn/', industry: 'FNB / Management' },
   { name: 'Implantswiss', image: partnerImplantswiss, website: 'https://implantswiss.vn/', industry: 'Dental / Implant' },
   { name: 'Richland', image: partnerRichland, website: 'https://rich-land.vercel.app/', industry: 'Real Estate / PropTech' },
-  { name: 'MINTH Store', image: '/assets/partners/logo_minth.webp', website: 'https://minth-store.vercel.app/', industry: 'Cosmetics & Perfume / Retail' }
+  { name: 'MINTH Store', image: '/assets/partners/logo_minth.webp', website: 'https://minth-store.vercel.app/', industry: 'Cosmetics & Perfume / Retail' },
+  { name: 'Mystery Tarot', image: '/assets/partners/logo_mystery_tarot.webp', website: 'https://www.mystery-tarot.net/', industry: 'Spiritual AI / Entertainment' }
 ];

@@ -45,6 +45,7 @@ export const PARTNERS: Partner[] = [
   { name: 'Swiss UMEF', image: partnerSwissumef, website: 'https://www.umef.ch/', industry: 'Education / University' },
   { name: 'IDEAS Institute', image: partnerIdeasinstitute, website: 'https://ideas.edu.vn/', industry: 'Education / Research' },
   { name: 'Navastore', image: partnerNavastore, website: 'https://navastore.vn/', industry: 'Retail / Ecommerce' },
+  { name: 'Navatek', image: '/assets/partners/logo_navatek.webp', website: 'https://navatek.vn/', industry: 'Industrial & Tech / Retail' },
   { name: 'Nha khoa Flora', image: partnerFlora, website: 'https://nhakhoaflora.com', industry: 'Dental / Clinic' },
   { name: 'Brandson', image: partnerBrandson, website: 'https://brandson.vn', industry: 'Branding / Agency' },
   { name: 'Ampersand', image: partnerAmpersand, website: 'https://www.ampersand.vn/', industry: 'FNB / Management' },

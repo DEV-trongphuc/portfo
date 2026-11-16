@@ -349,6 +349,18 @@ export const PROJECTS: Project[] = [
     link: 'https://domation.net/erp',
   },
   {
+    id: 'flora-affiliate',
+    title: 'Flora Affiliate & E-Voucher Engine',
+    category: 'Dev',
+    client: 'Hệ Thống Nha Khoa Flora',
+    purpose: 'Quản lý mạng lưới KOL/Bác sĩ liên kết, tự động đối soát thanh toán VietQR ACB & chi trả hoa hồng minh bạch.',
+    description: 'Hệ thống Affiliate & Voucher chuẩn y khoa HIPAA: Partner Portal không cần đăng nhập, VietQR ACB Webhook đối soát tức thì, báo Zalo OA & quyết toán Napas 24/7.',
+    longDescription: 'Kiến trúc Flora Affiliate & Voucher Hub gồm 3 phân hệ: (1) Khách hàng đặt gói Care Plus / White Up nhận mã VietQR ACB mang sẵn cú pháp FLORA <MÃ_KOL> <SĐT> <MÃ_ĐƠN> và tự động kích hoạt E-Voucher qua Webhook ngân hàng; (2) Partner Portal dành riêng cho KOL/Bác sĩ qua Secret Hash Token không cần mật khẩu, hiển thị doanh thu realtime, bảng kê che SĐT chuẩn HIPAA và gửi lệnh rút tiền Napas 24/7; (3) Admin Console quản trị đơn hàng, duyệt chi trả kèm mã giao dịch FT và bắn thông báo Zalo OA tự động.',
+    image: '/assets/flora/flora_architecture.webp',
+    tech: ['REST API', 'VietQR ACB Webhook', 'Partner Portal', 'HIPAA Masking', 'Zalo OA', 'MySQL'],
+    link: 'https://nhakhoaflora.com',
+  },
+  {
     id: 'p1',
     title: 'IDEAS Instittue',
     // Fix: Changed 'Education' to 'Marketing' to match the allowed types in Project interface.
@@ -969,8 +981,8 @@ export const DOMATION_CLIENT_SITES: DomationClientSite[] = [
   { name: "Nava Store E-Commerce", url: "https://navastore.vn/", desc: "Nền tảng thương mại điện tử tối ưu tỷ lệ chuyển đổi, tích hợp Tracking hành vi & giỏ hàng nhanh.", img: "/assets/domation/clients/nava.webp", tag: "E-Commerce • Retail" },
   { name: "IDEAS MBA Executive", url: "https://ideas.edu.vn/mba", desc: "Landing Page tuyển sinh chương trình Thạc sĩ Quản trị Kinh doanh Quốc tế chuẩn châu Âu.", img: "/assets/domation/clients/ideasmba.webp", tag: "Giáo dục • MBA Quốc tế" },
   { name: "Brandson Agency", url: "https://domation.net", desc: "Website giới thiệu năng lực sáng tạo thương hiệu & chuyển đổi số tối giản hiện đại.", img: "/assets/domation/clients/brandson.webp", tag: "Branding & Creative" },
-  { name: "Flora Botanical", url: "https://domation.net", desc: "Trải nghiệm mua sắm lifestyle tinh tế với bảng màu organic và cấu trúc kể chuyện sản phẩm.", img: "/assets/domation/clients/flora.webp", tag: "Lifestyle & Beauty" },
-  { name: "Portfolio & Case Archive", url: "https://portfo-turnio.vercel.app/", desc: "Hệ thống lưu trữ hồ sơ năng lực, trực quan hóa số liệu tăng trưởng và dự án thực chiến.", img: "/assets/domation/clients/portfolio.webp", tag: "Executive Profile" },
+  { name: "Nha Khoa Flora • Affiliate & Voucher", url: "https://nhakhoaflora.com", desc: "Hệ thống Affiliate KOL/Bác sĩ, Partner Portal bảo mật HIPAA, VietQR ACB Webhook đối soát tự động & quyết toán hoa hồng.", img: "/assets/flora/flora_architecture.webp", tag: "Dental • Affiliate & VietQR" },
+  { name: "Portfolio & Case Archive", url: "https://turnio.vercel.app/", desc: "Hệ thống lưu trữ hồ sơ năng lực, trực quan hóa số liệu tăng trưởng và dự án thực chiến.", img: "/assets/domation/clients/portfolio.webp", tag: "Executive Profile" },
 ];
 
 export const DOMATION_SAAS_PLANS = [

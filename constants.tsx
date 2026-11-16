@@ -232,7 +232,7 @@ export const EXPERIENCES: Experience[] = [
     id: '1', 
     role: 'Digital Marketing & Fullstack Developer', 
     company: 'IDEAS Institute', 
-    period: '2023 - 2024', 
+    period: '2023 - NOW', 
     description: 'Lập trình Web, Zalo App, minigame theo chiến dịch, tối ưu Website & SEO. Vận hành Google/FB Ads kèm hệ thống Báo cáo tự động Real-time. Tăng trưởng số lượng tuyển sinh Thạc sĩ MBA x3 so với năm 2022, giảm chi phí trên mỗi học viên từ 18tr -> 12-14 triệu.', 
     highlights: [
       'Lập trình Web, Zalo Mini App, minigame chiến dịch & tối ưu Technical SEO.',

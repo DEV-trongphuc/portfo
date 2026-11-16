@@ -19,15 +19,24 @@ const ExperienceCard: React.FC<{ item: ExperienceItem; isCurrent: boolean }> = (
         isCurrent ? 'ring-1 ring-blue-200/70' : 'ring-1 ring-slate-200/60'
       }`}
     >
-      <div
-        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10.5px] font-mono font-bold mb-3 backdrop-blur-md ${
-          isCurrent
-            ? 'bg-blue-50/75 text-[#1E40FF] border border-blue-200/80'
-            : 'bg-white/65 text-slate-600 border border-slate-200/80'
-        }`}
-      >
-        <Calendar size={11} />
-        <span>{item.period}</span>
+      <div className="flex items-center justify-between gap-2 mb-3">
+        <div
+          className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10.5px] font-mono font-bold backdrop-blur-md ${
+            isCurrent
+              ? 'bg-blue-50/75 text-[#1E40FF] border border-blue-200/80'
+              : 'bg-white/65 text-slate-600 border border-slate-200/80'
+          }`}
+        >
+          <Calendar size={11} />
+          <span>{item.period}</span>
+        </div>
+
+        {isCurrent && (
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200/90 text-emerald-700 text-[10px] font-bold uppercase tracking-wider shrink-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Current</span>
+          </span>
+        )}
       </div>
 
       <div className="mb-3">
@@ -104,8 +113,8 @@ const Experience: React.FC = () => {
           tabletPerPage={2}
           gapClass="gap-4"
           ariaLabel="Hành trình kinh nghiệm"
-          renderItem={(item, index) => (
-            <ExperienceCard item={item} isCurrent={index <= 2} />
+          renderItem={(item) => (
+            <ExperienceCard item={item} isCurrent={/\bNOW\b/i.test(item.period)} />
           )}
         />
 
@@ -116,7 +125,7 @@ const Experience: React.FC = () => {
 
           {EXPERIENCES.map((item, index) => {
             const isEven = index % 2 === 0;
-            const isCurrent = index <= 2;
+            const isCurrent = /\bNOW\b/i.test(item.period);
 
             return (
               <motion.div

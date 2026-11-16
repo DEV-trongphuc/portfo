@@ -45,18 +45,14 @@ export function useActiveSection(sectionIds: string[], defaultId: string): [stri
     window.addEventListener('scroll', scheduleCompute, { passive: true });
     window.addEventListener('resize', scheduleCompute, { passive: true });
 
-    // Re-evaluate as React.lazy sections hydrate into the DOM
-    const observer =
-      typeof MutationObserver !== 'undefined'
-        ? new MutationObserver(scheduleCompute)
-        : null;
-    observer?.observe(document.body, { childList: true, subtree: true });
+    // Re-evaluate once lazy chunks hydrate without costly subtree DOM MutationObservers
+    const onLazyMount = window.setTimeout(scheduleCompute, 900);
 
     return () => {
+      window.clearTimeout(onLazyMount);
       if (rafId) window.cancelAnimationFrame(rafId);
       window.removeEventListener('scroll', scheduleCompute);
       window.removeEventListener('resize', scheduleCompute);
-      observer?.disconnect();
     };
   }, [sectionIds.join('|')]);
 

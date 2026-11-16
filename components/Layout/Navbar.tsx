@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight, MessageCircle, Search } from 'lucide-react';
+import { Menu, X, ArrowUpRight, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useActiveSection } from '../../utils/scrollSpy';
 // @ts-ignore
@@ -132,22 +132,8 @@ const Navbar: React.FC<NavbarProps> = ({
           })}
         </nav>
 
-        {/* Action Buttons: Quick Search (Ctrl+K) + Direct Zalo Contact */}
+        {/* Action Button: Direct Contact */}
         <div className="hidden md:flex items-center gap-2 shrink-0">
-          {onOpenSearch && (
-            <button
-              type="button"
-              onClick={onOpenSearch}
-              aria-label="Tìm nhanh trên Portfolio"
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-white border border-slate-200 hover:border-[#1E40FF]/50 text-slate-600 hover:text-[#1E40FF] text-[11px] font-bold shadow-xs transition-colors cursor-pointer"
-            >
-              <Search size={13} />
-              <span className="hidden xl:inline">Tìm nhanh</span>
-              <kbd className="hidden xl:inline px-1.5 py-0.5 text-[9.5px] font-mono bg-slate-100 border border-slate-200 rounded text-slate-500">
-                ⌘K
-              </kbd>
-            </button>
-          )}
           {onOpenContact ? (
             <button
               type="button"

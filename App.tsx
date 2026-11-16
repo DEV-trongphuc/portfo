@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUp, CheckCircle2 } from 'lucide-react';
 import Navbar from './components/Layout/Navbar';
@@ -66,16 +66,63 @@ function parseBlogRoute(pathname: string): BlogRouteState {
   return { view: 'home' };
 }
 
-const SectionShell: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 36 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, amount: 0.06 }}
-    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-  >
-    <Suspense fallback={<div className="py-16" aria-hidden="true" />}>{children}</Suspense>
-  </motion.div>
-);
+interface SectionShellProps {
+  children: React.ReactNode;
+  eager?: boolean;
+  forceHydrate?: boolean;
+}
+
+const SectionShell: React.FC<SectionShellProps> = ({
+  children,
+  eager = false,
+  forceHydrate = false,
+}) => {
+  const hostRef = useRef<HTMLDivElement>(null);
+  const [shouldRender, setShouldRender] = useState<boolean>(eager || forceHydrate);
+
+  useEffect(() => {
+    if (shouldRender || typeof window === 'undefined') return;
+    if (eager || forceHydrate) {
+      setShouldRender(true);
+      return;
+    }
+    const el = hostRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      setShouldRender(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setShouldRender(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '1000px 0px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [eager, forceHydrate, shouldRender]);
+
+  return (
+    <motion.div
+      ref={hostRef}
+      initial={{ opacity: 0, y: 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.04 }}
+      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      className="cv-section"
+    >
+      {shouldRender ? (
+        <Suspense fallback={<div className="py-12 min-h-[260px]" aria-hidden="true" />}>
+          {children}
+        </Suspense>
+      ) : (
+        <div className="py-12 min-h-[260px]" aria-hidden="true" />
+      )}
+    </motion.div>
+  );
+};
 
 type DrawerMode = 'none' | 'ecolife' | 'domation';
 
@@ -97,6 +144,19 @@ export default function App() {
   const [contactOpen, setContactOpen] = useState(false);
   const [contactService, setContactService] = useState<string | undefined>(undefined);
   const [toastMsg, setToastMsg] = useState<string | null>(null);
+  const [forceHydrateAll, setForceHydrateAll] = useState(false);
+  const [isWideDesktop, setIsWideDesktop] = useState<boolean>(() =>
+    typeof window !== 'undefined' ? window.innerWidth >= 1536 : false
+  );
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mq = window.matchMedia('(min-width: 1536px)');
+    const sync = () => setIsWideDesktop(mq.matches);
+    sync();
+    mq.addEventListener?.('change', sync);
+    return () => mq.removeEventListener?.('change', sync);
+  }, []);
 
   const openContactModal = (service?: string) => {
     setContactService(service);
@@ -231,6 +291,7 @@ export default function App() {
   const jumpToSection = (sectionId: string) => {
     setDrawer('none');
     setRoute({ view: 'home' });
+    setForceHydrateAll(true);
     if (window.location.pathname !== '/') {
       window.history.pushState({}, '', '/');
     }
@@ -256,7 +317,7 @@ export default function App() {
     <div className="min-h-screen bg-[#F8F9FA] text-[#0F172A] font-sans relative selection:bg-blue-100 selection:text-[#1E40FF]">
       <Background />
       <ScrollProgress />
-      {route.view === 'home' && <SectionQuickDock onNavigate={jumpToSection} />}
+      {route.view === 'home' && isWideDesktop && <SectionQuickDock onNavigate={jumpToSection} />}
 
       <div className="relative z-10 flex flex-col min-h-screen">
           <Navbar
@@ -297,94 +358,94 @@ export default function App() {
             onJumpSection={jumpToSection}
           />
 
-          <SectionShell>
+          <SectionShell eager forceHydrate={forceHydrateAll}>
             <Experience />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell eager forceHydrate={forceHydrateAll}>
             <InkicaPodShowcase />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <RealEstateShowcase onOpenEcoLifeModal={() => setDrawer('ecolife')} />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <TheBridge />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <DomationDataShowcase />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <ErpShowcase />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <DomationCrmShowcase />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <FloraAffiliateShowcase />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <AutoFlowPro />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <CrmShowcase />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <MetaAdReportShowcase />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <ZaloMiniAppShowcase />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <LmsShowcase />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <TarotShowcase />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <OutsourceHighlights />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <BookSpotlight />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <SkillsMatrix />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <Certifications />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <DomMarketing />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <TechBento />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <BlogSpotlight
               onOpenArchive={(pillar) => openBlogArchive(pillar)}
               onOpenPost={openBlogPost}
             />
           </SectionShell>
 
-          <SectionShell>
+          <SectionShell forceHydrate={forceHydrateAll}>
             <Partners />
           </SectionShell>
             </>
@@ -402,16 +463,16 @@ export default function App() {
         </Suspense>
       </div>
 
-      {/* Floating Scroll to Top Button (Centered when scrollY > 100px) */}
+      {/* Floating Scroll to Top Button (Left pill on mobile so it never crowds right AI FAB, centered on >= sm) */}
       {showScrollTop && drawer === 'none' && !contactOpen && (
         <button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="Lên đầu trang"
-          className="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 px-5 py-2.5 rounded-full bg-white/95 backdrop-blur-md border border-blue-200 hover:border-[#1E40FF] text-[#1E40FF] hover:bg-blue-50 text-xs font-extrabold inline-flex items-center gap-1.5 transition-all cursor-pointer"
+          className="fixed bottom-4 left-4 sm:bottom-5 sm:left-1/2 sm:-translate-x-1/2 z-40 h-11 w-11 sm:h-auto sm:w-auto sm:px-5 sm:py-2.5 rounded-full bg-white/95 sm:backdrop-blur-md border border-blue-200 hover:border-[#1E40FF] text-[#1E40FF] hover:bg-blue-50 shadow-md text-xs font-extrabold inline-flex items-center justify-center gap-1.5 transition-all cursor-pointer"
         >
-          <span>Lên đầu trang</span>
-          <ArrowUp size={14} />
+          <span className="hidden sm:inline">Lên đầu trang</span>
+          <ArrowUp size={15} />
         </button>
       )}
 

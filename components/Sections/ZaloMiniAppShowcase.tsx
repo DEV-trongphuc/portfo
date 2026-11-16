@@ -124,15 +124,15 @@ const ZaloMiniAppShowcase: React.FC = () => {
   return (
     <section
       id="zalo-mini-app"
-      className="py-16 sm:py-20 border-b border-slate-200/80 relative overflow-hidden"
+      className="py-10 sm:py-16 lg:py-20 border-b border-slate-200/80 relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Compact Header */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-10"
+          className="text-center max-w-2xl mx-auto mb-6 sm:mb-10"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-[#1E40FF] text-[10.5px] font-bold uppercase tracking-[0.16em] mb-3.5">
             <MonitorSmartphone size={13} />

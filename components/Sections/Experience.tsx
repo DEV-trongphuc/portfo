@@ -73,11 +73,11 @@ const Experience: React.FC = () => {
   return (
     <section
       id="experience"
-      className="py-16 sm:py-20 border-b border-slate-200/70 relative z-10"
+      className="py-10 sm:py-16 lg:py-20 border-b border-slate-200/70 relative z-10"
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 relative">
         {/* Clean Header (No CURRENT STATUS badge) */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4 border-b border-slate-200/80 pb-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-7 sm:mb-12 gap-3 sm:gap-4 border-b border-slate-200/80 pb-5 sm:pb-6">
           <div>
             <motion.div
               initial={{ opacity: 0, x: -16 }}

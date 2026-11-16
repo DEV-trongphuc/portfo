@@ -51,9 +51,9 @@ const DomationDataShowcase: React.FC = () => {
   const sim = SIMULATOR_EVENTS[simIndex];
 
   return (
-    <section id="domation-data" className="py-16 lg:py-22 relative z-10 border-t border-slate-200/80">
+    <section id="domation-data" className="py-10 sm:py-16 lg:py-20 relative z-10 border-t border-slate-200/80">
       <div className="mx-auto px-4 sm:px-8 max-w-[1440px]">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
           {/* Left: MINTH-style Clean Header + 2x2 Feature Cards + Compact CAPI Toggle */}
           <motion.div
             initial={{ opacity: 1, x: -12 }}

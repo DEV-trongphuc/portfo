@@ -64,12 +64,12 @@ const Certifications: React.FC = () => {
   );
 
   return (
-    <section id="certifications" className="py-24 lg:py-28 relative z-10 overflow-hidden">
+    <section id="certifications" className="py-10 sm:py-16 lg:py-22 relative z-10 overflow-hidden">
       <div id="achievements" className="absolute -top-20 pointer-events-none" />
 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 relative">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6 border-b border-slate-200/80 pb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-12 gap-4 sm:gap-6 border-b border-slate-200/80 pb-5 sm:pb-7">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-[#1E40FF] text-[11px] font-bold uppercase tracking-widest mb-3">
               <ShieldCheck size={14} />
@@ -111,7 +111,7 @@ const Certifications: React.FC = () => {
 
         {/* Multi-Card Carousel (with touch swipe) */}
         <div
-          className="relative min-h-[420px] touch-pan-y"
+          className="relative min-h-[340px] sm:min-h-[400px] touch-pan-y"
           onTouchStart={(e) => {
             e.currentTarget.dataset.touchX = String(e.touches[0]?.clientX ?? '');
           }}

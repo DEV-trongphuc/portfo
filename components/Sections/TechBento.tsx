@@ -23,9 +23,9 @@ const TechBento: React.FC = () => {
   ];
 
   return (
-    <section id="tech-stack" className="py-24 lg:py-32 relative z-10 overflow-hidden">
-      <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <div className="flex flex-col items-center text-center mb-16">
+    <section id="tech-stack" className="py-10 sm:py-16 lg:py-22 relative z-10 overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
+        <div className="flex flex-col items-center text-center mb-8 sm:mb-14">
           <motion.div
             initial={{ opacity: 1, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}

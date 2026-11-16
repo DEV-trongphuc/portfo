@@ -71,12 +71,17 @@ const SPHERE_NODES: SphereBrandNode[] = [
   })),
 ];
 
-const InteractiveBrandSphere: React.FC = () => {
+const InteractiveBrandSphere: React.FC<{ compact?: boolean }> = ({ compact = false }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [isDraggingUI, setIsDraggingUI] = useState(false);
   const [containerWidth, setContainerWidth] = useState<number>(() =>
     typeof window !== 'undefined' ? Math.min(window.innerWidth - 32, 540) : 520
+  );
+
+  const visibleNodes = useMemo(
+    () => (compact ? SPHERE_NODES.slice(0, 16) : SPHERE_NODES),
+    [compact]
   );
 
   const IDLE_VX = 0.0034;
@@ -92,9 +97,11 @@ const InteractiveBrandSphere: React.FC = () => {
   const hoveredRef = useRef<number | null>(null);
   const nodeRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const isCompactViewport = containerWidth < 460;
-  const nodePad = isCompactViewport ? 60 : 72;
-  const radius = Math.min(205, Math.max(116, Math.floor((containerWidth - nodePad) / 2)));
+  const isCompactViewport = compact || containerWidth < 460;
+  const nodePad = isCompactViewport ? 64 : 72;
+  const maxR = isCompactViewport ? 112 : 205;
+  const minR = isCompactViewport ? 98 : 116;
+  const radius = Math.min(maxR, Math.max(minR, Math.floor((containerWidth - nodePad) / 2)));
   const outerRingPx = Math.round(radius * 2);
   const innerRingPx = Math.round(radius * 1.38);
 
@@ -115,10 +122,10 @@ const InteractiveBrandSphere: React.FC = () => {
   }, []);
 
   const basePoints = useMemo(() => {
-    const count = SPHERE_NODES.length;
+    const count = visibleNodes.length;
     const goldenAngle = Math.PI * (3 - Math.sqrt(5));
-    return SPHERE_NODES.map((_, i) => {
-      const y = 1 - (i / (count - 1)) * 2;
+    return visibleNodes.map((_, i) => {
+      const y = 1 - (i / Math.max(1, count - 1)) * 2;
       const r = Math.sqrt(Math.max(0, 1 - y * y));
       const theta = goldenAngle * i;
       return {
@@ -127,7 +134,7 @@ const InteractiveBrandSphere: React.FC = () => {
         z: Math.sin(theta) * r,
       };
     });
-  }, []);
+  }, [visibleNodes]);
 
   // Mutates 3D node transforms directly via refs so 60fps rotation triggers zero React re-renders
   const applySphereTransforms = useCallback(() => {
@@ -300,7 +307,7 @@ const InteractiveBrandSphere: React.FC = () => {
     }
   };
 
-  const hoveredItem = hoveredIdx !== null ? SPHERE_NODES[hoveredIdx] : null;
+  const hoveredItem = hoveredIdx !== null ? visibleNodes[hoveredIdx] : null;
 
   return (
     <div
@@ -311,8 +318,8 @@ const InteractiveBrandSphere: React.FC = () => {
       onPointerUp={endDrag}
       onPointerCancel={endDrag}
       onPointerLeave={handlePointerLeave}
-      style={{ touchAction: 'none' }}
-      className={`relative w-full h-[350px] sm:h-[490px] flex items-center justify-center select-none ${
+      style={{ touchAction: isCompactViewport ? 'pan-y' : 'none' }}
+      className={`relative w-full h-[268px] sm:h-[470px] flex items-center justify-center select-none ${
         isDraggingUI ? 'cursor-grabbing' : 'cursor-grab'
       }`}
     >
@@ -326,42 +333,22 @@ const InteractiveBrandSphere: React.FC = () => {
         className="pointer-events-none absolute rounded-full border border-dashed border-sky-300/35"
       />
 
-      {/* Soft Pastel Energy Core Aura in Sphere Center (zIndex 50 -> Translucent, never dark) */}
+      {/* Lightweight Core Energy Aura (zero multi-layer blur overhead on mobile) */}
       <div
         className="pointer-events-none absolute inset-0 flex items-center justify-center"
         style={{ zIndex: 50 }}
       >
-        <motion.div
-          animate={{ scale: [1, 1.38, 1], opacity: [0.38, 0.1, 0.38] }}
-          transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute w-32 h-32 sm:w-36 sm:h-36 rounded-full border border-sky-300/35 bg-sky-200/15 blur-[2px]"
-        />
-        <motion.div
-          animate={{ scale: [1, 1.22, 1], opacity: [0.45, 0.14, 0.45] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-          className="absolute w-20 h-20 sm:w-24 sm:h-24 rounded-full border border-blue-300/35 bg-blue-200/20 blur-[1px]"
-        />
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 9, repeat: Infinity, ease: 'linear' }}
-          className="absolute w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-transparent border-t-blue-400/50 border-r-sky-300/55"
-        />
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
-          className="absolute w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-dashed border-sky-300/60 border-b-blue-300/45"
-        />
-        <motion.div
-          animate={{ scale: [0.92, 1.12, 0.92], opacity: [0.75, 0.95, 0.75] }}
-          transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-          className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gradient-to-br from-sky-200/75 via-blue-300/50 to-indigo-200/45 ring-4 ring-sky-100/50 backdrop-blur-sm flex items-center justify-center"
-        >
-          <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-white/95 blur-[0.5px]" />
-        </motion.div>
+        <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-[radial-gradient(circle,rgba(56,189,248,0.22)_0%,rgba(30,64,255,0.08)_48%,transparent_72%)] flex items-center justify-center">
+          <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full border border-sky-300/45 flex items-center justify-center">
+            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-gradient-to-br from-sky-200/80 via-blue-300/55 to-indigo-200/50 ring-4 ring-sky-100/50 flex items-center justify-center">
+              <div className="w-3.5 h-3.5 rounded-full bg-white/95" />
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Logo-only 3D Orbiting Nodes — drag sphere to rotate freely in 3D */}
-      {SPHERE_NODES.map((node, idx) => {
+      {/* Logo-only 3D Orbiting Nodes — solid white surface for 60fps mobile compositing */}
+      {visibleNodes.map((node, idx) => {
         const isHovered = hoveredIdx === idx;
         return (
           <div
@@ -379,7 +366,7 @@ const InteractiveBrandSphere: React.FC = () => {
               }
             }}
             aria-label={node.name}
-            className={`will-change-transform absolute w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-sm border p-1.5 sm:p-2 flex items-center justify-center transition-shadow select-none ${
+            className={`will-change-transform absolute w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-white border p-1.5 sm:p-2 flex items-center justify-center shadow-xs transition-shadow select-none ${
               isHovered
                 ? 'border-[#1E40FF] ring-4 ring-blue-100/80'
                 : 'border-slate-200/90'
@@ -416,10 +403,28 @@ const Hero: React.FC<HeroProps> = ({
   onOpenEcoLifeModal,
   onJumpSection,
 }) => {
-  const [text, setText] = useState('');
+  const [isDesktop, setIsDesktop] = useState<boolean>(() =>
+    typeof window !== 'undefined' ? window.innerWidth >= 1024 : true
+  );
   const fullText = 'TURNIO.';
+  const [text, setText] = useState(() =>
+    typeof window !== 'undefined' && window.innerWidth < 768 ? fullText : ''
+  );
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const sync = () => setIsDesktop(mq.matches);
+    sync();
+    mq.addEventListener?.('change', sync);
+    return () => mq.removeEventListener?.('change', sync);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setText(fullText);
+      return;
+    }
     let i = 0;
     const interval = setInterval(() => {
       setText(fullText.slice(0, i));
@@ -432,35 +437,30 @@ const Hero: React.FC<HeroProps> = ({
   return (
     <section
       id="hero"
-      className="relative pt-24 pb-14 sm:pt-32 sm:pb-20 overflow-hidden border-b border-slate-200/70"
+      className="relative pt-20 pb-10 sm:pt-30 sm:pb-18 overflow-hidden border-b border-slate-200/70"
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
           {/* Left Column: Crisp Identity & 1-Row Quick Actions */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-6"
           >
-            <div className="animate-float-gentle inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50/90 border border-blue-200/80 mb-6">
+            <div className="animate-float-gentle inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-blue-50/90 border border-blue-200/80 mb-3.5 sm:mb-6">
               <Sparkles size={12} className="text-[#1E40FF]" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#1E40FF]">
+              <span className="text-[10.5px] sm:text-[11px] font-bold uppercase tracking-[0.14em] text-[#1E40FF]">
                 Fullstack Developer - AI Automation
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-[3.4rem] font-extrabold tracking-tight leading-[1.15] text-slate-950 mb-6">
+            <h1 className="text-[2rem] sm:text-5xl lg:text-[3.4rem] font-extrabold tracking-tight leading-[1.15] text-slate-950 mb-3.5 sm:mb-6">
               Hello, I&apos;m <span className="text-[#1E40FF]">{text || 'TURNIO.'}</span>
             </h1>
 
-            <motion.div
-              initial={{ opacity: 0, y: 18, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className="relative rounded-2xl inkica-glass-card px-4 py-3.5 sm:px-5 sm:py-4 max-w-xl mb-7 overflow-hidden"
-            >
-              <p className="text-sm sm:text-[15.5px] text-slate-700 leading-[1.7] font-medium">
+            <div className="relative rounded-2xl inkica-glass-card px-4 py-3 sm:px-5 sm:py-4 max-w-xl mb-4 sm:mb-7 overflow-hidden">
+              <p className="text-[13px] sm:text-[15.5px] text-slate-700 leading-[1.65] font-medium">
                 Thiết kế hệ thống{' '}
                 <span className="font-extrabold text-[#1E40FF]">
                   Flow – AI Automation – Tools App
@@ -475,66 +475,80 @@ const Hero: React.FC<HeroProps> = ({
                 </span>
                 .
               </p>
-            </motion.div>
-
-            {/* Mobile Brand Sphere: Positioned above the 3 stat cards on mobile */}
-            <div className="my-6 lg:hidden">
-              <InteractiveBrandSphere />
             </div>
 
-            {/* 3 Inline Compact Stats with Animated Count-Up */}
-            <div className="grid grid-cols-3 gap-3.5 max-w-xl mb-8">
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: 0.08 }}
-                className="rounded-2xl inkica-glass-card px-4 py-3.5"
-              >
-                <div className="text-lg sm:text-2xl font-black text-[#1E40FF] leading-tight mb-1 tabular-nums">
+            {/* Mobile Single-Instance Brand Sphere: Curated 16 nodes with pan-y scroll safety */}
+            {!isDesktop && (
+              <div className="my-3 lg:hidden">
+                <InteractiveBrandSphere compact />
+              </div>
+            )}
+
+            {/* 3 Inline Compact Stats — clean non-cramped alignment on 360px+ */}
+            <div className="grid grid-cols-3 gap-2 sm:gap-3.5 max-w-xl mb-4 sm:mb-7">
+              <div className="rounded-xl sm:rounded-2xl inkica-glass-card p-2.5 sm:px-4 sm:py-3.5">
+                <div className="text-base sm:text-2xl font-black text-[#1E40FF] leading-tight mb-0.5 sm:mb-1 tabular-nums">
                   <AnimatedNumber target={35} suffix="+" />
                 </div>
-                <div className="text-[11px] font-bold text-slate-800">App, Web &amp; AI</div>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: 0.16 }}
-                className="rounded-2xl inkica-glass-card px-4 py-3.5"
-              >
-                <div className="text-lg sm:text-2xl font-black text-slate-950 leading-tight mb-1 tabular-nums">
-                  <AnimatedNumber target={30} suffix="+" />
+                <div className="text-[10px] sm:text-[11px] font-bold text-slate-800 leading-tight">
+                  App, Web &amp; AI
                 </div>
-                <div className="text-[11px] font-bold text-slate-800">Doanh Nghiệp Hợp Tác</div>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: 0.24 }}
-                className="rounded-2xl inkica-glass-card px-4 py-3.5"
-              >
-                <div className="text-lg sm:text-2xl font-black text-emerald-600 leading-tight mb-1 tabular-nums">
+              </div>
+              <div className="rounded-xl sm:rounded-2xl inkica-glass-card p-2.5 sm:px-4 sm:py-3.5">
+                <div className="text-base sm:text-2xl font-black text-slate-950 leading-tight mb-0.5 sm:mb-1 tabular-nums">
+                  <AnimatedNumber target={38} suffix="+" />
+                </div>
+                <div className="text-[10px] sm:text-[11px] font-bold text-slate-800 leading-tight">
+                  Doanh Nghiệp
+                </div>
+              </div>
+              <div className="rounded-xl sm:rounded-2xl inkica-glass-card p-2.5 sm:px-4 sm:py-3.5">
+                <div className="text-base sm:text-2xl font-black text-emerald-600 leading-tight mb-0.5 sm:mb-1 tabular-nums">
                   <AnimatedNumber target={4} suffix="+ Năm" />
                 </div>
-                <div className="text-[11px] font-bold text-slate-800">Growth &amp; Engineering</div>
-              </motion.div>
+                <div className="text-[10px] sm:text-[11px] font-bold text-slate-800 leading-tight">
+                  Engineering
+                </div>
+              </div>
             </div>
 
-            {/* Action Buttons: Hidden on Mobile, visible on Tablet/Desktop */}
-            <div className="hidden sm:flex sm:flex-wrap items-center gap-3 pt-1">
+            {/* Dedicated Mobile 2-Button Quick CTA Grid */}
+            <div className="grid grid-cols-2 gap-2 sm:hidden pt-1">
               <button
                 type="button"
                 onClick={() => onJumpSection('inkica-pod')}
-                className="btn-inkica-primary justify-center px-2.5 sm:px-5 py-2.5 text-[11px] sm:text-xs font-bold inline-flex items-center gap-1 sm:gap-1.5 whitespace-nowrap cursor-pointer"
+                className="btn-inkica-primary justify-center h-10 px-3 text-[11px] font-bold inline-flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
               >
                 <Box size={13} className="shrink-0" />
-                <span>Khám Phá Hệ Sinh Thái</span>
-                <ArrowRight size={12} className="hidden sm:inline shrink-0" />
+                <span>Hệ Sinh Thái AI</span>
               </button>
 
               <button
                 type="button"
                 onClick={onOpenEcoLifeModal}
-                className="ql-btn-outline justify-center px-2.5 sm:px-4 py-2.5 rounded-full text-[11px] sm:text-xs font-bold inline-flex items-center gap-1 sm:gap-1.5 whitespace-nowrap cursor-pointer"
+                className="ql-btn-outline justify-center h-10 px-3 rounded-xl text-[11px] font-bold inline-flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
+              >
+                <Building2 size={13} className="text-[#1E40FF] shrink-0" />
+                <span>Case EcoLife 3D</span>
+              </button>
+            </div>
+
+            {/* Desktop / Tablet Action Buttons */}
+            <div className="hidden sm:flex sm:flex-wrap items-center gap-3 pt-1">
+              <button
+                type="button"
+                onClick={() => onJumpSection('inkica-pod')}
+                className="btn-inkica-primary justify-center px-5 py-2.5 text-xs font-bold inline-flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
+              >
+                <Box size={13} className="shrink-0" />
+                <span>Khám Phá Hệ Sinh Thái</span>
+                <ArrowRight size={12} className="shrink-0" />
+              </button>
+
+              <button
+                type="button"
+                onClick={onOpenEcoLifeModal}
+                className="ql-btn-outline justify-center px-4 py-2.5 rounded-full text-xs font-bold inline-flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
               >
                 <Building2 size={13} className="text-[#1E40FF] shrink-0" />
                 <span>Case Study Tiêu Biểu</span>
@@ -543,7 +557,7 @@ const Hero: React.FC<HeroProps> = ({
               <button
                 type="button"
                 onClick={onOpenDomationModal}
-                className="hidden sm:inline-flex ql-btn-outline px-4 py-2.5 rounded-full text-xs font-bold items-center gap-1.5 cursor-pointer"
+                className="ql-btn-outline px-4 py-2.5 rounded-full text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer"
               >
                 <Layers size={14} className="text-[#1E40FF]" />
                 <span>Kiến Trúc Hệ Thống</span>
@@ -551,10 +565,12 @@ const Hero: React.FC<HeroProps> = ({
             </div>
           </motion.div>
 
-          {/* Right Column: Interactive 3D Rotating Brand Sphere (Logos Only on Desktop) */}
-          <div className="hidden lg:block lg:col-span-6">
-            <InteractiveBrandSphere />
-          </div>
+          {/* Right Column: Desktop Single-Instance Interactive 3D Rotating Brand Sphere */}
+          {isDesktop && (
+            <div className="hidden lg:block lg:col-span-6">
+              <InteractiveBrandSphere />
+            </div>
+          )}
         </div>
       </div>
     </section>

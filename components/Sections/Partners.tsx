@@ -35,15 +35,15 @@ const Partners: React.FC = () => {
   return (
     <section
       id="partners"
-      className="py-16 sm:py-20 border-b border-slate-200/80 relative overflow-hidden"
+      className="py-10 sm:py-16 lg:py-20 border-b border-slate-200/80 relative overflow-hidden"
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 relative z-10">
         {/* Clean Header */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-10"
+          className="text-center max-w-2xl mx-auto mb-6 sm:mb-10"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-[#1E40FF] text-[10.5px] font-bold uppercase tracking-[0.16em] mb-3">
             <Handshake size={13} />
@@ -56,7 +56,7 @@ const Partners: React.FC = () => {
             </span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Từ Capital House • EcoLife Signature, các đại lý phân phối đến 30+ thương hiệu và
+            Từ Capital House • EcoLife Signature, các đại lý phân phối đến 38+ thương hiệu và
             Doanh nghiệp đồng hành triển khai tăng trưởng.
           </p>
         </motion.div>
@@ -161,17 +161,17 @@ const Partners: React.FC = () => {
             <div className="flex items-center gap-2">
               <Layers size={15} className="text-[#1E40FF]" />
               <h3 className="text-sm sm:text-base font-extrabold text-slate-900">
-                30+ Thương Hiệu &amp; Doanh Nghiệp Đồng Hành
+                38+ Thương Hiệu &amp; Doanh Nghiệp Đồng Hành
               </h3>
             </div>
 
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-nowrap sm:flex-wrap gap-1.5 overflow-x-auto no-scrollbar pb-1 -mx-1 px-1">
               {industries.map((ind) => (
                 <button
                   type="button"
                   key={ind}
                   onClick={() => setSelectedIndustry(ind)}
-                  className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer ${
+                  className={`px-3 py-1.5 sm:py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer shrink-0 ${
                     selectedIndustry === ind
                       ? 'bg-[#1E40FF] text-white'
                       : 'bg-slate-100 text-slate-600 hover:text-slate-900'
@@ -183,15 +183,15 @@ const Partners: React.FC = () => {
             </div>
           </div>
 
-          {/* Horizontal Marquee Row */}
-          <div className="overflow-hidden border-y border-slate-200/60 py-3.5 mb-6">
-            <div className="animate-marquee items-center gap-4">
+          {/* Horizontal Marquee Row (solid surface, zero per-item backdrop blur for silky scroll) */}
+          <div className="overflow-hidden border-y border-slate-200/60 py-2.5 sm:py-3.5 mb-4 sm:mb-6">
+            <div className="animate-marquee items-center gap-3 sm:gap-4">
               {marqueeBrands.map((brand, idx) => (
                 <div
                   key={`${brand.name}-marq-${idx}`}
-                  className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white/75 backdrop-blur-md border border-white/90 ring-1 ring-slate-200/70 shrink-0"
+                  className="inline-flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl sm:rounded-2xl bg-white border border-slate-200/85 shadow-2xs shrink-0"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 p-1.5 flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-white border border-slate-200 p-1 sm:p-1.5 flex items-center justify-center shrink-0">
                     <img
                       src={brand.image}
                       alt={brand.name}
@@ -200,7 +200,7 @@ const Partners: React.FC = () => {
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <span className="text-[13px] font-bold text-slate-800 whitespace-nowrap">
+                  <span className="text-xs sm:text-[13px] font-bold text-slate-800 whitespace-nowrap">
                     {brand.name}
                   </span>
                 </div>
@@ -208,20 +208,21 @@ const Partners: React.FC = () => {
             </div>
           </div>
 
-          {/* Balanced 24-Brand Directory (1/mobile, 2/tablet via SlideDeck, 4-col grid Desktop) */}
+          {/* Balanced Brand Directory (3 compact rows/slide Mobile, 2/slide Tablet, 4-col grid Desktop) */}
           <ResponsiveSlideDeck
             items={filteredBrands}
             keyExtractor={(partner) => partner.name}
             resetKey={selectedIndustry}
             desktopMode="grid"
             desktopGridClass="lg:grid-cols-4"
-            gapClass="gap-3.5"
+            mobilePerPage={3}
+            gapClass="gap-2.5 sm:gap-3.5"
             ariaLabel="Danh mục thương hiệu đồng hành"
             renderItem={(partner) => (
               <div
-                className="flex items-center gap-4 p-4 rounded-2xl bg-white/75 backdrop-blur-md border border-white/90 ring-1 ring-slate-200/75 h-full"
+                className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-2xl bg-white border border-slate-200/85 shadow-2xs h-full"
               >
-                <div className="w-14 h-14 rounded-xl bg-white border border-slate-200/90 p-2 flex items-center justify-center shrink-0">
+                <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl bg-white border border-slate-200/90 p-1.5 sm:p-2 flex items-center justify-center shrink-0">
                   <img
                     src={partner.image}
                     alt={partner.name}
@@ -231,10 +232,10 @@ const Partners: React.FC = () => {
                   />
                 </div>
                 <div className="min-w-0">
-                  <div className="text-sm sm:text-[15px] font-extrabold text-slate-900 truncate">
+                  <div className="text-[13px] sm:text-[15px] font-extrabold text-slate-900 truncate">
                     {partner.name}
                   </div>
-                  <div className="text-xs font-medium text-slate-500 truncate mt-0.5">
+                  <div className="text-[11px] sm:text-xs font-medium text-slate-500 truncate mt-0.5">
                     {partner.industry}
                   </div>
                 </div>

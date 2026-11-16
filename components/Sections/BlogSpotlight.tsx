@@ -42,22 +42,22 @@ const BlogSpotlight: React.FC<BlogSpotlightProps> = ({ onOpenArchive, onOpenPost
   return (
     <section
       id="blog"
-      className="py-16 sm:py-24 px-4 sm:px-8 max-w-[1440px] mx-auto relative scroll-mt-20"
+      className="py-10 sm:py-16 lg:py-22 px-4 sm:px-8 max-w-[1440px] mx-auto relative scroll-mt-20"
     >
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-5 sm:mb-8">
         <div>
-          <span className="ql-eyebrow mb-4">
+          <span className="ql-eyebrow mb-3 sm:mb-4">
             <BookOpen size={14} className="text-[#1E40FF]" />
             Tạp Chí Thực Chiến • Bài Viết Vệ Tinh SEO &amp; Growth
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-[42px] font-extrabold text-slate-900 tracking-tight leading-tight">
+          <h2 className="font-display text-2xl sm:text-4xl md:text-[42px] font-extrabold text-slate-900 tracking-tight leading-tight">
             Kinh Nghiệm{' '}
             <span className="font-editorial text-gradient-inkica pr-1">
               Martech &amp; AI Automation.
             </span>
           </h2>
-          <p className="mt-3 text-slate-600 text-sm sm:text-base max-w-2xl">
+          <p className="mt-2 sm:mt-3 text-slate-600 text-xs sm:text-base max-w-2xl">
             Tổng hợp bài viết chuyên sâu bởi Huỳnh Trọng Phúc (TURNIO) về kiến trúc CRM quản lý
             150K+ Leads, biểu đồ tăng trưởng Meta CAPI &lt; 4s, ERP 5.0 và WebGL 3D.
           </p>
@@ -66,15 +66,15 @@ const BlogSpotlight: React.FC<BlogSpotlightProps> = ({ onOpenArchive, onOpenPost
         <button
           type="button"
           onClick={() => onOpenArchive(activePillar)}
-          className="btn-inkica-primary px-5 py-3 text-xs sm:text-sm font-extrabold shrink-0 cursor-pointer"
+          className="btn-inkica-primary w-full sm:w-auto px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-extrabold shrink-0 cursor-pointer"
         >
           <span>Xem Bộ Sưu Tập Bài Viết</span>
           <ArrowRight size={15} />
         </button>
       </div>
 
-      {/* Pillar Filter Chips */}
-      <div className="flex flex-wrap items-center gap-2 mb-8">
+      {/* Pillar Filter Chips — Single-row horizontal scroll on Mobile */}
+      <div className="flex flex-nowrap sm:flex-wrap items-center gap-2 overflow-x-auto no-scrollbar pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 mb-5 sm:mb-8">
         {PILLARS.map((tab) => {
           const active = activePillar === tab.id;
           return (
@@ -82,7 +82,7 @@ const BlogSpotlight: React.FC<BlogSpotlightProps> = ({ onOpenArchive, onOpenPost
               key={tab.id}
               type="button"
               onClick={() => setActivePillar(tab.id)}
-              className={`px-3.5 py-2 text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer transition-all ${
+              className={`px-3.5 py-2 text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer transition-all shrink-0 ${
                 active ? 'ql-pill-tab ql-pill-tab-active' : 'ql-pill-tab'
               }`}
             >
@@ -164,9 +164,9 @@ const BlogSpotlight: React.FC<BlogSpotlightProps> = ({ onOpenArchive, onOpenPost
               <article
                 key={post.slug}
                 onClick={() => onOpenPost(post.slug)}
-                className="flex-1 inkica-glass-card rounded-2xl p-4 sm:p-5 flex gap-4 sm:gap-5 items-center cursor-pointer group min-h-[132px]"
+                className="flex-1 inkica-glass-card rounded-2xl p-3 sm:p-5 flex gap-3 sm:gap-5 items-center cursor-pointer group min-h-[100px] sm:min-h-[132px]"
               >
-                <div className="w-28 sm:w-40 aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200/80">
+                <div className="w-24 sm:w-40 aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200/80">
                   <img
                     src={post.coverImage}
                     alt={post.title}

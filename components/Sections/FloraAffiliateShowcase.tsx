@@ -10,6 +10,7 @@ import {
   Users,
 } from 'lucide-react';
 import Modal from '../UI/Modal';
+import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
 
 const FLORA_SCREENS = [
   {
@@ -61,14 +62,15 @@ const FloraAffiliateShowcase: React.FC = () => {
   const [activeIdx, setActiveIdx] = useState(0);
   const [zoomScreen, setZoomScreen] = useState<(typeof FLORA_SCREENS)[0] | null>(null);
   const activeScreen = FLORA_SCREENS[activeIdx];
+  const touchXRef = React.useRef<number | null>(null);
 
   return (
     <section
       id="flora-affiliate"
-      className="py-16 sm:py-20 border-b border-slate-200/80 relative overflow-hidden"
+      className="py-10 sm:py-16 lg:py-20 border-b border-slate-200/80 relative overflow-hidden"
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
           {/* Left: Narrative & 4 Pillars */}
           <motion.div
             initial={{ opacity: 1, x: -12 }}
@@ -94,12 +96,15 @@ const FloraAffiliateShowcase: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {FLORA_PILLARS.map((item) => (
-                <div
-                  key={item.title}
-                  className="bg-white/95 border border-slate-200/90 hover:border-[#1E40FF]/40 p-3.5 rounded-2xl shadow-xs transition-all group"
-                >
+            <ResponsiveSlideDeck
+              items={FLORA_PILLARS}
+              keyExtractor={(item) => item.title}
+              desktopMode="grid"
+              desktopGridClass="lg:grid-cols-2"
+              gapClass="gap-3"
+              ariaLabel="Tính năng Flora Affiliate & VietQR"
+              renderItem={(item) => (
+                <div className="bg-white/95 border border-slate-200/90 hover:border-[#1E40FF]/40 p-3.5 rounded-2xl shadow-xs transition-all group h-full">
                   <div className="w-8 h-8 rounded-xl bg-blue-50 text-[#1E40FF] flex items-center justify-center mb-2 group-hover:bg-[#1E40FF] group-hover:text-white transition-colors">
                     {item.icon}
                   </div>
@@ -108,8 +113,8 @@ const FloraAffiliateShowcase: React.FC = () => {
                   </h3>
                   <p className="text-[11px] text-slate-600 leading-relaxed">{item.desc}</p>
                 </div>
-              ))}
-            </div>
+              )}
+            />
 
             <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px] font-semibold text-emerald-700">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1">
@@ -122,12 +127,29 @@ const FloraAffiliateShowcase: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Right: Interactive Screen Viewer + Thumbnails */}
-          <div className="lg:col-span-7 space-y-3">
+          {/* Right: Interactive Screen Viewer (Touch-Swipeable on Mobile) + Thumbnails */}
+          <div className="lg:col-span-7 space-y-2.5 sm:space-y-3">
             <button
               type="button"
               onClick={() => setZoomScreen(activeScreen)}
-              className="group relative w-full text-left rounded-3xl overflow-hidden bg-white/95 border border-slate-200/90 hover:border-[#1E40FF]/45 shadow-[0_24px_60px_-24px_rgba(15,23,42,0.12)] transition-all cursor-pointer p-2.5"
+              onTouchStart={(e) => {
+                touchXRef.current = e.touches[0]?.clientX ?? null;
+              }}
+              onTouchEnd={(e) => {
+                const startX = touchXRef.current;
+                touchXRef.current = null;
+                const endX = e.changedTouches[0]?.clientX;
+                if (startX == null || endX == null) return;
+                const dx = endX - startX;
+                if (Math.abs(dx) > 40) {
+                  setActiveIdx((prev) =>
+                    dx < 0
+                      ? (prev + 1) % FLORA_SCREENS.length
+                      : (prev - 1 + FLORA_SCREENS.length) % FLORA_SCREENS.length
+                  );
+                }
+              }}
+              className="group relative w-full text-left rounded-2xl sm:rounded-3xl overflow-hidden bg-white/95 border border-slate-200/90 hover:border-[#1E40FF]/45 shadow-[0_24px_60px_-24px_rgba(15,23,42,0.12)] transition-all cursor-pointer p-2 sm:p-2.5 touch-pan-y"
             >
               <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-slate-100">
                 <img
@@ -154,16 +176,16 @@ const FloraAffiliateShowcase: React.FC = () => {
               </div>
             </button>
 
-            <div className="grid grid-cols-4 gap-2">
+            <div className="flex sm:grid sm:grid-cols-4 gap-2 overflow-x-auto no-scrollbar pb-0.5">
               {FLORA_SCREENS.map((sc, idx) => (
                 <button
                   key={sc.src}
                   type="button"
                   onClick={() => setActiveIdx(idx)}
-                  className={`rounded-xl overflow-hidden border-2 p-1 bg-white transition-all cursor-pointer text-left ${
+                  className={`min-w-[104px] sm:min-w-0 shrink-0 sm:shrink rounded-xl overflow-hidden border-2 p-1 bg-white transition-all cursor-pointer text-left ${
                     activeIdx === idx
                       ? 'border-[#1E40FF] shadow-sm'
-                      : 'border-slate-200/80 opacity-70 hover:opacity-100'
+                      : 'border-slate-200/80 opacity-75 hover:opacity-100'
                   }`}
                 >
                   <div className="aspect-[16/10] rounded-lg overflow-hidden bg-slate-100">

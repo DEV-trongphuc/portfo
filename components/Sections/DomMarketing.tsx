@@ -88,11 +88,11 @@ const DomMarketing: React.FC = () => {
   return (
     <section
       id="domarketing"
-      className="py-16 sm:py-20 border-b border-slate-200/80 relative overflow-hidden"
+      className="py-10 sm:py-16 lg:py-20 border-b border-slate-200/80 relative overflow-hidden"
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 relative z-10">
         {/* Top Row: Founder Identity + 2 Core DOMATION Tool Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start mb-6 sm:mb-10">
           {/* Left: Founder Branding — DOM MARKETING on ONE SINGLE LINE with Gold Gradient */}
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3.5 mb-4">

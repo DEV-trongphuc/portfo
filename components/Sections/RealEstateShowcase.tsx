@@ -50,13 +50,18 @@ const RealEstateShowcase: React.FC<RealEstateShowcaseProps> = ({
   const highlights = [
     {
       icon: <Box size={17} className="text-[#1E40FF]" />,
-      title: '3D Nhập Vai Căn Hộ Chuẩn Bàn Giao',
-      desc: 'Trải nghiệm WebGL Three.js 360° nhập vai bước vào từng phòng, dựng đúng vật liệu & nội thất chuẩn bàn giao của 8 mẫu căn hộ A1–B6.',
+      title: 'Web 3D Nhập Vai & Chỉ Căn Theo Mặt Bằng (MB)',
+      desc: 'Trải nghiệm WebGL Three.js 360° nhập vai chuẩn bàn giao, chỉ căn trực tiếp trên Mặt Bằng (MB) & 8 mẫu bóc mái A1–B6.',
+    },
+    {
+      icon: <Bot size={17} className="text-indigo-600" />,
+      title: 'Trợ Lý AI Sales Portal (ai.ecolifesignature.vn)',
+      desc: 'Trợ lý AI tư vấn 24/7 cho Sale & Khách hàng: tra cứu mặt bằng, căn hộ, chứng chỉ xanh EDGE & chính sách 5 ngân hàng.',
     },
     {
       icon: <Radio size={17} className="text-[#0284C7]" />,
-      title: 'CRM Chia Data Auto Đánh Giá & Cải Thiện CAPI Các Đại Lý',
-      desc: 'Phân bổ lead tự động dưới 5s qua ZaloBot, chấm điểm chất lượng tự động & bắn tín hiệu Meta CAPI giúp cải thiện tỷ lệ chốt cho 3 sàn F1.',
+      title: 'Auto Data Routing & Cải Thiện Meta CAPI',
+      desc: 'Phân bổ lead tự động dưới 5s qua ZaloBot cho 3 sàn F1 (Tùng Long, Hợp Nhất, IHD), tự đánh giá & bắn ngược Meta CAPI HTTP 200.',
     },
     {
       icon: <Layers size={17} className="text-emerald-600" />,
@@ -74,10 +79,10 @@ const RealEstateShowcase: React.FC<RealEstateShowcaseProps> = ({
   ];
 
   return (
-    <section id="real-estate" className="py-16 lg:py-22 relative z-10 border-t border-slate-200/80">
+    <section id="real-estate" className="py-10 sm:py-16 lg:py-20 relative z-10 border-t border-slate-200/80">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 relative">
         {/* Clean Executive Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-10 pb-6 border-b border-slate-200/80">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-3 sm:gap-4 mb-6 sm:mb-10 pb-4 sm:pb-6 border-b border-slate-200/80">
           <div className="space-y-2.5 max-w-3xl">
             <motion.div
               initial={{ opacity: 1, x: -10 }}
@@ -164,6 +169,26 @@ const RealEstateShowcase: React.FC<RealEstateShowcaseProps> = ({
                 <span>Trợ Lý AI Portal</span>
                 <ExternalLink size={12} className="shrink-0" />
               </a>
+            </div>
+
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-1.5 pt-0.5">
+              {[
+                { label: 'ecolifesignature.vn', href: 'https://ecolifesignature.vn/' },
+                { label: 'ecolifesignature.vn/3d', href: 'https://ecolifesignature.vn/3d' },
+                { label: 'ecolifesignature.vn/data', href: 'https://ecolifesignature.vn/data' },
+                { label: 'ai.ecolifesignature.vn', href: 'https://ai.ecolifesignature.vn/' },
+              ].map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-between sm:justify-start gap-1 px-2.5 py-1.5 sm:py-1 rounded-xl sm:rounded-full bg-white/90 border border-slate-200 hover:border-[#1E40FF]/50 text-[10.5px] sm:text-[11px] font-semibold text-slate-700 hover:text-[#1E40FF] transition-colors truncate"
+                >
+                  <span className="truncate">{link.label}</span>
+                  <ExternalLink size={10} className="shrink-0" />
+                </a>
+              ))}
             </div>
           </motion.div>
 

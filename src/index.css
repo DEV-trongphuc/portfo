@@ -19,38 +19,46 @@
   --font-editorial: 'Playfair Display', 'Be Vietnam Pro', Georgia, serif;
 }
 
-* {
-  box-sizing: border-box;
-  font-variant-numeric: lining-nums tabular-nums;
-  font-feature-settings: "lnum" 1, "tnum" 1;
+@layer base {
+  * {
+    box-sizing: border-box;
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: "lnum" 1, "tnum" 1;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--surface-canvas);
+    color: var(--text-primary);
+    overflow-x: clip;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--surface-canvas);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.65;
+    letter-spacing: 0.004em;
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    color: var(--text-primary);
+    text-wrap: balance;
+    line-height: 1.38;
+    letter-spacing: 0.01em;
+  }
 }
 
-html {
-  scroll-behavior: smooth;
-  background-color: var(--surface-canvas);
-  color: var(--text-primary);
-  overflow-x: clip;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--surface-canvas);
-  color: var(--text-primary);
-  font-family: var(--font-sans);
-  line-height: 1.65;
-  letter-spacing: 0.004em;
-  overflow-x: clip;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-h1, h2, h3, h4, .font-display {
-  font-family: var(--font-display);
-  color: var(--text-primary);
-  text-wrap: balance;
-  line-height: 1.38;
-  letter-spacing: 0.01em;
+/* Browser skips off-screen layout, paint, and rasterization while preserving anchor IDs */
+.cv-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 580px;
 }
 
 .font-editorial {
@@ -331,4 +339,34 @@ h1, h2, h3, h4, .font-display {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Mobile & touch performance: disable costly multi-layer backdrop-filter blurs and hover lifts */
+@media (max-width: 767px) {
+  .glass-card,
+  .inkica-glass-card,
+  .ql-card,
+  .ql-studio-frame {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.94);
+  }
+  .inkica-glass-card:hover {
+    transform: none;
+  }
+  .animate-float-gentle {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee,
+  .animate-aurora-slow,
+  .animate-aurora-reverse,
+  .animate-float-gentle {
+    animation: none !important;
+  }
 }

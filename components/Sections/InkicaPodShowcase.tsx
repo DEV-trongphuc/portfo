@@ -193,11 +193,11 @@ const InkicaPodShowcase: React.FC = () => {
   return (
     <section
       id="inkica-pod"
-      className="py-16 sm:py-20 border-b border-slate-200/80 relative overflow-hidden"
+      className="py-10 sm:py-16 lg:py-20 border-b border-slate-200/80 relative overflow-hidden"
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 relative z-10">
         {/* Clean Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-6 mb-6 sm:mb-10">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-[#1E40FF] text-[10.5px] font-bold uppercase tracking-[0.16em] mb-3">
               <Sparkles size={13} />

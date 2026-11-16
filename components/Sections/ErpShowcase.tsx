@@ -81,11 +81,11 @@ const ErpShowcase: React.FC = () => {
   return (
     <section
       id="erp-showcase"
-      className="py-24 lg:py-32 relative z-10 border-y border-slate-200/80"
+      className="py-10 sm:py-16 lg:py-22 relative z-10 border-y border-slate-200/80"
     >
       <div className="mx-auto px-4 sm:px-8 max-w-[1440px]">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-8 mb-7 sm:mb-12">
           <div>
             <motion.div
               initial={{ opacity: 1, x: -20 }}

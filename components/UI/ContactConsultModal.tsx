@@ -234,7 +234,11 @@ export const ContactConsultModal: React.FC<ContactConsultModalProps> = ({
             <Sparkles size={12} />
             <span>TURNIO DEV • Direct Consultation</span>
           </div>
-          <h2 id="contact-consult-title" className="font-display text-xl sm:text-2xl font-extrabold">
+          <h2
+            id="contact-consult-title"
+            style={{ color: '#ffffff' }}
+            className="font-display text-xl sm:text-2xl font-extrabold !text-white"
+          >
             {receipt ? 'Cảm Ơn Đã Kết Nối Cùng TURNIO!' : 'Đăng Ký Tư Vấn Giải Pháp Hệ Thống'}
           </h2>
           <p className="text-xs sm:text-sm text-sky-100/90 mt-1 pr-8">

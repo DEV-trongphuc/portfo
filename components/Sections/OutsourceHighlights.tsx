@@ -63,7 +63,7 @@ const OutsourceHighlights: React.FC = () => {
   return (
     <section
       id="outsource"
-      className="py-14 sm:py-16 border-b border-slate-200/80 relative overflow-hidden"
+      className="py-10 sm:py-16 border-b border-slate-200/80 relative overflow-hidden"
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 relative z-10">
         {/* Compact Header + Filter Pills */}

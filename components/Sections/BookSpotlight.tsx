@@ -108,9 +108,9 @@ const BookSpotlight: React.FC = () => {
   };
 
   return (
-    <section id="book-spotlight" className="py-24 lg:py-32 relative overflow-hidden z-10">
-      <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-14 lg:gap-24">
+    <section id="book-spotlight" className="py-12 sm:py-20 lg:py-26 relative overflow-hidden z-10">
+      <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
+        <div className="flex flex-col lg:flex-row items-center gap-8 sm:gap-14 lg:gap-24">
           {/* Left on desktop: Content */}
           <div className="w-full lg:w-1/2 order-2 lg:order-1 text-center lg:text-left">
             <motion.div
@@ -154,40 +154,36 @@ const BookSpotlight: React.FC = () => {
               vững.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+            <div className="grid grid-cols-2 sm:flex sm:flex-row gap-2.5 sm:gap-3 justify-center lg:justify-start">
               <button
                 type="button"
                 onClick={() => setIsReaderOpen(true)}
-                className="btn-inkica-primary px-8 py-4 text-xs font-black uppercase tracking-widest inline-flex items-center justify-center gap-2.5 cursor-pointer"
+                className="btn-inkica-primary px-4 sm:px-8 py-3.5 sm:py-4 text-[11px] sm:text-xs font-black uppercase tracking-wider sm:tracking-widest inline-flex items-center justify-center gap-2 cursor-pointer"
               >
-                Read Preview 3D <BookOpen size={16} />
+                Read Preview 3D <BookOpen size={15} />
               </button>
 
               <a
                 href={PDF_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ql-btn-outline px-8 py-4 text-xs font-extrabold uppercase tracking-widest inline-flex items-center justify-center gap-2.5"
+                className="ql-btn-outline px-4 sm:px-8 py-3.5 sm:py-4 text-[11px] sm:text-xs font-extrabold uppercase tracking-wider sm:tracking-widest inline-flex items-center justify-center gap-2"
               >
-                Tải Full PDF <FileText size={16} />
+                Tải Full PDF <FileText size={15} />
               </a>
             </div>
           </div>
 
           {/* Right on desktop: 3D Book Mockup */}
-          <div className="w-full lg:w-1/2 order-1 lg:order-2 flex justify-center relative perspective-1000 mt-4 lg:mt-0">
+          <div className="w-full lg:w-1/2 order-1 lg:order-2 flex justify-center relative perspective-1000 mt-2 lg:mt-0">
             <motion.div
-              initial={{ rotateY: -22, rotateX: 8, y: -12 }}
-              whileHover={{ rotateY: -10, rotateX: 4, scale: 1.04, y: -20 }}
-              animate={{ y: [-12, -22, -12] }}
-              transition={{
-                y: { duration: 5.5, repeat: Infinity, ease: 'easeInOut' },
-                default: { duration: 0.7, type: 'spring', stiffness: 100 },
-              }}
+              initial={{ rotateY: -18, rotateX: 6, y: -6 }}
+              whileHover={{ rotateY: -10, rotateX: 4, scale: 1.03, y: -12 }}
+              transition={{ duration: 0.45, type: 'spring', stiffness: 120 }}
               className="relative z-10 cursor-pointer group"
               onClick={() => setIsReaderOpen(true)}
             >
-              <div className="relative w-[280px] sm:w-[320px] md:w-[370px] aspect-[1/1.4] rounded-r-2xl shadow-[24px_24px_60px_rgba(30,64,255,0.25)] border-l-[12px] border-slate-900 bg-slate-900">
+              <div className="relative w-[216px] sm:w-[300px] md:w-[360px] aspect-[1/1.4] rounded-r-2xl shadow-[18px_18px_46px_rgba(30,64,255,0.22)] border-l-[10px] sm:border-l-[12px] border-slate-900 bg-slate-900">
                 <img
                   src={RAW_PAGES[0]}
                   alt="Facebook Ads Digital Book Cover"

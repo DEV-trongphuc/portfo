@@ -51,10 +51,23 @@ export function ResponsiveSlideDeck<T>({
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const sync = () => setBucket(getBucket(window.innerWidth));
+    const mqTablet = window.matchMedia('(min-width: 640px)');
+    const mqDesktop = window.matchMedia('(min-width: 1024px)');
+    const sync = () => {
+      const next: ViewportBucket = mqDesktop.matches
+        ? 'desktop'
+        : mqTablet.matches
+        ? 'tablet'
+        : 'mobile';
+      setBucket((prev) => (prev === next ? prev : next));
+    };
     sync();
-    window.addEventListener('resize', sync, { passive: true });
-    return () => window.removeEventListener('resize', sync);
+    mqTablet.addEventListener?.('change', sync);
+    mqDesktop.addEventListener?.('change', sync);
+    return () => {
+      mqTablet.removeEventListener?.('change', sync);
+      mqDesktop.removeEventListener?.('change', sync);
+    };
   }, []);
 
   useEffect(() => {
@@ -181,12 +194,12 @@ export function ResponsiveSlideDeck<T>({
       </div>
 
       {totalPages > 1 && (
-        <div className="mt-4 flex items-center justify-center gap-2.5">
+        <div className="mt-3 sm:mt-4 flex items-center justify-center gap-2">
           <button
             type="button"
             onClick={goPrev}
             aria-label="Trang trước"
-            className="w-8 h-8 rounded-full bg-white border border-slate-200 hover:border-[#1E40FF] text-slate-700 hover:text-[#1E40FF] flex items-center justify-center shadow-xs transition-colors cursor-pointer shrink-0"
+            className="w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-white border border-slate-200 hover:border-[#1E40FF] text-slate-700 hover:text-[#1E40FF] flex items-center justify-center shadow-xs transition-colors cursor-pointer shrink-0"
           >
             <ChevronLeft size={16} />
           </button>
@@ -213,7 +226,7 @@ export function ResponsiveSlideDeck<T>({
                 </button>
               );
             })}
-            {totalPages > MAX_VISIBLE_DOTS && (
+            {totalPages > 4 && (
               <span className="ml-1.5 pl-1.5 border-l border-slate-200 text-[10.5px] font-mono font-bold text-slate-500 tabular-nums">
                 {String(page + 1).padStart(2, '0')}/{String(totalPages).padStart(2, '0')}
               </span>
@@ -224,7 +237,7 @@ export function ResponsiveSlideDeck<T>({
             type="button"
             onClick={goNext}
             aria-label="Trang tiếp theo"
-            className="w-8 h-8 rounded-full bg-white border border-slate-200 hover:border-[#1E40FF] text-slate-700 hover:text-[#1E40FF] flex items-center justify-center shadow-xs transition-colors cursor-pointer shrink-0"
+            className="w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-white border border-slate-200 hover:border-[#1E40FF] text-slate-700 hover:text-[#1E40FF] flex items-center justify-center shadow-xs transition-colors cursor-pointer shrink-0"
           >
             <ChevronRight size={16} />
           </button>

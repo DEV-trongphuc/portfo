@@ -51,9 +51,9 @@ const TarotShowcase: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 relative overflow-hidden z-10 border-t border-slate-200/80">
-      <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <div className="mb-16 text-center">
+    <section className="py-10 sm:py-16 lg:py-22 relative overflow-hidden z-10 border-t border-slate-200/80">
+      <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
+        <div className="mb-8 sm:mb-14 text-center">
           <motion.div
             initial={{ opacity: 1, y: -16 }}
             whileInView={{ opacity: 1, y: 0 }}

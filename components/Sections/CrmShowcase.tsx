@@ -42,10 +42,10 @@ const CrmShowcase: React.FC = () => {
   return (
     <section
       id="crm-showcase"
-      className="py-16 sm:py-20 border-y border-slate-200/80 relative overflow-hidden"
+      className="py-10 sm:py-16 lg:py-20 border-y border-slate-200/80 relative overflow-hidden"
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-12 items-center">
           {/* Left Column: Clean Title + 2x2 Compact Bento */}
           <div className="lg:col-span-5">
             <motion.div

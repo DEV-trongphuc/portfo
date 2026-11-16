@@ -54,7 +54,7 @@ const TrustShowcase: React.FC<TrustShowcaseProps> = ({ onOpenEcoLife }) => {
           <span className="ql-eyebrow">CHƯƠNG 07 • ĐỐI TÁC ĐỒNG HÀNH &amp; CHỨNG CHỈ</span>
           <h2 className="font-display font-bold text-3xl sm:text-5xl text-[#0F172A]">
             Chủ Đầu Tư, Đại Lý F1 &amp;{' '}
-            <span className="ql-grad-title">24+ Thương Hiệu.</span>
+            <span className="ql-grad-title">38+ Thương Hiệu.</span>
           </h2>
         </div>
 

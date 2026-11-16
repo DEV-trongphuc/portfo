@@ -27,6 +27,7 @@ import partnerRichland from '../imgs/partner_richland.webp';
 
 export const PARTNERS: Partner[] = [
   { name: 'Phúc Lộc Thọ', image: partnerPhucloctho, website: 'https://phucloctho.vn', industry: 'FNB / Franchise' },
+  { name: 'Cơm Gà Đệ Nhất', image: '/assets/partners/logo_plt_partner.webp', website: '#', industry: 'FNB / Restaurant' },
   { name: 'Duyên Mai', image: partnerDuyenmai, website: 'https://duyenmai.vn', industry: 'Fashion / Retail' },
   { name: 'Cowboy Steak', image: partnerCowboysteak, website: 'https://www.facebook.com/CowboySteakhouseVietnam/', industry: 'FNB / Restaurant' },
   { name: 'En Group', image: partnerEngroup, website: 'https://engroup.vn', industry: 'FNB / Holdings' },

@@ -1,41 +1,38 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Clock, LayoutDashboard, Maximize2, Package, Store, Users } from 'lucide-react';
+import { Droplets, LayoutDashboard, Maximize2, Package, Receipt, Users } from 'lucide-react';
 import Modal from '../UI/Modal';
 import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
 
-import crm1 from '../../imgs/CRM (1).webp';
-import crm2 from '../../imgs/CRM (2).webp';
-import crm3 from '../../imgs/CRM (3).webp';
-import crm4 from '../../imgs/CRM (4).webp';
-
 const CRM_SCREENS = [
-  { src: crm1, title: 'Tổng quan Doanh thu & Phễu Lead' },
-  { src: crm2, title: 'Quản trị Khách hàng & Lịch hẹn' },
-  { src: crm3, title: 'Hệ thống Bán hàng & Đơn hàng POS' },
-  { src: crm4, title: 'Báo cáo Chi nhánh Thời gian thực' },
+  { src: '/assets/minth/minth_products_ml.webp', title: 'Danh mục Sản phẩm & Quy đổi ml' },
+  { src: '/assets/minth/minth_inventory_batch.webp', title: 'Kho Lô: Giá vốn, Giá bán & Tồn Chai / ml' },
+  { src: '/assets/minth/minth_dashboard.webp', title: 'Tổng quan P&L & Cơ cấu Nguyên chai / Chiết' },
+  { src: '/assets/minth/minth_orders.webp', title: 'Quản lý Đơn hàng POS & Thanh toán' },
+  { src: '/assets/minth/minth_crm_customers.webp', title: 'CRM Phân hạng VIP / Loyal & Lịch sử Lô' },
+  { src: '/assets/minth/minth_expense_loss.webp', title: 'Báo cáo Chi phí & Hao hụt Tester theo ml' },
 ];
 
 const CRM_FEATURES = [
   {
-    icon: <Store size={18} />,
-    title: 'Đa chi nhánh & Nhượng quyền',
-    desc: 'Phân quyền chặt chẽ từng cửa hàng, đại lý và báo cáo doanh số hợp nhất.',
-  },
-  {
-    icon: <Users size={18} />,
-    title: 'CRM Phân hạng Khách hàng',
-    desc: 'Theo dõi lịch sử mua hàng, thói quen tiêu dùng và tự động chăm sóc.',
+    icon: <Droplets size={18} />,
+    title: 'Sản phẩm & Quy đổi Chiết ml',
+    desc: 'Khai báo đơn vị nhập (Chai, Set, Hộp, Tuýp) và định mức quy đổi (1 Chai = 100ml / 30ml) trước khi nhập lô.',
   },
   {
     icon: <Package size={18} />,
-    title: 'Kho hàng & Định mức Tồn',
-    desc: 'Cảnh báo tồn kho tối thiểu, kiểm soát nhập – xuất – chuyển kho tự động.',
+    title: 'Kho Lô, Giá vốn & Giá bán',
+    desc: 'Quản lý từng mã lô (MINTH-*), nhập đơn giá hoặc tổng giá trị lô, theo dõi song song tồn Chai nguyên và ml còn lại.',
   },
   {
-    icon: <Clock size={18} />,
-    title: 'Báo cáo Thời gian thực',
-    desc: 'Cập nhật tức thì doanh thu, lợi nhuận gộp và hiệu suất nhân sự theo giờ.',
+    icon: <Receipt size={18} />,
+    title: 'POS Nguyên Chai & Chiết lẻ',
+    desc: 'Tự tính giá vốn theo ml (import_price / ml_per_unit), gợi ý giá bán lẻ và đồng bộ khách hàng từ CRM sang POS.',
+  },
+  {
+    icon: <Users size={18} />,
+    title: 'CRM Phân hạng & Hao hụt ml',
+    desc: 'Tự động xếp hạng New / Loyal / VIP, ghi nhận xuất kho Tester/Quà tặng theo ml và hạch toán Lợi nhuận ròng.',
   },
 ];
 
@@ -59,19 +56,20 @@ const CrmShowcase: React.FC = () => {
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-[#1E40FF] text-[10.5px] font-bold uppercase tracking-[0.16em] mb-4">
                 <LayoutDashboard size={13} />
-                <span>Enterprise Growth Suite</span>
+                <span>MINTH Perfume ERP &amp; Decant POS</span>
               </div>
 
               <h2 className="text-2xl sm:text-3xl lg:text-[2.15rem] font-extrabold text-slate-900 leading-[1.35] mb-3.5">
-                Tất cả dữ liệu &amp; khách hàng trên{' '}
+                Quản lý sản phẩm, lô hàng &amp;{' '}
                 <span className="block sm:inline font-editorial text-gradient-inkica">
-                  một hệ thống.
+                  chiết nước hoa ml.
                 </span>
               </h2>
 
               <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                Bộ giải pháp CRM &amp; POS quản trị đa chi nhánh tập trung Lead, lịch sử chăm sóc,
-                tồn kho và doanh thu theo thời gian thực.
+                Hệ thống quản trị bán lẻ chuyên biệt cho <strong className="text-slate-800">MINTH Store</strong>:
+                quy đổi Chai sang ml chiết, kiểm soát giá vốn – giá bán từng lô, trừ kho bán lẻ / hàng
+                Tester và báo cáo lợi nhuận ròng theo thời gian thực.
               </p>
 
               <ResponsiveSlideDeck
@@ -139,7 +137,7 @@ const CrmShowcase: React.FC = () => {
       <Modal
         isOpen={!!previewImage}
         onClose={() => setPreviewImage(null)}
-        title="CRM & POS Enterprise Interface"
+        title="MINTH Store • Perfume POS & Batch Inventory"
         className="max-w-5xl"
       >
         {previewImage && (

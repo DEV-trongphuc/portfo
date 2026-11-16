@@ -696,7 +696,7 @@ const AppUniverseSection: React.FC<AppUniverseSectionProps> = ({ onOpenDomationM
                         key={i}
                         type="button"
                         onClick={() => setSlideIdx(i)}
-                        className={`w-20 h-13 rounded-xl overflow-hidden border-2 shrink-0 transition-all cursor-pointer ${
+                        className={`w-20 h-14 rounded-xl overflow-hidden border-2 shrink-0 transition-all cursor-pointer ${
                           slideIdx === i
                             ? 'border-[#D97706] scale-105 shadow-sm'
                             : 'border-[#E2E8F0] opacity-65 hover:opacity-100'

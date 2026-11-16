@@ -122,6 +122,15 @@ const DomationDataShowcase: React.FC = () => {
               <div className={`px-3 py-1.5 rounded-xl border text-[11px] font-mono font-bold ${sim.color}`}>
                 Signal → {sim.eventName}
               </div>
+              <a
+                href="https://domation.net/data"
+                target="_blank"
+                rel="noreferrer"
+                className="btn-inkica-primary w-full !py-2.5 !text-xs cursor-pointer inline-flex items-center justify-center gap-1.5"
+              >
+                <span>Trải Nghiệm Nền Tảng DOMATION Auto Data (domation.net/data)</span>
+                <span>↗</span>
+              </a>
             </div>
           </motion.div>
 

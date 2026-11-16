@@ -1,304 +1,279 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
-  CheckCircle2,
-  GitBranch,
-  MousePointerClick,
-  Play,
-  Radio,
-  RotateCcw,
+  Bot,
+  FolderKanban,
+  Globe,
+  RefreshCw,
+  ShieldCheck,
   Sparkles,
-  Zap,
+  Table2,
+  Webhook,
 } from 'lucide-react';
-import ResponsiveSlideDeck from '../UI/ResponsiveSlideDeck';
 
-const STORY_ACTS = [
+const HIGHLIGHT_PILLARS = [
   {
-    step: '00s • Capture Webhook',
-    title: 'Bắt trọn Lead từ Ads & Web 3D ngay lập tức',
-    desc: 'Tự động ghi nhận dữ liệu qua Webhook, không rơi rụng trên file Excel.',
-    icon: <MousePointerClick size={16} className="text-[#1E40FF]" />,
-    badge: 'Capture',
+    num: '01',
+    eyebrow: 'CHẤT LƯỢNG ĐẦU VÀO',
+    decor: '/imgs/enterprise/decor-funnel-orb.png',
+    title: 'AI Đánh Giá Trước Khi Giao Lead',
+    desc: 'Tự động chấm điểm độ nóng (Hot / Warm), chặn SĐT ảo, spam form và lọc trùng 90 ngày trước khi đẩy tới tay Sale — kèm tóm tắt AI ngay trong tin báo Zalo.',
   },
   {
-    step: '< 4.2s • Dedupe & ZaloBot',
-    title: 'Lọc trùng 6 tháng & chia xoay vòng Đại lý F1',
-    desc: 'Chấm điểm nhu cầu và bắn thông báo tức thì qua ZaloBot & CRM.',
-    icon: <Zap size={16} className="text-[#0284C7]" />,
-    badge: 'Dispatch',
+    num: '02',
+    eyebrow: 'CÔNG BẰNG ĐỘI SALE',
+    decor: '/imgs/enterprise/decor-shield-node.png',
+    title: 'Cơ Chế Bù Data Lỗi 1-Đổi-1',
+    desc: 'Sale gặp số sai, thuê bao hoặc nhầm đối tượng chỉ cần báo lỗi 1 chạm trên Zalo / Cổng Sale. Quản lý duyệt minh bạch là hệ thống tự động cộng trả +1 lượt bù ưu tiên.',
   },
   {
-    step: '24/7 • Feedback Meta CAPI',
-    title: 'Gửi trạng thái chốt đơn ngược về Meta HTTP 200',
-    desc: 'Mã hóa SHA-256 giúp AI quảng cáo tự lọc rác và tìm khách mua thật.',
-    icon: <Radio size={16} className="text-emerald-600" />,
-    badge: 'Meta CAPI',
+    num: '03',
+    eyebrow: 'CHỦ ĐỘNG DỮ LIỆU',
+    decor: '/imgs/enterprise/decor-torus-ring.png',
+    title: 'Cổng Sale Cá Nhân & Đồng Bộ 2 Chiều',
+    desc: 'Mỗi Sale có giỏ khách tự khai thác riêng (0 quota, miễn thu hồi), xuất file CSV tiếng Việt 1 chạm và đồng bộ 2 chiều qua Google Sheets & REST API.',
   },
 ];
 
+const HUB_FEATURES = [
+  {
+    badge: 'AI LEAD SCORING',
+    icon: Sparkles,
+    title: 'AI Đánh Giá Trước Khi Giao',
+    desc: 'Chấm điểm nhu cầu, lọc SĐT rác & trùng 90 ngày trước khi phân bổ để Sale chỉ gọi khách chất lượng thật.',
+  },
+  {
+    badge: 'BÙ DATA 1-ĐỔI-1',
+    icon: RefreshCw,
+    title: 'Hoàn Lượt Khi Nhận Số Lỗi',
+    desc: 'Sale báo số sai / thuê bao 1 chạm trên Zalo; duyệt là tự động cộng trả +1 lượt bù ưu tiên ở vòng kế tiếp.',
+  },
+  {
+    badge: 'CỔNG SALE RIÊNG',
+    icon: FolderKanban,
+    title: 'Giỏ Khách Cá Nhân 0 Quota',
+    desc: 'Tự nhập hoặc import danh sách khách riêng không qua vòng chia chung, bật/tắt ca trực Online linh hoạt.',
+  },
+  {
+    badge: 'ĐỒNG BỘ 2 CHIỀU',
+    icon: Table2,
+    title: 'Google Sheets, API & Meta CAPI',
+    desc: 'Đồng bộ real-time 2 chiều với Google Sheets từng Sale và gửi tín hiệu chuyển đổi ngược tối ưu Meta Ads.',
+  },
+];
+
+const AUTODATA_CONNECTORS = [
+  { name: 'Website', icon: <Globe className="w-3.5 h-3.5 text-[#1E40FF]" /> },
+  { name: 'ZaloBot', icon: <Bot className="w-3.5 h-3.5 text-[#0068FF]" /> },
+  {
+    name: 'Email SES',
+    icon: (
+      <img
+        src="/assets/brands/gmail-logo.webp"
+        alt="Email SES"
+        className="w-3.5 h-3.5 object-contain"
+        loading="lazy"
+      />
+    ),
+  },
+  { name: 'Meta CAPI', icon: <ShieldCheck className="w-3.5 h-3.5 text-[#0866FF]" /> },
+  { name: 'Sheets', icon: <Table2 className="w-3.5 h-3.5 text-emerald-600" /> },
+  { name: 'Webhook API', icon: <Webhook className="w-3.5 h-3.5 text-cyan-600" /> },
+];
+
 const TheBridge: React.FC = () => {
-  // Interactive 4-second live pipeline simulation (-1 = idle, 0/1/2 = active step, 3 = HTTP 200 completed)
-  const [simStep, setSimStep] = useState<number>(-1);
-  const [isRunning, setIsRunning] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (!isRunning) return;
-    setSimStep(0);
-    const t1 = window.setTimeout(() => setSimStep(1), 950);
-    const t2 = window.setTimeout(() => setSimStep(2), 1950);
-    const t3 = window.setTimeout(() => {
-      setSimStep(3);
-      setIsRunning(false);
-    }, 3000);
-    return () => {
-      window.clearTimeout(t1);
-      window.clearTimeout(t2);
-      window.clearTimeout(t3);
-    };
-  }, [isRunning]);
-
-  const handleRunSimulation = () => {
-    if (isRunning) return;
-    setIsRunning(true);
+  const goToAutoData = () => {
+    window.history.pushState({}, '', '/data');
+    window.dispatchEvent(new PopStateEvent('popstate'));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <section className="py-16 lg:py-20 relative z-10 overflow-hidden">
-      <div className="mx-auto px-4 sm:px-8 max-w-[1440px]">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Right (Desktop): Narrative Storytelling */}
-          <div className="lg:col-span-6 order-1 lg:order-2 space-y-5">
-            <div>
-              <motion.span
-                initial={{ opacity: 1, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.05 }}
-                className="inline-flex items-center gap-1.5 text-[#1E40FF] font-bold tracking-[0.2em] uppercase text-[11px] mb-2"
-              >
-                <Sparkles size={12} /> The Hybrid Story • Marketing Gặp Code
-              </motion.span>
+    <section className="py-16 lg:py-22 relative z-10 overflow-hidden">
+      <div className="mx-auto px-4 sm:px-8 max-w-[1440px] space-y-8">
+        {/* Unified DOMATION Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div className="max-w-2xl">
+            <motion.div
+              initial={{ opacity: 1, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.05 }}
+              className="ql-eyebrow mb-3"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-[#1E40FF] shrink-0" />
+              <span>DOMATION AUTO DATA • GIỮ LEAD LUÔN NÓNG</span>
+            </motion.div>
 
-              <motion.h2
-                initial={{ opacity: 1, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.05 }}
-                className="text-2xl sm:text-3xl lg:text-[2.1rem] font-extrabold text-slate-950 leading-[1.35] mb-3"
-              >
-                Từ 1 click quảng cáo thành{' '}
-                <span className="block font-editorial text-gradient-inkica">
-                  lịch hẹn trong 4 giây.
-                </span>
-              </motion.h2>
+            <motion.h2
+              initial={{ opacity: 1, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.05 }}
+              className="text-2xl sm:text-3xl lg:text-[2.15rem] font-extrabold text-slate-900 leading-[1.28] tracking-tight"
+            >
+              Phân Bổ Ngay Khi Khách Vừa Quan Tâm —{' '}
+              <span className="text-gradient-inkica">Không Để Lead Bị Nguội</span>
+            </motion.h2>
+          </div>
 
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-xl">
-                Loại bỏ độ trễ xử lý dữ liệu và đứt gãy phản hồi ngược về nền tảng quảng cáo.
-              </p>
+          <p className="text-xs sm:text-sm text-slate-600 max-w-md leading-relaxed">
+            Chấm dứt cảnh mỗi ngày Marketing mới gom file chia data. Hệ thống chấm điểm AI và giao thẳng cho Sale chăm sóc qua Zalo tức thì.
+          </p>
+        </div>
+
+        {/* Before / After Comparison in Swiss Hairline Glass Card */}
+        <div className="rounded-[28px] bg-white/80 backdrop-blur-xl border border-slate-200/80 shadow-xs grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-200/75 overflow-hidden">
+          <div className="p-6 sm:p-7 bg-slate-100/95 space-y-2">
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-rose-100 border border-rose-200 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-rose-700">
+              Cách chia cũ • Lead bị nguội
+            </div>
+            <h3 className="text-sm sm:text-base font-bold text-slate-700">
+              Mỗi ngày Marketing mới tổng hợp &amp; chia data 1 lần
+            </h3>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              Khách để lại SĐT buổi sáng nhưng chiều hoặc hôm sau Sale mới gọi → khách đã nguội nhu cầu, quên nội dung tư vấn hoặc chốt sang đối thủ phản hồi nhanh hơn.
+            </p>
+          </div>
+
+          <div className="p-6 sm:p-7 bg-gradient-to-r from-[#F4F8FF]/90 to-white space-y-2 relative">
+            <div className="flex items-center justify-between gap-2">
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-[#1E40FF]/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#1E40FF]">
+                DOMATION Auto Data • Giữ Lead luôn nóng
+              </div>
+              <img
+                src="/imgs/enterprise/decor-crystal-prism.png"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                className="w-8 h-8 object-contain drop-shadow-[0_8px_14px_rgba(30,64,255,0.2)] hidden sm:block"
+              />
+            </div>
+            <h3 className="text-sm sm:text-base font-bold text-slate-900">
+              Khách vừa gửi form là phân bổ cho Sale gọi ngay tức thì
+            </h3>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              Tự động chọn đúng Sale đang Online, gửi thông báo Zalo tức thì để Sale liên hệ ngay khi khách còn đang cầm điện thoại — tạo cảm giác phục vụ tức thì.
+            </p>
+          </div>
+        </div>
+
+        {/* 3-Column Swiss Hairline Highlights with 3D Floating Decors (Matching DomationHome) */}
+        <div className="rounded-[28px] bg-white/80 backdrop-blur-xl border border-slate-200/80 shadow-xs grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-200/75 overflow-hidden">
+          {HIGHLIGHT_PILLARS.map((item) => (
+            <div key={item.num} className="p-7 sm:p-8 flex flex-col justify-between gap-4 hover:bg-slate-50/55 transition-colors">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="inline-flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-full bg-blue-50 border border-blue-200/80 text-[10px] font-bold font-mono text-[#1E40FF] flex items-center justify-center">
+                      {item.num}
+                    </span>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#1E40FF]">
+                      {item.eyebrow}
+                    </span>
+                  </div>
+                  <img
+                    src={item.decor}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    className="w-10 h-10 object-contain drop-shadow-[0_10px_18px_rgba(30,64,255,0.18)] shrink-0"
+                  />
+                </div>
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-snug">
+                  {item.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Unified Hub Showcase Card + Bottom 6-Connector Strip (Matching DomationHome Orchestrator) */}
+        <div className="rounded-[28px] bg-white/85 backdrop-blur-2xl border border-slate-200/80 shadow-[0_24px_64px_-24px_rgba(15,23,42,0.07)] p-6 sm:p-9">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            {/* Left Visual Card */}
+            <div className="lg:col-span-5 space-y-5">
+              <div className="relative rounded-2xl overflow-hidden border border-slate-200/75 bg-[#F4F8FF]">
+                <img
+                  src="/imgs/enterprise/sol-data-capi.webp"
+                  alt="Trung tâm điều phối và bảo vệ chất lượng Lead DOMATION Auto Data"
+                  loading="lazy"
+                  className="w-full h-56 sm:h-60 object-cover"
+                />
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#1E40FF]">
+                    AUTO DATA ENGINE • MIỄN PHÍ 1 THÁNG ĐẦU
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Lọc trùng 90 ngày, AI chấm điểm trước khi giao, bù data lỗi 1-đổi-1 và đồng bộ hai chiều Google Sheets, REST API &amp; Meta CAPI.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={goToAutoData}
+                className="btn-inkica-primary rounded-full px-6 py-3 text-xs sm:text-sm cursor-pointer whitespace-nowrap"
+              >
+                <span>Khám phá DOMATION /data</span>
+                <ArrowRight className="w-4 h-4 shrink-0" />
+              </button>
             </div>
 
-            <ResponsiveSlideDeck
-              items={STORY_ACTS}
-              keyExtractor={(act) => act.badge}
-              desktopMode="grid"
-              desktopGridClass="lg:grid-cols-1"
-              gapClass="gap-3"
-              ariaLabel="Quy trình Lead 4 giây"
-              renderItem={(act, idx) => {
-                const isActive = simStep === idx;
-                const isDone = simStep > idx;
+            {/* Right 2x2 Cards */}
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {HUB_FEATURES.map((feat) => {
+                const Icon = feat.icon;
                 return (
                   <div
-                    className={`rounded-2xl p-4 transition-all h-full border ${
-                      isActive
-                        ? 'bg-blue-50/90 border-[#1E40FF] ring-2 ring-[#1E40FF]/20 shadow-md -translate-y-0.5'
-                        : isDone
-                        ? 'bg-emerald-50/60 border-emerald-300 shadow-xs'
-                        : 'bg-white/95 border-slate-200/90 hover:border-[#1E40FF]/40 shadow-xs'
-                    }`}
+                    key={feat.badge}
+                    className="rounded-2xl bg-slate-50/75 hover:bg-white border border-slate-200/75 p-5 transition-colors flex flex-col justify-between gap-3"
                   >
-                    <div className="flex items-start gap-3">
-                      <div
-                        className={`w-9 h-9 rounded-xl border flex items-center justify-center shrink-0 mt-0.5 transition-colors ${
-                          isDone
-                            ? 'bg-emerald-100 border-emerald-200 text-emerald-600'
-                            : isActive
-                            ? 'bg-white border-[#1E40FF]/40'
-                            : 'bg-blue-50 border-blue-100'
-                        }`}
-                      >
-                        {isDone ? <CheckCircle2 size={16} /> : act.icon}
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="w-9 h-9 rounded-xl bg-white border border-slate-200/80 text-[#1E40FF] flex items-center justify-center shadow-2xs shrink-0">
+                        <Icon className="w-4 h-4" />
                       </div>
-                      <div className="min-w-0 flex-1">
-                        <div className="flex items-center justify-between gap-2 mb-0.5">
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-[#1E40FF]">
-                            {act.step}
-                          </span>
-                          {isActive && (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#1E40FF] text-white text-[9.5px] font-bold animate-pulse">
-                              Đang chạy...
-                            </span>
-                          )}
-                          {isDone && (
-                            <span className="text-[10px] font-bold text-emerald-700">✓ Hoàn tất</span>
-                          )}
-                        </div>
-                        <h3 className="text-sm font-bold text-slate-950 leading-snug mb-1">
-                          {act.title}
-                        </h3>
-                        <p className="text-xs text-slate-600 leading-relaxed">{act.desc}</p>
-                      </div>
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500 bg-white px-2.5 py-1 rounded-full border border-slate-200/70 whitespace-nowrap">
+                        {feat.badge}
+                      </span>
+                    </div>
+                    <div>
+                      <h3 className="text-sm sm:text-base font-semibold text-slate-900 mb-1">
+                        {feat.title}
+                      </h3>
+                      <p className="text-xs text-slate-600 leading-relaxed">{feat.desc}</p>
                     </div>
                   </div>
                 );
-              }}
-            />
+              })}
+            </div>
           </div>
 
-          {/* Left (Desktop): Interactive Light Glass IDE Execution Pipeline Card */}
-          <motion.div
-            initial={{ opacity: 1, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.05 }}
-            transition={{ duration: 0.35 }}
-            className="lg:col-span-6 order-2 lg:order-1 relative"
-          >
-            <div className="rounded-3xl bg-white/95 backdrop-blur-xl border border-slate-200/90 p-5 sm:p-6 shadow-[0_24px_60px_-20px_rgba(30,64,255,0.16)] text-slate-800">
-              <div className="flex flex-wrap items-center justify-between gap-2 pb-3.5 mb-4 border-b border-slate-200/80">
-                <div className="flex items-center gap-2.5">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-rose-400" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-                  </div>
-                  <span className="text-[11px] font-mono font-semibold text-[#1E40FF] flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200/75">
-                    <GitBranch size={12} /> automation-pipeline.ts
-                  </span>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={handleRunSimulation}
-                  disabled={isRunning}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#1E40FF] hover:bg-blue-700 disabled:opacity-60 text-white text-[10.5px] font-bold shadow-xs transition-all cursor-pointer"
-                >
-                  {simStep === 3 ? <RotateCcw size={11} /> : <Play size={11} />}
-                  <span>
-                    {isRunning
-                      ? 'Đang mô phỏng...'
-                      : simStep === 3
-                      ? 'Chạy lại Demo'
-                      : 'Chạy Thử Pipeline (4s)'}
-                  </span>
-                </button>
+          {/* Bottom Connector Strip (6 Auto Data Connectors) */}
+          <div className="mt-8 pt-6 border-t border-slate-200/75 flex flex-col xl:flex-row xl:items-center justify-between gap-4">
+            <div className="shrink-0">
+              <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-800">
+                PLATFORM, GOOGLE SHEETS &amp; REST API ĐỒNG BỘ 2 CHIỀU
               </div>
-
-              <div className="font-mono text-xs leading-relaxed space-y-2 overflow-x-auto rounded-2xl bg-slate-50/90 border border-slate-200/80 p-3.5 sm:p-4">
-                <div
-                  className={`rounded-xl px-2.5 py-1.5 transition-colors ${
-                    simStep === 0
-                      ? 'bg-blue-100/80 border-l-2 border-[#1E40FF]'
-                      : simStep > 0
-                      ? 'bg-emerald-50/70'
-                      : ''
-                  }`}
-                >
-                  <div className="text-slate-400">// 01. Lead Trigger -&gt; Dedupe &amp; Score</div>
-                  <div>
-                    <span className="text-[#1E40FF] font-semibold">const</span> lead ={' '}
-                    <span className="text-indigo-600 font-semibold">await</span>{' '}
-                    captureLead(webhookPayload);
-                  </div>
-                  <div>
-                    <span className="text-[#1E40FF] font-semibold">const</span> isClean = !{' '}
-                    <span className="text-indigo-600 font-semibold">await</span>{' '}
-                    dedupe6Months(lead.phoneHash);
-                  </div>
-                </div>
-
-                <div
-                  className={`rounded-xl px-2.5 py-1.5 transition-colors ${
-                    simStep === 1
-                      ? 'bg-blue-100/80 border-l-2 border-[#1E40FF]'
-                      : simStep > 1
-                      ? 'bg-emerald-50/70'
-                      : ''
-                  }`}
-                >
-                  <div className="text-slate-400">// 02. Round-Robin F1 Agency &amp; ZaloBot</div>
-                  <div>
-                    <span className="text-[#1E40FF] font-semibold">if</span> (isClean) {'{'}
-                  </div>
-                  <div className="pl-4">
-                    <span className="text-[#1E40FF] font-semibold">await</span>{' '}
-                    <span className="text-emerald-700 font-semibold">zaloBot.dispatchNextAgency</span>
-                    (lead, [<span className="text-amber-600">&apos;Tùng Long&apos;</span>,{' '}
-                    <span className="text-amber-600">&apos;Hợp Nhất&apos;</span>,{' '}
-                    <span className="text-amber-600">&apos;IHD&apos;</span>]);
-                  </div>
-                  <div className="pl-4">
-                    <span className="text-[#1E40FF] font-semibold">await</span>{' '}
-                    crm.autoScoreQuality(lead.id);
-                  </div>
-                  <div>{'}'}</div>
-                </div>
-
-                <div
-                  className={`rounded-xl px-2.5 py-1.5 transition-colors ${
-                    simStep === 2
-                      ? 'bg-blue-100/80 border-l-2 border-[#1E40FF]'
-                      : simStep > 2
-                      ? 'bg-emerald-50/70'
-                      : ''
-                  }`}
-                >
-                  <div className="text-slate-400">// 03. Feedback Loop -&gt; Meta CAPI HTTP 200</div>
-                  <div>
-                    <span className="text-[#1E40FF] font-semibold">await</span>{' '}
-                    <span className="text-sky-700 font-semibold">metaCAPI.sendEvent</span>(lead.status
-                    === <span className="text-emerald-700 font-semibold">&apos;QUALIFIED&apos;</span>{' '}
-                    ? <span className="text-emerald-700 font-semibold">&apos;Schedule&apos;</span> :{' '}
-                    <span className="text-rose-600 font-semibold">&apos;DisqualifiedLead&apos;</span>);
-                  </div>
-                </div>
-              </div>
-
-              {simStep >= 0 && (
-                <div className="mt-3 px-3.5 py-2 rounded-xl bg-slate-900 text-white font-mono text-[11px] flex items-center justify-between gap-2">
-                  <span className="truncate">
-                    {simStep === 0 && '→ [0.4s] Webhook Lead captured & hashed SHA-256'}
-                    {simStep === 1 && '→ [1.9s] ZaloBot Alert dispatched to Đại lý F1 #1'}
-                    {simStep === 2 && '→ [3.1s] Sending Conversion Event to Meta Graph API...'}
-                    {simStep === 3 && '✓ [3.8s] Pipeline complete • HTTP 200 OK'}
-                  </span>
-                  <span
-                    className={`shrink-0 px-2 py-0.5 rounded text-[10px] font-bold ${
-                      simStep === 3 ? 'bg-emerald-500 text-slate-950' : 'bg-blue-500 text-white'
-                    }`}
-                  >
-                    {simStep === 3 ? '200 OK' : `STEP ${simStep + 1}/3`}
-                  </span>
-                </div>
-              )}
-
-              {/* Compact Bottom Pipeline Status Bar */}
-              <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-                <div className="rounded-xl bg-blue-50/75 border border-blue-200/70 p-2.5">
-                  <div className="text-sm font-black text-[#1E40FF]">0.8s</div>
-                  <div className="text-[10px] font-medium text-slate-600">ZaloBot Alert</div>
-                </div>
-                <div className="rounded-xl bg-emerald-50/75 border border-emerald-200/70 p-2.5">
-                  <div className="text-sm font-black text-emerald-600">100%</div>
-                  <div className="text-[10px] font-medium text-slate-600">SHA-256 CAPI</div>
-                </div>
-                <div className="rounded-xl bg-slate-50 border border-slate-200/80 p-2.5">
-                  <div className="text-sm font-black text-slate-900 inline-flex items-center gap-1 justify-center">
-                    Zero <ArrowRight size={11} className="text-[#1E40FF]" />
-                  </div>
-                  <div className="text-[10px] font-medium text-slate-600">Lead Sót / Ôm</div>
-                </div>
-              </div>
+              <p className="text-xs text-slate-500 mt-0.5">
+                Kết nối hai chiều thời gian thực với hệ sinh thái marketing &amp; bán hàng sẵn có.
+              </p>
             </div>
-          </motion.div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 w-full xl:max-w-[760px]">
+              {AUTODATA_CONNECTORS.map((conn) => (
+                <div
+                  key={conn.name}
+                  className="rounded-xl bg-slate-50/85 border border-slate-200/75 px-3 py-2 flex items-center gap-2 text-xs font-semibold text-slate-700"
+                >
+                  <span className="shrink-0">{conn.icon}</span>
+                  <span className="truncate">{conn.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

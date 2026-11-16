@@ -53,6 +53,12 @@ type BlogRouteState =
 
 function parseBlogRoute(pathname: string): BlogRouteState {
   const clean = pathname.replace(/\/+$/, '').toLowerCase();
+  if (clean === '/data' || clean.startsWith('/data/')) {
+    if (typeof window !== 'undefined') {
+      window.location.replace('https://domation.net/data');
+    }
+    return { view: 'home' };
+  }
   if (clean === '/bai-viet') return { view: 'blog-list' };
   const match = pathname.match(/^\/bai-viet\/([^/?#]+)/i);
   if (match?.[1]) return { view: 'blog-post', slug: decodeURIComponent(match[1]) };

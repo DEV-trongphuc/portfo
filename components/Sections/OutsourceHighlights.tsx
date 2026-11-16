@@ -288,15 +288,15 @@ const OutsourceHighlights: React.FC = () => {
             <div className="rounded-2xl bg-white border border-slate-200/90 p-4 sm:p-5 shadow-xs flex flex-wrap items-center justify-between gap-3.5">
               <div className="flex items-center gap-3.5 min-w-0">
                 {selectedCampaign.logo ? (
-                  <div className="w-13 h-13 rounded-2xl bg-slate-50 border border-slate-200 p-2 flex items-center justify-center shrink-0">
+                  <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-200 p-2 flex items-center justify-center shrink-0 overflow-hidden">
                     <img
                       src={selectedCampaign.logo}
                       alt={selectedCampaign.company}
-                      className="w-full h-full object-contain" loading="lazy" decoding="async"
+                      className="max-w-full max-h-full w-auto h-auto object-contain" loading="lazy" decoding="async"
                     />
                   </div>
                 ) : (
-                  <div className="w-13 h-13 rounded-2xl bg-blue-50 border border-blue-200 text-[#1E40FF] flex items-center justify-center text-lg font-black shrink-0">
+                  <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-200 text-[#1E40FF] flex items-center justify-center text-lg font-black shrink-0">
                     {selectedCampaign.company.charAt(0)}
                   </div>
                 )}

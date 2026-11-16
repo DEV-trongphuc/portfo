@@ -464,7 +464,7 @@ export const SHORT_CAMPAIGNS: OutsourceHighlight[] = [
   {
     company: 'Nha khoa Flora',
     logo: partnerFlora,
-    result: '100k / Lead',
+    result: '350k / Lead',
     cost: 'Budget: 20 triệu',
     impact: 'Trồng Implant',
     tags: ['Nha Khoa', 'Facebook Ads'],
@@ -484,7 +484,7 @@ export const SHORT_CAMPAIGNS: OutsourceHighlight[] = [
   {
     company: 'Duyên Mai',
     logo: partnerDuyenmai,
-    result: 'Duy trì Reach',
+    result: 'Brand Awareness',
     cost: 'Social Mng.',
     impact: 'Fashion Awareness',
     tags: ['Fashion', 'Retail'],
@@ -494,7 +494,7 @@ export const SHORT_CAMPAIGNS: OutsourceHighlight[] = [
   {
     company: 'Cowboy Steak',
     logo: partnerCowboysteak,
-    result: 'Duy trì Reach',
+    result: 'Brand Awareness',
     cost: 'Social Mng.',
     impact: 'Steakhouse Awareness',
     tags: ['F&B', 'Restaurant'],

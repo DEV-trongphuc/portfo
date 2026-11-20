@@ -24,6 +24,7 @@ import partnerBrandson from '../imgs/partner_brandson.webp';
 import partnerAmpersand from '../imgs/ampersand logo.jpg';
 import partnerImplantswiss from '../imgs/partner_implantswiss.png';
 import partnerRichland from '../imgs/partner_richland.webp';
+import partnerTheCrumbClub from '../imgs/partner_the_crumb_club.jpg';
 
 export const PARTNERS: Partner[] = [
   { name: 'Phúc Lộc Thọ', image: partnerPhucloctho, website: 'https://phucloctho.vn', industry: 'FNB / Franchise' },
@@ -57,5 +58,6 @@ export const PARTNERS: Partner[] = [
   { name: 'Richland', image: partnerRichland, website: 'https://rich-land.vercel.app/', industry: 'Real Estate / PropTech' },
   { name: 'MINTH Store', image: '/assets/partners/logo_minth.webp', website: 'https://minth-store.vercel.app/', industry: 'Cosmetics & Perfume / Retail' },
   { name: 'Mystery Tarot', image: '/assets/partners/logo_mystery_tarot.webp', website: 'https://www.mystery-tarot.net/', industry: 'Spiritual AI / Entertainment' },
-  { name: 'Bếp Nhà SON', image: '/assets/partners/logo_son_fnb.webp', website: '#', industry: 'FNB / Restaurant' }
+  { name: 'Bếp Nhà SON', image: '/assets/partners/logo_son_fnb.webp', website: '#', industry: 'FNB / Restaurant' },
+  { name: 'The Crumb Club', image: partnerTheCrumbClub, website: 'https://meta.domation.net/the-crumb-club', industry: 'FNB / Coffee & Bakes' }
 ];

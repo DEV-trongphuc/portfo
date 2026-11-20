@@ -6,7 +6,7 @@ import domLogo from '../../imgs/dom_logo.webp';
 import AnimatedNumber from '../UI/AnimatedNumber';
 
 interface HeroProps {
-  onOpenDomationModal: () => void;
+  onOpenDomationModal?: () => void;
   onOpenEcoLifeModal: () => void;
   onJumpSection: (id: string) => void;
 }
@@ -79,10 +79,7 @@ const InteractiveBrandSphere: React.FC<{ compact?: boolean }> = ({ compact = fal
     typeof window !== 'undefined' ? Math.min(window.innerWidth - 32, 540) : 520
   );
 
-  const visibleNodes = useMemo(
-    () => (compact ? SPHERE_NODES.slice(0, 16) : SPHERE_NODES),
-    [compact]
-  );
+  const visibleNodes = SPHERE_NODES;
 
   const IDLE_VX = 0.0034;
   const IDLE_VY = 0.0009;
@@ -98,9 +95,9 @@ const InteractiveBrandSphere: React.FC<{ compact?: boolean }> = ({ compact = fal
   const nodeRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const isCompactViewport = compact || containerWidth < 460;
-  const nodePad = isCompactViewport ? 64 : 72;
-  const maxR = isCompactViewport ? 112 : 205;
-  const minR = isCompactViewport ? 98 : 116;
+  const nodePad = isCompactViewport ? 52 : 72;
+  const maxR = isCompactViewport ? 142 : 205;
+  const minR = 116;
   const radius = Math.min(maxR, Math.max(minR, Math.floor((containerWidth - nodePad) / 2)));
   const outerRingPx = Math.round(radius * 2);
   const innerRingPx = Math.round(radius * 1.38);
@@ -156,7 +153,7 @@ const InteractiveBrandSphere: React.FC<{ compact?: boolean }> = ({ compact = fal
       const z2 = pt.y * sinP + z1 * cosP;
 
       const depth = (z2 + 1) / 2;
-      const scale = isCompactViewport ? 0.62 + depth * 0.36 : 0.62 + depth * 0.48;
+      const scale = isCompactViewport ? 0.58 + depth * 0.38 : 0.62 + depth * 0.48;
       const opacity = 0.48 + depth * 0.52;
       const isHovered = hover === idx;
 
@@ -319,7 +316,7 @@ const InteractiveBrandSphere: React.FC<{ compact?: boolean }> = ({ compact = fal
       onPointerCancel={endDrag}
       onPointerLeave={handlePointerLeave}
       style={{ touchAction: isCompactViewport ? 'pan-y' : 'none' }}
-      className={`relative w-full h-[268px] sm:h-[470px] flex items-center justify-center select-none ${
+      className={`relative w-full h-[336px] sm:h-[470px] flex items-center justify-center select-none ${
         isDraggingUI ? 'cursor-grabbing' : 'cursor-grab'
       }`}
     >
@@ -366,7 +363,7 @@ const InteractiveBrandSphere: React.FC<{ compact?: boolean }> = ({ compact = fal
               }
             }}
             aria-label={node.name}
-            className={`will-change-transform absolute w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-white border p-1.5 sm:p-2 flex items-center justify-center shadow-xs transition-shadow select-none ${
+            className={`will-change-transform absolute w-9 h-9 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-white border p-1.5 sm:p-2 flex items-center justify-center shadow-xs transition-shadow select-none ${
               isHovered
                 ? 'border-[#1E40FF] ring-4 ring-blue-100/80'
                 : 'border-slate-200/90'
@@ -399,7 +396,6 @@ const InteractiveBrandSphere: React.FC<{ compact?: boolean }> = ({ compact = fal
 };
 
 const Hero: React.FC<HeroProps> = ({
-  onOpenDomationModal,
   onOpenEcoLifeModal,
   onJumpSection,
 }) => {
@@ -554,20 +550,21 @@ const Hero: React.FC<HeroProps> = ({
                 <span>Case Study Tiêu Biểu</span>
               </button>
 
-              <button
-                type="button"
-                onClick={onOpenDomationModal}
+              <a
+                href="https://domation.net/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="ql-btn-outline px-4 py-2.5 rounded-full text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer"
               >
                 <Layers size={14} className="text-[#1E40FF]" />
                 <span>Kiến Trúc Hệ Thống</span>
-              </button>
+              </a>
             </div>
           </motion.div>
 
           {/* Right Column: Desktop Single-Instance Interactive 3D Rotating Brand Sphere */}
           {isDesktop && (
-            <div className="hidden lg:block lg:col-span-6">
+            <div className="hidden lg:flex lg:col-span-6 lg:items-center lg:justify-center lg:translate-y-6">
               <InteractiveBrandSphere />
             </div>
           )}
